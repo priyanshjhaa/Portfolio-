@@ -133,7 +133,7 @@ export default function Hero() {
               <div className="flex items-center justify-between md:justify-start md:gap-4 group">
                 <span className="text-text-muted/60 text-[10px] md:text-xs uppercase tracking-wider">Mode</span>
                 <div className="flex items-center gap-2">
-                  <span className="text-accent font-bold text-sm md:text-base">Shipping</span>
+                  <span className="text-accent font-bold text-sm md:text-base whitespace-nowrap">Shipping</span>
                   <div className="w-1.5 h-1.5 bg-accent/60 rounded-full animate-pulse" />
                 </div>
               </div>
