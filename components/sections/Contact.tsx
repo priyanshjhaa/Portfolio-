@@ -24,31 +24,31 @@ export default function Contact() {
   ];
 
   return (
-    <section className="py-24 px-4 border-t border-[#1a1a1a] relative overflow-hidden">
+    <section className="py-16 md:py-24 px-4 border-t border-[#1a1a1a] relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 grid-pattern opacity-30" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/2 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute inset-0 grid-pattern opacity-25 md:opacity-40" />
+      <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-accent/3 md:bg-accent/4 rounded-full blur-[80px] md:blur-[120px] pointer-events-none glow-pulse" />
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Header */}
-        <div className="mb-14">
-          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-accent mb-4 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-accent rounded-sm" />
+        <div className="mb-10 md:mb-14">
+          <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em] md:tracking-[0.25em] text-accent mb-3 md:mb-4 flex items-center gap-2">
+            <span className="w-1 h-1 md:w-1.5 md:h-1.5 bg-accent rounded-sm" />
             Connection
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-text-primary mb-3 md:mb-4">
             Get in Touch
           </h2>
 
           {/* Status */}
           <div className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
-            <p className="text-sm font-bold text-accent">Open to work</p>
+            <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-accent rounded-full animate-pulse" />
+            <p className="text-xs md:text-sm font-bold text-accent">Open to work</p>
           </div>
         </div>
 
         {/* Links */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
           {links.map((link) => {
             const Icon = link.icon;
             return (
@@ -57,21 +57,21 @@ export default function Contact() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-6 hover:border-accent/30 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
+                className="group bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-5 md:p-6 hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
               >
                 {/* Hover gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.02] md:from-accent/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                <Icon className="w-5 h-5 text-text-muted group-hover:text-accent transition-colors mb-4 relative" />
-                <p className="text-sm font-bold text-text-primary group-hover:text-accent transition-colors mb-1 relative">
+                <Icon className="w-4 h-4 md:w-5 md:h-5 text-text-muted group-hover:text-accent transition-colors mb-3 md:mb-4 relative" />
+                <p className="text-sm md:text-sm font-bold text-text-primary group-hover:text-accent transition-colors mb-1 relative">
                   {link.name}
                 </p>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted relative">
+                <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-wider text-text-muted relative">
                   {link.label}
                 </p>
 
                 {/* Bottom accent */}
-                <div className="absolute bottom-0 left-6 right-6 h-px bg-accent/0 group-hover:bg-accent/30 transition-colors" />
+                <div className="absolute bottom-0 left-5 right-5 md:left-6 md:right-6 h-px bg-accent/0 group-hover:bg-accent/30 transition-colors" />
               </a>
             );
           })}

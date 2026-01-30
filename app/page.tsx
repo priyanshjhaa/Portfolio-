@@ -5,6 +5,8 @@ import ScrollIndicator from '@/components/ui/ScrollIndicator';
 import Hero from '@/components/sections/Hero';
 import Projects from '@/components/sections/Projects';
 import About from '@/components/sections/About';
+import Timeline from '@/components/sections/Timeline';
+import Skills from '@/components/sections/Skills';
 import Contact from '@/components/sections/Contact';
 
 export default function Home() {
@@ -25,6 +27,14 @@ export default function Home() {
         <About />
       </section>
 
+      <section id="timeline" className="scroll-mt-20">
+        <Timeline />
+      </section>
+
+      <section id="skills" className="scroll-mt-20">
+        <Skills />
+      </section>
+
       <section id="contact" className="scroll-mt-20">
         <Contact />
       </section>
@@ -33,7 +43,7 @@ export default function Home() {
       <footer className="py-12 px-4 border-t border-[#1a1a1a]">
         <div className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-text-muted text-sm">
-            © {new Date().getFullYear()} Priyansh
+            © {new Date().getFullYear()} Priyansh Jha
           </p>
           <div className="flex items-center gap-2">
             <div className="w-1 h-1 bg-accent/50 rounded-full" />

@@ -19,6 +19,8 @@ export default function Navigation() {
   const navLinks = [
     { name: 'Builds', href: '#projects' },
     { name: 'Stats', href: '#about' },
+    { name: 'Mission Log', href: '#timeline' },
+    { name: 'Skills', href: '#skills' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -36,8 +38,8 @@ export default function Navigation() {
       className={cn(
         'sticky top-0 z-50 transition-all duration-300 border-b border-[#1a1a1a]',
         isScrolled
-          ? 'bg-gta/95 backdrop-blur-md py-3 shadow-lg shadow-black/20'
-          : 'bg-gta/85 backdrop-blur-sm py-4'
+          ? 'bg-gta/95 backdrop-blur-md py-2 md:py-3 shadow-lg shadow-black/20'
+          : 'bg-gta/85 backdrop-blur-sm py-3 md:py-4'
       )}
     >
       <div className="max-w-[1100px] mx-auto px-4">
@@ -46,15 +48,15 @@ export default function Navigation() {
           <a
             href="#hero"
             onClick={(e) => scrollToSection(e, '#hero')}
-            className="relative text-xl font-bold text-text-primary hover:text-accent transition-colors duration-200 group"
+            className="relative text-lg md:text-xl font-bold text-text-primary hover:text-accent transition-colors duration-300 group"
           >
-            P<span className="text-accent">.</span>
+            <span className="inline-block group-hover:animate-pulse">P</span><span className="text-accent">J</span>
             <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent/0 group-hover:bg-accent/50 transition-colors rounded-full" />
           </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="flex items-center space-x-12">
+            <div className="flex items-center space-x-10 md:space-x-12">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -69,38 +71,36 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2.5 rounded-lg text-text-secondary hover:text-accent hover:bg-accent/10 transition-all duration-200"
-              aria-expanded={isMobileMenuOpen}
-              aria-label="Toggle navigation menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="block h-5 w-5" />
-              ) : (
-                <Menu className="block h-5 w-5" />
-              )}
-            </button>
-          </div>
+          {/* Mobile menu button - touch friendly */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden inline-flex items-center justify-center p-2.5 min-w-[44px] min-h-[44px] rounded-lg text-text-secondary hover:text-accent hover:bg-accent/10 transition-all duration-200"
+            aria-expanded={isMobileMenuOpen}
+            aria-label="Toggle navigation menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="block h-5 w-5" />
+            ) : (
+              <Menu className="block h-5 w-5" />
+            )}
+          </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - full width slide-down */}
       <div
         className={cn(
-          'md:hidden transition-all duration-300 overflow-hidden',
-          isMobileMenuOpen ? 'max-h-48 border-b border-[#1a1a1a] bg-gta/95 backdrop-blur-md' : 'max-h-0'
+          'md:hidden transition-all duration-300 overflow-hidden bg-gta/98 backdrop-blur-md',
+          isMobileMenuOpen ? 'max-h-80 border-b border-[#1a1a1a]' : 'max-h-0'
         )}
       >
-        <div className="px-4 pt-2 pb-4 space-y-1">
+        <div className="px-4 pt-4 pb-6 space-y-1">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="text-text-secondary hover:text-accent hover:bg-accent/5 block px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-200"
+              className="text-text-secondary hover:text-accent hover:bg-accent/5 block px-4 py-3.5 min-h-[48px] rounded-lg text-sm font-bold uppercase tracking-wider transition-all duration-200 border border-transparent hover:border-accent/10"
             >
               {link.name}
             </a>

@@ -37,23 +37,23 @@ export default function ProjectCard({ project, index, featured }: ProjectCardPro
   return (
     <article
       className={cn(
-        'group relative bg-[#0a0a0a] border rounded-xl overflow-hidden transition-all duration-300 card-glow',
-        featured ? 'border-accent/25 hover:border-accent/50' : 'border-[#1a1a1a] hover:border-accent/30',
-        'hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5'
+        'group relative bg-[#0a0a0a] border rounded-xl overflow-hidden transition-all duration-400 card-glow',
+        featured ? 'border-accent/30 hover:border-accent/50' : 'border-[#1a1a1a] hover:border-accent/40',
+        'hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/10'
       )}
       aria-labelledby={`project-${project.id}-title`}
     >
       {/* Featured glow */}
       {featured && (
         <>
-          <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/10 rounded-full blur-2xl group-hover:bg-accent/15 transition-all duration-300" />
-          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-all duration-300" />
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/15 rounded-full blur-2xl group-hover:bg-accent/20 transition-all duration-400" />
+          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-accent/8 rounded-full blur-2xl group-hover:bg-accent/12 transition-all duration-400" />
         </>
       )}
 
       {/* Animated border glow on hover */}
-      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-accent/10 via-transparent to-accent/5 animate-pulse" style={{ animationDuration: '3s' }} />
+      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none">
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-accent/15 via-transparent to-accent/8 animate-pulse" style={{ animationDuration: '3s' }} />
       </div>
 
       {/* Top accent line */}
@@ -114,7 +114,7 @@ export default function ProjectCard({ project, index, featured }: ProjectCardPro
             {project.stack.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider bg-[#111111] text-text-secondary rounded-md border border-[#1a1a1a] group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
+                className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider bg-[#111111] text-text-secondary rounded-md border border-[#1a1a1a] group-hover:border-accent/40 group-hover:text-accent group-hover:bg-accent/8 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
               >
                 {tech}
               </span>
@@ -149,7 +149,7 @@ export default function ProjectCard({ project, index, featured }: ProjectCardPro
         </div>
 
         {/* Hover gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-accent/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-b-xl" />
+        <div className="absolute inset-0 bg-gradient-to-t from-accent/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none rounded-b-xl" />
       </div>
     </article>
   );
