@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   description: 'I build execution-focused tools. Full-stack developer specializing in precise, scalable solutions.',
   icons: {
     icon: '/icon.svg',
-    shortcut: '/favicon.ico',
   },
   openGraph: {
     title: 'Priyansh - Full Stack Developer',
