@@ -20,6 +20,7 @@ export const projects: Project[] = [
     stack: ['Next.js', 'Prisma', 'Supabase', 'React'],
     status: 'maintenance',
     githubUrl: 'https://github.com/priyanshjhaa/Axiom',
+    liveUrl: 'https://axiom-nu-six.vercel.app',
   },
   {
     id: 'cinematch',
@@ -29,6 +30,7 @@ export const projects: Project[] = [
     stack: ['React', 'Firebase', 'TMDB API', 'YouTube'],
     status: 'archived',
     githubUrl: 'https://github.com/priyanshjhaa/Cinematch25',
+    liveUrl: 'https://cinematch25.vercel.app',
   },
 ];
 
