@@ -130,7 +130,7 @@ export default function Hero() {
                 <span className="text-text-muted/60 text-[10px] md:text-xs uppercase tracking-wider">Background</span>
                 <span className="text-text-primary font-semibold text-sm md:text-base">Full-stack / AI</span>
               </div>
-              <div className="flex items-center justify-between md:justify-start md:gap-4 group">
+              <div className="flex items-center justify-between md:justify-start md:gap-4 group flex-wrap sm:flex-nowrap">
                 <span className="text-text-muted/60 text-[10px] md:text-xs uppercase tracking-wider">Mode</span>
                 <div className="flex items-center gap-2">
                   <span className="text-accent font-bold text-sm md:text-base whitespace-nowrap">Shipping</span>
