@@ -20,13 +20,13 @@ export default function ScrollIndicator() {
   }, []);
 
   return (
-    <div className="fixed top-[57px] left-0 right-0 z-40 h-[3px] bg-[#0a0a0a] border-b border-[#1a1a1a]">
+    <div className="fixed left-1/2 top-[84px] z-40 hidden h-1 w-[min(1120px,calc(100%-2rem))] -translate-x-1/2 overflow-hidden rounded-full border border-white/5 bg-white/[0.03] md:block">
       <div
-        className="h-full bg-gradient-to-r from-accent/80 via-accent to-accent/80 transition-all duration-150 ease-out relative progress-glow"
+        className="relative h-full rounded-full bg-gradient-to-r from-accent/60 via-accent to-[#9dffb0] transition-all duration-150 ease-out progress-glow"
         style={{ width: `${scrollProgress}%` }}
       >
-        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white/20 via-white/10 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent opacity-70" />
+        <div className="absolute right-0 top-1/2 h-3 w-8 -translate-y-1/2 rounded-full bg-white/25 blur-md" />
       </div>
     </div>
   );

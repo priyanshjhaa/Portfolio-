@@ -37,32 +37,32 @@ export default function ProjectCard({ project, index, featured }: ProjectCardPro
   return (
     <article
       className={cn(
-        'group relative bg-[#0a0a0a] border rounded-xl overflow-hidden transition-all duration-400 card-glow',
-        featured ? 'border-accent/30 hover:border-accent/50' : 'border-[#1a1a1a] hover:border-accent/40',
-        'hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/10'
+        'group relative overflow-hidden rounded-[28px] border transition-all duration-300 card-glow',
+        featured
+          ? 'panel-chrome border-accent/25 hover:border-accent/45 hover:-translate-y-1.5'
+          : 'bg-[#0a0a0a]/90 border-white/6 hover:border-accent/24 hover:-translate-y-1'
       )}
       aria-labelledby={`project-${project.id}-title`}
     >
-      {/* Featured glow */}
       {featured && (
         <>
-          <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/15 rounded-full blur-2xl group-hover:bg-accent/20 transition-all duration-400" />
-          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-accent/8 rounded-full blur-2xl group-hover:bg-accent/12 transition-all duration-400" />
+          <div className="absolute -top-20 -right-20 h-44 w-44 rounded-full bg-accent/15 blur-2xl transition-all duration-300 group-hover:bg-accent/20" />
+          <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-accent/8 blur-2xl transition-all duration-300 group-hover:bg-accent/12" />
         </>
       )}
 
-      {/* Animated border glow on hover */}
-      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none">
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-accent/15 via-transparent to-accent/8 animate-pulse" style={{ animationDuration: '3s' }} />
+      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <div className="absolute inset-0 rounded-[28px] bg-gradient-to-br from-accent/14 via-transparent to-accent/8 animate-pulse" style={{ animationDuration: '3s' }} />
       </div>
 
-      {/* Top accent line */}
       {featured && (
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-accent/20 via-accent to-accent/20" />
+        <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-accent/20 via-accent to-accent/20" />
       )}
 
-      {/* Card Header */}
-      <div className="px-6 py-5 border-b border-[#1a1a1a] flex items-center justify-between relative bg-gradient-to-b from-[#0f0f0f] to-transparent">
+      <div className={cn(
+        'relative flex flex-col items-start gap-3 border-b px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6',
+        featured ? 'border-white/8 bg-gradient-to-b from-[#101010] to-transparent' : 'border-white/6 bg-gradient-to-b from-white/[0.03] to-transparent'
+      )}>
         <div className="flex items-center gap-3">
           <div className="relative">
             <div className={cn('w-2 h-2 rounded-full', status.bg)} />
@@ -71,13 +71,16 @@ export default function ProjectCard({ project, index, featured }: ProjectCardPro
           </div>
           <h3
             id={`project-${project.id}-title`}
-            className="text-xl font-bold text-text-primary group-hover:text-accent transition-all duration-300 group-hover:scale-105"
+            className={cn(
+              'font-display font-semibold uppercase tracking-[0.08em] text-text-primary transition-all duration-300 group-hover:text-accent',
+              featured ? 'text-2xl md:text-[2rem]' : 'text-xl'
+            )}
           >
             {project.name}
           </h3>
         </div>
         <span className={cn(
-          'text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-md bg-[#111111] border',
+          'rounded-md border bg-[#111111] px-3 py-1.5 font-display text-[10px] uppercase tracking-[0.22em]',
           status.color,
           status.border
         )}>
@@ -85,36 +88,35 @@ export default function ProjectCard({ project, index, featured }: ProjectCardPro
         </span>
       </div>
 
-      {/* Card Body */}
-      <div className="p-6 relative">
-        {/* Mission - why this exists */}
+      <div className="relative p-5 sm:p-6">
         {mission && (
-          <div className="mb-6 pb-5 border-b border-[#1a1a1a]">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted mb-2">Why</p>
-            <p className="text-sm text-text-secondary leading-relaxed">{mission}</p>
+          <div className={cn(
+            'mb-6 rounded-2xl border px-4 py-4',
+            featured ? 'border-accent/14 bg-accent/[0.06]' : 'border-white/6 bg-white/[0.02]'
+          )}>
+            <p className="mb-2 font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">Why</p>
+            <p className="text-sm leading-relaxed text-text-secondary">{mission}</p>
           </div>
         )}
 
-        {/* Problem & Approach */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6 pb-5 border-b border-[#1a1a1a]">
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted mb-2">Problem</p>
-            <p className="text-sm text-text-secondary leading-relaxed">{project.problem}</p>
+        <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-white/6 bg-black/20 p-4">
+            <p className="mb-2 font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">Problem</p>
+            <p className="text-sm leading-relaxed text-text-secondary">{project.problem}</p>
           </div>
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted mb-2">Approach</p>
-            <p className="text-sm text-text-secondary leading-relaxed">{project.approach}</p>
+          <div className="rounded-2xl border border-white/6 bg-black/20 p-4">
+            <p className="mb-2 font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">Approach</p>
+            <p className="text-sm leading-relaxed text-text-secondary">{project.approach}</p>
           </div>
         </div>
 
-        {/* Stack */}
         <div className="mb-6">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted mb-3">Stack</p>
+          <p className="mb-3 font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">Stack</p>
           <div className="flex flex-wrap gap-2">
             {project.stack.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider bg-[#111111] text-text-secondary rounded-md border border-[#1a1a1a] group-hover:border-accent/40 group-hover:text-accent group-hover:bg-accent/8 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5"
+                className="rounded-md border border-white/6 bg-[#111111] px-3 py-1.5 font-display text-[10px] uppercase tracking-[0.2em] text-text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 group-hover:border-accent/30 group-hover:bg-accent/8 group-hover:text-accent"
               >
                 {tech}
               </span>
@@ -122,14 +124,13 @@ export default function ProjectCard({ project, index, featured }: ProjectCardPro
           </div>
         </div>
 
-        {/* Links */}
-        <div className="flex items-center gap-6 pt-4 border-t border-[#1a1a1a]">
+        <div className="flex flex-wrap items-center gap-5 border-t border-white/6 pt-4">
           {project.githubUrl && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-text-muted hover:text-accent transition-all text-xs font-bold uppercase tracking-wider group/link"
+              className="group/link inline-flex items-center gap-2 font-display text-xs uppercase tracking-[0.2em] text-text-muted transition-all hover:text-accent"
             >
               <Github className="w-4 h-4 group-hover/link:scale-110 transition-transform" />
               Code
@@ -140,7 +141,7 @@ export default function ProjectCard({ project, index, featured }: ProjectCardPro
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-text-muted hover:text-accent transition-all text-xs font-bold uppercase tracking-wider group/link"
+              className="group/link inline-flex items-center gap-2 font-display text-xs uppercase tracking-[0.2em] text-text-muted transition-all hover:text-accent"
             >
               <ExternalLink className="w-4 h-4 group-hover/link:scale-110 transition-transform" />
               Live
@@ -148,8 +149,7 @@ export default function ProjectCard({ project, index, featured }: ProjectCardPro
           )}
         </div>
 
-        {/* Hover gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-accent/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none rounded-b-xl" />
+        <div className="absolute inset-0 bg-gradient-to-t from-accent/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-b-xl" />
       </div>
     </article>
   );

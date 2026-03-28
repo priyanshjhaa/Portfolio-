@@ -3,6 +3,7 @@
 import Navigation from '@/components/ui/Navigation';
 import ScrollIndicator from '@/components/ui/ScrollIndicator';
 import Hero from '@/components/sections/Hero';
+import BuildLogs from '@/components/sections/BuildLogs';
 import Projects from '@/components/sections/Projects';
 import About from '@/components/sections/About';
 import Timeline from '@/components/sections/Timeline';
@@ -11,12 +12,16 @@ import Contact from '@/components/sections/Contact';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-clip">
       <Navigation />
       <ScrollIndicator />
 
       <section id="hero">
         <Hero />
+      </section>
+
+      <section>
+        <BuildLogs />
       </section>
 
       <section id="projects" className="scroll-mt-20">
@@ -39,15 +44,15 @@ export default function Home() {
         <Contact />
       </section>
 
-      {/* Footer - Save Points */}
-      <footer className="py-12 px-4 border-t border-[#1a1a1a]">
-        <div className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-text-muted text-sm">
+      <footer className="section-shell relative overflow-hidden px-4 py-12">
+        <div className="absolute inset-0 grid-pattern opacity-[0.08]" />
+        <div className="relative mx-auto flex max-w-[1100px] flex-col items-center justify-between gap-4 rounded-[28px] border border-white/6 bg-white/[0.025] px-6 py-6 md:flex-row">
+          <p className="text-sm text-text-muted">
             © {new Date().getFullYear()} Priyansh Jha
           </p>
           <div className="flex items-center gap-2">
-            <div className="w-1 h-1 bg-accent/50 rounded-full" />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-accent/60">
+            <div className="h-1.5 w-1.5 rounded-full bg-accent/50" />
+            <span className="font-display text-[10px] uppercase tracking-[0.24em] text-accent/70">
               Progress saved
             </span>
           </div>

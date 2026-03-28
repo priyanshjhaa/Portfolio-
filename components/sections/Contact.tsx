@@ -1,5 +1,5 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
-import { contact } from '@/lib/data';
+import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { contact, sectionCopy } from '@/lib/data';
 
 export default function Contact() {
   const links = [
@@ -24,57 +24,81 @@ export default function Contact() {
   ];
 
   return (
-    <section className="py-16 md:py-24 px-4 border-t border-[#1a1a1a] relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 grid-pattern opacity-25 md:opacity-40" />
-      <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-accent/3 md:bg-accent/4 rounded-full blur-[80px] md:blur-[120px] pointer-events-none glow-pulse" />
+    <section className="section-shell section-shell-alt relative overflow-hidden px-4 py-20 md:py-28">
+      <div className="absolute inset-0 grid-pattern opacity-18 md:opacity-30" />
+      <div className="absolute inset-0 topographic-pattern opacity-15 pointer-events-none" />
+      <div className="ambient-orb right-[8%] top-[8%] h-[320px] w-[320px] opacity-55 md:h-[480px] md:w-[480px]" />
 
-      <div className="max-w-4xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="mb-10 md:mb-14">
-          <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em] md:tracking-[0.25em] text-accent mb-3 md:mb-4 flex items-center gap-2">
-            <span className="w-1 h-1 md:w-1.5 md:h-1.5 bg-accent rounded-sm" />
-            Connection
-          </p>
-          <h2 className="text-2xl md:text-4xl font-bold text-text-primary mb-3 md:mb-4">
-            Get in Touch
-          </h2>
+      <div className="relative z-10 mx-auto max-w-[1080px]">
+        <div className="panel-chrome hud-corners rounded-[34px] p-6 md:p-8">
+          <div className="absolute inset-0 scanlines opacity-20 pointer-events-none" />
 
-          {/* Status */}
-          <div className="flex items-center gap-2">
-            <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-accent rounded-full animate-pulse" />
-            <p className="text-xs md:text-sm font-bold text-accent">Open to work</p>
+          <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.86fr)] lg:items-start">
+            <div>
+              <p className="section-kicker mb-4 flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-sm bg-accent" />
+                {sectionCopy.contact.eyebrow}
+              </p>
+              <h2 className="section-heading mb-4">{sectionCopy.contact.title}</h2>
+              <p className="max-w-xl text-sm leading-relaxed text-text-secondary md:text-base">
+                {sectionCopy.contact.description}
+              </p>
+
+              <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-accent/15 bg-accent/10 px-4 py-3">
+                <div className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+                <div>
+                  <p className="font-display text-[10px] uppercase tracking-[0.24em] text-accent/80">{sectionCopy.contact.availabilityTitle}</p>
+                  <p className="text-sm font-semibold text-accent">{sectionCopy.contact.availabilityValue}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[30px] border border-white/6 bg-black/20 p-5 md:p-6">
+              <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">{sectionCopy.contact.linksTitle}</p>
+                  <p className="mt-2 font-display text-2xl font-semibold uppercase tracking-[0.08em] text-text-primary">
+                    {sectionCopy.contact.linksHeading}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/6 bg-white/[0.03] px-3 py-2 font-display text-[10px] uppercase tracking-[0.2em] text-text-muted">
+                  {sectionCopy.contact.linksStatus}
+                </div>
+              </div>
+
+              <div className="grid gap-3">
+                {links.map((link) => {
+                  const Icon = link.icon;
+
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-between gap-4 rounded-2xl border border-white/6 bg-white/[0.025] px-4 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/20 hover:bg-accent/[0.05]"
+                    >
+                      <div className="flex min-w-0 items-center gap-4">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-accent/15 bg-accent/10 text-accent">
+                          <Icon className="h-4 w-4" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-display text-sm uppercase tracking-[0.16em] text-text-primary">
+                            {link.name}
+                          </p>
+                          <p className="mt-1 font-display text-[10px] uppercase tracking-[0.2em] text-text-muted">
+                            {link.label}
+                          </p>
+                        </div>
+                      </div>
+
+                      <ArrowUpRight className="h-4 w-4 text-text-muted transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
           </div>
-        </div>
-
-        {/* Links */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
-          {links.map((link) => {
-            const Icon = link.icon;
-            return (
-              <a
-                key={link.name}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-5 md:p-6 hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
-              >
-                {/* Hover gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.02] md:from-accent/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                <Icon className="w-4 h-4 md:w-5 md:h-5 text-text-muted group-hover:text-accent transition-colors mb-3 md:mb-4 relative" />
-                <p className="text-sm md:text-sm font-bold text-text-primary group-hover:text-accent transition-colors mb-1 relative">
-                  {link.name}
-                </p>
-                <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-wider text-text-muted relative">
-                  {link.label}
-                </p>
-
-                {/* Bottom accent */}
-                <div className="absolute bottom-0 left-5 right-5 md:left-6 md:right-6 h-px bg-accent/0 group-hover:bg-accent/30 transition-colors" />
-              </a>
-            );
-          })}
         </div>
       </div>
     </section>

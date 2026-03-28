@@ -25,12 +25,13 @@ const config: Config = {
         // Text colors
         text: {
           primary: '#EDEDED',
-          secondary: '#9A9A9A',
-          muted: '#6F6F6F',
+          secondary: '#D1D5DB',
+          muted: '#98A2B3',
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['"Avenir Next"', '"Segoe UI"', 'system-ui', 'sans-serif'],
+        display: ['Rajdhani', '"Avenir Next Condensed"', '"Arial Narrow"', 'sans-serif'],
       },
       animation: {
         'fade-up': 'fadeUp 0.25s ease-out',

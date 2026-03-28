@@ -40,6 +40,113 @@ export const about = {
   bio: "I build tools that work. CS student focused on execution-driven projects, not demo apps. Shipping real systems that solve real problems.",
 };
 
+export const heroContent = {
+  eyebrow: 'Now Building',
+  title: 'I build systems that ship — not demos.',
+  description:
+    'Computer science student focused on execution-driven software, reliable tooling, and products that hold up beyond the demo.',
+  statusTitle: 'Execution Systems',
+  statusItems: [
+    { label: 'Core Strength', value: 'Scalable backend APIs' },
+    { label: 'Build Layer', value: 'Automation workflows' },
+    { label: 'Applied Focus', value: 'AI-powered tools' },
+  ],
+  proofItems: [
+    '3 tracked builds',
+    '2 live apps',
+    'AI + backend focused',
+  ],
+  dashboardItems: [
+    { label: 'System Status', value: 'Live' },
+    { label: 'Active Builds', value: '1' },
+    { label: 'Live Releases', value: '2' },
+    { label: 'Tracked Systems', value: '3' },
+  ],
+  cta: 'See What I’ve Shipped',
+  direction: 'Automation, developer tools, AI systems',
+};
+
+export const sectionCopy = {
+  projects: {
+    eyebrow: 'Builds',
+    title: 'Current Work',
+    description:
+      'Selected projects with a bias toward execution, systems thinking, and products that solve real workflow problems.',
+    focusTitle: 'Focus Area',
+    focusValue: 'Automation',
+    focusDescription: 'Developer tools, AI systems, and execution-first products.',
+    philosophyTitle: 'Build Philosophy',
+    philosophyText:
+      'I care more about systems getting stronger over time than shipping something that only looks finished.',
+    completedLabel: 'Completed Systems',
+  },
+  about: {
+    eyebrow: 'Profile',
+    title: 'Stats',
+    description:
+      'A quick snapshot of how I operate: full-stack engineering, execution mindset, and systems built to keep improving.',
+    territoryTitle: 'Territory',
+    territoryValue: 'Full-stack systems with real execution',
+    bioTitle: 'Bio',
+    bioHeading: 'Built To Run',
+    modeTitle: 'Current Mode',
+    modeValue: 'Shipping',
+    approachTitle: 'Approach',
+    approachText: 'Favor systems that can survive iteration, not just ship screenshots.',
+    signalTitle: 'Signal',
+    signalText: 'Real workflows, clear constraints, and stronger execution loops.',
+    footerText: 'Built to run, not reset.',
+  },
+  timeline: {
+    eyebrow: 'Mission Log',
+    title: 'Career Progression',
+    description:
+      'A running path of education, shipped work, and the systems I have been building toward over time.',
+    progressTitle: 'Mission Progress',
+  },
+  skills: {
+    eyebrow: 'Skill Tree',
+    title: 'Build Stats',
+    description: 'Capabilities across frontend, backend, AI, infrastructure, and the tooling that ties them together.',
+    updateTitle: 'Last Update',
+    updateText: 'Actively building and strengthening the highest-leverage modules.',
+    ruleTitle: 'Operating Rule',
+    ruleText: 'Ship, measure, improve. Skills should support systems, not sit as decoration.',
+  },
+  contact: {
+    eyebrow: 'Connection',
+    title: 'Get in Touch',
+    description:
+      'If you are building something ambitious and need an execution-focused engineer, this is the fastest way to reach me.',
+    availabilityTitle: 'Availability',
+    availabilityValue: 'Open to work',
+    linksTitle: 'Outbound Links',
+    linksHeading: 'Command Center',
+    linksStatus: 'Live',
+  },
+};
+
+export const buildLogs = [
+  {
+    id: 'build-01',
+    label: '[BUILD 01]',
+    name: 'Execute',
+    detail: 'AI automation engine for turning natural language into deterministic workflows.',
+  },
+  {
+    id: 'build-02',
+    label: '[BUILD 02]',
+    name: 'Axiom',
+    detail: 'Freelancer platform covering proposals, projects, and invoicing in one system.',
+  },
+  {
+    id: 'build-03',
+    label: '[BUILD 03]',
+    name: 'Cinematch',
+    detail: 'Content discovery app built around saving, recommendations, and streaming flows.',
+  },
+];
+
 export const contact = {
   github: 'https://github.com/priyanshjhaa',
   linkedin: 'https://www.linkedin.com/in/priyansh-jha-489966284',

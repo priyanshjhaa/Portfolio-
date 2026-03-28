@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { GraduationCap, Briefcase, Rocket, Code, CheckCircle } from 'lucide-react';
-import { timeline } from '@/lib/data';
+import { sectionCopy, timeline } from '@/lib/data';
 import type { TimelineEntry } from '@/types/skill';
 import { cn } from '@/lib/utils';
 
@@ -20,12 +20,12 @@ function TimelineItem({ entry, index }: { entry: TimelineEntry; index: number })
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setVisible(true), index * 100);
+      ([observerEntry]) => {
+        if (observerEntry.isIntersecting) {
+          setTimeout(() => setVisible(true), index * 90);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
     if (itemRef.current) {
@@ -41,125 +41,102 @@ function TimelineItem({ entry, index }: { entry: TimelineEntry; index: number })
     <div
       ref={itemRef}
       className={cn(
-        'relative pl-10 pb-8 md:pl-16 md:pb-10',
-        !visible && 'opacity-0'
+        'relative pl-12 pb-8 md:pl-20 md:pb-10',
+        !visible && 'opacity-0 translate-y-4',
+        visible && 'timeline-item-animate'
       )}
     >
-      {/* Timeline marker */}
       <div className="absolute left-0 top-1">
         <div
           className={cn(
-            'relative flex items-center justify-center w-6 h-6 md:w-8 md:h-8 rounded-full bg-[#0a0a0a] border-2 transition-all duration-300',
-            entry.completed
-              ? 'border-accent checkpoint-marker'
-              : 'border-[#2a2a2a]'
+            'relative flex h-8 w-8 items-center justify-center rounded-full border-2 bg-[#0a0a0a] md:h-10 md:w-10',
+            entry.completed ? 'border-accent checkpoint-marker' : 'border-white/12 shadow-[0_0_0_8px_rgba(255,255,255,0.02)]'
           )}
         >
           {entry.completed ? (
-            <Icon className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 text-accent" />
+            <>
+              <div className="absolute inset-0 rounded-full bg-accent/10 blur-md" />
+              <Icon className="relative z-10 h-3.5 w-3.5 text-accent md:h-4 md:w-4" />
+            </>
           ) : (
-            <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-text-muted/50 rounded-full" />
+            <>
+              <div className="absolute inset-0 rounded-full bg-accent/8 blur-md" />
+              <Icon className="relative z-10 h-3.5 w-3.5 text-text-muted md:h-4 md:w-4" />
+            </>
           )}
         </div>
       </div>
 
-      {/* Timeline card */}
       <div
         className={cn(
-          'p-4 md:p-5 bg-[#0a0a0a] border rounded-xl relative overflow-hidden transition-all duration-300',
+          'relative overflow-hidden rounded-[28px] border p-5 transition-all duration-300 hover:-translate-y-1 md:p-6',
           entry.completed
-            ? 'border-accent/20 hover:border-accent/35'
-            : 'border-[#1a1a1a] hover:border-accent/30',
-          'hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5'
+            ? 'panel-chrome border-accent/16 hover:border-accent/28'
+            : 'bg-[#0a0a0a]/92 border-white/8 hover:border-accent/20'
         )}
       >
-        {/* Inner gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.02] md:from-accent/[0.03] to-transparent pointer-events-none opacity-0 hover:opacity-100 transition-opacity duration-300" />
+        {!entry.completed && (
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent/0 via-accent/35 to-accent/0" />
+        )}
 
-        {/* Completion badge */}
         {entry.completed && (
-          <div className="absolute top-2 right-2 md:top-3 md:right-3 px-1.5 md:px-2 py-0.5 bg-accent/10 border border-accent/20 rounded-md">
-            <span className="text-[7px] md:text-[8px] font-bold uppercase tracking-wider text-accent">
-              Complete
-            </span>
+          <div className="absolute right-4 top-4 rounded-md border border-accent/20 bg-accent/10 px-2 py-1">
+            <span className="font-display text-[8px] uppercase tracking-[0.2em] text-accent">Complete</span>
           </div>
         )}
 
         <div className="relative">
-          {/* Period */}
-          <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-wider text-accent mb-1.5 md:mb-2">
-            {entry.period}
-          </p>
-
-          {/* Title */}
-          <h3 className="text-base md:text-lg font-bold text-text-primary mb-0.5 md:mb-1">
+          <p className="font-display text-[10px] uppercase tracking-[0.24em] text-accent">{entry.period}</p>
+          <h3 className="mt-3 font-display text-2xl font-semibold uppercase tracking-[0.08em] text-text-primary">
             {entry.title}
           </h3>
-
-          {/* Organization */}
           {entry.organization && (
-            <p className="text-xs md:text-sm text-text-muted mb-2 md:mb-3">
-              {entry.organization}
-            </p>
+            <p className="mt-1 text-sm text-text-muted">{entry.organization}</p>
           )}
-
-          {/* Description */}
-          <p className="text-xs md:text-sm text-text-secondary leading-relaxed">
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-text-secondary md:text-base">
             {entry.description}
           </p>
         </div>
       </div>
 
-      {/* Connector line */}
-      <div className="absolute left-3 md:left-5 top-7 md:top-8 w-0.5 h-[calc(100%-0.5rem)] bg-gradient-to-b from-accent/15 to-transparent" />
+      <div className="absolute left-4 top-10 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-accent/35 via-accent/10 to-transparent md:left-5" />
     </div>
   );
 }
 
 export default function Timeline() {
-  const completedCount = timeline.filter((e) => e.completed).length;
+  const completedCount = timeline.filter((entry) => entry.completed).length;
 
   return (
-    <section
-      id="timeline"
-      className="py-16 md:py-24 px-4 border-t border-[#1a1a1a] relative overflow-hidden"
-    >
-      {/* Background effects */}
-      <div className="absolute inset-0 grid-pattern opacity-25 md:opacity-40" />
-      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-accent/3 md:bg-accent/4 rounded-full blur-[80px] md:blur-[120px] pointer-events-none glow-pulse" />
+    <section className="section-shell section-shell-alt relative overflow-hidden px-4 py-20 md:py-28">
+      <div className="absolute inset-0 grid-pattern opacity-20 md:opacity-32" />
+      <div className="ambient-orb left-[4%] top-[18%] h-[320px] w-[320px] opacity-45 md:h-[460px] md:w-[460px]" />
 
-      <div className="max-w-3xl mx-auto relative z-10">
-        {/* Section Header */}
-        <div className="mb-10 md:mb-14">
-          <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em] md:tracking-[0.25em] text-accent mb-3 md:mb-4 flex items-center gap-2">
-            <span className="w-1 h-1 md:w-1.5 md:h-1.5 bg-accent rounded-sm" />
-            Mission Log
-          </p>
-          <h2 className="text-2xl md:text-4xl font-bold text-text-primary mb-3 md:mb-4">
-            Career Progression
-          </h2>
-          <p className="text-text-muted text-xs md:text-sm">
-            Checkpoints cleared. Missions accomplished.
-          </p>
+      <div className="relative z-10 mx-auto max-w-4xl">
+        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="section-kicker mb-4 flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-sm bg-accent" />
+              {sectionCopy.timeline.eyebrow}
+            </p>
+            <h2 className="section-heading mb-4">{sectionCopy.timeline.title}</h2>
+            <p className="max-w-2xl text-sm leading-relaxed text-text-secondary md:text-base">
+              {sectionCopy.timeline.description}
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-white/6 bg-white/[0.025] px-4 py-3">
+            <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">{sectionCopy.timeline.progressTitle}</p>
+            <p className="mt-2 font-display text-2xl font-semibold uppercase tracking-[0.08em] text-accent">
+              {completedCount}/{timeline.length}
+            </p>
+          </div>
         </div>
 
-        {/* Timeline items */}
         <div className="relative">
           {timeline.map((entry, index) => (
             <TimelineItem key={entry.id} entry={entry} index={index} />
           ))}
-        </div>
-
-        {/* Progress indicator */}
-        <div className="mt-6 md:mt-8 p-3 md:p-4 bg-[#080808] border border-[#1a1a1a] rounded-lg inline-flex items-center gap-2 md:gap-3 hover:border-accent/20 transition-all duration-300">
-          <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-accent rounded-full animate-pulse" />
-          <p className="text-[10px] md:text-xs text-text-muted">
-            Mission Progress:{' '}
-            <span className="text-accent font-bold ml-1">
-              {completedCount}/{timeline.length}
-            </span>{' '}
-            Complete
-          </p>
         </div>
       </div>
     </section>

@@ -1,66 +1,77 @@
 import ProjectCard from '@/components/cards/ProjectCard';
-import { projects } from '@/lib/data';
+import { projects, sectionCopy } from '@/lib/data';
 
 export default function Projects() {
-  const currentBuild = projects.find(p => p.featured);
-  const otherBuilds = projects.filter(p => !p.featured);
+  const currentBuild = projects.find((p) => p.featured);
+  const otherBuilds = projects.filter((p) => !p.featured);
 
   return (
-    <section className="py-16 md:py-24 px-4 border-t border-[#1a1a1a] relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 grid-pattern opacity-30 md:opacity-60" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[700px] md:h-[700px] bg-accent/3 md:bg-accent/4 rounded-full blur-[100px] md:blur-[150px] pointer-events-none glow-pulse" />
+    <section className="section-shell section-shell-alt relative overflow-hidden px-4 py-20 md:py-28">
+      <div className="absolute inset-0 grid-pattern opacity-25 md:opacity-45" />
+      <div className="absolute inset-0 topographic-pattern opacity-20 pointer-events-none" />
+      <div className="ambient-orb left-[8%] top-[18%] h-[360px] w-[360px] opacity-60 md:h-[520px] md:w-[520px]" />
+      <div className="ambient-orb right-[-4%] bottom-[8%] h-[320px] w-[320px] opacity-40" />
 
-      <div className="max-w-[1100px] mx-auto relative z-10">
-        {/* Section Header */}
-        <div className="mb-10 md:mb-16">
-          <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em] md:tracking-[0.25em] text-accent mb-3 md:mb-4 flex items-center gap-2">
-            <span className="w-1 h-1 md:w-1.5 md:h-1.5 bg-accent rounded-sm" />
-            Builds
-          </p>
-          <h2 className="text-2xl md:text-4xl font-bold text-text-primary mb-3 md:mb-4">
-            Current Work
-          </h2>
-          <p className="text-text-muted text-xs md:text-sm max-w-lg">
-            Focus Area: Automation · Developer Tools · AI Systems
-          </p>
-        </div>
+      <div className="relative z-10 mx-auto max-w-[1120px]">
+        <div className="mb-12 grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">
+          <div>
+            <p className="section-kicker mb-4 flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-sm bg-accent" />
+              {sectionCopy.projects.eyebrow}
+            </p>
+            <h2 className="section-heading mb-4">{sectionCopy.projects.title}</h2>
+            <p className="max-w-2xl text-sm leading-relaxed text-text-secondary md:text-base">
+              {sectionCopy.projects.description}
+            </p>
+          </div>
 
-        {/* Progression statement */}
-        <div className="mb-10 md:mb-16 p-4 md:p-6 bg-[#080808] border border-[#1a1a1a] rounded-xl relative overflow-hidden hover:border-accent/20 transition-all duration-300">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.02] md:from-accent/[0.04] to-transparent pointer-events-none" />
-          <div className="flex items-start gap-3 md:gap-4 relative">
-            <div className="w-1 h-1 bg-accent/60 rounded-full mt-1 md:mt-1.5" />
-            <p className="text-text-secondary text-xs md:text-sm">
-              Most of my work is still evolving — that's intentional.
+          <div className="panel-chrome rounded-3xl p-5">
+            <p className="font-display text-[10px] uppercase tracking-[0.26em] text-text-muted">{sectionCopy.projects.focusTitle}</p>
+            <p className="mt-3 font-display text-xl font-semibold uppercase tracking-[0.1em] text-text-primary">
+              {sectionCopy.projects.focusValue}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+              {sectionCopy.projects.focusDescription}
             </p>
           </div>
         </div>
 
-        {/* Current Build - featured */}
+        <div className="mb-12 rounded-[28px] border border-white/6 bg-white/[0.025] p-5 md:p-6">
+          <div className="flex items-start gap-4">
+            <div className="mt-1 h-2.5 w-2.5 rounded-full bg-accent shadow-[0_0_0_6px_rgba(76,175,80,0.08)]" />
+            <div>
+              <p className="font-display text-[10px] uppercase tracking-[0.28em] text-text-muted">{sectionCopy.projects.philosophyTitle}</p>
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-text-secondary md:text-base">
+                {sectionCopy.projects.philosophyText}
+              </p>
+            </div>
+          </div>
+        </div>
+
         {currentBuild && (
-          <div className="mb-10 md:mb-16">
-            <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+          <div className="relative mb-14">
+            <div className="absolute -inset-2 rounded-[36px] border border-accent/10 bg-accent/[0.03] blur-2xl pointer-events-none" />
+            <div className="mb-5 flex items-center gap-3">
               <div className="relative">
-                <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-accent rounded-full" />
-                <div className="absolute inset-0 w-1.5 h-1.5 md:w-2 md:h-2 bg-accent rounded-full animate-ping opacity-75" />
-                <div className="absolute -inset-1.5 md:-inset-2 bg-accent/15 rounded-full blur-sm md:blur-md" />
+                <div className="h-2.5 w-2.5 rounded-full bg-accent" />
+                <div className="absolute inset-0 h-2.5 w-2.5 rounded-full bg-accent animate-ping opacity-70" />
               </div>
-              <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.15em] md:tracking-[0.2em] text-accent">
-                In Progress
-              </span>
+              <span className="font-display text-[11px] uppercase tracking-[0.28em] text-accent">Featured Build</span>
             </div>
             <ProjectCard project={currentBuild} index={0} featured />
           </div>
         )}
 
-        {/* Other Builds */}
         {otherBuilds.length > 0 && (
           <div>
-            <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.15em] md:tracking-[0.2em] text-text-muted mb-4 md:mb-6">
-              Completed
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="mb-6 flex items-center justify-between gap-4">
+              <p className="font-display text-[11px] uppercase tracking-[0.28em] text-text-muted">
+                {sectionCopy.projects.completedLabel}
+              </p>
+              <div className="hidden h-px flex-1 bg-gradient-to-r from-white/10 via-accent/20 to-transparent md:block" />
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
               {otherBuilds.map((project, index) => (
                 <ProjectCard
                   key={project.id}
