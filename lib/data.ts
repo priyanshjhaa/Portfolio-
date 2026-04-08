@@ -10,6 +10,7 @@ export const projects: Project[] = [
     stack: ['Next.js', 'Node.js', 'Supabase', 'LLM APIs', 'Queues', 'Webhooks'],
     status: 'active',
     githubUrl: 'https://github.com/priyanshjhaa/Execute',
+    liveUrl: 'https://execute-web-i7u4.vercel.app',
     featured: true,
   },
   {
@@ -37,14 +38,14 @@ export const projects: Project[] = [
 export const about = {
   name: 'Priyansh',
   title: 'Full Stack Developer',
-  bio: "I build tools that work. CS student focused on execution-driven projects, not demo apps. Shipping real systems that solve real problems.",
+  bio: 'I build execution-focused products, backend systems, and developer tooling designed for real-world use. The goal is simple: ship systems that solve meaningful problems and keep getting stronger over time.',
 };
 
 export const heroContent = {
-  eyebrow: 'Now Building',
+  eyebrow: 'Current Focus',
   title: 'I build systems that ship — not demos.',
   description:
-    'Computer science student focused on execution-driven software, reliable tooling, and products that hold up beyond the demo.',
+    'I build execution-driven systems, reliable tooling, and production products designed to perform beyond the demo.',
   statusTitle: 'Execution Systems',
   statusItems: [
     { label: 'Core Strength', value: 'Scalable backend APIs' },
@@ -53,13 +54,13 @@ export const heroContent = {
   ],
   proofItems: [
     '3 tracked builds',
-    '2 live apps',
+    '3 live apps',
     'AI + backend focused',
   ],
   dashboardItems: [
     { label: 'System Status', value: 'Live' },
     { label: 'Active Builds', value: '1' },
-    { label: 'Live Releases', value: '2' },
+    { label: 'Live Releases', value: '3' },
     { label: 'Tracked Systems', value: '3' },
   ],
   cta: 'See What I’ve Shipped',
@@ -268,7 +269,7 @@ export const timeline: TimelineEntry[] = [
     organization: 'Personal Project',
     description: 'Building an execution engine that converts natural language into deterministic, runnable workflows with proper observability.',
     period: '2026',
-    completed: false,
+    completed: true,
     icon: 'Rocket',
   },
 ];

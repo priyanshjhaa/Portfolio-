@@ -2,7 +2,7 @@ import { about, sectionCopy } from '@/lib/data';
 
 export default function About() {
   const stats = [
-    { label: 'CS', value: 'Student', color: 'text-text-primary' },
+    { label: 'ENG', value: 'Systems', color: 'text-text-primary' },
     { label: 'Full', value: 'Stack', color: 'text-text-primary' },
     { label: 'ON', value: 'Grind', color: 'text-accent' },
     { label: '24/7', value: 'Shipping', color: 'text-text-primary' },

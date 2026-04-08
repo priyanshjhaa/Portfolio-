@@ -225,7 +225,7 @@ export default function Hero() {
       <div className="relative z-10 mx-auto grid w-full max-w-[1120px] items-center gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
         <div className="hero-frame animate-fade-up lg:pl-6">
           <div className="mb-6 inline-flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.03] px-4 py-2.5">
-            <span className="font-display text-[10px] uppercase tracking-[0.28em] text-text-muted">Player</span>
+            <span className="font-display text-[10px] uppercase tracking-[0.28em] text-text-muted">Engineer</span>
             <span className="h-3 w-px bg-white/10" />
             <span className="font-display text-lg font-semibold uppercase tracking-[0.18em] text-accent">Priyansh Jha</span>
           </div>
