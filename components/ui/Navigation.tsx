@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Command, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -12,7 +12,11 @@ const navLinks = [
   { name: 'Contact', href: '#contact' },
 ];
 
-export default function Navigation() {
+interface NavigationProps {
+  onOpenExplorer: () => void;
+}
+
+export default function Navigation({ onOpenExplorer }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('#hero');
@@ -97,7 +101,20 @@ export default function Navigation() {
               </div>
             </a>
 
-            <div className="hidden md:flex items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.02] p-1.5">
+            <div className="hidden md:flex items-center gap-2">
+              <button
+                type="button"
+                onClick={onOpenExplorer}
+                className="inline-flex items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.02] px-4 py-2.5 font-display text-xs uppercase tracking-[0.2em] text-text-secondary transition-all duration-200 hover:border-accent/20 hover:bg-accent/10 hover:text-text-primary"
+              >
+                Explore
+                <span className="inline-flex items-center gap-1 rounded-lg border border-white/6 bg-black/20 px-2 py-1 text-[10px] tracking-[0.16em] text-text-muted">
+                  <Command className="h-3 w-3" />
+                  K
+                </span>
+              </button>
+
+              <div className="flex items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.02] p-1.5">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href;
 
@@ -118,6 +135,7 @@ export default function Navigation() {
                   </a>
                 );
               })}
+              </div>
             </div>
 
             <button
@@ -137,6 +155,21 @@ export default function Navigation() {
             )}
           >
             <div className="space-y-1 px-4 pb-4 pt-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  onOpenExplorer();
+                }}
+                className="mb-2 flex w-full items-center justify-between rounded-xl border border-white/6 bg-white/[0.03] px-4 py-3.5 font-display text-sm uppercase tracking-[0.2em] text-text-secondary transition-all duration-200 hover:border-accent/20 hover:text-text-primary"
+              >
+                <span>Explore</span>
+                <span className="inline-flex items-center gap-1 rounded-lg border border-white/6 bg-black/20 px-2 py-1 text-[10px] tracking-[0.16em] text-text-muted">
+                  <Command className="h-3 w-3" />
+                  K
+                </span>
+              </button>
+
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href;
 

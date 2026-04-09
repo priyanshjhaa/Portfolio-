@@ -8,7 +8,7 @@ export const projects: Project[] = [
     problem: 'Users need to automate workflows without writing code or dealing with complex automation tools.',
     approach: 'Building an execution engine that converts natural language into deterministic, runnable workflows with proper observability.',
     stack: ['Next.js', 'Node.js', 'Supabase', 'LLM APIs', 'Queues', 'Webhooks'],
-    status: 'active',
+    status: 'maintenance',
     githubUrl: 'https://github.com/priyanshjhaa/Execute',
     liveUrl: 'https://execute-web-i7u4.vercel.app',
     featured: true,

@@ -1,7 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Navigation from '@/components/ui/Navigation';
 import ScrollIndicator from '@/components/ui/ScrollIndicator';
+import BuildExplorer from '@/components/ui/BuildExplorer';
 import Hero from '@/components/sections/Hero';
 import BuildLogs from '@/components/sections/BuildLogs';
 import Projects from '@/components/sections/Projects';
@@ -11,10 +13,29 @@ import Skills from '@/components/sections/Skills';
 import Contact from '@/components/sections/Contact';
 
 export default function Home() {
+  const [isExplorerOpen, setIsExplorerOpen] = useState(false);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        setIsExplorerOpen((current) => !current);
+      }
+
+      if (event.key === 'Escape') {
+        setIsExplorerOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
   return (
     <main className="min-h-screen overflow-x-clip">
-      <Navigation />
+      <Navigation onOpenExplorer={() => setIsExplorerOpen(true)} />
       <ScrollIndicator />
+      <BuildExplorer isOpen={isExplorerOpen} onClose={() => setIsExplorerOpen(false)} />
 
       <section id="hero">
         <Hero />
