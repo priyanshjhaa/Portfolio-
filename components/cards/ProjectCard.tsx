@@ -12,6 +12,7 @@ interface ProjectCardProps {
 
 // Mission-based framing
 const missionMap: Record<string, string> = {
+  codemap: 'Built to make complex codebases understandable.',
   execute: 'Built to turn intent into execution.',
   axiom: 'Built to reduce friction in freelance workflows.',
   cinematch: 'Built to understand real-world content discovery.',
