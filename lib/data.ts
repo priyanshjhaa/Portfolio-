@@ -9,7 +9,7 @@ export const projects: Project[] = [
     approach: 'Building an AI-powered developer tool that uses RAG and semantic search to enable natural language interaction with codebases and architecture visualization.',
     stack: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'BullMQ', 'OpenAI', 'GitHub API'],
     status: 'active',
-    githubUrl: 'https://github.com/priyanshjhaa',
+    githubUrl: 'https://github.com/priyanshjhaa/CodeMap',
     liveUrl: '#',
     featured: true,
   },
