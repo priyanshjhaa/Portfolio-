@@ -5,12 +5,10 @@ import Navigation from '@/components/ui/Navigation';
 import ScrollIndicator from '@/components/ui/ScrollIndicator';
 import BuildExplorer from '@/components/ui/BuildExplorer';
 import Hero from '@/components/sections/Hero';
-import BuildLogs from '@/components/sections/BuildLogs';
+import CurrentlyBuilding from '@/components/sections/CurrentlyBuilding';
 import Projects from '@/components/sections/Projects';
-import About from '@/components/sections/About';
-import Timeline from '@/components/sections/Timeline';
-import Skills from '@/components/sections/Skills';
-import Contact from '@/components/sections/Contact';
+import HowIBuild from '@/components/sections/HowIBuild';
+import { contact } from '@/lib/data';
 
 export default function Home() {
   const [isExplorerOpen, setIsExplorerOpen] = useState(false);
@@ -41,41 +39,43 @@ export default function Home() {
         <Hero />
       </section>
 
-      <section>
-        <BuildLogs />
+      <section id="building" className="scroll-mt-20">
+        <CurrentlyBuilding />
       </section>
 
       <section id="projects" className="scroll-mt-20">
         <Projects />
       </section>
 
-      <section id="about" className="scroll-mt-20">
-        <About />
+      <section id="process" className="scroll-mt-20">
+        <HowIBuild />
       </section>
 
-      <section id="timeline" className="scroll-mt-20">
-        <Timeline />
-      </section>
-
-      <section id="skills" className="scroll-mt-20">
-        <Skills />
-      </section>
-
-      <section id="contact" className="scroll-mt-20">
-        <Contact />
-      </section>
-
-      <footer className="section-shell relative overflow-hidden px-4 py-12">
-        <div className="absolute inset-0 grid-pattern opacity-[0.08]" />
-        <div className="relative mx-auto flex max-w-[1100px] flex-col items-center justify-between gap-4 rounded-[28px] border border-white/6 bg-white/[0.025] px-6 py-6 md:flex-row">
-          <p className="text-sm text-text-muted">
-            © {new Date().getFullYear()} Priyansh Jha
+      <footer id="contact" className="section-shell relative overflow-hidden px-4 py-16">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(76,175,80,0.08),transparent_34%)] pointer-events-none" />
+        <div className="relative mx-auto max-w-[1120px] rounded-[32px] border border-white/8 bg-white/[0.025] px-6 py-10 md:px-10">
+          <p className="font-display text-[11px] uppercase tracking-[0.24em] text-accent">
+            Footer
           </p>
-          <div className="flex items-center gap-2">
-            <div className="h-1.5 w-1.5 rounded-full bg-accent/50" />
-            <span className="font-display text-[10px] uppercase tracking-[0.24em] text-accent/70">
-              Progress saved
-            </span>
+          <h2 className="mt-4 font-display text-3xl font-semibold tracking-[0.04em] text-text-primary md:text-4xl">
+            Let&apos;s build something impactful.
+          </h2>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={contact.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-3 font-display text-sm uppercase tracking-[0.18em] text-text-primary transition-all duration-300 hover:scale-[1.02] hover:border-accent/20 hover:text-accent"
+            >
+              GitHub
+            </a>
+            <a
+              href={`mailto:${contact.email}`}
+              className="inline-flex min-h-[52px] items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-3 font-display text-sm uppercase tracking-[0.18em] text-text-primary transition-all duration-300 hover:scale-[1.02] hover:border-accent/20 hover:text-accent"
+            >
+              Email
+            </a>
           </div>
         </div>
       </footer>

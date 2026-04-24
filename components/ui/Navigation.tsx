@@ -5,10 +5,9 @@ import { Command, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { name: 'Builds', href: '#projects' },
-  { name: 'Stats', href: '#about' },
-  { name: 'Mission Log', href: '#timeline' },
-  { name: 'Skills', href: '#skills' },
+  { name: 'Building', href: '#building' },
+  { name: 'Work', href: '#projects' },
+  { name: 'Process', href: '#process' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -95,9 +94,9 @@ export default function Navigation({ onOpenExplorer }: NavigationProps) {
               </div>
               <div className="hidden sm:block">
                 <p className="font-display text-sm uppercase tracking-[0.28em] text-text-muted">
-                  Mission Log
+                  Priyansh Jha
                 </p>
-                <p className="text-sm text-text-secondary">Execution-focused systems</p>
+                <p className="text-sm text-text-secondary">AI tools and scalable SaaS</p>
               </div>
             </a>
 
@@ -115,26 +114,26 @@ export default function Navigation({ onOpenExplorer }: NavigationProps) {
               </button>
 
               <div className="flex items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.02] p-1.5">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.href;
+                {navLinks.map((link) => {
+                  const isActive = activeSection === link.href;
 
-                return (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => scrollToSection(e, link.href)}
-                    data-active={isActive}
-                    className={cn(
-                      'nav-pill rounded-xl px-4 py-2.5 font-display text-xs uppercase tracking-[0.22em] transition-all duration-200',
-                      isActive
-                        ? 'bg-accent/12 text-accent shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
-                        : 'text-text-secondary hover:bg-white/[0.03] hover:text-text-primary'
-                    )}
-                  >
-                    {link.name}
-                  </a>
-                );
-              })}
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      onClick={(e) => scrollToSection(e, link.href)}
+                      data-active={isActive}
+                      className={cn(
+                        'nav-pill rounded-xl px-4 py-2.5 font-display text-xs uppercase tracking-[0.22em] transition-all duration-200',
+                        isActive
+                          ? 'bg-accent/12 text-accent shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
+                          : 'text-text-secondary hover:bg-white/[0.03] hover:text-text-primary'
+                      )}
+                    >
+                      {link.name}
+                    </a>
+                  );
+                })}
               </div>
             </div>
 

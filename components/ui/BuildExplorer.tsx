@@ -2,10 +2,10 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowUpRight, Command, Github, Layers3, Mail, Search, UserRound, X } from 'lucide-react';
-import { contact, projects, skillGroups } from '@/lib/data';
+import { contact, howIBuild, projects } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
-type ExplorerGroup = 'Projects' | 'Skills' | 'Contact';
+type ExplorerGroup = 'Projects' | 'Process' | 'Contact';
 type ExplorerAction = 'scroll' | 'external';
 
 interface ExplorerItem {
@@ -25,7 +25,7 @@ interface BuildExplorerProps {
   onClose: () => void;
 }
 
-const groupOrder: ExplorerGroup[] = ['Projects', 'Skills', 'Contact'];
+const groupOrder: ExplorerGroup[] = ['Projects', 'Process', 'Contact'];
 
 function createItems(): ExplorerItem[] {
   const projectItems: ExplorerItem[] = projects.flatMap((project) => {
@@ -79,16 +79,18 @@ function createItems(): ExplorerItem[] {
     return items;
   });
 
-  const skillItems: ExplorerItem[] = skillGroups.map((group) => ({
-    id: `skill-${group.category}`,
-    label: group.category,
-    description: `${group.description} · ${group.skills.map((skill) => skill.name).join(' · ')}`,
-    group: 'Skills',
-    keywords: [group.category, group.description, ...group.skills.flatMap((skill) => [skill.name, skill.category])],
-    actionType: 'scroll',
-    sectionId: 'skills',
-    icon: Command,
-  }));
+  const processItems: ExplorerItem[] = [
+    {
+      id: 'process-how-i-build',
+      label: 'How I Build',
+      description: howIBuild.join(' · '),
+      group: 'Process',
+      keywords: ['process', 'architecture', 'reliability', 'shipping', ...howIBuild],
+      actionType: 'scroll',
+      sectionId: 'process',
+      icon: Command,
+    },
+  ];
 
   const contactItems: ExplorerItem[] = [
     {
@@ -123,8 +125,8 @@ function createItems(): ExplorerItem[] {
     },
     {
       id: 'contact-section',
-      label: 'Contact Section',
-      description: 'Jump to contact section',
+      label: 'Contact',
+      description: 'Jump to footer contact actions',
       group: 'Contact',
       keywords: ['contact', 'reach out', 'availability'],
       actionType: 'scroll',
@@ -133,7 +135,7 @@ function createItems(): ExplorerItem[] {
     },
   ];
 
-  return [...projectItems, ...skillItems, ...contactItems];
+  return [...projectItems, ...processItems, ...contactItems];
 }
 
 export default function BuildExplorer({ isOpen, onClose }: BuildExplorerProps) {
@@ -165,30 +167,6 @@ export default function BuildExplorer({ isOpen, onClose }: BuildExplorerProps) {
       }))
       .filter((entry) => entry.items.length > 0);
   }, [filteredItems]);
-
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      const isShortcut = (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k';
-      if (isShortcut) {
-        event.preventDefault();
-        if (!isOpen) {
-          setQuery('');
-          setActiveIndex(0);
-        }
-        if (isOpen) {
-          onClose();
-        }
-      }
-
-      if (event.key === 'Escape' && isOpen) {
-        event.preventDefault();
-        onClose();
-      }
-    };
-
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isOpen, onClose]);
 
   useEffect(() => {
     if (!isOpen) {

@@ -5,17 +5,20 @@ export const projects: Project[] = [
   {
     id: 'codemap',
     name: 'CodeMap',
+    summary: 'AI-powered codebase intelligence platform.',
+    details: 'Import repositories, understand architecture, and query codebases using natural language.',
     problem: 'Engineers struggle to understand complex codebases and navigate architecture efficiently when joining projects or working with large repositories.',
     approach: 'Building an AI-powered developer tool that uses RAG and semantic search to enable natural language interaction with codebases and architecture visualization.',
-    stack: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'BullMQ', 'OpenAI', 'GitHub API'],
+    stack: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'LLMs'],
     status: 'active',
     githubUrl: 'https://github.com/priyanshjhaa/CodeMap',
-    liveUrl: '#',
     featured: true,
   },
   {
     id: 'execute',
     name: 'Execute',
+    summary: 'AI automation engine that converts natural language into deterministic workflows.',
+    details: 'Built with queue-based execution and webhook pipelines for reliable automation.',
     problem: 'Users need to automate workflows without writing code or dealing with complex automation tools.',
     approach: 'Building an execution engine that converts natural language into deterministic, runnable workflows with proper observability.',
     stack: ['Next.js', 'Node.js', 'Supabase', 'LLM APIs', 'Queues', 'Webhooks'],
@@ -26,6 +29,8 @@ export const projects: Project[] = [
   {
     id: 'axiom',
     name: 'Axiom',
+    summary: 'Freelancer management SaaS platform.',
+    details: 'Designed structured workflows for proposals, projects, and invoicing with scalable APIs.',
     problem: 'Freelancers struggle with proposal generation, invoicing, and client document management across multiple tools.',
     approach: 'Built a system-first platform with reliable data flow between proposals, projects, and invoices.',
     stack: ['Next.js', 'Prisma', 'Supabase', 'React'],
@@ -36,6 +41,8 @@ export const projects: Project[] = [
   {
     id: 'cinematch',
     name: 'Cinematch',
+    summary: 'Content discovery platform with recommendation flows.',
+    details: 'Focused on API-driven architecture and seamless user experience.',
     problem: 'Users struggle to discover movies and track favorites across streaming platforms.',
     approach: 'Content-heavy API-driven app built around real user flows—discovery, recommendations, and saving content.',
     stack: ['React', 'Firebase', 'TMDB API', 'YouTube'],
@@ -52,30 +59,27 @@ export const about = {
 };
 
 export const heroContent = {
-  eyebrow: 'Current Focus',
-  title: 'I build systems that ship — not demos.',
+  eyebrow: 'Selected Builder',
+  title: 'I build AI-powered developer tools and scalable SaaS products.',
   description:
-    'I build execution-driven systems, reliable tooling, and production products designed to perform beyond the demo.',
-  statusTitle: 'Execution Systems',
-  statusItems: [
-    { label: 'Core Strength', value: 'Scalable backend APIs' },
-    { label: 'Build Layer', value: 'Automation workflows' },
-    { label: 'Applied Focus', value: 'AI-powered tools' },
-  ],
-  proofItems: [
-    '4 tracked builds',
-    '3 live apps',
-    'AI + backend focused',
-  ],
-  dashboardItems: [
-    { label: 'System Status', value: 'Live' },
-    { label: 'Active Builds', value: '2' },
-    { label: 'Live Releases', value: '3' },
-    { label: 'Tracked Systems', value: '4' },
-  ],
-  cta: 'See What I’ve Shipped',
-  direction: 'Automation, developer tools, AI systems',
+    'Focused on backend systems, automation workflows, and clean, production-ready architecture.',
+  cta: 'View Projects',
+  secondaryCta: 'GitHub',
 };
+
+export const currentBuild = {
+  eyebrow: 'Currently Building',
+  title: 'CodeMap',
+  description:
+    'AI-powered platform to understand and navigate codebases using embeddings and system-level analysis.',
+};
+
+export const howIBuild = [
+  'I design systems before writing code',
+  'I focus on reliability and clean architecture',
+  'I ship fast and iterate based on feedback',
+  'I prefer building real products over demos',
+];
 
 export const sectionCopy = {
   projects: {

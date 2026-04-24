@@ -1,6 +1,8 @@
 export interface Project {
   id: string;
   name: string;
+  summary?: string;
+  details?: string;
   problem: string;
   approach: string;
   stack: string[];

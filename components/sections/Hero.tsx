@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { heroContent, projects } from '@/lib/data';
+import { ArrowUpRight, Github } from 'lucide-react';
+import { contact, heroContent, projects } from '@/lib/data';
 
 const systemNodes = [
   { id: 'core', label: 'Execution Core', x: 210, y: 146, size: 22, delay: '0s', drift: 'node-drift-slow' },
@@ -31,8 +31,11 @@ function SystemVisual() {
       <div className="absolute inset-0 rounded-[30px] bg-gradient-to-br from-accent/[0.04] via-transparent to-white/[0.02]" />
       <div className="absolute inset-[16%] rounded-full bg-[radial-gradient(circle,rgba(76,175,80,0.14),rgba(76,175,80,0.05)_38%,transparent_72%)] blur-2xl pointer-events-none" />
       <div className="absolute inset-0 topographic-pattern opacity-10 pointer-events-none" />
+
       <div className="absolute left-8 top-6">
-        <p className="font-display text-[10px] uppercase tracking-[0.24em] text-accent/75">System Core • Running</p>
+        <p className="font-display text-[10px] uppercase tracking-[0.24em] text-accent/75">
+          System Core • Running
+        </p>
         <p className="mt-2 font-display text-lg font-semibold uppercase tracking-[0.1em] text-text-primary">
           Live Execution Engine
         </p>
@@ -162,44 +165,7 @@ function SystemVisual() {
 }
 
 export default function Hero() {
-  const [progress, setProgress] = useState(0);
-  const [displayProgress, setDisplayProgress] = useState(0);
-  const animationRef = useRef<number | null>(null);
-  const startTimeRef = useRef<number | null>(null);
-  const targetProgress = 78;
   const liveProjects = projects.filter((project) => project.liveUrl).length;
-
-  useEffect(() => {
-    const duration = 1200;
-    const startValue = 0;
-
-    const animate = (currentTime: number) => {
-      if (startTimeRef.current === null) {
-        startTimeRef.current = currentTime;
-      }
-
-      const elapsed = currentTime - startTimeRef.current;
-      const progressRatio = Math.min(elapsed / duration, 1);
-      const easeOut = 1 - Math.pow(1 - progressRatio, 3);
-      const currentValue = Math.floor(startValue + (targetProgress - startValue) * easeOut);
-
-      setDisplayProgress(currentValue);
-
-      if (progressRatio < 1) {
-        animationRef.current = requestAnimationFrame(animate);
-      }
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-    const barTimer = setTimeout(() => setProgress(targetProgress), 100);
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      clearTimeout(barTimer);
-    };
-  }, []);
 
   const scrollToProjects = () => {
     const element = document.querySelector('#projects');
@@ -209,188 +175,111 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-16 md:py-20">
-      <div className="absolute inset-0 grid-pattern opacity-[0.02] md:opacity-[0.04]" />
-      <div className="absolute inset-0 topographic-pattern pointer-events-none opacity-70" />
-      <div className="ambient-orb left-[-10%] top-[10%] h-[300px] w-[300px] opacity-90 md:h-[430px] md:w-[430px]" />
-      <div className="ambient-orb right-[4%] top-[16%] h-[380px] w-[380px] opacity-55 md:h-[470px] md:w-[470px]" />
-      <div className="ambient-orb-sharp right-[16%] top-[18%] h-24 w-24 opacity-80 md:h-32 md:w-32" />
-      <div className="absolute inset-0 bg-gradient-to-b from-gta via-transparent to-gta/90 pointer-events-none" />
+    <section className="section-shell relative overflow-hidden px-4 pb-16 pt-24 md:pb-24 md:pt-28">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(76,175,80,0.12),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(76,175,80,0.08),transparent_24%)] pointer-events-none" />
+      <div className="absolute inset-0 grid-pattern opacity-[0.08]" />
 
-      <div className="absolute left-6 top-8 hidden h-24 w-24 md:block">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent/60 to-transparent" />
-        <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-accent/60 to-transparent" />
-      </div>
-
-      <div className="relative z-10 mx-auto grid w-full max-w-[1120px] items-center gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
-        <div className="hero-frame animate-fade-up lg:pl-6">
-          <div className="mb-6 inline-flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.03] px-4 py-2.5">
-            <span className="font-display text-[10px] uppercase tracking-[0.28em] text-text-muted">Engineer</span>
-            <span className="h-3 w-px bg-white/10" />
-            <span className="font-display text-lg font-semibold uppercase tracking-[0.18em] text-accent">Priyansh Jha</span>
-          </div>
-
-          <div className="mb-10 max-w-3xl">
-            <div className="mb-5 flex items-center gap-3">
-              <div className="relative status-ring">
-                <div className="h-2.5 w-2.5 rounded-full bg-accent" />
-                <div className="absolute inset-0 h-2.5 w-2.5 rounded-full bg-accent animate-ping opacity-60" />
-                <div className="absolute -inset-4 rounded-full bg-accent/10 blur-lg" />
-              </div>
-              <span className="font-display text-[11px] uppercase tracking-[0.35em] text-accent">
+      <div className="relative z-10 mx-auto max-w-[1120px]">
+        <div className="rounded-[36px] border border-white/8 bg-[#090909]/88 p-8 shadow-[0_32px_80px_-52px_rgba(0,0,0,0.95)] backdrop-blur-xl md:p-12">
+          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)] xl:gap-12">
+            <div className="max-w-4xl">
+              <p className="font-display text-[11px] uppercase tracking-[0.28em] text-accent/80">
                 {heroContent.eyebrow}
-              </span>
-            </div>
+              </p>
 
-            <h1 className="max-w-3xl font-display text-4xl font-semibold uppercase leading-[0.98] tracking-[0.04em] text-text-primary sm:text-5xl md:text-7xl xl:text-[6rem]">
-              <span className="headline-highlight">{heroContent.title}</span>
-            </h1>
+              <h1 className="mt-5 max-w-5xl font-display text-5xl font-semibold leading-[0.95] tracking-[0.03em] text-text-primary md:text-6xl xl:text-7xl">
+                {heroContent.title}
+              </h1>
 
-            <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-text-secondary md:text-xl">
-              {heroContent.description}
-            </p>
+              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-text-secondary">
+                {heroContent.description}
+              </p>
 
-            <div className="mt-6 flex flex-wrap gap-2.5 md:gap-3">
-              {heroContent.proofItems.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-white/6 bg-white/[0.035] px-3.5 py-2.5 font-display text-[10px] uppercase tracking-[0.18em] text-text-secondary md:px-4 md:text-[11px] md:tracking-[0.2em]"
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <button
+                  onClick={scrollToProjects}
+                  className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-gta transition-all duration-300 hover:scale-[1.02] hover:bg-accent-hover"
                 >
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
+                  {heroContent.cta}
+                  <ArrowUpRight className="h-4 w-4" />
+                </button>
 
-          <div className="mb-10 grid gap-5 md:grid-cols-[minmax(0,1fr)_240px]">
-            <div className="panel-chrome hud-corners gradient-border rounded-3xl p-6 md:p-7">
-              <div className="absolute inset-0 scanlines opacity-20 pointer-events-none" />
-              <div className="relative">
-                <div className="mb-5 flex items-center justify-between gap-4">
-                  <div>
-                    <p className="font-display text-[10px] uppercase tracking-[0.28em] text-text-muted/80">Status</p>
-                    <p className="mt-2 font-display text-2xl font-semibold uppercase tracking-[0.1em] text-text-primary">
-                      {heroContent.statusTitle}
-                    </p>
-                  </div>
-                  <div className="rounded-2xl border border-accent/15 bg-accent/10 px-3 py-2 text-right">
-                    <p className="font-display text-[10px] uppercase tracking-[0.24em] text-accent/80">Current Build</p>
-                    <p className="font-display text-lg font-semibold uppercase tracking-[0.12em] text-accent">Execute</p>
-                  </div>
-                </div>
-
-                <div className="grid gap-3 sm:grid-cols-3">
-                  {heroContent.statusItems.map((item) => (
-                    <div key={item.label} className="rounded-2xl border border-white/6 bg-black/20 px-4 py-3">
-                      <p className="font-display text-[9px] uppercase tracking-[0.24em] text-text-muted">{item.label}</p>
-                      <p className="mt-2 text-sm font-semibold text-text-primary">{item.value}</p>
-                    </div>
-                  ))}
-                </div>
+                <a
+                  href={contact.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-text-primary transition-all duration-300 hover:scale-[1.02] hover:border-accent/20 hover:text-accent"
+                >
+                  {heroContent.secondaryCta}
+                  <Github className="h-4 w-4" />
+                </a>
               </div>
             </div>
 
-            <div className="panel-chrome signal-sweep rounded-3xl p-5">
-              <div className="relative">
-                <div className="mb-5 flex items-center justify-between">
-                  <div>
-                    <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">Primary Metric</p>
-                    <p className="mt-2 font-display text-3xl font-semibold text-accent">{displayProgress}%</p>
-                  </div>
-                  <div className="h-12 w-12 rounded-2xl border border-accent/20 bg-accent/10 p-2">
-                    <div className="flex h-full items-center justify-center rounded-xl border border-accent/15 bg-black/20 font-display text-xs uppercase tracking-[0.2em] text-accent">
+            <div className="relative hidden lg:block">
+              <div className="mb-5">
+                <SystemVisual />
+              </div>
+
+              <div className="panel-drift panel-chrome rounded-[32px] p-6">
+                <div className="absolute inset-0 topographic-pattern opacity-14 pointer-events-none" />
+                <div className="relative space-y-5">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-display text-[10px] uppercase tracking-[0.28em] text-text-muted">
+                        System Dashboard
+                      </p>
+                      <p className="mt-2 font-display text-2xl font-semibold uppercase tracking-[0.1em] text-text-primary">
+                        Operational Focus
+                      </p>
+                    </div>
+                    <div className="rounded-xl border border-accent/20 bg-accent/10 px-3 py-2 font-display text-[10px] uppercase tracking-[0.24em] text-accent">
                       Live
                     </div>
                   </div>
-                </div>
 
-                <p className="text-xs leading-relaxed text-text-secondary">
-                  Prioritizing deterministic workflows, observability, and frictionless developer tooling.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mb-12 rounded-3xl border border-white/6 bg-white/[0.025] p-5 md:p-6">
-            <div className="mb-4 flex items-center justify-between">
-              <span className="font-display text-[10px] uppercase tracking-[0.26em] text-text-muted">Execute Progress</span>
-              <span className="font-display text-lg font-semibold text-accent">{displayProgress}%</span>
-            </div>
-            <div className="h-2.5 overflow-hidden rounded-full border border-white/5 bg-[#121212]">
-              <div
-                className="progress-glow relative h-full rounded-full bg-gradient-to-r from-accent/60 via-accent to-[#9dffb0] transition-all duration-[1400ms] ease-out"
-                style={{ width: `${progress}%` }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-60" />
-                <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-white/25 to-transparent" />
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-            <button
-              onClick={scrollToProjects}
-              className="group shimmer inline-flex min-h-[54px] items-center justify-center gap-3 rounded-2xl bg-accent px-7 py-4 font-display text-sm font-semibold uppercase tracking-[0.18em] text-gta shadow-[0_18px_38px_-20px_rgba(76,175,80,0.5)] transition-all duration-300 hover:scale-[1.01] hover:bg-accent-hover hover:shadow-[0_22px_44px_-20px_rgba(76,175,80,0.58)]"
-            >
-              <span className="relative z-10">{heroContent.cta}</span>
-              <span className="relative z-10 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </button>
-
-            <div className="flex min-h-[54px] items-center gap-3 rounded-2xl border border-white/6 bg-white/[0.025] px-4 py-3 md:px-5">
-              <div className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-              <div>
-                <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">Current Direction</p>
-                <p className="text-sm text-text-primary">{heroContent.direction}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative hidden lg:block">
-          <div className="mb-5">
-            <SystemVisual />
-          </div>
-
-          <div className="panel-drift panel-chrome rounded-[32px] p-6">
-            <div className="absolute inset-0 topographic-pattern opacity-14 pointer-events-none" />
-            <div className="relative space-y-5">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-display text-[10px] uppercase tracking-[0.28em] text-text-muted">System Dashboard</p>
-                  <p className="mt-2 font-display text-2xl font-semibold uppercase tracking-[0.1em] text-text-primary">
-                    Operational Focus
-                  </p>
-                </div>
-                <div className="rounded-xl border border-accent/20 bg-accent/10 px-3 py-2 font-display text-[10px] uppercase tracking-[0.24em] text-accent">
-                  Live
-                </div>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                {heroContent.dashboardItems.map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-white/6 bg-black/20 p-4">
-                    <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">{item.label}</p>
-                    <p className="mt-3 font-display text-2xl font-semibold uppercase tracking-[0.08em] text-text-primary">
-                      {item.label === 'Live Releases' ? liveProjects : item.value}
-                    </p>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {[
+                      { label: 'System Status', value: 'Live' },
+                      { label: 'Active Builds', value: '1' },
+                      { label: 'Live Releases', value: String(liveProjects) },
+                      { label: 'Tracked Systems', value: String(projects.length - 1) },
+                    ].map((item) => (
+                      <div key={item.label} className="rounded-2xl border border-white/6 bg-black/20 p-4">
+                        <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
+                          {item.label}
+                        </p>
+                        <p className="mt-3 font-display text-2xl font-semibold uppercase tracking-[0.08em] text-text-primary">
+                          {item.value}
+                        </p>
+                      </div>
+                    ))}
                   </div>
-                ))}
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-2xl border border-white/6 bg-black/20 p-4">
+                      <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">
+                        Primary Stack
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+                        Next.js, Node.js, LLM APIs, queues, webhooks.
+                      </p>
+                    </div>
+                    <div className="rounded-2xl border border-white/6 bg-black/20 p-4">
+                      <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">
+                        Operating Mode
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+                        Build fast, tighten systems, iterate with intent.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-2xl border border-white/6 bg-black/20 p-4">
-                  <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">Primary Stack</p>
-                  <p className="mt-3 text-sm leading-relaxed text-text-secondary">Next.js, Node.js, LLM APIs, queues, webhooks.</p>
-                </div>
-                <div className="rounded-2xl border border-white/6 bg-black/20 p-4">
-                  <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">Operating Mode</p>
-                  <p className="mt-3 text-sm leading-relaxed text-text-secondary">Build fast, tighten systems, iterate with intent.</p>
-                </div>
-              </div>
+              <div className="ambient-orb -right-10 bottom-4 h-48 w-48 opacity-50" />
             </div>
           </div>
-
-          <div className="ambient-orb -right-10 bottom-4 h-48 w-48 opacity-50" />
         </div>
       </div>
     </section>
