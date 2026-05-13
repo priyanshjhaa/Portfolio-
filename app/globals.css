@@ -842,6 +842,37 @@
   }
 }
 
+.project-card-tilt {
+  transform-style: preserve-3d;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card-tilt:hover {
+    box-shadow:
+      0 0 0 1px rgba(76, 175, 80, 0.14),
+      0 26px 64px -40px rgba(76, 175, 80, 0.22);
+  }
+}
+
+.section-shell > .relative {
+  position: relative;
+  z-index: 1;
+}
+
+.panel-drift {
+  animation: panel-drift 11s ease-in-out infinite;
+}
+
+@keyframes panel-drift {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -854,5 +885,9 @@
 
   .group:hover .preview-module {
     transform: none;
+  }
+
+  .panel-drift {
+    animation: none !important;
   }
 }

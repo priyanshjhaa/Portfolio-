@@ -3,8 +3,11 @@ export interface Project {
   name: string;
   summary?: string;
   details?: string;
+  impact?: string;
   problem: string;
   approach: string;
+  architectureNotes?: string[];
+  highlightMetrics?: string[];
   stack: string[];
   status: ProjectStatus;
   githubUrl?: string;

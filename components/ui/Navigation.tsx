@@ -12,46 +12,24 @@ const navLinks = [
 ];
 
 interface NavigationProps {
+  activeSection: string;
   onOpenExplorer: () => void;
 }
 
-export default function Navigation({ onOpenExplorer }: NavigationProps) {
+export default function Navigation({ activeSection, onOpenExplorer }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('#hero');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 12);
     };
 
-    const sections = ['#hero', ...navLinks.map((link) => link.href)]
-      .map((selector) => document.querySelector(selector))
-      .filter(Boolean) as Element[];
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visibleEntry?.target instanceof HTMLElement) {
-          setActiveSection(`#${visibleEntry.target.id}`);
-        }
-      },
-      {
-        rootMargin: '-35% 0px -45% 0px',
-        threshold: [0.15, 0.3, 0.6],
-      }
-    );
-
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    sections.forEach((section) => observer.observe(section));
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
     };
   }, []);
 
@@ -96,7 +74,15 @@ export default function Navigation({ onOpenExplorer }: NavigationProps) {
                 <p className="font-display text-sm uppercase tracking-[0.28em] text-text-muted">
                   Priyansh Jha
                 </p>
-                <p className="text-sm text-text-secondary">AI tools and scalable SaaS</p>
+                <p className="text-sm text-text-secondary">
+                  {activeSection === '#projects'
+                    ? 'Live mission feed'
+                    : activeSection === '#process'
+                      ? 'Operating system design'
+                      : activeSection === '#contact'
+                        ? 'Outbound channel open'
+                        : 'AI tools and scalable SaaS'}
+                </p>
               </div>
             </a>
 

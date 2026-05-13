@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowUpRight, Command, Github, Layers3, Mail, Search, UserRound, X } from 'lucide-react';
+import { ArrowUpRight, Command, Github, Layers3, Mail, Orbit, Search, UserRound, X } from 'lucide-react';
 import { contact, howIBuild, projects } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 type ExplorerGroup = 'Projects' | 'Process' | 'Contact';
-type ExplorerAction = 'scroll' | 'external';
+type ExplorerAction = 'scroll' | 'external' | 'project';
 
 interface ExplorerItem {
   id: string;
@@ -17,17 +17,22 @@ interface ExplorerItem {
   actionType: ExplorerAction;
   href?: string;
   sectionId?: string;
+  projectId?: string;
   icon: typeof Layers3;
 }
 
 interface BuildExplorerProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpenProject: (projectId: string) => void;
 }
 
 const groupOrder: ExplorerGroup[] = ['Projects', 'Process', 'Contact'];
 
 function createItems(): ExplorerItem[] {
+  const featuredProject = projects.find((project) => project.featured);
+  const liveProjects = projects.filter((project) => project.liveUrl);
+
   const projectItems: ExplorerItem[] = projects.flatMap((project) => {
     const baseKeywords = [
       project.name,
@@ -44,8 +49,8 @@ function createItems(): ExplorerItem[] {
         description: `${project.status} build · ${project.stack.join(' · ')}`,
         group: 'Projects',
         keywords: baseKeywords,
-        actionType: 'scroll',
-        sectionId: 'projects',
+        actionType: 'project',
+        projectId: project.id,
         icon: Layers3,
       },
     ];
@@ -78,6 +83,44 @@ function createItems(): ExplorerItem[] {
 
     return items;
   });
+
+  if (featuredProject) {
+    projectItems.unshift(
+      {
+        id: 'project-featured-open',
+        label: 'Open Featured Build',
+        description: `${featuredProject.name} deep dive`,
+        group: 'Projects',
+        keywords: [featuredProject.name, 'featured', 'deep dive', 'system'],
+        actionType: 'project',
+        projectId: featuredProject.id,
+        icon: Orbit,
+      },
+      {
+        id: 'project-featured-architecture',
+        label: 'See Current Architecture',
+        description: `Inspect ${featuredProject.name} system layer`,
+        group: 'Projects',
+        keywords: [featuredProject.name, 'architecture', 'system', 'nodes'],
+        actionType: 'project',
+        projectId: featuredProject.id,
+        icon: Layers3,
+      }
+    );
+  }
+
+  if (liveProjects.length > 0) {
+    projectItems.unshift({
+      id: 'project-live-jump',
+      label: 'Jump to Live Projects',
+      description: `${liveProjects.length} live systems available`,
+      group: 'Projects',
+      keywords: ['live projects', 'deployed', 'vercel', 'production'],
+      actionType: 'scroll',
+      sectionId: 'projects',
+      icon: ArrowUpRight,
+    });
+  }
 
   const processItems: ExplorerItem[] = [
     {
@@ -138,7 +181,7 @@ function createItems(): ExplorerItem[] {
   return [...projectItems, ...processItems, ...contactItems];
 }
 
-export default function BuildExplorer({ isOpen, onClose }: BuildExplorerProps) {
+export default function BuildExplorer({ isOpen, onClose, onOpenProject }: BuildExplorerProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
@@ -190,6 +233,12 @@ export default function BuildExplorer({ isOpen, onClose }: BuildExplorerProps) {
   const executeItem = (item: ExplorerItem) => {
     if (item.actionType === 'external' && item.href) {
       window.open(item.href, '_blank', 'noopener,noreferrer');
+      onClose();
+      return;
+    }
+
+    if (item.actionType === 'project' && item.projectId) {
+      onOpenProject(item.projectId);
       onClose();
       return;
     }
@@ -246,7 +295,7 @@ export default function BuildExplorer({ isOpen, onClose }: BuildExplorerProps) {
         <div className="relative flex items-center justify-between border-b border-white/6 px-5 py-4 md:px-6">
           <div>
             <p className="font-display text-[10px] uppercase tracking-[0.24em] text-accent/80">Build Explorer</p>
-            <p className="mt-1 text-sm text-text-secondary">Search projects, skills, and contact actions</p>
+            <p className="mt-1 text-sm text-text-secondary">Search projects, system layers, and contact actions</p>
           </div>
 
           <button
@@ -266,7 +315,7 @@ export default function BuildExplorer({ isOpen, onClose }: BuildExplorerProps) {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               onKeyDown={onListKeyDown}
-              placeholder="Search builds, stack, skills, contact..."
+              placeholder="Search builds, architecture, stack, contact..."
               className="w-full bg-transparent text-sm text-text-primary outline-none placeholder:text-text-muted"
             />
             <div className="hidden items-center gap-1 rounded-lg border border-white/6 bg-white/[0.03] px-2 py-1 font-display text-[10px] uppercase tracking-[0.18em] text-text-muted sm:flex">
@@ -280,7 +329,7 @@ export default function BuildExplorer({ isOpen, onClose }: BuildExplorerProps) {
           {groupedItems.length === 0 ? (
             <div className="rounded-2xl border border-white/6 bg-white/[0.02] px-4 py-6 text-center">
               <p className="font-display text-[11px] uppercase tracking-[0.22em] text-text-muted">No results</p>
-              <p className="mt-2 text-sm text-text-secondary">Try searching by project name, stack, skill, or contact method.</p>
+              <p className="mt-2 text-sm text-text-secondary">Try searching by project name, architecture, stack, or contact method.</p>
             </div>
           ) : (
             groupedItems.map((groupEntry) => (
@@ -319,7 +368,7 @@ export default function BuildExplorer({ isOpen, onClose }: BuildExplorerProps) {
                               {item.label}
                             </p>
                             <span className="font-display text-[10px] uppercase tracking-[0.2em] text-text-muted">
-                              {item.actionType === 'external' ? 'Open' : 'Jump'}
+                              {item.actionType === 'external' ? 'Open' : item.actionType === 'project' ? 'Dive' : 'Jump'}
                             </span>
                           </div>
                           <p className="mt-2 text-sm leading-relaxed text-text-secondary">

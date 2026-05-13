@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowUpRight, Github } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Github, Layers3, Workflow } from 'lucide-react';
 import { contact, heroContent, projects } from '@/lib/data';
 
 const systemNodes = [
@@ -164,8 +164,13 @@ function SystemVisual() {
   );
 }
 
-export default function Hero() {
+interface HeroProps {
+  onOpenProject: (projectId: string) => void;
+}
+
+export default function Hero({ onOpenProject }: HeroProps) {
   const liveProjects = projects.filter((project) => project.liveUrl).length;
+  const featuredProject = projects.find((project) => project.featured);
 
   const scrollToProjects = () => {
     const element = document.querySelector('#projects');
@@ -213,6 +218,63 @@ export default function Hero() {
                   {heroContent.secondaryCta}
                   <Github className="h-4 w-4" />
                 </a>
+              </div>
+
+              <div className="mt-8">
+                <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">
+                  Choose Your Path
+                </p>
+                <div className="mt-3 grid gap-3 sm:grid-cols-3">
+                  <button
+                    type="button"
+                    onClick={scrollToProjects}
+                    className="group rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4 text-left transition-all duration-300 hover:border-accent/20 hover:bg-accent/[0.06]"
+                  >
+                    <div className="flex items-center justify-between">
+                      <Layers3 className="h-4 w-4 text-accent" />
+                      <ArrowRight className="h-4 w-4 text-text-muted transition-transform duration-300 group-hover:translate-x-1" />
+                    </div>
+                    <p className="mt-4 font-display text-xs uppercase tracking-[0.18em] text-text-primary">
+                      Explore Builds
+                    </p>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const element = document.querySelector('#process');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="group rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4 text-left transition-all duration-300 hover:border-accent/20 hover:bg-accent/[0.06]"
+                  >
+                    <div className="flex items-center justify-between">
+                      <Workflow className="h-4 w-4 text-accent" />
+                      <ArrowRight className="h-4 w-4 text-text-muted transition-transform duration-300 group-hover:translate-x-1" />
+                    </div>
+                    <p className="mt-4 font-display text-xs uppercase tracking-[0.18em] text-text-primary">
+                      See How I Build
+                    </p>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => featuredProject && onOpenProject(featuredProject.id)}
+                    className="group rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4 text-left transition-all duration-300 hover:border-accent/20 hover:bg-accent/[0.06]"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="relative">
+                        <div className="h-4 w-4 rounded-full border border-accent/40 bg-accent/10" />
+                        <div className="absolute inset-1 rounded-full bg-accent" />
+                      </div>
+                      <ArrowRight className="h-4 w-4 text-text-muted transition-transform duration-300 group-hover:translate-x-1" />
+                    </div>
+                    <p className="mt-4 font-display text-xs uppercase tracking-[0.18em] text-text-primary">
+                      Open System
+                    </p>
+                  </button>
+                </div>
               </div>
             </div>
 
