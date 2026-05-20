@@ -8,8 +8,10 @@ interface ScrollIndicatorProps {
 
 const sectionLabels = {
   hero: 'Core',
-  building: 'Build',
+  building: 'Ship',
+  receipts: 'Proof',
   projects: 'Work',
+  recent: 'Recent',
   process: 'Process',
   contact: 'Contact',
 } as const;

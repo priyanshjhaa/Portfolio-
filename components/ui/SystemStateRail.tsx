@@ -13,14 +13,24 @@ const sectionState = {
     detail: 'Positioning, architecture, and operating mode are active.',
   },
   building: {
-    label: 'Current Focus',
-    title: 'CodeMap in motion',
-    detail: 'Featured build is the current active system on the board.',
+    label: 'Currently Shipping',
+    title: 'Live engineering focus',
+    detail: 'Current work is centered on shipping reliability, retrieval, and architecture clarity.',
+  },
+  receipts: {
+    label: 'Engineering Receipts',
+    title: 'Concrete build evidence',
+    detail: 'Architecture decisions, queue systems, and retrieval pipelines are surfaced directly.',
   },
   projects: {
     label: 'Mission Feed',
     title: 'Selected systems',
     detail: 'Dive into architecture, tradeoffs, and shipped surfaces.',
+  },
+  recent: {
+    label: 'Shipping Timeline',
+    title: 'Recent build log',
+    detail: 'A running log of recent changes, experiments, and product momentum.',
   },
   process: {
     label: 'Operating Model',

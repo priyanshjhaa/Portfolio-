@@ -6,7 +6,9 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { name: 'Building', href: '#building' },
+  { name: 'Receipts', href: '#receipts' },
   { name: 'Work', href: '#projects' },
+  { name: 'Recent', href: '#recent' },
   { name: 'Process', href: '#process' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -19,6 +21,18 @@ interface NavigationProps {
 export default function Navigation({ activeSection, onOpenExplorer }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const sectionLabel =
+    activeSection === '#receipts'
+      ? 'Engineering receipts'
+      : activeSection === '#recent'
+        ? 'Active shipping timeline'
+        : activeSection === '#projects'
+          ? 'Live mission feed'
+          : activeSection === '#process'
+            ? 'Operating system design'
+            : activeSection === '#contact'
+              ? 'Outbound channel open'
+              : 'Production systems and shipping';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,15 +88,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
                 <p className="font-display text-sm uppercase tracking-[0.28em] text-text-muted">
                   Priyansh Jha
                 </p>
-                <p className="text-sm text-text-secondary">
-                  {activeSection === '#projects'
-                    ? 'Live mission feed'
-                    : activeSection === '#process'
-                      ? 'Operating system design'
-                      : activeSection === '#contact'
-                        ? 'Outbound channel open'
-                        : 'AI tools and scalable SaaS'}
-                </p>
+                <p className="text-sm text-text-secondary">{sectionLabel}</p>
               </div>
             </a>
 

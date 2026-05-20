@@ -25,6 +25,16 @@ export default function CurrentlyBuilding({ active = false }: CurrentlyBuildingP
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-text-secondary md:text-lg">
             {currentBuild.description}
           </p>
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            {currentBuild.items.map((item) => (
+              <div
+                key={item}
+                className="rounded-2xl border border-white/6 bg-black/20 px-4 py-3"
+              >
+                <p className="text-sm leading-relaxed text-text-secondary">{item}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

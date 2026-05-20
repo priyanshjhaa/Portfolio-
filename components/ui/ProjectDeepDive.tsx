@@ -28,7 +28,7 @@ export default function ProjectDeepDive({ project, onClose }: ProjectDeepDivePro
   }
 
   return (
-    <div className="fixed inset-0 z-[90] flex items-start justify-center px-4 py-12 md:py-20">
+    <div className="fixed inset-0 z-[90] overflow-y-auto px-4 py-6 md:py-10">
       <button
         type="button"
         aria-label="Close project deep dive"
@@ -36,7 +36,7 @@ export default function ProjectDeepDive({ project, onClose }: ProjectDeepDivePro
         onClick={onClose}
       />
 
-      <div className="relative z-10 w-full max-w-5xl overflow-hidden rounded-[34px] border border-white/8 bg-[#090909]/96 shadow-[0_36px_100px_-48px_rgba(0,0,0,0.96)]">
+      <div className="relative z-10 mx-auto w-full max-w-5xl overflow-hidden rounded-[34px] border border-white/8 bg-[#090909]/96 shadow-[0_36px_100px_-48px_rgba(0,0,0,0.96)]">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.1] via-transparent to-white/[0.02] pointer-events-none" />
         <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent pointer-events-none" />
 
@@ -62,7 +62,7 @@ export default function ProjectDeepDive({ project, onClose }: ProjectDeepDivePro
           </button>
         </div>
 
-        <div className="relative grid gap-6 px-5 py-5 md:grid-cols-[1.15fr_0.85fr] md:px-7 md:py-7">
+        <div className="relative max-h-[calc(100vh-7rem)] overflow-y-auto grid gap-6 px-5 py-5 md:max-h-[calc(100vh-9rem)] md:grid-cols-[1.15fr_0.85fr] md:px-7 md:py-7">
           <div className="space-y-6">
             <div className="rounded-[28px] border border-white/6 bg-black/25 p-5">
               <div className="mb-5 flex items-center justify-between">
@@ -94,10 +94,10 @@ export default function ProjectDeepDive({ project, onClose }: ProjectDeepDivePro
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded-[24px] border border-white/6 bg-white/[0.02] p-5">
                 <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
-                  Problem
+                  Why I Built This
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-text-secondary md:text-base">
-                  {project.problem}
+                  {project.whyBuiltThis ?? project.problem}
                 </p>
               </div>
 
@@ -108,6 +108,25 @@ export default function ProjectDeepDive({ project, onClose }: ProjectDeepDivePro
                 <p className="mt-3 text-sm leading-relaxed text-text-secondary md:text-base">
                   {project.approach}
                 </p>
+              </div>
+            </div>
+
+            <div className="rounded-[24px] border border-white/6 bg-white/[0.02] p-5">
+              <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
+                Architecture Walkthrough
+              </p>
+              <div className="mt-4 grid gap-3 md:grid-cols-[repeat(4,minmax(0,1fr))]">
+                {(project.flowSteps ?? []).map((step, index) => (
+                  <div
+                    key={step}
+                    className="rounded-2xl border border-white/6 bg-black/20 px-4 py-4"
+                  >
+                    <p className="font-display text-[10px] uppercase tracking-[0.18em] text-accent/80">
+                      Step 0{index + 1}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-text-secondary">{step}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -134,7 +153,7 @@ export default function ProjectDeepDive({ project, onClose }: ProjectDeepDivePro
           <div className="space-y-5">
             <div className="rounded-[28px] border border-white/6 bg-black/25 p-5">
               <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
-                Build Stack
+                Infrastructure &amp; Engineering
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.stack.map((tech) => (
@@ -144,6 +163,22 @@ export default function ProjectDeepDive({ project, onClose }: ProjectDeepDivePro
                   >
                     {tech}
                   </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[28px] border border-white/6 bg-black/25 p-5">
+              <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
+                Production Signals
+              </p>
+              <div className="mt-4 space-y-3">
+                {(project.productionSignals ?? []).map((signal) => (
+                  <div
+                    key={signal}
+                    className="rounded-2xl border border-white/6 bg-white/[0.03] px-4 py-3"
+                  >
+                    <p className="text-sm leading-relaxed text-text-secondary">{signal}</p>
+                  </div>
                 ))}
               </div>
             </div>

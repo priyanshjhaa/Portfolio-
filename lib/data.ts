@@ -5,17 +5,21 @@ export const projects: Project[] = [
   {
     id: 'codemap',
     name: 'CodeMap',
-    summary: 'AI-powered codebase intelligence platform.',
-    details: 'Import repositories, understand architecture, and query codebases using natural language.',
+    summary: 'Import repositories, visualize architecture, and query large codebases with context-aware retrieval.',
+    details: 'Built around repository ingestion, structured indexing, and retrieval workflows that help developers understand unfamiliar systems faster.',
     impact: 'Turns large repositories into explorable system maps for faster onboarding and architecture understanding.',
+    whyBuiltThis:
+      'Understanding large unfamiliar codebases still takes developers days or weeks, even when the information already exists inside the repo.',
     problem: 'Engineers struggle to understand complex codebases and navigate architecture efficiently when joining projects or working with large repositories.',
-    approach: 'Building an AI-powered developer tool that uses RAG and semantic search to enable natural language interaction with codebases and architecture visualization.',
+    approach: 'Built repository import, indexing, and retrieval layers so developers can inspect architecture and query codebases through grounded context rather than guesswork.',
     architectureNotes: [
       'Repository ingestion creates a structured context layer before search ever runs.',
       'Semantic indexing and retrieval keep answers grounded in the actual codebase.',
       'System views are designed to explain architecture, not just return snippets.',
     ],
-    highlightMetrics: ['Featured build', 'Architecture-first', 'Natural language query'],
+    highlightMetrics: ['Featured build', 'Repo import pipeline', 'Context-aware retrieval'],
+    flowSteps: ['Repo Import', 'Context Index', 'Architecture Graph', 'Code Query'],
+    productionSignals: ['Deployed on Vercel', 'PostgreSQL-backed indexing', 'Repository import pipeline'],
     stack: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'LLMs'],
     status: 'active',
     githubUrl: 'https://github.com/priyanshjhaa/CodeMap',
@@ -24,18 +28,22 @@ export const projects: Project[] = [
   {
     id: 'execute',
     name: 'Execute',
-    summary: 'AI automation engine that converts natural language into deterministic workflows.',
-    details: 'Built with queue-based execution and webhook pipelines for reliable automation.',
+    summary: 'Built deterministic workflow execution pipelines using BullMQ, Redis, and structured action validation.',
+    details: 'Converts natural-language intent into validated execution steps backed by queues, observability, and webhook-driven actions.',
     impact: 'Moves automation from fragile prompt flows into reliable, observable execution paths.',
+    whyBuiltThis:
+      'Most automation tools felt unreliable because they depended too heavily on raw LLM output instead of deterministic execution layers.',
     problem: 'Users need to automate workflows without writing code or dealing with complex automation tools.',
-    approach: 'Building an execution engine that converts natural language into deterministic, runnable workflows with proper observability.',
+    approach: 'Built a workflow engine that validates actions before execution, coordinates async jobs through queues, and keeps integrations observable at runtime.',
     architectureNotes: [
       'Natural language is translated into structured, auditable workflow steps.',
       'Queue-backed execution keeps runs reliable under async and multi-step workloads.',
       'Webhook pipelines make integrations composable without exposing complexity to the user.',
     ],
-    highlightMetrics: ['3 live apps', 'Queue-based runtime', 'Webhook orchestration'],
-    stack: ['Next.js', 'Node.js', 'Supabase', 'LLM APIs', 'Queues', 'Webhooks'],
+    highlightMetrics: ['3 live apps', 'BullMQ + Redis', 'Structured validation'],
+    flowSteps: ['Prompt', 'Validation', 'Queue', 'Executor', 'Webhook'],
+    productionSignals: ['Redis-backed execution engine', 'Supabase PostgreSQL', 'Real-time execution tracking'],
+    stack: ['Next.js', 'Node.js', 'Supabase', 'BullMQ', 'Redis', 'Webhooks'],
     status: 'maintenance',
     githubUrl: 'https://github.com/priyanshjhaa/Execute',
     liveUrl: 'https://execute-web-i7u4.vercel.app',
@@ -46,6 +54,8 @@ export const projects: Project[] = [
     summary: 'Freelancer management SaaS platform.',
     details: 'Designed structured workflows for proposals, projects, and invoicing with scalable APIs.',
     impact: 'Unifies fragmented freelancer workflows into a single operational system.',
+    whyBuiltThis:
+      'Freelancer operations usually live across disconnected tools, which makes handoffs between proposals, projects, and billing unnecessarily messy.',
     problem: 'Freelancers struggle with proposal generation, invoicing, and client document management across multiple tools.',
     approach: 'Built a system-first platform with reliable data flow between proposals, projects, and invoices.',
     architectureNotes: [
@@ -54,6 +64,8 @@ export const projects: Project[] = [
       'The product favors repeatable workflow clarity over one-off feature sprawl.',
     ],
     highlightMetrics: ['SaaS workflow system', 'Structured operations', 'Iterating in production'],
+    flowSteps: ['Lead', 'Proposal', 'Project', 'Invoice'],
+    productionSignals: ['Deployed on Vercel', 'Supabase PostgreSQL', 'Scalable API workflows'],
     stack: ['Next.js', 'Prisma', 'Supabase', 'React'],
     status: 'maintenance',
     githubUrl: 'https://github.com/priyanshjhaa/Axiom',
@@ -65,6 +77,8 @@ export const projects: Project[] = [
     summary: 'Content discovery platform with recommendation flows.',
     details: 'Focused on API-driven architecture and seamless user experience.',
     impact: 'Makes discovery, saving, and recommendation flows feel coherent across content-heavy UI.',
+    whyBuiltThis:
+      'Movie discovery apps often feel like disconnected lists instead of a guided experience that helps users search, compare, and save content naturally.',
     problem: 'Users struggle to discover movies and track favorites across streaming platforms.',
     approach: 'Content-heavy API-driven app built around real user flows—discovery, recommendations, and saving content.',
     architectureNotes: [
@@ -73,6 +87,8 @@ export const projects: Project[] = [
       'The experience prioritizes quick exploration, save flows, and low-friction browsing.',
     ],
     highlightMetrics: ['API-driven UX', 'Recommendation flow', 'Content discovery'],
+    flowSteps: ['Search', 'Match', 'Save', 'Watch'],
+    productionSignals: ['TMDB API integration', 'Firebase-backed persistence', 'Deployed UI flows'],
     stack: ['React', 'Firebase', 'TMDB API', 'YouTube'],
     status: 'archived',
     githubUrl: 'https://github.com/priyanshjhaa/Cinematch25',
@@ -87,26 +103,64 @@ export const about = {
 };
 
 export const heroContent = {
-  eyebrow: 'Selected Builder',
-  title: 'I build AI-powered developer tools and scalable SaaS products.',
+  eyebrow: 'Production-Oriented Engineer',
+  title: 'I build developer tools and workflow systems for real production environments.',
   description:
-    'Focused on backend systems, automation workflows, and clean, production-ready architecture.',
+    'Focused on workflow engines, developer tooling, and scalable backend architecture designed to hold up beyond the demo.',
   cta: 'View Projects',
   secondaryCta: 'GitHub',
 };
 
 export const currentBuild = {
-  eyebrow: 'Currently Building',
-  title: 'CodeMap',
+  eyebrow: 'Currently Shipping',
+  title: 'Active Engineering Focus',
   description:
-    'AI-powered platform to understand and navigate codebases using embeddings and system-level analysis.',
+    'Shipping work that improves reliability, developer experience, and system transparency across the current product set.',
+  items: [
+    'Building repository import pipelines for CodeMap',
+    'Improving workflow orchestration reliability in Execute',
+    'Exploring retrieval systems for developer tooling',
+    'Experimenting with architecture visualization systems',
+  ],
 };
 
 export const howIBuild = [
-  'I design systems before writing code',
-  'I focus on reliability and clean architecture',
-  'I ship fast and iterate based on feedback',
-  'I prefer building real products over demos',
+  'Systems before shortcuts: I prefer deterministic systems over fragile prompt-driven workflows.',
+  'Ship over overplan: products improve fastest through real usage, feedback, and iteration.',
+  'Product and engineering together: the system should scale technically and stay genuinely usable.',
+  'Production over performance theater: I would rather ship a reliable system than a flashy demo.',
+];
+
+export const receipts = [
+  'Built monorepo architecture with isolated execution, validation, and LLM packages',
+  'Implemented async workflow orchestration using BullMQ and Redis',
+  'Added structured validation layer before workflow execution',
+  'Built semantic repository indexing pipeline for CodeMap',
+  'Integrated GitHub repository imports and embedding-based retrieval',
+];
+
+export const recentBuilds = [
+  {
+    period: 'May 2026',
+    items: [
+      'Added repository import pipeline to CodeMap',
+      'Improved selected work deep-dive and architecture surfaces',
+    ],
+  },
+  {
+    period: 'April 2026',
+    items: [
+      'Refactored Execute execution engine around deterministic orchestration',
+      'Strengthened async validation and queue-backed workflow handling',
+    ],
+  },
+  {
+    period: 'March 2026',
+    items: [
+      'Built async validation pipeline experiments for Execute',
+      'Started architecture visualization and retrieval exploration for CodeMap',
+    ],
+  },
 ];
 
 export const sectionCopy = {

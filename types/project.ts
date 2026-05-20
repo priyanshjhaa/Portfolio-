@@ -4,10 +4,13 @@ export interface Project {
   summary?: string;
   details?: string;
   impact?: string;
+  whyBuiltThis?: string;
   problem: string;
   approach: string;
   architectureNotes?: string[];
   highlightMetrics?: string[];
+  flowSteps?: string[];
+  productionSignals?: string[];
   stack: string[];
   status: ProjectStatus;
   githubUrl?: string;

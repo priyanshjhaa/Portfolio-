@@ -8,16 +8,49 @@ import SystemStateRail from '@/components/ui/SystemStateRail';
 import ProjectDeepDive from '@/components/ui/ProjectDeepDive';
 import Hero from '@/components/sections/Hero';
 import CurrentlyBuilding from '@/components/sections/CurrentlyBuilding';
+import Receipts from '@/components/sections/Receipts';
 import Projects from '@/components/sections/Projects';
+import RecentBuilds from '@/components/sections/RecentBuilds';
 import HowIBuild from '@/components/sections/HowIBuild';
 import { contact, projects } from '@/lib/data';
 
-const sectionIds = ['hero', 'building', 'projects', 'process', 'contact'] as const;
+const sectionIds = ['hero', 'building', 'receipts', 'projects', 'recent', 'process', 'contact'] as const;
 
 export default function Home() {
   const [isExplorerOpen, setIsExplorerOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<(typeof sectionIds)[number]>('hero');
   const [focusedProjectId, setFocusedProjectId] = useState<string | null>(null);
+
+  const openProject = (projectId: string) => {
+    const nextHash = `#system-${projectId}`;
+
+    if (window.location.hash !== nextHash) {
+      window.history.pushState(
+        { ...(window.history.state ?? {}), overlayProjectId: projectId },
+        '',
+        `${window.location.pathname}${window.location.search}${nextHash}`
+      );
+    }
+
+    setFocusedProjectId(projectId);
+  };
+
+  const closeProject = () => {
+    if (window.location.hash.startsWith('#system-')) {
+      if (window.history.state?.overlayProjectId && window.history.length > 1) {
+        window.history.back();
+        return;
+      }
+
+      window.history.replaceState(
+        { ...(window.history.state ?? {}), overlayProjectId: null },
+        '',
+        `${window.location.pathname}${window.location.search}`
+      );
+    }
+
+    setFocusedProjectId(null);
+  };
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -28,12 +61,26 @@ export default function Home() {
 
       if (event.key === 'Escape') {
         setIsExplorerOpen(false);
-        setFocusedProjectId(null);
+        if (focusedProjectId) {
+          closeProject();
+        }
       }
     };
 
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
+  }, [focusedProjectId]);
+
+  useEffect(() => {
+    const syncProjectFromLocation = () => {
+      const match = window.location.hash.match(/^#system-(.+)$/);
+      setFocusedProjectId(match?.[1] ?? null);
+    };
+
+    syncProjectFromLocation();
+    window.addEventListener('popstate', syncProjectFromLocation);
+
+    return () => window.removeEventListener('popstate', syncProjectFromLocation);
   }, []);
 
   useEffect(() => {
@@ -73,26 +120,34 @@ export default function Home() {
         isOpen={isExplorerOpen}
         onClose={() => setIsExplorerOpen(false)}
         onOpenProject={(projectId) => {
-          setFocusedProjectId(projectId);
           setIsExplorerOpen(false);
+          openProject(projectId);
         }}
       />
-      <ProjectDeepDive project={focusedProject} onClose={() => setFocusedProjectId(null)} />
+      <ProjectDeepDive project={focusedProject} onClose={closeProject} />
 
       <section id="hero">
-        <Hero onOpenProject={(projectId) => setFocusedProjectId(projectId)} />
+        <Hero onOpenProject={openProject} />
       </section>
 
       <section id="building" className="scroll-mt-20">
         <CurrentlyBuilding active={activeSection === 'building'} />
       </section>
 
+      <section id="receipts" className="scroll-mt-20">
+        <Receipts active={activeSection === 'receipts'} />
+      </section>
+
       <section id="projects" className="scroll-mt-20">
         <Projects
           active={activeSection === 'projects'}
           focusedProjectId={focusedProjectId}
-          onOpenProject={(projectId) => setFocusedProjectId(projectId)}
+          onOpenProject={openProject}
         />
+      </section>
+
+      <section id="recent" className="scroll-mt-20">
+        <RecentBuilds active={activeSection === 'recent'} />
       </section>
 
       <section id="process" className="scroll-mt-20">
