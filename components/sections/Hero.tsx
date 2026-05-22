@@ -200,6 +200,21 @@ export default function Hero({ onOpenProject }: HeroProps) {
                 {heroContent.description}
               </p>
 
+              <div className="mt-6 flex flex-wrap gap-2.5">
+                {heroContent.hiringValues.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-full border border-white/8 bg-white/[0.03] px-3 py-2 font-display text-[10px] uppercase tracking-[0.18em] text-text-secondary"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+
+              <p className="mt-5 max-w-3xl text-sm leading-relaxed text-accent/90 md:text-base">
+                {heroContent.hiringNote}
+              </p>
+
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <button
                   onClick={scrollToProjects}
@@ -217,6 +232,14 @@ export default function Hero({ onOpenProject }: HeroProps) {
                 >
                   {heroContent.secondaryCta}
                   <Github className="h-4 w-4" />
+                </a>
+
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl border border-accent/18 bg-accent/[0.08] px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-accent transition-all duration-300 hover:scale-[1.02] hover:border-accent/28 hover:bg-accent/[0.12]"
+                >
+                  Let&apos;s Work Together
+                  <ArrowUpRight className="h-4 w-4" />
                 </a>
               </div>
 

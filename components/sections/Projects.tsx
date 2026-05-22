@@ -54,13 +54,11 @@ const previewContent: Record<
 
 interface ProjectsProps {
   active?: boolean;
-  focusedProjectId?: string | null;
   onOpenProject: (projectId: string) => void;
 }
 
 export default function Projects({
   active = false,
-  focusedProjectId,
   onOpenProject,
 }: ProjectsProps) {
   const featuredProject = projects.find((project) => project.featured);
@@ -69,7 +67,7 @@ export default function Projects({
 
   const renderCard = (project: typeof projects[number], featured?: boolean) => {
     const preview = previewContent[project.id];
-    const isExpanded = expandedProjectId === project.id || focusedProjectId === project.id;
+    const isExpanded = expandedProjectId === project.id;
 
     return (
       <article

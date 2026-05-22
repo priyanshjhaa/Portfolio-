@@ -5,12 +5,20 @@ export interface Project {
   details?: string;
   impact?: string;
   whyBuiltThis?: string;
+  proofTitle?: string;
+  proofPoints?: string[];
   problem: string;
   approach: string;
   architectureNotes?: string[];
   highlightMetrics?: string[];
   flowSteps?: string[];
   productionSignals?: string[];
+  proofFrame?: {
+    title: string;
+    eyebrow: string;
+    rails: string[];
+    callout: string;
+  };
   stack: string[];
   status: ProjectStatus;
   githubUrl?: string;

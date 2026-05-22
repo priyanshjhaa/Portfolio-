@@ -20,7 +20,7 @@ export default function RecentBuilds({ active = false }: RecentBuildsProps) {
             Recent Builds
           </p>
           <h2 className="mt-4 font-display text-4xl font-semibold tracking-[0.04em] text-text-primary md:text-5xl">
-            A running log of what has been shipping recently.
+            A running log of shipped work, refactors, and active engineering momentum.
           </h2>
         </div>
 

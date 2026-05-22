@@ -5,51 +5,22 @@ import Navigation from '@/components/ui/Navigation';
 import ScrollIndicator from '@/components/ui/ScrollIndicator';
 import BuildExplorer from '@/components/ui/BuildExplorer';
 import SystemStateRail from '@/components/ui/SystemStateRail';
-import ProjectDeepDive from '@/components/ui/ProjectDeepDive';
 import Hero from '@/components/sections/Hero';
 import CurrentlyBuilding from '@/components/sections/CurrentlyBuilding';
 import Receipts from '@/components/sections/Receipts';
 import Projects from '@/components/sections/Projects';
 import RecentBuilds from '@/components/sections/RecentBuilds';
 import HowIBuild from '@/components/sections/HowIBuild';
-import { contact, projects } from '@/lib/data';
+import { contact } from '@/lib/data';
 
 const sectionIds = ['hero', 'building', 'receipts', 'projects', 'recent', 'process', 'contact'] as const;
 
 export default function Home() {
   const [isExplorerOpen, setIsExplorerOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<(typeof sectionIds)[number]>('hero');
-  const [focusedProjectId, setFocusedProjectId] = useState<string | null>(null);
 
   const openProject = (projectId: string) => {
-    const nextHash = `#system-${projectId}`;
-
-    if (window.location.hash !== nextHash) {
-      window.history.pushState(
-        { ...(window.history.state ?? {}), overlayProjectId: projectId },
-        '',
-        `${window.location.pathname}${window.location.search}${nextHash}`
-      );
-    }
-
-    setFocusedProjectId(projectId);
-  };
-
-  const closeProject = () => {
-    if (window.location.hash.startsWith('#system-')) {
-      if (window.history.state?.overlayProjectId && window.history.length > 1) {
-        window.history.back();
-        return;
-      }
-
-      window.history.replaceState(
-        { ...(window.history.state ?? {}), overlayProjectId: null },
-        '',
-        `${window.location.pathname}${window.location.search}`
-      );
-    }
-
-    setFocusedProjectId(null);
+    window.location.href = `/systems/${projectId}`;
   };
 
   useEffect(() => {
@@ -61,26 +32,11 @@ export default function Home() {
 
       if (event.key === 'Escape') {
         setIsExplorerOpen(false);
-        if (focusedProjectId) {
-          closeProject();
-        }
       }
     };
 
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [focusedProjectId]);
-
-  useEffect(() => {
-    const syncProjectFromLocation = () => {
-      const match = window.location.hash.match(/^#system-(.+)$/);
-      setFocusedProjectId(match?.[1] ?? null);
-    };
-
-    syncProjectFromLocation();
-    window.addEventListener('popstate', syncProjectFromLocation);
-
-    return () => window.removeEventListener('popstate', syncProjectFromLocation);
   }, []);
 
   useEffect(() => {
@@ -109,8 +65,6 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  const focusedProject = projects.find((project) => project.id === focusedProjectId) ?? null;
-
   return (
     <main className="min-h-screen overflow-x-clip">
       <Navigation activeSection={`#${activeSection}`} onOpenExplorer={() => setIsExplorerOpen(true)} />
@@ -124,7 +78,6 @@ export default function Home() {
           openProject(projectId);
         }}
       />
-      <ProjectDeepDive project={focusedProject} onClose={closeProject} />
 
       <section id="hero">
         <Hero onOpenProject={openProject} />
@@ -141,7 +94,6 @@ export default function Home() {
       <section id="projects" className="scroll-mt-20">
         <Projects
           active={activeSection === 'projects'}
-          focusedProjectId={focusedProjectId}
           onOpenProject={openProject}
         />
       </section>
@@ -159,15 +111,18 @@ export default function Home() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/35 to-transparent opacity-60 pointer-events-none" />
         <div className="relative mx-auto max-w-[1120px] rounded-[32px] border border-white/8 bg-white/[0.025] px-6 py-10 md:px-10">
           <p className="font-display text-[11px] uppercase tracking-[0.24em] text-accent">
-            Footer
+            Remote Roles
           </p>
           <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-2 font-display text-[10px] uppercase tracking-[0.2em] text-text-secondary transition-all duration-500">
             <span className={`h-2 w-2 rounded-full ${activeSection === 'contact' ? 'bg-accent shadow-[0_0_16px_rgba(76,175,80,0.55)]' : 'bg-white/20'}`} />
-            Channel {activeSection === 'contact' ? 'Open' : 'Standby'}
+            {contact.availability}
           </div>
           <h2 className="mt-4 font-display text-3xl font-semibold tracking-[0.04em] text-text-primary md:text-4xl">
-            Let&apos;s build something impactful.
+            Available for remote startup roles where product thinking and system execution both matter.
           </h2>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-text-secondary md:text-lg">
+            {contact.focus}
+          </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
@@ -183,6 +138,14 @@ export default function Home() {
               className="inline-flex min-h-[52px] items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-3 font-display text-sm uppercase tracking-[0.18em] text-text-primary transition-all duration-300 hover:scale-[1.02] hover:border-accent/20 hover:text-accent"
             >
               Email
+            </a>
+            <a
+              href={contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-3 font-display text-sm uppercase tracking-[0.18em] text-text-primary transition-all duration-300 hover:scale-[1.02] hover:border-accent/20 hover:text-accent"
+            >
+              LinkedIn
             </a>
           </div>
         </div>

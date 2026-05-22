@@ -20,7 +20,7 @@ export default function Receipts({ active = false }: ReceiptsProps) {
             Receipts
           </p>
           <h2 className="mt-4 font-display text-4xl font-semibold tracking-[0.04em] text-text-primary md:text-5xl">
-            Concrete engineering outcomes behind the portfolio.
+            Concrete engineering outcomes a startup can evaluate quickly.
           </h2>
         </div>
 

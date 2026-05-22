@@ -10,6 +10,12 @@ export const projects: Project[] = [
     impact: 'Turns large repositories into explorable system maps for faster onboarding and architecture understanding.',
     whyBuiltThis:
       'Understanding large unfamiliar codebases still takes developers days or weeks, even when the information already exists inside the repo.',
+    proofTitle: 'Product proof',
+    proofPoints: [
+      'Repository import surface for bringing in unfamiliar codebases',
+      'Architecture graph layer for mapping system relationships',
+      'Grounded query interface for code-aware retrieval',
+    ],
     problem: 'Engineers struggle to understand complex codebases and navigate architecture efficiently when joining projects or working with large repositories.',
     approach: 'Built repository import, indexing, and retrieval layers so developers can inspect architecture and query codebases through grounded context rather than guesswork.',
     architectureNotes: [
@@ -20,9 +26,16 @@ export const projects: Project[] = [
     highlightMetrics: ['Featured build', 'Repo import pipeline', 'Context-aware retrieval'],
     flowSteps: ['Repo Import', 'Context Index', 'Architecture Graph', 'Code Query'],
     productionSignals: ['Deployed on Vercel', 'PostgreSQL-backed indexing', 'Repository import pipeline'],
+    proofFrame: {
+      eyebrow: 'Product Frame',
+      title: 'Repository import and architecture query surface',
+      rails: ['Repository Input', 'Architecture Map', 'Query Response'],
+      callout: 'Designed to help developers understand unfamiliar systems quickly.',
+    },
     stack: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'LLMs'],
     status: 'active',
     githubUrl: 'https://github.com/priyanshjhaa/CodeMap',
+    image: '/projects/codemap/landing.png',
     featured: true,
   },
   {
@@ -33,6 +46,12 @@ export const projects: Project[] = [
     impact: 'Moves automation from fragile prompt flows into reliable, observable execution paths.',
     whyBuiltThis:
       'Most automation tools felt unreliable because they depended too heavily on raw LLM output instead of deterministic execution layers.',
+    proofTitle: 'Execution proof',
+    proofPoints: [
+      'Prompt-to-validation surface for safer workflow creation',
+      'Queue-backed execution path for reliable orchestration',
+      'Webhook-driven action layer for observable downstream effects',
+    ],
     problem: 'Users need to automate workflows without writing code or dealing with complex automation tools.',
     approach: 'Built a workflow engine that validates actions before execution, coordinates async jobs through queues, and keeps integrations observable at runtime.',
     architectureNotes: [
@@ -43,10 +62,17 @@ export const projects: Project[] = [
     highlightMetrics: ['3 live apps', 'BullMQ + Redis', 'Structured validation'],
     flowSteps: ['Prompt', 'Validation', 'Queue', 'Executor', 'Webhook'],
     productionSignals: ['Redis-backed execution engine', 'Supabase PostgreSQL', 'Real-time execution tracking'],
+    proofFrame: {
+      eyebrow: 'Product Frame',
+      title: 'Deterministic workflow execution surface',
+      rails: ['Intent Input', 'Validated Flow', 'Execution Tracking'],
+      callout: 'Built to make automation reliable rather than prompt-fragile.',
+    },
     stack: ['Next.js', 'Node.js', 'Supabase', 'BullMQ', 'Redis', 'Webhooks'],
     status: 'maintenance',
     githubUrl: 'https://github.com/priyanshjhaa/Execute',
     liveUrl: 'https://execute-web-i7u4.vercel.app',
+    image: '/projects/execute/landing.png',
   },
   {
     id: 'axiom',
@@ -56,6 +82,12 @@ export const projects: Project[] = [
     impact: 'Unifies fragmented freelancer workflows into a single operational system.',
     whyBuiltThis:
       'Freelancer operations usually live across disconnected tools, which makes handoffs between proposals, projects, and billing unnecessarily messy.',
+    proofTitle: 'Operations proof',
+    proofPoints: [
+      'Proposal-to-project handoff flow',
+      'Operational visibility across delivery stages',
+      'Billing and invoicing tied to project execution',
+    ],
     problem: 'Freelancers struggle with proposal generation, invoicing, and client document management across multiple tools.',
     approach: 'Built a system-first platform with reliable data flow between proposals, projects, and invoices.',
     architectureNotes: [
@@ -66,10 +98,17 @@ export const projects: Project[] = [
     highlightMetrics: ['SaaS workflow system', 'Structured operations', 'Iterating in production'],
     flowSteps: ['Lead', 'Proposal', 'Project', 'Invoice'],
     productionSignals: ['Deployed on Vercel', 'Supabase PostgreSQL', 'Scalable API workflows'],
+    proofFrame: {
+      eyebrow: 'Product Frame',
+      title: 'Freelancer operations control surface',
+      rails: ['Lead Capture', 'Project Tracking', 'Invoice Actions'],
+      callout: 'Structured to reduce operational context-switching.',
+    },
     stack: ['Next.js', 'Prisma', 'Supabase', 'React'],
     status: 'maintenance',
     githubUrl: 'https://github.com/priyanshjhaa/Axiom',
     liveUrl: 'https://axiom-nu-six.vercel.app',
+    image: '/projects/axiom/landing.png',
   },
   {
     id: 'cinematch',
@@ -79,6 +118,12 @@ export const projects: Project[] = [
     impact: 'Makes discovery, saving, and recommendation flows feel coherent across content-heavy UI.',
     whyBuiltThis:
       'Movie discovery apps often feel like disconnected lists instead of a guided experience that helps users search, compare, and save content naturally.',
+    proofTitle: 'Discovery proof',
+    proofPoints: [
+      'Search-first discovery flow',
+      'Recommendation and save interactions',
+      'API-driven content rendering across the viewing journey',
+    ],
     problem: 'Users struggle to discover movies and track favorites across streaming platforms.',
     approach: 'Content-heavy API-driven app built around real user flows—discovery, recommendations, and saving content.',
     architectureNotes: [
@@ -89,10 +134,17 @@ export const projects: Project[] = [
     highlightMetrics: ['API-driven UX', 'Recommendation flow', 'Content discovery'],
     flowSteps: ['Search', 'Match', 'Save', 'Watch'],
     productionSignals: ['TMDB API integration', 'Firebase-backed persistence', 'Deployed UI flows'],
+    proofFrame: {
+      eyebrow: 'Product Frame',
+      title: 'Discovery and recommendation browsing surface',
+      rails: ['Search Flow', 'Match Results', 'Saved Picks'],
+      callout: 'Built around user flow clarity instead of content overload.',
+    },
     stack: ['React', 'Firebase', 'TMDB API', 'YouTube'],
     status: 'archived',
     githubUrl: 'https://github.com/priyanshjhaa/Cinematch25',
     liveUrl: 'https://cinematch25.vercel.app',
+    image: '/projects/cinematch/landing.png',
   },
 ];
 
@@ -109,6 +161,9 @@ export const heroContent = {
     'Focused on workflow engines, developer tooling, and scalable backend architecture designed to hold up beyond the demo.',
   cta: 'View Projects',
   secondaryCta: 'GitHub',
+  hiringValues: ['Open to remote startup roles', 'Full-stack generalist', 'Product-minded', '0→1 shipping'],
+  hiringNote:
+    'Available for remote startup roles across product engineering, developer tooling, and execution-heavy full-stack work.',
 };
 
 export const currentBuild = {
@@ -254,6 +309,8 @@ export const contact = {
   github: 'https://github.com/priyanshjhaa',
   linkedin: 'https://www.linkedin.com/in/priyansh-jha-489966284',
   email: 'Priyanshjhaa17@gmail.com',
+  availability: 'Open to remote startup roles',
+  focus: 'Best fit for product engineering, developer tools, workflow systems, and early-stage full-stack execution.',
 };
 
 export const skillGroups: SkillGroup[] = [
