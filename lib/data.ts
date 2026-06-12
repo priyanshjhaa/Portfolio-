@@ -16,6 +16,13 @@ export const projects: Project[] = [
       'Architecture graph layer for mapping system relationships',
       'Grounded query interface for code-aware retrieval',
     ],
+    ownership: ['Product direction and UX', 'Repository ingestion and retrieval', 'Architecture visualization'],
+    keyDecision:
+      'Create a structured repository context layer before enabling search so answers can stay grounded in the actual codebase.',
+    tradeoff:
+      'Indexing repositories upfront adds processing time, but it produces more reliable queries and more useful architecture views.',
+    nextStep:
+      'Harden the import pipeline and improve retrieval evaluation across larger, less familiar repositories.',
     problem: 'Engineers struggle to understand complex codebases and navigate architecture efficiently when joining projects or working with large repositories.',
     approach: 'Built repository import, indexing, and retrieval layers so developers can inspect architecture and query codebases through grounded context rather than guesswork.',
     architectureNotes: [
@@ -52,6 +59,13 @@ export const projects: Project[] = [
       'Queue-backed execution path for reliable orchestration',
       'Webhook-driven action layer for observable downstream effects',
     ],
+    ownership: ['Product and workflow UX', 'Validation and execution engine', 'Integrations and runtime visibility'],
+    keyDecision:
+      'Treat model output as an untrusted proposal and validate every action before it reaches the execution queue.',
+    tradeoff:
+      'A deterministic action schema limits completely open-ended workflows, but makes execution safer, observable, and easier to debug.',
+    nextStep:
+      'Improve retry behavior, execution traces, and the feedback loop between failed runs and workflow editing.',
     problem: 'Users need to automate workflows without writing code or dealing with complex automation tools.',
     approach: 'Built a workflow engine that validates actions before execution, coordinates async jobs through queues, and keeps integrations observable at runtime.',
     architectureNotes: [
@@ -88,6 +102,13 @@ export const projects: Project[] = [
       'Operational visibility across delivery stages',
       'Billing and invoicing tied to project execution',
     ],
+    ownership: ['Product workflows and interface', 'Shared operational data model', 'API and deployment'],
+    keyDecision:
+      'Model proposals, projects, and invoices as connected stages of one workflow instead of isolated product features.',
+    tradeoff:
+      'A shared operational model requires stricter state transitions, but removes duplicate data and makes handoffs predictable.',
+    nextStep:
+      'Tighten the project-to-invoice workflow and add clearer operational reporting for active client work.',
     problem: 'Freelancers struggle with proposal generation, invoicing, and client document management across multiple tools.',
     approach: 'Built a system-first platform with reliable data flow between proposals, projects, and invoices.',
     architectureNotes: [
@@ -124,6 +145,13 @@ export const projects: Project[] = [
       'Recommendation and save interactions',
       'API-driven content rendering across the viewing journey',
     ],
+    ownership: ['Discovery experience and UI', 'External API integration', 'Authentication and saved content'],
+    keyDecision:
+      'Organize discovery around search, mood, and saved picks rather than exposing another large undifferentiated content catalog.',
+    tradeoff:
+      'Relying on third-party content APIs accelerated delivery, while limiting control over metadata quality and availability.',
+    nextStep:
+      'If revisited, improve recommendation quality with stronger preference signals and a more deliberate onboarding flow.',
     problem: 'Users struggle to discover movies and track favorites across streaming platforms.',
     approach: 'Content-heavy API-driven app built around real user flows—discovery, recommendations, and saving content.',
     architectureNotes: [
@@ -184,6 +212,27 @@ export const howIBuild = [
   'Keep critical workflows deterministic, observable, and easy to reason about.',
   'Own the full product surface, from interface details to backend execution.',
   'Ship early, learn from real usage, and improve the architecture with intent.',
+];
+
+export const leverageAreas = [
+  {
+    title: 'Own a product slice end to end',
+    description:
+      'Turn a loosely defined problem into a usable interface, a clear data model, working backend flows, and a deployed release.',
+    evidence: 'Execute, Axiom',
+  },
+  {
+    title: 'Make complex systems understandable',
+    description:
+      'Design developer-facing workflows, architecture views, and feedback loops that expose what the system is doing.',
+    evidence: 'CodeMap, Execute',
+  },
+  {
+    title: 'Build reliability into the workflow',
+    description:
+      'Use validation, queues, observable execution, and deliberate state transitions where product trust depends on correctness.',
+    evidence: 'Execute, CodeMap',
+  },
 ];
 
 export const receipts = [
@@ -308,6 +357,7 @@ export const buildLogs = [
 export const contact = {
   github: 'https://github.com/priyanshjhaa',
   linkedin: 'https://www.linkedin.com/in/priyansh-jha-489966284',
+  x: 'https://x.com/PriyaanshhJhaa',
   email: 'Priyanshjhaa17@gmail.com',
   availability: 'Open to remote startup roles',
   focus: 'I am most useful on product engineering, developer tools, workflow systems, and full-stack work that needs clear ownership.',

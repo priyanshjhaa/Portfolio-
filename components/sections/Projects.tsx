@@ -67,6 +67,22 @@ export default function Projects({ active = false, onOpenProject }: ProjectsProp
           {project.details}
         </p>
 
+        {project.ownership && (
+          <div className="mt-5 rounded-2xl border border-white/8 bg-black/20 p-4">
+            <p className="font-display text-[9px] uppercase tracking-[0.18em] text-accent/75">
+              Scope I Owned
+            </p>
+            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+              {project.ownership.map((scope) => (
+                <span key={scope} className="flex items-center gap-2 text-xs leading-relaxed text-text-secondary">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent/80" />
+                  {scope}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="mt-5 flex flex-wrap gap-2">
           {project.stack.map((tech) => (
             <span

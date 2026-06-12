@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { name: 'Work', href: '#projects' },
+  { name: 'Leverage', href: '#leverage' },
   { name: 'Receipts', href: '#receipts' },
   { name: 'Process', href: '#process' },
   { name: 'Contact', href: '#contact' },
@@ -24,6 +25,8 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
       ? 'Engineering receipts'
       : activeSection === '#projects'
         ? 'Selected work'
+        : activeSection === '#leverage'
+          ? 'Where I add leverage'
         : activeSection === '#process'
           ? 'How I build'
           : activeSection === '#contact'
@@ -88,7 +91,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
               </div>
             </a>
 
-            <div className="hidden md:flex items-center gap-2">
+            <div className="hidden lg:flex items-center gap-2">
               <button
                 type="button"
                 onClick={onOpenExplorer}
@@ -127,7 +130,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden inline-flex items-center justify-center rounded-xl border border-white/5 bg-white/[0.02] p-2.5 text-text-secondary transition-all duration-200 hover:border-accent/20 hover:bg-accent/10 hover:text-accent"
+              className="inline-flex items-center justify-center rounded-xl border border-white/5 bg-white/[0.02] p-2.5 text-text-secondary transition-all duration-200 hover:border-accent/20 hover:bg-accent/10 hover:text-accent lg:hidden"
               aria-expanded={isMobileMenuOpen}
               aria-label="Toggle navigation menu"
             >
@@ -137,7 +140,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
 
           <div
             className={cn(
-              'md:hidden overflow-hidden transition-all duration-300',
+              'overflow-hidden transition-all duration-300 lg:hidden',
               isMobileMenuOpen ? 'max-h-96 border-t border-white/5' : 'max-h-0'
             )}
           >

@@ -381,6 +381,46 @@ export default function ProjectDeepDive({
               </div>
             </div>
 
+            {(project.keyDecision || project.tradeoff || project.nextStep) && (
+              <div className="rounded-[24px] border border-white/6 bg-[#090909]/92 p-5">
+                <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
+                  Engineering Judgment
+                </p>
+                <div className="mt-4 grid gap-3 lg:grid-cols-3">
+                  {project.keyDecision && (
+                    <div className="rounded-2xl border border-accent/14 bg-accent/[0.04] px-4 py-4">
+                      <p className="font-display text-[10px] uppercase tracking-[0.18em] text-accent/80">
+                        Key Decision
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+                        {project.keyDecision}
+                      </p>
+                    </div>
+                  )}
+                  {project.tradeoff && (
+                    <div className="rounded-2xl border border-white/6 bg-black/20 px-4 py-4">
+                      <p className="font-display text-[10px] uppercase tracking-[0.18em] text-text-muted">
+                        Tradeoff
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+                        {project.tradeoff}
+                      </p>
+                    </div>
+                  )}
+                  {project.nextStep && (
+                    <div className="rounded-2xl border border-white/6 bg-black/20 px-4 py-4">
+                      <p className="font-display text-[10px] uppercase tracking-[0.18em] text-text-muted">
+                        Next Step
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+                        {project.nextStep}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
             <div className="rounded-[28px] border border-white/6 bg-[#090909]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
               <div className="flex items-center justify-between gap-4">
                 <div>
@@ -477,6 +517,25 @@ export default function ProjectDeepDive({
           </div>
 
           <div className="space-y-5">
+            {project.ownership && (
+              <div className="rounded-[28px] border border-white/6 bg-[#090909]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
+                <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
+                  Scope I Owned
+                </p>
+                <div className="mt-4 space-y-3">
+                  {project.ownership.map((scope) => (
+                    <div
+                      key={scope}
+                      className="flex items-center gap-3 rounded-2xl border border-white/6 bg-white/[0.03] px-4 py-3"
+                    >
+                      <span className="h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_12px_rgba(76,175,80,0.45)]" />
+                      <p className="text-sm leading-relaxed text-text-secondary">{scope}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="rounded-[28px] border border-white/6 bg-[#090909]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)] xl:sticky xl:top-[8.5rem]">
               <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
                 Infrastructure &amp; Engineering

@@ -7,6 +7,10 @@ export interface Project {
   whyBuiltThis?: string;
   proofTitle?: string;
   proofPoints?: string[];
+  ownership?: string[];
+  keyDecision?: string;
+  tradeoff?: string;
+  nextStep?: string;
   problem: string;
   approach: string;
   architectureNotes?: string[];

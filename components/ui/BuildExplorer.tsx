@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowUpRight, Command, Github, Layers3, Mail, Orbit, Search, UserRound, X } from 'lucide-react';
-import { contact, howIBuild, projects } from '@/lib/data';
+import { contact, howIBuild, leverageAreas, projects } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 type ExplorerGroup = 'Projects' | 'Process' | 'Contact';
@@ -124,6 +124,16 @@ function createItems(): ExplorerItem[] {
 
   const processItems: ExplorerItem[] = [
     {
+      id: 'process-leverage',
+      label: 'Where I Add Leverage',
+      description: leverageAreas.map((area) => area.title).join(' · '),
+      group: 'Process',
+      keywords: ['ownership', 'product engineering', 'scope', 'leverage', ...leverageAreas.map((area) => area.title)],
+      actionType: 'scroll',
+      sectionId: 'leverage',
+      icon: Layers3,
+    },
+    {
       id: 'process-how-i-build',
       label: 'How I Build',
       description: howIBuild.join(' · '),
@@ -154,6 +164,16 @@ function createItems(): ExplorerItem[] {
       keywords: ['linkedin', 'profile', 'network', contact.linkedin],
       actionType: 'external',
       href: contact.linkedin,
+      icon: UserRound,
+    },
+    {
+      id: 'contact-x',
+      label: 'X',
+      description: 'Open X profile',
+      group: 'Contact',
+      keywords: ['x', 'twitter', 'profile', contact.x],
+      actionType: 'external',
+      href: contact.x,
       icon: UserRound,
     },
     {

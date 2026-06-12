@@ -6,10 +6,11 @@ import BuildExplorer from '@/components/ui/BuildExplorer';
 import Hero from '@/components/sections/Hero';
 import Receipts from '@/components/sections/Receipts';
 import Projects from '@/components/sections/Projects';
+import Leverage from '@/components/sections/Leverage';
 import HowIBuild from '@/components/sections/HowIBuild';
 import { contact } from '@/lib/data';
 
-const sectionIds = ['hero', 'projects', 'receipts', 'process', 'contact'] as const;
+const sectionIds = ['hero', 'projects', 'leverage', 'receipts', 'process', 'contact'] as const;
 
 export default function Home() {
   const [isExplorerOpen, setIsExplorerOpen] = useState(false);
@@ -84,6 +85,10 @@ export default function Home() {
         />
       </section>
 
+      <section id="leverage" className="scroll-mt-20">
+        <Leverage active={activeSection === 'leverage'} />
+      </section>
+
       <section id="receipts" className="scroll-mt-20">
         <Receipts active={activeSection === 'receipts'} />
       </section>
@@ -132,6 +137,14 @@ export default function Home() {
               className="inline-flex min-h-[52px] items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-3 font-display text-sm uppercase tracking-[0.18em] text-text-primary transition-all duration-300 hover:scale-[1.02] hover:border-accent/20 hover:text-accent"
             >
               LinkedIn
+            </a>
+            <a
+              href={contact.x}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[52px] items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-3 font-display text-sm uppercase tracking-[0.18em] text-text-primary transition-all duration-300 hover:scale-[1.02] hover:border-accent/20 hover:text-accent"
+            >
+              X
             </a>
           </div>
         </div>
