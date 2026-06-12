@@ -295,8 +295,9 @@ export default function ProjectDeepDive({
   return (
     <div className={pageMode ? 'min-h-screen bg-[#040504]' : 'fixed inset-0 z-[90] overflow-y-auto bg-[#040504]/98'}>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(76,175,80,0.09),transparent_26%),radial-gradient(circle_at_85%_20%,rgba(76,175,80,0.05),transparent_20%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 texture-blueprint opacity-[0.13] [mask-image:linear-gradient(to_bottom,black,transparent_72%)]" />
       <div className="relative mx-auto w-full max-w-[1440px] px-4 py-6 md:px-8 md:py-8">
-        <div className="sticky top-0 z-20 mb-6 overflow-hidden rounded-[28px] border border-white/8 bg-[#090909]/92 shadow-[0_24px_80px_-50px_rgba(0,0,0,0.95)] backdrop-blur-xl">
+        <div className="etched-surface technical-marker sticky top-0 z-20 mb-6 overflow-hidden rounded-[28px] border border-white/8 bg-[#090909]/92 shadow-[0_24px_80px_-50px_rgba(0,0,0,0.95)] backdrop-blur-xl">
           <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.08] via-transparent to-white/[0.02] pointer-events-none" />
           <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent pointer-events-none" />
           <div className="relative flex items-start justify-between gap-4 px-5 py-5 md:px-7">

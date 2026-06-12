@@ -18,7 +18,7 @@ export default function Projects({ active = false, onOpenProject }: ProjectsProp
     <article
       key={project.id}
       className={cn(
-        'group rounded-[28px] border border-white/8 bg-[#0b0b0b]/92 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/20 md:p-6',
+        'group etched-surface technical-marker rounded-[28px] border border-white/8 bg-[#0b0b0b]/92 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/20 md:p-6',
         featured && 'shadow-[0_28px_70px_-48px_rgba(76,175,80,0.34)]'
       )}
     >
@@ -133,7 +133,7 @@ export default function Projects({ active = false, onOpenProject }: ProjectsProp
   return (
     <section className="section-shell relative overflow-hidden px-4 py-20 md:py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(76,175,80,0.07),transparent_24%)] pointer-events-none" />
-      <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/35 to-transparent transition-opacity duration-500 pointer-events-none ${active ? 'opacity-100' : 'opacity-40'}`} />
+      <div className="absolute inset-0 texture-blueprint opacity-[0.17] [mask-image:linear-gradient(to_bottom,black,transparent_88%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
         <div className="mb-12 max-w-3xl">

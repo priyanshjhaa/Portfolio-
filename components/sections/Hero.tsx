@@ -178,9 +178,10 @@ export default function Hero() {
     <section className="section-shell relative overflow-hidden px-4 pb-16 pt-24 md:pb-24 md:pt-28">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(76,175,80,0.12),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(76,175,80,0.08),transparent_24%)] pointer-events-none" />
       <div className="absolute inset-0 grid-pattern opacity-[0.08]" />
+      <div className="absolute inset-0 texture-circuit opacity-[0.13] [mask-image:linear-gradient(to_bottom,black,transparent_82%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
-        <div className="rounded-[36px] border border-white/8 bg-[#090909]/88 p-8 shadow-[0_32px_80px_-52px_rgba(0,0,0,0.95)] backdrop-blur-xl md:p-12">
+        <div className="etched-surface technical-marker rounded-[36px] border border-white/8 bg-[#090909]/88 p-8 shadow-[0_32px_80px_-52px_rgba(0,0,0,0.95)] backdrop-blur-xl md:p-12">
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)] xl:gap-12">
             <div className="max-w-4xl">
               <p className="font-display text-[11px] uppercase tracking-[0.28em] text-accent/80">

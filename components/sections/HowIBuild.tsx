@@ -8,7 +8,7 @@ export default function HowIBuild({ active = false }: HowIBuildProps) {
   return (
     <section className="section-shell relative overflow-hidden px-4 py-20 md:py-24">
       <div className="absolute inset-0 grid-pattern opacity-[0.08]" />
-      <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/35 to-transparent transition-opacity duration-500 pointer-events-none ${active ? 'opacity-100' : 'opacity-40'}`} />
+      <div className="absolute inset-0 texture-diagonal opacity-[0.28] [mask-image:linear-gradient(to_right,transparent,black_34%,black_72%,transparent)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
         <div className="mb-10 max-w-2xl">
@@ -20,7 +20,7 @@ export default function HowIBuild({ active = false }: HowIBuildProps) {
           </h2>
         </div>
 
-        <div className="grid gap-px overflow-hidden rounded-[28px] border border-white/8 bg-white/8 md:grid-cols-2">
+        <div className="technical-marker grid gap-px overflow-hidden rounded-[28px] border border-white/8 bg-white/8 md:grid-cols-2">
           {howIBuild.map((item, index) => (
             <div
               key={item}

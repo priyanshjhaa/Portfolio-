@@ -99,8 +99,8 @@ export default function Home() {
 
       <footer id="contact" className="section-shell relative overflow-hidden px-4 py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(76,175,80,0.08),transparent_34%)] pointer-events-none" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/35 to-transparent opacity-60 pointer-events-none" />
-        <div className="relative mx-auto max-w-[1120px] rounded-[32px] border border-white/8 bg-white/[0.025] px-6 py-10 md:px-10">
+        <div className="absolute inset-0 texture-dot-matrix opacity-[0.14] [mask-image:radial-gradient(circle_at_center,black,transparent_72%)] pointer-events-none" />
+        <div className="etched-surface technical-marker relative mx-auto max-w-[1120px] rounded-[32px] border border-white/8 bg-[#0b0b0b]/88 px-6 py-10 md:px-10">
           <p className="font-display text-[11px] uppercase tracking-[0.24em] text-accent">
             Let&apos;s Work Together
           </p>

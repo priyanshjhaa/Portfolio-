@@ -8,7 +8,7 @@ export default function Receipts({ active = false }: ReceiptsProps) {
   return (
     <section className="section-shell relative overflow-hidden px-4 py-20 md:py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(76,175,80,0.07),transparent_36%)] pointer-events-none" />
-      <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/35 to-transparent transition-opacity duration-500 pointer-events-none ${active ? 'opacity-100' : 'opacity-40'}`} />
+      <div className="absolute inset-0 texture-rulings opacity-[0.22] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
         <div className="mb-10 max-w-3xl">
@@ -21,7 +21,7 @@ export default function Receipts({ active = false }: ReceiptsProps) {
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
+        <div className="etched-surface technical-marker overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
           {receipts.map((receipt, index) => (
             <div
               key={receipt}

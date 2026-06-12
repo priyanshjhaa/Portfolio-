@@ -119,6 +119,102 @@
     background-size: 100% 6px;
   }
 
+  .texture-blueprint {
+    background-image:
+      linear-gradient(rgba(76, 175, 80, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(76, 175, 80, 0.045) 1px, transparent 1px),
+      linear-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+    background-position: center;
+  }
+
+  .texture-dot-matrix {
+    background-image: radial-gradient(circle, rgba(153, 255, 170, 0.11) 0 0.7px, transparent 0.9px);
+    background-size: 14px 14px;
+  }
+
+  .texture-diagonal {
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.018) 0,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+  }
+
+  .texture-rulings {
+    background-image:
+      linear-gradient(90deg, rgba(76, 175, 80, 0.055), transparent 16%, transparent 84%, rgba(76, 175, 80, 0.035)),
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.022) 0,
+        rgba(255, 255, 255, 0.022) 1px,
+        transparent 1px,
+        transparent 32px
+      );
+  }
+
+  .texture-circuit {
+    background-image:
+      linear-gradient(90deg, transparent 49%, rgba(76, 175, 80, 0.05) 50%, transparent 51%),
+      linear-gradient(transparent 49%, rgba(76, 175, 80, 0.05) 50%, transparent 51%),
+      radial-gradient(circle at center, rgba(153, 255, 170, 0.18) 0 1px, transparent 1.5px);
+    background-size: 96px 96px, 96px 96px, 96px 96px;
+  }
+
+  .etched-surface {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .etched-surface::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 14% 8%, rgba(76, 175, 80, 0.075), transparent 30%),
+      repeating-linear-gradient(
+        118deg,
+        rgba(255, 255, 255, 0.012) 0,
+        rgba(255, 255, 255, 0.012) 1px,
+        transparent 1px,
+        transparent 18px
+      );
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .technical-marker {
+    position: relative;
+  }
+
+  .technical-marker::before,
+  .technical-marker::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .technical-marker::before {
+    left: -1px;
+    top: 22px;
+    height: 34px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(76, 175, 80, 0.55), transparent);
+  }
+
+  .technical-marker::after {
+    right: 22px;
+    top: -1px;
+    height: 1px;
+    width: 58px;
+    background: linear-gradient(to right, transparent, rgba(76, 175, 80, 0.42));
+  }
+
   .section-shell {
     position: relative;
     isolation: isolate;
@@ -128,7 +224,6 @@
     content: '';
     position: absolute;
     inset: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 14%),
       radial-gradient(circle at top, rgba(76, 175, 80, 0.068), transparent 48%);
@@ -137,15 +232,7 @@
   }
 
   .section-shell::after {
-    content: '';
-    position: absolute;
-    left: 1rem;
-    right: 1rem;
-    top: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.35), transparent);
-    pointer-events: none;
-    z-index: 0;
+    content: none;
   }
 
   .section-shell-alt::before {

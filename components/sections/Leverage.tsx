@@ -9,7 +9,7 @@ export default function Leverage({ active = false }: LeverageProps) {
   return (
     <section className="section-shell relative overflow-hidden px-4 py-20 md:py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(76,175,80,0.07),transparent_28%)] pointer-events-none" />
-      <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/35 to-transparent transition-opacity duration-500 pointer-events-none ${active ? 'opacity-100' : 'opacity-40'}`} />
+      <div className="absolute inset-0 texture-dot-matrix opacity-[0.18] [mask-image:radial-gradient(circle_at_75%_45%,black,transparent_68%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
@@ -32,7 +32,7 @@ export default function Leverage({ active = false }: LeverageProps) {
             </a>
           </div>
 
-          <div className="overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
+          <div className="etched-surface technical-marker overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
             {leverageAreas.map((area, index) => (
               <div
                 key={area.title}
