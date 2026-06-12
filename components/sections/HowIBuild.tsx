@@ -12,24 +12,23 @@ export default function HowIBuild({ active = false }: HowIBuildProps) {
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
         <div className="mb-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-2 font-display text-[10px] uppercase tracking-[0.2em] text-text-secondary transition-all duration-500">
-            <span className={`h-2 w-2 rounded-full ${active ? 'bg-accent shadow-[0_0_16px_rgba(76,175,80,0.55)]' : 'bg-white/20'}`} />
-            {active ? 'Process Active' : 'Process Layer'}
-          </div>
-          <p className="mt-4 font-display text-[11px] uppercase tracking-[0.24em] text-accent">
+          <p className="font-display text-[11px] uppercase tracking-[0.24em] text-accent">
             How I Build
           </p>
           <h2 className="mt-4 font-display text-4xl font-semibold tracking-[0.04em] text-text-primary md:text-5xl">
-            Systems first. Production ready by default.
+            Product judgment and engineering discipline belong together.
           </h2>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {howIBuild.map((item) => (
+        <div className="grid gap-px overflow-hidden rounded-[28px] border border-white/8 bg-white/8 md:grid-cols-2">
+          {howIBuild.map((item, index) => (
             <div
               key={item}
-              className="rounded-2xl border border-white/8 bg-white/[0.025] p-6 transition-all duration-300 hover:scale-[1.02] hover:border-accent/16"
+              className="bg-[#0b0b0b] p-6 transition-colors duration-300 hover:bg-accent/[0.035] md:p-8"
             >
+              <p className="font-display text-[10px] uppercase tracking-[0.2em] text-accent/75">
+                Principle 0{index + 1}
+              </p>
               <p className="text-base leading-relaxed text-text-secondary md:text-lg">
                 {item}
               </p>

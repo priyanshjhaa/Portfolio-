@@ -5,10 +5,8 @@ import { Command, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { name: 'Building', href: '#building' },
-  { name: 'Receipts', href: '#receipts' },
   { name: 'Work', href: '#projects' },
-  { name: 'Recent', href: '#recent' },
+  { name: 'Receipts', href: '#receipts' },
   { name: 'Process', href: '#process' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -24,15 +22,13 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
   const sectionLabel =
     activeSection === '#receipts'
       ? 'Engineering receipts'
-      : activeSection === '#recent'
-        ? 'Active shipping timeline'
-        : activeSection === '#projects'
-          ? 'Live mission feed'
-          : activeSection === '#process'
-            ? 'Operating system design'
-            : activeSection === '#contact'
-              ? 'Outbound channel open'
-              : 'Production systems and shipping';
+      : activeSection === '#projects'
+        ? 'Selected work'
+        : activeSection === '#process'
+          ? 'How I build'
+          : activeSection === '#contact'
+            ? 'Contact'
+            : 'Full-stack product engineer';
 
   useEffect(() => {
     const handleScroll = () => {

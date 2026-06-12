@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, ArrowUpRight, Github, Layers3, Workflow } from 'lucide-react';
+import { ArrowUpRight, Github } from 'lucide-react';
 import { contact, heroContent, projects } from '@/lib/data';
 
 const systemNodes = [
@@ -164,13 +164,8 @@ function SystemVisual() {
   );
 }
 
-interface HeroProps {
-  onOpenProject: (projectId: string) => void;
-}
-
-export default function Hero({ onOpenProject }: HeroProps) {
+export default function Hero() {
   const liveProjects = projects.filter((project) => project.liveUrl).length;
-  const featuredProject = projects.find((project) => project.featured);
 
   const scrollToProjects = () => {
     const element = document.querySelector('#projects');
@@ -243,124 +238,24 @@ export default function Hero({ onOpenProject }: HeroProps) {
                 </a>
               </div>
 
-              <div className="mt-8">
-                <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">
-                  Choose Your Path
-                </p>
-                <div className="mt-3 grid gap-3 sm:grid-cols-3">
-                  <button
-                    type="button"
-                    onClick={scrollToProjects}
-                    className="group rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4 text-left transition-all duration-300 hover:border-accent/20 hover:bg-accent/[0.06]"
-                  >
-                    <div className="flex items-center justify-between">
-                      <Layers3 className="h-4 w-4 text-accent" />
-                      <ArrowRight className="h-4 w-4 text-text-muted transition-transform duration-300 group-hover:translate-x-1" />
-                    </div>
-                    <p className="mt-4 font-display text-xs uppercase tracking-[0.18em] text-text-primary">
-                      Explore Builds
+              <div className="mt-9 grid gap-3 border-t border-white/8 pt-6 sm:grid-cols-3">
+                {[
+                  { value: String(projects.length), label: 'Products built' },
+                  { value: String(liveProjects), label: 'Live releases' },
+                  { value: 'End to end', label: 'Product ownership' },
+                ].map((item) => (
+                  <div key={item.label}>
+                    <p className="font-display text-lg font-semibold tracking-[0.05em] text-text-primary">
+                      {item.value}
                     </p>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const element = document.querySelector('#process');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
-                    className="group rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4 text-left transition-all duration-300 hover:border-accent/20 hover:bg-accent/[0.06]"
-                  >
-                    <div className="flex items-center justify-between">
-                      <Workflow className="h-4 w-4 text-accent" />
-                      <ArrowRight className="h-4 w-4 text-text-muted transition-transform duration-300 group-hover:translate-x-1" />
-                    </div>
-                    <p className="mt-4 font-display text-xs uppercase tracking-[0.18em] text-text-primary">
-                      See How I Build
-                    </p>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => featuredProject && onOpenProject(featuredProject.id)}
-                    className="group rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4 text-left transition-all duration-300 hover:border-accent/20 hover:bg-accent/[0.06]"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="relative">
-                        <div className="h-4 w-4 rounded-full border border-accent/40 bg-accent/10" />
-                        <div className="absolute inset-1 rounded-full bg-accent" />
-                      </div>
-                      <ArrowRight className="h-4 w-4 text-text-muted transition-transform duration-300 group-hover:translate-x-1" />
-                    </div>
-                    <p className="mt-4 font-display text-xs uppercase tracking-[0.18em] text-text-primary">
-                      Open System
-                    </p>
-                  </button>
-                </div>
+                    <p className="mt-1 text-sm text-text-muted">{item.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div className="relative hidden lg:block">
-              <div className="mb-5">
-                <SystemVisual />
-              </div>
-
-              <div className="panel-drift panel-chrome rounded-[32px] p-6">
-                <div className="absolute inset-0 topographic-pattern opacity-14 pointer-events-none" />
-                <div className="relative space-y-5">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-display text-[10px] uppercase tracking-[0.28em] text-text-muted">
-                        System Dashboard
-                      </p>
-                      <p className="mt-2 font-display text-2xl font-semibold uppercase tracking-[0.1em] text-text-primary">
-                        Operational Focus
-                      </p>
-                    </div>
-                    <div className="rounded-xl border border-accent/20 bg-accent/10 px-3 py-2 font-display text-[10px] uppercase tracking-[0.24em] text-accent">
-                      Live
-                    </div>
-                  </div>
-
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {[
-                      { label: 'System Status', value: 'Live' },
-                      { label: 'Active Builds', value: '1' },
-                      { label: 'Live Releases', value: String(liveProjects) },
-                      { label: 'Tracked Systems', value: String(projects.length - 1) },
-                    ].map((item) => (
-                      <div key={item.label} className="rounded-2xl border border-white/6 bg-black/20 p-4">
-                        <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
-                          {item.label}
-                        </p>
-                        <p className="mt-3 font-display text-2xl font-semibold uppercase tracking-[0.08em] text-text-primary">
-                          {item.value}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-2xl border border-white/6 bg-black/20 p-4">
-                      <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">
-                        Primary Stack
-                      </p>
-                      <p className="mt-3 text-sm leading-relaxed text-text-secondary">
-                        Next.js, Node.js, LLM APIs, queues, webhooks.
-                      </p>
-                    </div>
-                    <div className="rounded-2xl border border-white/6 bg-black/20 p-4">
-                      <p className="font-display text-[10px] uppercase tracking-[0.24em] text-text-muted">
-                        Operating Mode
-                      </p>
-                      <p className="mt-3 text-sm leading-relaxed text-text-secondary">
-                        Build fast, tighten systems, iterate with intent.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <SystemVisual />
 
               <div className="ambient-orb -right-10 bottom-4 h-48 w-48 opacity-50" />
             </div>

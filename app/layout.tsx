@@ -2,14 +2,16 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Priyansh - Full Stack Developer',
-  description: 'I build execution-focused tools. Full-stack developer specializing in precise, scalable solutions.',
+  title: 'Priyansh Jha | Full-Stack Product Engineer',
+  description:
+    'Full-stack product engineer building developer tools, workflow systems, and reliable SaaS products end to end.',
   icons: {
     icon: '/icon.svg',
   },
   openGraph: {
-    title: 'Priyansh - Full Stack Developer',
-    description: 'I build execution-focused tools.',
+    title: 'Priyansh Jha | Full-Stack Product Engineer',
+    description:
+      'Developer tools, workflow systems, and reliable products built from idea to production.',
     type: 'website',
   },
 };

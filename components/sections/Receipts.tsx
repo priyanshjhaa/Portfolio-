@@ -12,28 +12,25 @@ export default function Receipts({ active = false }: ReceiptsProps) {
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
         <div className="mb-10 max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-2 font-display text-[10px] uppercase tracking-[0.2em] text-text-secondary transition-all duration-500">
-            <span className={`h-2 w-2 rounded-full ${active ? 'bg-accent shadow-[0_0_16px_rgba(76,175,80,0.55)]' : 'bg-white/20'}`} />
-            {active ? 'Receipts Active' : 'Receipts'}
-          </div>
-          <p className="mt-4 font-display text-[11px] uppercase tracking-[0.24em] text-accent">
-            Receipts
-          </p>
+          <p className="font-display text-[11px] uppercase tracking-[0.24em] text-accent">Engineering Receipts</p>
           <h2 className="mt-4 font-display text-4xl font-semibold tracking-[0.04em] text-text-primary md:text-5xl">
-            Concrete engineering outcomes a startup can evaluate quickly.
+            Concrete work behind the product claims.
           </h2>
+          <p className="mt-4 text-base leading-relaxed text-text-secondary md:text-lg">
+            A few of the systems and engineering decisions I have implemented across recent builds.
+          </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
           {receipts.map((receipt, index) => (
             <div
               key={receipt}
-              className="rounded-[24px] border border-white/8 bg-white/[0.025] p-5 transition-all duration-300 hover:border-accent/18 hover:bg-accent/[0.04]"
+              className="grid gap-3 border-b border-white/8 px-5 py-5 transition-colors duration-300 last:border-b-0 hover:bg-accent/[0.035] md:grid-cols-[80px_1fr] md:items-center md:px-7"
             >
               <p className="font-display text-[10px] uppercase tracking-[0.2em] text-accent/80">
-                Receipt 0{index + 1}
+                0{index + 1}
               </p>
-              <p className="mt-3 text-base leading-relaxed text-text-secondary">{receipt}</p>
+              <p className="text-base leading-relaxed text-text-secondary">{receipt}</p>
             </div>
           ))}
         </div>

@@ -155,15 +155,15 @@ export const about = {
 };
 
 export const heroContent = {
-  eyebrow: 'Production-Oriented Engineer',
-  title: 'I build developer tools and workflow systems for real production environments.',
+  eyebrow: 'Full-stack product engineer',
+  title: 'I turn ambitious product ideas into reliable, usable software.',
   description:
-    'Focused on workflow engines, developer tooling, and scalable backend architecture designed to hold up beyond the demo.',
-  cta: 'View Projects',
+    'I design and ship developer tools, workflow systems, and SaaS products end to end, from the interface to the execution engine behind it.',
+  cta: 'See My Work',
   secondaryCta: 'GitHub',
-  hiringValues: ['Open to remote startup roles', 'Full-stack generalist', 'Product-minded', '0→1 shipping'],
+  hiringValues: ['Product engineering', 'Backend systems', 'Developer tools', '0→1 shipping'],
   hiringNote:
-    'Available for remote startup roles across product engineering, developer tooling, and execution-heavy full-stack work.',
+    'Currently open to remote product engineering roles.',
 };
 
 export const currentBuild = {
@@ -180,10 +180,10 @@ export const currentBuild = {
 };
 
 export const howIBuild = [
-  'Systems before shortcuts: I prefer deterministic systems over fragile prompt-driven workflows.',
-  'Ship over overplan: products improve fastest through real usage, feedback, and iteration.',
-  'Product and engineering together: the system should scale technically and stay genuinely usable.',
-  'Production over performance theater: I would rather ship a reliable system than a flashy demo.',
+  'Start with the user problem, then design the smallest system that solves it well.',
+  'Keep critical workflows deterministic, observable, and easy to reason about.',
+  'Own the full product surface, from interface details to backend execution.',
+  'Ship early, learn from real usage, and improve the architecture with intent.',
 ];
 
 export const receipts = [
@@ -310,7 +310,7 @@ export const contact = {
   linkedin: 'https://www.linkedin.com/in/priyansh-jha-489966284',
   email: 'Priyanshjhaa17@gmail.com',
   availability: 'Open to remote startup roles',
-  focus: 'Best fit for product engineering, developer tools, workflow systems, and early-stage full-stack execution.',
+  focus: 'I am most useful on product engineering, developer tools, workflow systems, and full-stack work that needs clear ownership.',
 };
 
 export const skillGroups: SkillGroup[] = [
