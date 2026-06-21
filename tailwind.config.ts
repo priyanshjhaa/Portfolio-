@@ -9,24 +9,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Background
+        // Warm ink surfaces
         gta: {
-          DEFAULT: '#0E0E0E',
-          top: '#0C0C0C',
-          bottom: '#151515',
+          DEFAULT: '#0D0B08',
+          top: '#100C08',
+          bottom: '#1A120B',
         },
-        // Accent - muted green
+        // Signal orange
         accent: {
-          DEFAULT: '#4CAF50',
-          hover: '#55B859',
-          subtle: 'rgba(76, 175, 80, 0.1)',
-          border: 'rgba(76, 175, 80, 0.2)',
+          DEFAULT: '#F59E0B',
+          hover: '#FBBF24',
+          subtle: 'rgba(245, 158, 11, 0.1)',
+          border: 'rgba(245, 158, 11, 0.2)',
         },
         // Text colors
         text: {
-          primary: '#EDEDED',
-          secondary: '#D1D5DB',
-          muted: '#98A2B3',
+          primary: '#FFF7ED',
+          secondary: '#E7DCCB',
+          muted: '#A99B8A',
         },
       },
       fontFamily: {

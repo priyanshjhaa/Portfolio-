@@ -74,7 +74,7 @@ function ProductProofVisual({ project }: { project: Project }) {
     return (
       <div className="rounded-2xl border border-white/6 bg-[#081008]/85 p-4">
         <div className="h-3 w-28 rounded-full bg-accent/25" />
-        <div className="mt-4 h-28 rounded-2xl border border-accent/16 bg-[radial-gradient(circle_at_30%_30%,rgba(76,175,80,0.16),transparent_38%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0))]" />
+        <div className="mt-4 h-28 rounded-2xl border border-accent/16 bg-[radial-gradient(circle_at_30%_30%,rgba(245,158,11,0.16),transparent_38%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0))]" />
       </div>
     );
   }
@@ -140,7 +140,7 @@ function ProductProofVisual({ project }: { project: Project }) {
                     {project.summary}
                   </p>
                   <div className="mt-5 flex items-center gap-2 text-sm text-text-secondary">
-                    <span className="h-2.5 w-2.5 rounded-sm bg-accent shadow-[0_0_16px_rgba(76,175,80,0.5)]" />
+                    <span className="h-2.5 w-2.5 rounded-sm bg-accent shadow-[0_0_16px_rgba(245,158,11,0.5)]" />
                     All systems operational
                   </div>
                 </div>
@@ -294,7 +294,7 @@ export default function ProjectDeepDive({
 
   return (
     <div className={pageMode ? 'min-h-screen bg-[#040504]' : 'fixed inset-0 z-[90] overflow-y-auto bg-[#040504]/98'}>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(76,175,80,0.09),transparent_26%),radial-gradient(circle_at_85%_20%,rgba(76,175,80,0.05),transparent_20%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(245,158,11,0.09),transparent_26%),radial-gradient(circle_at_85%_20%,rgba(245,158,11,0.05),transparent_20%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent)]" />
       <div className="pointer-events-none absolute inset-0 texture-blueprint opacity-[0.13] [mask-image:linear-gradient(to_bottom,black,transparent_72%)]" />
       <div className="relative mx-auto w-full max-w-[1440px] px-4 py-6 md:px-8 md:py-8">
         <div className="etched-surface technical-marker sticky top-0 z-20 mb-6 overflow-hidden rounded-[28px] border border-white/8 bg-[#090909]/92 shadow-[0_24px_80px_-50px_rgba(0,0,0,0.95)] backdrop-blur-xl">
@@ -529,7 +529,7 @@ export default function ProjectDeepDive({
                       key={scope}
                       className="flex items-center gap-3 rounded-2xl border border-white/6 bg-white/[0.03] px-4 py-3"
                     >
-                      <span className="h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_12px_rgba(76,175,80,0.45)]" />
+                      <span className="h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_12px_rgba(245,158,11,0.45)]" />
                       <p className="text-sm leading-relaxed text-text-secondary">{scope}</p>
                     </div>
                   ))}

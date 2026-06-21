@@ -1,5 +1,6 @@
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { leverageAreas } from '@/lib/data';
+import Reveal from '@/components/ui/Reveal';
 
 interface LeverageProps {
   active?: boolean;
@@ -13,7 +14,7 @@ export default function Leverage({ active = false }: LeverageProps) {
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-          <div className="max-w-xl lg:sticky lg:top-28">
+          <Reveal className="max-w-xl lg:sticky lg:top-28">
             <p className="font-display text-[11px] uppercase tracking-[0.24em] text-accent">
               Where I Add Leverage
             </p>
@@ -30,9 +31,9 @@ export default function Leverage({ active = false }: LeverageProps) {
               Start a conversation
               <ArrowUpRight className="h-4 w-4" />
             </a>
-          </div>
+          </Reveal>
 
-          <div className="etched-surface technical-marker overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
+          <Reveal delay={100} className="etched-surface technical-marker overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
             {leverageAreas.map((area, index) => (
               <div
                 key={area.title}
@@ -59,7 +60,7 @@ export default function Leverage({ active = false }: LeverageProps) {
                 </div>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

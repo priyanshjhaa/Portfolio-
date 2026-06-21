@@ -1,4 +1,5 @@
 import { receipts } from '@/lib/data';
+import Reveal from '@/components/ui/Reveal';
 
 interface ReceiptsProps {
   active?: boolean;
@@ -11,7 +12,7 @@ export default function Receipts({ active = false }: ReceiptsProps) {
       <div className="absolute inset-0 texture-rulings opacity-[0.22] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
-        <div className="mb-10 max-w-3xl">
+        <Reveal className="mb-10 max-w-3xl">
           <p className="font-display text-[11px] uppercase tracking-[0.24em] text-accent">Engineering Receipts</p>
           <h2 className="mt-4 font-display text-4xl font-semibold tracking-[0.04em] text-text-primary md:text-5xl">
             Concrete work behind the product claims.
@@ -19,9 +20,9 @@ export default function Receipts({ active = false }: ReceiptsProps) {
           <p className="mt-4 text-base leading-relaxed text-text-secondary md:text-lg">
             A few of the systems and engineering decisions I have implemented across recent builds.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="etched-surface technical-marker overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
+        <Reveal delay={100} className="etched-surface technical-marker overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
           {receipts.map((receipt, index) => (
             <div
               key={receipt}
@@ -33,7 +34,7 @@ export default function Receipts({ active = false }: ReceiptsProps) {
               <p className="text-base leading-relaxed text-text-secondary">{receipt}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

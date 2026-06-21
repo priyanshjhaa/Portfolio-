@@ -117,7 +117,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
                       className={cn(
                         'nav-pill rounded-xl px-4 py-2.5 font-display text-xs uppercase tracking-[0.22em] transition-all duration-200',
                         isActive
-                          ? 'bg-accent/12 text-accent shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
+                          ? 'text-accent'
                           : 'text-text-secondary hover:bg-white/[0.03] hover:text-text-primary'
                       )}
                     >
