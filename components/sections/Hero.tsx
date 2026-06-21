@@ -30,11 +30,11 @@ function SystemVisual() {
   return (
     <div className="system-visual group relative h-[380px] rounded-[32px] border border-white/6 bg-black/25 xl:h-[410px]">
       <div className="absolute inset-0 rounded-[30px] bg-gradient-to-br from-accent/[0.04] via-transparent to-white/[0.02]" />
-      <div className="absolute inset-[16%] rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.16),rgba(245,158,11,0.05)_38%,transparent_72%)] blur-2xl pointer-events-none" />
+      <div className="absolute inset-[16%] rounded-full bg-[radial-gradient(circle,rgba(255,107,90,0.18),rgba(79,124,255,0.08)_42%,transparent_72%)] blur-2xl pointer-events-none" />
       <div className="absolute inset-0 topographic-pattern opacity-10 pointer-events-none" />
 
       <div className="absolute left-8 top-6">
-        <p className="font-display text-[10px] uppercase tracking-[0.24em] text-accent/75">
+        <p className="font-display text-[10px] uppercase tracking-[0.24em] text-signal/85">
           System Core • Running
         </p>
         <p className="mt-2 font-display text-lg font-semibold uppercase tracking-[0.1em] text-text-primary">
@@ -60,9 +60,9 @@ function SystemVisual() {
       >
         <defs>
           <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(255,224,178,0.94)" />
-            <stop offset="35%" stopColor="rgba(245,158,11,0.38)" />
-            <stop offset="100%" stopColor="rgba(245,158,11,0)" />
+            <stop offset="0%" stopColor="rgba(190,207,255,0.94)" />
+            <stop offset="35%" stopColor="rgba(255,107,90,0.42)" />
+            <stop offset="100%" stopColor="rgba(255,107,90,0)" />
           </radialGradient>
           <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
             <feGaussianBlur stdDeviation="8" />
@@ -77,7 +77,7 @@ function SystemVisual() {
                 y1={link.from[1]}
                 x2={link.to[0]}
                 y2={link.to[1]}
-                stroke="rgba(245,158,11,0.14)"
+                stroke="rgba(79,124,255,0.14)"
                 strokeWidth="1.2"
                 className="system-link-base"
               />
@@ -86,7 +86,7 @@ function SystemVisual() {
                 y1={link.from[1]}
                 x2={link.to[0]}
                 y2={link.to[1]}
-                stroke="rgba(255,224,178,0.4)"
+                stroke="rgba(190,207,255,0.4)"
                 strokeWidth="1"
                 strokeDasharray="10 180"
                 strokeLinecap="round"
@@ -108,23 +108,23 @@ function SystemVisual() {
             >
               {node.id === 'core' && (
                 <>
-                  <circle cx={node.x} cy={node.y} r={32} fill="rgba(245,158,11,0.12)" className="core-ring" />
-                  <circle cx={node.x} cy={node.y} r={24} fill="rgba(245,158,11,0.2)" className="core-ring-inner" />
+                  <circle cx={node.x} cy={node.y} r={32} fill="rgba(255,107,90,0.14)" className="core-ring" />
+                  <circle cx={node.x} cy={node.y} r={24} fill="rgba(255,107,90,0.22)" className="core-ring-inner" />
                 </>
               )}
               <circle
                 cx={node.x}
                 cy={node.y}
                 r={node.size}
-                fill={node.id === 'core' ? 'rgba(9,16,10,0.96)' : 'rgba(7,10,8,0.96)'}
-                stroke={node.id === 'core' ? 'rgba(255,224,178,0.9)' : 'rgba(245,158,11,0.56)'}
+                fill={node.id === 'core' ? 'rgba(8,11,22,0.96)' : 'rgba(10,14,29,0.96)'}
+                stroke={node.id === 'core' ? 'rgba(255,202,194,0.92)' : 'rgba(79,124,255,0.56)'}
                 strokeWidth={node.id === 'core' ? '1.9' : '1.2'}
               />
               <circle
                 cx={node.x}
                 cy={node.y}
                 r={Math.max(2.2, node.size * 0.24)}
-                fill={node.id === 'core' ? 'rgba(255,244,229,0.95)' : 'rgba(255,224,178,0.82)'}
+                fill={node.id === 'core' ? 'rgba(238,243,255,0.95)' : 'rgba(190,207,255,0.82)'}
               />
 
               {node.id !== 'core' && (
@@ -135,8 +135,8 @@ function SystemVisual() {
                     rx="8"
                     width="48"
                     height="18"
-                    fill="rgba(6,10,7,0.92)"
-                    stroke="rgba(245,158,11,0.2)"
+                    fill="rgba(8,11,22,0.94)"
+                    stroke="rgba(79,124,255,0.2)"
                   />
                   <text
                     x={node.x}
@@ -177,12 +177,12 @@ export default function Hero() {
 
   return (
     <section className="section-shell relative overflow-hidden px-4 pb-16 pt-24 md:pb-24 md:pt-28">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.13),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(245,158,11,0.08),transparent_24%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(79,124,255,0.14),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(255,107,90,0.09),transparent_24%)] pointer-events-none" />
       <div className="absolute inset-0 grid-pattern opacity-[0.08]" />
       <div className="absolute inset-0 texture-circuit opacity-[0.13] [mask-image:linear-gradient(to_bottom,black,transparent_82%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
-        <PointerSurface className="etched-surface technical-marker rounded-[36px] border border-white/8 bg-[#090909]/88 p-8 shadow-[0_32px_80px_-52px_rgba(0,0,0,0.95)] backdrop-blur-xl md:p-12">
+        <PointerSurface className="hero-pointer-surface etched-surface technical-marker rounded-[36px] border border-white/8 bg-[#0E1426]/88 p-8 shadow-[0_32px_80px_-52px_rgba(0,0,0,0.95)] backdrop-blur-xl md:p-12">
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)] xl:gap-12">
             <div className="max-w-4xl">
               <p className="font-display text-[11px] uppercase tracking-[0.28em] text-accent/80">
@@ -208,14 +208,14 @@ export default function Hero() {
                 ))}
               </div>
 
-              <p className="mt-5 max-w-3xl text-sm leading-relaxed text-accent/90 md:text-base">
+              <p className="mt-5 max-w-3xl text-sm leading-relaxed text-signal/90 md:text-base">
                 {heroContent.hiringNote}
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <button
                   onClick={scrollToProjects}
-                  className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-gta transition-all duration-300 hover:scale-[1.02] hover:bg-accent-hover"
+                  className="primary-action inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl bg-signal px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-[#080B16] transition-all duration-300 hover:scale-[1.02] hover:bg-signal-hover"
                 >
                   {heroContent.cta}
                   <ArrowUpRight className="h-4 w-4" />
@@ -233,7 +233,7 @@ export default function Hero() {
 
                 <a
                   href={`mailto:${contact.email}`}
-                  className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl border border-accent/18 bg-accent/[0.08] px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-accent transition-all duration-300 hover:scale-[1.02] hover:border-accent/28 hover:bg-accent/[0.12]"
+                  className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl border border-signal/22 bg-signal/[0.08] px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-signal transition-all duration-300 hover:scale-[1.02] hover:border-signal/35 hover:bg-signal/[0.13]"
                 >
                   Let&apos;s Work Together
                   <ArrowUpRight className="h-4 w-4" />

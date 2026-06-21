@@ -98,14 +98,14 @@ export default function Home() {
       </section>
 
       <footer id="contact" className="section-shell relative overflow-hidden px-4 py-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(76,175,80,0.08),transparent_34%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,107,90,0.09),transparent_34%)] pointer-events-none" />
         <div className="absolute inset-0 texture-dot-matrix opacity-[0.14] [mask-image:radial-gradient(circle_at_center,black,transparent_72%)] pointer-events-none" />
-        <div className="etched-surface technical-marker relative mx-auto max-w-[1120px] rounded-[32px] border border-white/8 bg-[#0b0b0b]/88 px-6 py-10 md:px-10">
+        <div className="etched-surface technical-marker relative mx-auto max-w-[1120px] rounded-[32px] border border-white/8 bg-[#0E1426]/88 px-6 py-10 md:px-10">
           <p className="font-display text-[11px] uppercase tracking-[0.24em] text-accent">
             Let&apos;s Work Together
           </p>
           <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-2 font-display text-[10px] uppercase tracking-[0.2em] text-text-secondary transition-all duration-500">
-            <span className={`h-2 w-2 rounded-full ${activeSection === 'contact' ? 'bg-accent shadow-[0_0_16px_rgba(76,175,80,0.55)]' : 'bg-white/20'}`} />
+            <span className={`h-2 w-2 rounded-full ${activeSection === 'contact' ? 'bg-signal shadow-[0_0_16px_rgba(255,107,90,0.55)]' : 'bg-white/20'}`} />
             {contact.availability}
           </div>
           <h2 className="mt-4 font-display text-3xl font-semibold tracking-[0.04em] text-text-primary md:text-4xl">

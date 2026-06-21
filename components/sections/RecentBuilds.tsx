@@ -13,7 +13,7 @@ export default function RecentBuilds({ active = false }: RecentBuildsProps) {
       <div className="relative z-10 mx-auto max-w-[1120px]">
         <div className="mb-10 max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-2 font-display text-[10px] uppercase tracking-[0.2em] text-text-secondary transition-all duration-500">
-            <span className={`h-2 w-2 rounded-full ${active ? 'bg-accent shadow-[0_0_16px_rgba(76,175,80,0.55)]' : 'bg-white/20'}`} />
+            <span className={`h-2 w-2 rounded-full ${active ? 'bg-accent shadow-[0_0_16px_rgba(79,124,255,0.55)]' : 'bg-white/20'}`} />
             {active ? 'Shipping Timeline Active' : 'Recent Builds'}
           </div>
           <p className="mt-4 font-display text-[11px] uppercase tracking-[0.24em] text-accent">

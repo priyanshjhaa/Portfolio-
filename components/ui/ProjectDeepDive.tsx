@@ -21,7 +21,7 @@ const visualProofContent = {
     primaryCta: 'Start building workflows',
     secondaryCta: 'View demo',
     shellClass:
-      'bg-[radial-gradient(circle_at_12%_12%,rgba(255,78,148,0.18),transparent_28%),radial-gradient(circle_at_90%_90%,rgba(57,206,255,0.16),transparent_28%),linear-gradient(160deg,#050505_0%,#090909_55%,#030303_100%)]',
+      'bg-[radial-gradient(circle_at_12%_12%,rgba(255,78,148,0.18),transparent_28%),radial-gradient(circle_at_90%_90%,rgba(57,206,255,0.16),transparent_28%),linear-gradient(160deg,#080B16_0%,#0E1426_55%,#080B16_100%)]',
     badgeClass: 'border-white/10 bg-white/[0.04] text-white/85',
     accentClass: 'from-pink-300 via-pink-400 to-sky-200',
     primaryClass: 'bg-gradient-to-r from-pink-300 to-sky-200 text-black',
@@ -74,7 +74,7 @@ function ProductProofVisual({ project }: { project: Project }) {
     return (
       <div className="rounded-2xl border border-white/6 bg-[#081008]/85 p-4">
         <div className="h-3 w-28 rounded-full bg-accent/25" />
-        <div className="mt-4 h-28 rounded-2xl border border-accent/16 bg-[radial-gradient(circle_at_30%_30%,rgba(245,158,11,0.16),transparent_38%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0))]" />
+        <div className="mt-4 h-28 rounded-2xl border border-accent/16 bg-[radial-gradient(circle_at_30%_30%,rgba(79,124,255,0.16),transparent_38%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0))]" />
       </div>
     );
   }
@@ -140,7 +140,7 @@ function ProductProofVisual({ project }: { project: Project }) {
                     {project.summary}
                   </p>
                   <div className="mt-5 flex items-center gap-2 text-sm text-text-secondary">
-                    <span className="h-2.5 w-2.5 rounded-sm bg-accent shadow-[0_0_16px_rgba(245,158,11,0.5)]" />
+                    <span className="h-2.5 w-2.5 rounded-sm bg-accent shadow-[0_0_16px_rgba(79,124,255,0.5)]" />
                     All systems operational
                   </div>
                 </div>
@@ -293,11 +293,11 @@ export default function ProjectDeepDive({
   }
 
   return (
-    <div className={pageMode ? 'min-h-screen bg-[#040504]' : 'fixed inset-0 z-[90] overflow-y-auto bg-[#040504]/98'}>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(245,158,11,0.09),transparent_26%),radial-gradient(circle_at_85%_20%,rgba(245,158,11,0.05),transparent_20%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent)]" />
+    <div className={pageMode ? 'min-h-screen bg-[#080B16]' : 'fixed inset-0 z-[90] overflow-y-auto bg-[#080B16]/98'}>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(79,124,255,0.09),transparent_26%),radial-gradient(circle_at_85%_20%,rgba(79,124,255,0.05),transparent_20%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent)]" />
       <div className="pointer-events-none absolute inset-0 texture-blueprint opacity-[0.13] [mask-image:linear-gradient(to_bottom,black,transparent_72%)]" />
       <div className="relative mx-auto w-full max-w-[1440px] px-4 py-6 md:px-8 md:py-8">
-        <div className="etched-surface technical-marker sticky top-0 z-20 mb-6 overflow-hidden rounded-[28px] border border-white/8 bg-[#090909]/92 shadow-[0_24px_80px_-50px_rgba(0,0,0,0.95)] backdrop-blur-xl">
+        <div className="etched-surface technical-marker sticky top-0 z-20 mb-6 overflow-hidden rounded-[28px] border border-white/8 bg-[#0E1426]/92 shadow-[0_24px_80px_-50px_rgba(0,0,0,0.95)] backdrop-blur-xl">
           <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.08] via-transparent to-white/[0.02] pointer-events-none" />
           <div className="absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent pointer-events-none" />
           <div className="relative flex items-start justify-between gap-4 px-5 py-5 md:px-7">
@@ -335,7 +335,7 @@ export default function ProjectDeepDive({
 
         <div className="grid gap-6 xl:grid-cols-[1.18fr_0.82fr]">
           <div className="space-y-6">
-            <div className="rounded-[28px] border border-white/6 bg-[#090909]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
+            <div className="rounded-[28px] border border-white/6 bg-[#0E1426]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
               <div className="mb-5 flex items-center justify-between">
                 <div>
                   <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
@@ -345,7 +345,7 @@ export default function ProjectDeepDive({
                     {project.impact ?? project.details}
                   </p>
                 </div>
-                <div className="rounded-xl border border-accent/20 bg-accent/10 px-3 py-2 font-display text-[10px] uppercase tracking-[0.22em] text-accent">
+                <div className="rounded-xl border border-signal/25 bg-signal/10 px-3 py-2 font-display text-[10px] uppercase tracking-[0.22em] text-signal">
                   {project.status}
                 </div>
               </div>
@@ -363,7 +363,7 @@ export default function ProjectDeepDive({
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-[24px] border border-white/6 bg-[#090909]/92 p-5">
+              <div className="rounded-[24px] border border-white/6 bg-[#0E1426]/92 p-5">
                 <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
                   Why I Built This
                 </p>
@@ -372,7 +372,7 @@ export default function ProjectDeepDive({
                 </p>
               </div>
 
-              <div className="rounded-[24px] border border-white/6 bg-[#090909]/92 p-5">
+              <div className="rounded-[24px] border border-white/6 bg-[#0E1426]/92 p-5">
                 <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
                   Approach
                 </p>
@@ -383,7 +383,7 @@ export default function ProjectDeepDive({
             </div>
 
             {(project.keyDecision || project.tradeoff || project.nextStep) && (
-              <div className="rounded-[24px] border border-white/6 bg-[#090909]/92 p-5">
+              <div className="rounded-[24px] border border-white/6 bg-[#0E1426]/92 p-5">
                 <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
                   Engineering Judgment
                 </p>
@@ -422,7 +422,7 @@ export default function ProjectDeepDive({
               </div>
             )}
 
-            <div className="rounded-[28px] border border-white/6 bg-[#090909]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
+            <div className="rounded-[28px] border border-white/6 bg-[#0E1426]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
@@ -478,7 +478,7 @@ export default function ProjectDeepDive({
               </div>
             </div>
 
-            <div className="rounded-[24px] border border-white/6 bg-[#090909]/92 p-5">
+            <div className="rounded-[24px] border border-white/6 bg-[#0E1426]/92 p-5">
               <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
                 Architecture Walkthrough
               </p>
@@ -497,7 +497,7 @@ export default function ProjectDeepDive({
               </div>
             </div>
 
-            <div className="rounded-[24px] border border-white/6 bg-[#090909]/92 p-5">
+            <div className="rounded-[24px] border border-white/6 bg-[#0E1426]/92 p-5">
               <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
                 Architecture Notes
               </p>
@@ -519,7 +519,7 @@ export default function ProjectDeepDive({
 
           <div className="space-y-5">
             {project.ownership && (
-              <div className="rounded-[28px] border border-white/6 bg-[#090909]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
+              <div className="rounded-[28px] border border-white/6 bg-[#0E1426]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
                 <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
                   Scope I Owned
                 </p>
@@ -529,7 +529,7 @@ export default function ProjectDeepDive({
                       key={scope}
                       className="flex items-center gap-3 rounded-2xl border border-white/6 bg-white/[0.03] px-4 py-3"
                     >
-                      <span className="h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_12px_rgba(245,158,11,0.45)]" />
+                      <span className="h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_12px_rgba(79,124,255,0.45)]" />
                       <p className="text-sm leading-relaxed text-text-secondary">{scope}</p>
                     </div>
                   ))}
@@ -537,7 +537,7 @@ export default function ProjectDeepDive({
               </div>
             )}
 
-            <div className="rounded-[28px] border border-white/6 bg-[#090909]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)] xl:sticky xl:top-[8.5rem]">
+            <div className="rounded-[28px] border border-white/6 bg-[#0E1426]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)] xl:sticky xl:top-[8.5rem]">
               <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
                 Infrastructure &amp; Engineering
               </p>
@@ -553,7 +553,7 @@ export default function ProjectDeepDive({
               </div>
             </div>
 
-            <div className="rounded-[28px] border border-white/6 bg-[#090909]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
+            <div className="rounded-[28px] border border-white/6 bg-[#0E1426]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
               <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
                 Production Signals
               </p>
@@ -569,7 +569,7 @@ export default function ProjectDeepDive({
               </div>
             </div>
 
-            <div className="rounded-[28px] border border-white/6 bg-[#090909]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
+            <div className="rounded-[28px] border border-white/6 bg-[#0E1426]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
               <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
                 Action Layer
               </p>
@@ -599,7 +599,7 @@ export default function ProjectDeepDive({
               </div>
             </div>
 
-            <div className="rounded-[28px] border border-white/6 bg-[#090909]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
+            <div className="rounded-[28px] border border-white/6 bg-[#0E1426]/92 p-5 shadow-[0_24px_70px_-48px_rgba(0,0,0,0.9)]">
               <p className="font-display text-[10px] uppercase tracking-[0.22em] text-text-muted">
                 Project Summary
               </p>

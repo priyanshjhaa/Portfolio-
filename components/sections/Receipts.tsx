@@ -8,7 +8,7 @@ interface ReceiptsProps {
 export default function Receipts({ active = false }: ReceiptsProps) {
   return (
     <section className="section-shell relative overflow-hidden px-4 py-20 md:py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(76,175,80,0.07),transparent_36%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(79,124,255,0.07),transparent_36%)] pointer-events-none" />
       <div className="absolute inset-0 texture-rulings opacity-[0.22] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
