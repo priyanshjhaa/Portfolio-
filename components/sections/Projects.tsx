@@ -20,12 +20,12 @@ export default function Projects({ active = false, onOpenProject }: ProjectsProp
     <article
       key={project.id}
       className={cn(
-        'group etched-surface technical-marker rounded-[28px] border border-white/8 bg-[#0E1426]/92 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/20 md:p-6',
-        featured && 'shadow-[0_28px_70px_-48px_rgba(255,107,90,0.32)]'
+        'group etched-surface technical-marker rounded-[28px] border border-white/8 bg-[#171716]/92 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/20 md:p-6',
+        featured && 'shadow-[0_28px_70px_-48px_rgba(201, 135, 111,0.32)]'
       )}
     >
       {project.image && (
-        <PointerSurface className="overflow-hidden rounded-[20px] border border-accent/20 bg-[#080B16]/72">
+        <PointerSurface className="overflow-hidden rounded-[20px] border border-accent/20 bg-[#0E0E0E]/72">
           <button
             type="button"
             onClick={() => onOpenProject(project.id)}
@@ -44,12 +44,12 @@ export default function Projects({ active = false, onOpenProject }: ProjectsProp
             <div className={cn(
               'absolute left-4 top-4 rounded-full px-3 py-1.5 font-display text-[9px] uppercase tracking-[0.18em] backdrop-blur-md',
               featured
-                ? 'border border-signal/35 bg-signal/90 text-[#080B16]'
-                : 'border border-white/10 bg-[#080B16]/78 text-text-primary'
+                ? 'border border-signal/35 bg-signal/90 text-[#0E0E0E]'
+                : 'border border-white/10 bg-[#0E0E0E]/78 text-text-primary'
             )}>
               {featured ? 'Featured build' : project.status}
             </div>
-            <div className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-xl border border-accent/25 bg-[#080B16]/80 px-3 py-2 font-display text-[9px] uppercase tracking-[0.16em] text-text-primary opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
+            <div className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-xl border border-accent/25 bg-[#0E0E0E]/80 px-3 py-2 font-display text-[9px] uppercase tracking-[0.16em] text-text-primary opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
               View case study
               <ArrowUpRight className="h-3.5 w-3.5" />
             </div>
@@ -141,7 +141,7 @@ export default function Projects({ active = false, onOpenProject }: ProjectsProp
 
   return (
     <section className="section-shell relative overflow-hidden px-4 py-20 md:py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(79,124,255,0.08),transparent_24%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(167, 162, 154,0.08),transparent_24%)] pointer-events-none" />
       <div className="absolute inset-0 texture-blueprint opacity-[0.17] [mask-image:linear-gradient(to_bottom,black,transparent_88%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">

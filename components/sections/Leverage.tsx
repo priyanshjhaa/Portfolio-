@@ -9,7 +9,7 @@ interface LeverageProps {
 export default function Leverage({ active = false }: LeverageProps) {
   return (
     <section className="section-shell relative overflow-hidden px-4 py-20 md:py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(79,124,255,0.07),transparent_28%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(167,162,154,0.07),transparent_28%)] pointer-events-none" />
       <div className="absolute inset-0 texture-dot-matrix opacity-[0.18] [mask-image:radial-gradient(circle_at_75%_45%,black,transparent_68%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">

@@ -308,7 +308,7 @@ export default function BuildExplorer({ isOpen, onClose, onOpenProject }: BuildE
         onClick={onClose}
       />
 
-      <div className="relative z-10 w-full max-w-3xl overflow-hidden rounded-[32px] border border-white/8 bg-[#0E1426]/96 shadow-[0_32px_90px_-48px_rgba(0,0,0,0.95)]">
+      <div className="relative z-10 w-full max-w-3xl overflow-hidden rounded-[32px] border border-white/8 bg-[#171716]/96 shadow-[0_32px_90px_-48px_rgba(0,0,0,0.95)]">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.08] via-transparent to-white/[0.02] pointer-events-none" />
         <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent pointer-events-none" />
 

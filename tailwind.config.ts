@@ -9,31 +9,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Cool ink surfaces
+        // Quiet graphite surfaces
         gta: {
-          DEFAULT: '#080B16',
-          top: '#0A0E1D',
-          bottom: '#111A32',
+          DEFAULT: '#0E0E0E',
+          top: '#111110',
+          bottom: '#201F1D',
         },
-        // Cobalt system accent
+        // Soft stone system accent
         accent: {
-          DEFAULT: '#4F7CFF',
-          hover: '#6F92FF',
-          subtle: 'rgba(79, 124, 255, 0.1)',
-          border: 'rgba(79, 124, 255, 0.2)',
+          DEFAULT: '#A7A29A',
+          hover: '#C5C0B8',
+          subtle: 'rgba(167, 162, 154, 0.1)',
+          border: 'rgba(167, 162, 154, 0.2)',
         },
-        // Coral action signal
+        // Muted clay action signal
         signal: {
-          DEFAULT: '#FF6B5A',
-          hover: '#FF8578',
-          subtle: 'rgba(255, 107, 90, 0.1)',
-          border: 'rgba(255, 107, 90, 0.2)',
+          DEFAULT: '#C9876F',
+          hover: '#DEA189',
+          subtle: 'rgba(201, 135, 111, 0.1)',
+          border: 'rgba(201, 135, 111, 0.2)',
         },
         // Text colors
         text: {
-          primary: '#EEF3FF',
-          secondary: '#D2DCEF',
-          muted: '#9AA7C2',
+          primary: '#F1EFEA',
+          secondary: '#C8C5BE',
+          muted: '#94918B',
         },
       },
       fontFamily: {

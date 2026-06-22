@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import GlobalPointerGlow from '@/components/ui/GlobalPointerGlow';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -24,7 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {children}
+        <div className="global-gradient" aria-hidden="true" />
+        <div className="global-texture" aria-hidden="true" />
+        <GlobalPointerGlow />
+        <div className="site-content">{children}</div>
       </body>
     </html>
   );

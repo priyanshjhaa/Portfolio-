@@ -67,8 +67,8 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
           className={cn(
             'relative overflow-hidden rounded-2xl border transition-all duration-300',
             isScrolled
-              ? 'border-accent/20 bg-[#0E1426]/88 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.95)] backdrop-blur-xl'
-              : 'border-white/5 bg-[#0E1426]/70 backdrop-blur-md'
+              ? 'border-accent/20 bg-[#171716]/88 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.95)] backdrop-blur-xl'
+              : 'border-white/5 bg-[#171716]/70 backdrop-blur-md'
           )}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-accent/[0.07] via-transparent to-white/[0.02] pointer-events-none" />

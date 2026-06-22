@@ -49,7 +49,7 @@ export default function SystemStateRail({ activeSection }: SystemStateRailProps)
 
   return (
     <div className="fixed right-4 top-1/2 z-40 hidden w-72 -translate-y-1/2 xl:block">
-      <div className="rounded-[28px] border border-white/8 bg-[#0E1426]/88 p-4 shadow-[0_28px_70px_-42px_rgba(0,0,0,0.95)] backdrop-blur-xl">
+      <div className="rounded-[28px] border border-white/8 bg-[#171716]/88 p-4 shadow-[0_28px_70px_-42px_rgba(0,0,0,0.95)] backdrop-blur-xl">
         <div className="mb-4 flex items-center justify-between">
           <div>
             <p className="font-display text-[10px] uppercase tracking-[0.24em] text-accent/80">
@@ -60,7 +60,7 @@ export default function SystemStateRail({ activeSection }: SystemStateRailProps)
             </p>
           </div>
           <div className="relative">
-            <div className="h-3 w-3 rounded-full bg-accent shadow-[0_0_18px_rgba(79,124,255,0.55)]" />
+            <div className="h-3 w-3 rounded-full bg-accent shadow-[0_0_18px_rgba(167, 162, 154,0.55)]" />
             <div className="absolute inset-0 rounded-full bg-accent/30 animate-ping" />
           </div>
         </div>
