@@ -19,11 +19,15 @@
   }
 
   html {
+    min-height: 100%;
+    background: #0E0E0E;
+    overscroll-behavior-y: none;
     scroll-behavior: smooth;
   }
 
   body {
     @apply bg-gta text-text-primary antialiased;
+    min-height: 100dvh;
     background:
       radial-gradient(circle at 1px 1px, rgba(241, 239, 234, 0.028) 0.7px, transparent 0.9px),
       linear-gradient(rgba(var(--accent-rgb), 0.016) 1px, transparent 1px),
