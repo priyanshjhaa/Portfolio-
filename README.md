@@ -1,228 +1,80 @@
-# GTA: San Andreas Portfolio
+# Priyansh Jha | Product Engineer Portfolio
 
-A professional portfolio website inspired by GTA: San Andreas — designed like an in-game HUD dashboard with missions, builds, stats, and skill trees.
+A single-page portfolio for a full-stack product engineer building developer tools, workflow systems, and reliable SaaS products. It is designed to help founders, hiring teams, and engineers quickly inspect shipped work, product judgment, and the system decisions behind each build.
 
-## Design Principles
+## Live Experience
 
-- **Gaming HUD Aesthetic**: Dark dashboard interface with subtle grid overlays, glowing accents, and game-like status indicators
-- **Mission-Based Narrative**: Career progression framed as "missions" and "checkpoints"
-- **Stat-Driven Skills**: Capabilities presented as "build stats" with skill categories
-- **70/20/10 Rule**: 70% projects, 20% context, 10% personality
-- **Scan-First**: Recruiters grasp value in 20 seconds
-- **Restraint**: 1 accent color (green), 1 font (Inter), minimal animations
+- **Homepage:** startup-focused positioning, selected work, engineering receipts, working principles, and contact paths.
+- **Project deep dives:** dedicated system pages for CodeMap, Execute, Axiom, and Cinematch with product proof, architecture flows, ownership, production signals, and links.
+- **Build explorer:** a keyboard-first command palette for searching projects, skills, and contact actions with `Cmd/Ctrl + K`.
+- **Visual proof:** real project landing-page screenshots are framed directly inside the selected-work cards and system pages.
 
-## Visual Theme
+## Design System
 
-### Color Palette
-- **Background**: `#0D0D0D` - Deep dark base
-- **Primary Text**: `#E5E5E5` - Off-white for readability
-- **Accent**: `#4CAF50` - GTA green (HUD markers, mission complete indicators)
-- **Borders**: `#1A1A1A` - Subtle card and element borders
+The interface is intentionally distinct without being visually noisy:
 
-### Design Elements
-- **Grid Pattern**: Subtle overlay (0.015 opacity) mimicking game world coordinates
-- **Glow Effects**: Pulsing accent glows for active states and markers
-- **Asymmetric Layout**: Corner accents on top-left only, creating visual interest
-- **Status Cards**: Muted labels with larger, bolder values for hierarchy
-- **Checkpoints**: Circular markers with pulse animations for completed missions
+- **Graphite canvas:** warm dark surfaces with bone-white typography for sustained readability.
+- **Stone and clay accents:** muted stone for system states and restrained clay for primary actions, featured work, and live signals.
+- **Continuous background:** subtle grid, dot, contour, and guide-line textures span the whole page without section dividers.
+- **Ambient interaction:** a slow global gradient drift and desktop-only cursor aura create depth behind the content.
+- **Reduced motion:** decorative motion and cursor effects disable cleanly when `prefers-reduced-motion` is enabled.
 
-### Typography
-- **Font**: Inter (clean, modern, gaming UI-friendly)
-- **Hierarchy**: Ultra-small uppercase labels (8-10px) with larger content
-- **Tracking**: Wide letter-spacing (0.2-0.25em) for headers
+## Stack
 
-### Animations
-- **Glow Pulse**: Subtle breathing effect on background glows
-- **Checkpoint Pulse**: Ring pulse on completed mission markers
-- **Skill Fill**: Bars animate width on scroll
-- **Slide In**: Timeline items enter from left
-- **Mobile Gradient Shift**: Gentle background animation on mobile (15s cycle)
+- [Next.js](https://nextjs.org/) 16 with the App Router
+- React 19 and TypeScript
+- Tailwind CSS
+- Lucide icons
+- Local portfolio data and static project screenshots
 
-### Section Structure (GTA-Themed)
-1. **Hero** - Player status with name, title, and capability cards
-2. **Projects (Builds)** - Featured and completed builds with tech stacks
-3. **About (Stats)** - Player bio with territory and status indicators
-4. **Timeline (Mission Log)** - Career progression as completed checkpoints
-5. **Skills (Build Stats)** - Capability trees organized by category
-6. **Contact (Connection)** - Link cards for GitHub, LinkedIn, Email
-7. **Footer** - "Designed and built by [Name]"
+## Project Structure
 
-## Tech Stack
+```text
+app/
+  page.tsx                 # Single-page portfolio and section state
+  systems/[id]/page.tsx    # Dedicated project system pages
+  layout.tsx               # Global texture, gradient, and cursor layers
+  globals.css              # Visual system, motion, textures, and accessibility rules
+components/
+  sections/                # Hero, projects, leverage, receipts, process
+  ui/                      # Navigation, explorer, pointer effects, project deep dive
+lib/data.ts                # Portfolio copy, projects, proof, and project metadata
+public/projects/           # Project landing-page screenshots
+```
 
-- **Framework**: Next.js 16.1.4 (App Router) with Turbopack
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4
-- **Icons**: Lucide React
-- **Hooks**: useState, useEffect, useRef (IntersectionObserver for scroll animations)
-
-## Getting Started
-
-### Installation
+## Run Locally
 
 ```bash
 npm install
-```
-
-### Development
-
-```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
+Open [http://localhost:3000](http://localhost:3000).
 
-### Build
+## Validation and Production
 
 ```bash
+npx tsc --noEmit --incremental false
 npm run build
 npm start
 ```
 
-## Customization
+## Updating Content
 
-### Update Projects
+`lib/data.ts` is the primary source of truth for portfolio content.
 
-Edit `/lib/data.ts` to add or modify projects:
+- Add or update projects, stacks, GitHub/live links, and selected-work status in `projects`.
+- Maintain each project’s case-study content through its proof points, architecture notes, ownership, tradeoffs, and production signals.
+- Update hero positioning, current shipping notes, receipts, and operating principles in the same file.
+- Place product screenshots at `public/projects/<project-id>/landing.png` and reference them from the corresponding project entry.
 
-```typescript
-{
-  id: 'project-1',
-  name: 'Your Project',
-  description: '...',
-  longDescription: '...',
-  tags: ['Next.js', 'React', 'TypeScript'],
-  githubUrl: 'https://github.com/username/repo',
-  liveUrl: 'https://your-project.com',
-  featured: true,  // Shows in "In Progress" section
-}
-```
+## Accessibility and Responsive Behavior
 
-### Update Timeline (Mission Log)
-
-Edit `/lib/data.ts`:
-
-```typescript
-export const timeline: TimelineEntry[] = [
-  {
-    id: '1',
-    type: 'education',
-    title: 'Your Degree',
-    organization: 'University Name',
-    period: '2023 - Present',
-    description: '...',
-    completed: true,
-    icon: 'GraduationCap',
-  },
-  // ...
-];
-```
-
-### Update Skills (Build Stats)
-
-Edit `/lib/data.ts`:
-
-```typescript
-export const skillGroups: SkillGroup[] = [
-  {
-    category: 'Frontend',
-    description: 'UI frameworks & libraries',
-    skills: [
-      { id: '1', name: 'React', level: 90, category: 'Frontend' },
-      // ...
-    ],
-  },
-  // ...
-];
-```
-
-### Update About Stats
-
-Edit `/components/sections/About.tsx`:
-
-```typescript
-const stats = [
-  { label: 'CS', value: 'Student', color: 'text-text-primary' },
-  { label: 'ON', value: 'Grind', color: 'text-accent' },
-  // ...
-];
-```
-
-### Customize Colors
-
-Edit `/tailwind.config.ts`:
-
-```typescript
-colors: {
-  accent: '#4CAF50',  // Change this for different theme color
-  // Other colors depend on accent for consistency
-}
-```
-
-## Project Structure
-
-```
-Portfolio/
-├── app/
-│   ├── layout.tsx          # Root layout with fonts
-│   ├── page.tsx            # Main page with all sections
-│   └── globals.css         # Global styles & animations
-├── components/
-│   ├── cards/
-│   │   └── ProjectCard.tsx # Project display card
-│   ├── sections/
-│   │   ├── Hero.tsx        # Player status
-│   │   ├── Projects.tsx    # Builds section
-│   │   ├── About.tsx       # Stats section
-│   │   ├── Timeline.tsx    # Mission log (NEW)
-│   │   ├── Skills.tsx      # Build stats (NEW)
-│   │   └── Contact.tsx     # Connection section
-│   └── ui/
-│       └── Navigation.tsx  # Sticky nav with links
-├── lib/
-│   ├── data.ts             # All content data
-│   └── utils.ts            # Utility functions
-├── types/
-│   ├── project.ts          # Project interfaces
-│   └── skill.ts            # Skill & timeline interfaces
-└── tailwind.config.ts      # Tailwind configuration
-```
-
-## Accessibility
-
-- WCAG AA compliant color contrasts
-- Semantic HTML structure
-- ARIA labels for interactive elements
-- Keyboard navigation support
-- Reduced motion support via `prefers-reduced-motion`
-- Touch-friendly tap targets (44px minimum on mobile)
-
-## Mobile Responsiveness
-
-The portfolio is fully responsive with mobile-first approach:
-- Stacked vertical layout on small screens
-- Reduced grid intensity for readability
-- Touch-friendly tap targets (44-48px minimum)
-- Responsive text sizing (8-10px labels on mobile, larger on desktop)
-- Gentle gradient animation exclusive to mobile
-
-## Deployment
-
-### Vercel (Recommended)
-
-```bash
-npm install -g vercel
-vercel --prod
-```
-
-### Other Platforms
-
-Build the static export:
-
-```bash
-npm run build
-```
-
-Deploy the `.next` directory to any hosting service.
+- Semantic headings, buttons, and links throughout.
+- Keyboard-accessible explorer with escape-to-close and focus-aware behavior.
+- Responsive selected-work cards and system pages for mobile through desktop.
+- Desktop-only cursor effects; touch layouts remain clean and interaction-safe.
+- Reduced-motion support for all ambient animation and reveal treatments.
 
 ## License
 
