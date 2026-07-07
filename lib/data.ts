@@ -42,6 +42,7 @@ export const projects: Project[] = [
     stack: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'LLMs'],
     status: 'active',
     githubUrl: 'https://github.com/priyanshjhaa/CodeMap',
+    liveUrl: 'https://code-map-web-sigma.vercel.app',
     image: '/projects/codemap/landing.png',
     featured: true,
   },
