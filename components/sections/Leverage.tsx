@@ -33,11 +33,11 @@ export default function Leverage({ active = false }: LeverageProps) {
             </a>
           </Reveal>
 
-          <Reveal delay={100} className="etched-surface technical-marker overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
+          <Reveal delay={100} className="etched-surface technical-marker surface-polish overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
             {leverageAreas.map((area, index) => (
               <div
                 key={area.title}
-                className="border-b border-white/8 p-6 transition-colors duration-300 last:border-b-0 hover:bg-accent/[0.035] md:p-7"
+                className="quiet-row border-b border-white/8 p-6 transition-colors duration-300 last:border-b-0 hover:bg-accent/[0.045] md:p-7"
               >
                 <div className="flex items-start gap-4">
                   <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-accent/18 bg-accent/[0.08] text-accent">

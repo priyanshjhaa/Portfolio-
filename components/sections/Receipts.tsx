@@ -22,11 +22,11 @@ export default function Receipts({ active = false }: ReceiptsProps) {
           </p>
         </Reveal>
 
-        <Reveal delay={100} className="etched-surface technical-marker overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
+        <Reveal delay={100} className="etched-surface technical-marker surface-polish overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b0b]/90">
           {receipts.map((receipt, index) => (
             <div
               key={receipt}
-              className="grid gap-3 border-b border-white/8 px-5 py-5 transition-colors duration-300 last:border-b-0 hover:bg-accent/[0.035] md:grid-cols-[80px_1fr] md:items-center md:px-7"
+              className="quiet-row grid gap-3 border-b border-white/8 px-5 py-5 transition-colors duration-300 last:border-b-0 hover:bg-accent/[0.045] md:grid-cols-[80px_1fr] md:items-center md:px-7"
             >
               <p className="font-display text-[10px] uppercase tracking-[0.2em] text-accent/80">
                 0{index + 1}

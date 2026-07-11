@@ -28,7 +28,7 @@ const systemLinks = [
 
 function SystemVisual() {
   return (
-    <div className="system-visual group relative h-[380px] rounded-[32px] border border-white/6 bg-black/25 xl:h-[410px]">
+    <div className="system-visual surface-polish group relative h-[380px] rounded-[32px] border border-white/6 bg-black/25 xl:h-[410px]">
       <div className="absolute inset-0 rounded-[30px] bg-gradient-to-br from-accent/[0.04] via-transparent to-white/[0.02]" />
       <div className="absolute inset-[16%] rounded-full bg-[radial-gradient(circle,rgba(201, 135, 111,0.18),rgba(167, 162, 154,0.08)_42%,transparent_72%)] blur-2xl pointer-events-none" />
       <div className="absolute inset-0 topographic-pattern opacity-10 pointer-events-none" />
@@ -182,14 +182,14 @@ export default function Hero() {
       <div className="absolute inset-0 texture-circuit opacity-[0.13] [mask-image:linear-gradient(to_bottom,black,transparent_82%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
-        <PointerSurface className="hero-pointer-surface etched-surface technical-marker rounded-[36px] border border-white/8 bg-[#171716]/88 p-8 shadow-[0_32px_80px_-52px_rgba(0,0,0,0.95)] backdrop-blur-xl md:p-12">
+        <PointerSurface className="hero-pointer-surface etched-surface technical-marker surface-polish rounded-[36px] border border-white/8 bg-[#171716]/88 p-8 backdrop-blur-xl md:p-12">
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)] xl:gap-12">
             <div className="max-w-4xl">
               <p className="font-display text-[11px] uppercase tracking-[0.28em] text-accent/80">
                 {heroContent.eyebrow}
               </p>
 
-              <h1 className="mt-5 max-w-5xl font-display text-5xl font-semibold leading-[0.95] tracking-[0.03em] text-text-primary md:text-6xl xl:text-7xl">
+              <h1 className="headline-sheen mt-5 max-w-5xl font-display text-5xl font-semibold leading-[0.95] tracking-[0.03em] md:text-6xl xl:text-7xl">
                 {heroContent.title}
               </h1>
 
@@ -215,7 +215,7 @@ export default function Hero() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <button
                   onClick={scrollToProjects}
-                  className="primary-action inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl bg-signal px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] transition-all duration-300 hover:scale-[1.02] hover:bg-signal-hover"
+                  className="primary-action action-lift inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl bg-signal px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] transition-all duration-300 hover:scale-[1.02] hover:bg-signal-hover"
                 >
                   {heroContent.cta}
                   <ArrowUpRight className="h-4 w-4" />

@@ -21,11 +21,11 @@ export default function HowIBuild({ active = false }: HowIBuildProps) {
           </h2>
         </Reveal>
 
-        <Reveal delay={100} className="technical-marker grid gap-px overflow-hidden rounded-[28px] border border-white/8 bg-white/8 md:grid-cols-2">
+        <Reveal delay={100} className="technical-marker surface-polish grid gap-px overflow-hidden rounded-[28px] border border-white/8 bg-white/8 md:grid-cols-2">
           {howIBuild.map((item, index) => (
             <div
               key={item}
-              className="bg-[#0b0b0b] p-6 transition-colors duration-300 hover:bg-accent/[0.035] md:p-8"
+              className="quiet-row bg-[#0b0b0b] p-6 transition-colors duration-300 hover:bg-accent/[0.045] md:p-8"
             >
               <p className="font-display text-[10px] uppercase tracking-[0.2em] text-accent/75">
                 Principle 0{index + 1}

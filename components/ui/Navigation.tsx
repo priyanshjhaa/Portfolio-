@@ -19,6 +19,7 @@ interface NavigationProps {
 
 export default function Navigation({ activeSection, onOpenExplorer }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const sectionLabel =
     activeSection === '#receipts'
@@ -36,6 +37,8 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 12);
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0);
     };
 
     handleScroll();
@@ -67,12 +70,17 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
           className={cn(
             'relative overflow-hidden rounded-2xl border transition-all duration-300',
             isScrolled
-              ? 'border-accent/20 bg-[#171716]/88 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.95)] backdrop-blur-xl'
-              : 'border-white/5 bg-[#171716]/70 backdrop-blur-md'
+              ? 'border-accent/20 bg-[#111110]/95 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.95)] backdrop-blur-2xl backdrop-saturate-50'
+              : 'border-white/5 bg-[#151514]/86 backdrop-blur-xl backdrop-saturate-75'
           )}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-accent/[0.07] via-transparent to-white/[0.02] pointer-events-none" />
           <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent pointer-events-none" />
+          <div
+            className="nav-progress absolute inset-x-0 bottom-0 h-px transition-transform duration-150 ease-out"
+            style={{ transform: `scaleX(${scrollProgress})` }}
+            aria-hidden="true"
+          />
 
           <div className="relative flex items-center justify-between px-4 md:px-5">
             <a

@@ -20,12 +20,12 @@ export default function Projects({ active = false, onOpenProject }: ProjectsProp
     <article
       key={project.id}
       className={cn(
-        'group etched-surface technical-marker rounded-[28px] border border-white/8 bg-[#171716]/92 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/20 md:p-6',
+        'group etched-surface technical-marker surface-polish rounded-[28px] border border-white/8 bg-[#171716]/92 p-5 transition-all duration-300 hover:-translate-y-1 md:p-6',
         featured && 'shadow-[0_28px_70px_-48px_rgba(201, 135, 111,0.32)]'
       )}
     >
       {project.image && (
-        <PointerSurface className="overflow-hidden rounded-[20px] border border-accent/20 bg-[#0E0E0E]/72">
+        <PointerSurface className="image-frame-polish overflow-hidden rounded-[20px] border border-accent/20 bg-[#0E0E0E]/72">
           <button
             type="button"
             onClick={() => onOpenProject(project.id)}
@@ -107,7 +107,7 @@ export default function Projects({ active = false, onOpenProject }: ProjectsProp
           <button
             type="button"
             onClick={() => onOpenProject(project.id)}
-            className="inline-flex min-h-[44px] items-center justify-between gap-3 rounded-xl border border-accent/18 bg-accent/[0.08] px-4 py-2.5 font-display text-xs uppercase tracking-[0.16em] text-accent transition-all duration-300 hover:border-accent/30 hover:bg-accent/[0.12] sm:justify-center"
+            className="action-lift inline-flex min-h-[44px] items-center justify-between gap-3 rounded-xl border border-accent/18 bg-accent/[0.08] px-4 py-2.5 font-display text-xs uppercase tracking-[0.16em] text-accent transition-all duration-300 hover:border-accent/30 hover:bg-accent/[0.12] sm:justify-center"
           >
             Case Study
             <PanelTopOpen className="h-4 w-4" />
