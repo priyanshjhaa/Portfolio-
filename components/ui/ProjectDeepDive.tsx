@@ -13,6 +13,19 @@ interface ProjectDeepDiveProps {
 }
 
 const visualProofContent = {
+  atlas: {
+    badge: 'Engineering Intelligence • Change Impact',
+    headline: ['Understand what changes', 'before you change it.'],
+    description:
+      'Map code, architecture, history, and technical evidence before a software change reaches production.',
+    primaryCta: 'Analyze a change',
+    secondaryCta: 'Explore the system',
+    shellClass:
+      'bg-[radial-gradient(circle_at_18%_12%,rgba(237,221,182,0.10),transparent_30%),radial-gradient(circle_at_82%_80%,rgba(201,135,111,0.10),transparent_28%),linear-gradient(155deg,#12110f_0%,#191713_52%,#0d0d0c_100%)]',
+    badgeClass: 'border-signal/25 bg-signal/[0.09] text-signal-hover',
+    accentClass: 'from-[#f3ead8] via-white to-[#d7bd87]',
+    primaryClass: 'bg-[#eee1c4] text-[#17130d]',
+  },
   execute: {
     badge: 'Quick commands, forms, schedules, and live workflow execution',
     headline: ['Turn instructions', 'into workflows that actually', 'run.'],
