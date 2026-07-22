@@ -137,6 +137,7 @@ function ProductProofVisual({ project }: { project: Project }) {
                     src={project.image}
                     alt={`${project.name} landing page preview`}
                     fill
+                    unoptimized
                     className="object-contain object-top"
                     sizes="(max-width: 768px) 100vw, 900px"
                     priority={project.featured}
