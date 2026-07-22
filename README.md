@@ -5,7 +5,7 @@ A single-page portfolio for a full-stack product engineer building developer too
 ## Live Experience
 
 - **Homepage:** startup-focused positioning, selected work, engineering receipts, working principles, and contact paths.
-- **Project deep dives:** dedicated system pages for CodeMap, Execute, Axiom, and Cinematch with product proof, architecture flows, ownership, production signals, and links.
+- **Project deep dives:** dedicated system pages for Atlas, CodeMap, Execute, Axiom, and Cinematch with product proof, architecture flows, ownership, production signals, and links.
 - **Build explorer:** a keyboard-first command palette for searching projects, skills, and contact actions with `Cmd/Ctrl + K`.
 - **Visual proof:** real project landing-page screenshots are framed directly inside the selected-work cards and system pages.
 

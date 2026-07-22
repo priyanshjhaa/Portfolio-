@@ -3,6 +3,49 @@ import { SkillGroup, TimelineEntry } from '@/types/skill';
 
 export const projects: Project[] = [
   {
+    id: 'atlas',
+    name: 'Atlas',
+    summary: 'Engineering intelligence for understanding the impact of software changes before they ship.',
+    details: 'Connects repository structure, architecture, history, and technical knowledge into evidence-backed impact reports and explorable system views.',
+    impact: 'Helps engineering teams identify affected systems, dependencies, and operational risk before a planned change reaches production.',
+    whyBuiltThis:
+      'Engineers can usually see what a pull request changes, but understanding everything that change may affect still requires manually piecing together code, architecture, history, and documentation.',
+    proofTitle: 'Product prototype proof',
+    proofPoints: [
+      'Planned-change and pull-request analysis workflow with evidence-backed reports',
+      'Engineering knowledge graph and architecture explorer for system relationships',
+      'Unified search, source connectors, indexing activity, and workspace controls',
+    ],
+    ownership: ['Product direction and interaction design', 'Workspace architecture and feature surfaces', 'Authentication, data model, and quality checks'],
+    keyDecision:
+      'Model impact analysis as an evidence trail across repositories, architecture, history, and documentation instead of presenting an opaque risk score.',
+    tradeoff:
+      'The current milestone uses one coherent mock workspace to validate the complete product workflow before repository ingestion and analysis services are connected.',
+    nextStep:
+      'Connect real repository sources, incorporate selected indexing services, and replace prototype evidence with generated cross-system impact analysis.',
+    problem: 'Software changes often affect systems beyond the files in a pull request, while the evidence needed to assess that impact is fragmented across repositories, documentation, architecture, and history.',
+    approach: 'Designed a protected engineering workspace that turns a planned change into an evidence-backed impact report, then lets teams inspect the supporting graph, architecture, search results, and synchronized sources.',
+    architectureNotes: [
+      'Protected product routes share a reusable application shell and focused feature modules.',
+      'Impact reports connect change intent to affected services, dependencies, evidence, and recommended review areas.',
+      'GitHub authentication remains separate from future repository ingestion so access can be explicit and narrowly scoped.',
+    ],
+    highlightMetrics: ['Active prototype', '9 product routes', 'Impact + graph + search'],
+    flowSteps: ['Change Input', 'Evidence Retrieval', 'Impact Graph', 'Risk Report', 'Review Plan'],
+    productionSignals: ['Cloudflare deployment setup', 'GitHub OAuth with Better Auth', 'Vitest and Playwright coverage'],
+    proofFrame: {
+      eyebrow: 'Product Frame',
+      title: 'Cross-system change impact intelligence',
+      rails: ['Change Context', 'System Evidence', 'Impact Report'],
+      callout: 'Designed to make hidden software-change consequences inspectable before implementation.',
+    },
+    stack: ['Next.js', 'Cloudflare', 'Drizzle', 'Better Auth', 'React Flow'],
+    status: 'active',
+    githubUrl: 'https://github.com/priyanshjhaa/Atlas',
+    image: '/projects/atlas/landing.png',
+    featured: true,
+  },
+  {
     id: 'codemap',
     name: 'CodeMap',
     summary: 'Import repositories, visualize architecture, and query large codebases with context-aware retrieval.',
@@ -44,47 +87,46 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/priyanshjhaa/CodeMap',
     liveUrl: 'https://code-map-web-sigma.vercel.app',
     image: '/projects/codemap/landing.png',
-    featured: true,
   },
   {
     id: 'execute',
     name: 'Execute',
-    summary: 'Built deterministic workflow execution pipelines using BullMQ, Redis, and structured action validation.',
-    details: 'Converts natural-language intent into validated execution steps backed by queues, observability, and webhook-driven actions.',
-    impact: 'Moves automation from fragile prompt flows into reliable, observable execution paths.',
+    summary: 'An approval-gated agent for creating, inspecting, and operating deterministic business workflows.',
+    details: 'Turns natural-language requests into validated proposals, requires explicit approval before mutations, and reuses a strict workflow executor for observable actions.',
+    impact: 'Combines conversational product UX with tenant-safe execution, operational controls, and a clear human decision boundary.',
     whyBuiltThis:
-      'Most automation tools felt unreliable because they depended too heavily on raw LLM output instead of deterministic execution layers.',
-    proofTitle: 'Execution proof',
+      'Most automation agents make it difficult to know what the model inspected, what it intends to change, and whether a mutation can be executed safely for the correct workspace.',
+    proofTitle: 'Agent execution proof',
     proofPoints: [
-      'Prompt-to-validation surface for safer workflow creation',
-      'Queue-backed execution path for reliable orchestration',
-      'Webhook-driven action layer for observable downstream effects',
+      'Tenant-scoped tools for workflows, executions, forms, contacts, and integrations',
+      'Persisted create, update, run, retry, cancel, and disconnect proposals with explicit approval',
+      'Failure monitor with deterministic classification, redacted evidence, and guided repair actions',
     ],
-    ownership: ['Product and workflow UX', 'Validation and execution engine', 'Integrations and runtime visibility'],
+    ownership: ['Agent product and interaction design', 'Proposal, approval, and execution architecture', 'Tenant isolation, safety controls, and operational visibility'],
     keyDecision:
-      'Treat model output as an untrusted proposal and validate every action before it reaches the execution queue.',
+      'Keep model reasoning separate from mutation authority: every write becomes a persisted, validated proposal that the user must approve before deterministic code executes it.',
     tradeoff:
-      'A deterministic action schema limits completely open-ended workflows, but makes execution safer, observable, and easier to debug.',
+      'Approval gates add one deliberate step to agent actions, but make mutations inspectable, idempotent, tenant-safe, and much easier to trust.',
     nextStep:
-      'Improve retry behavior, execution traces, and the feedback loop between failed runs and workflow editing.',
-    problem: 'Users need to automate workflows without writing code or dealing with complex automation tools.',
-    approach: 'Built a workflow engine that validates actions before execution, coordinates async jobs through queues, and keeps integrations observable at runtime.',
+      'Use internal-release telemetry and failure findings to tighten tool selection, proposal quality, and guided recovery before general availability.',
+    problem: 'Users need a faster way to create and operate automations without giving an AI agent unchecked access to workflows, integrations, or execution state.',
+    approach: 'Built a bounded agent tool loop that inspects tenant-scoped state, converts requested mutations into expiring proposals, validates them, and executes only after explicit approval.',
     architectureNotes: [
-      'Natural language is translated into structured, auditable workflow steps.',
-      'Queue-backed execution keeps runs reliable under async and multi-step workloads.',
-      'Webhook pipelines make integrations composable without exposing complexity to the user.',
+      'Bounded tool rounds, result-size limits, prompt-injection defenses, and provider fallback control the agent runtime.',
+      'Persisted proposals use validation, expiry, idempotent decisions, and stale-state protection before execution.',
+      'Failure findings are tenant-scoped, deduplicated by execution, classified deterministically, and stored with credential-redacted evidence.',
     ],
-    highlightMetrics: ['3 live apps', 'BullMQ + Redis', 'Structured validation'],
-    flowSteps: ['Prompt', 'Validation', 'Queue', 'Executor', 'Webhook'],
-    productionSignals: ['Redis-backed execution engine', 'Supabase PostgreSQL', 'Real-time execution tracking'],
+    highlightMetrics: ['Approval-gated actions', 'Tenant-safe tools', 'Failure monitoring'],
+    flowSteps: ['Request', 'Scoped Inspection', 'Validated Proposal', 'Approval', 'Execution'],
+    productionSignals: ['Internal-release feature controls', 'Per-call token and latency tracking', 'Atomic daily usage limits'],
     proofFrame: {
       eyebrow: 'Product Frame',
-      title: 'Deterministic workflow execution surface',
-      rails: ['Intent Input', 'Validated Flow', 'Execution Tracking'],
-      callout: 'Built to make automation reliable rather than prompt-fragile.',
+      title: 'Approval-gated agent operations surface',
+      rails: ['Tenant Context', 'Action Proposal', 'Approved Execution'],
+      callout: 'Built so conversational speed never bypasses deterministic safety.',
     },
-    stack: ['Next.js', 'Node.js', 'Supabase', 'BullMQ', 'Redis', 'Webhooks'],
-    status: 'maintenance',
+    stack: ['Next.js', 'TypeScript', 'Supabase', 'Drizzle', 'Groq', 'Resend'],
+    status: 'active',
     githubUrl: 'https://github.com/priyanshjhaa/Execute',
     liveUrl: 'https://execute-web-i7u4.vercel.app',
     image: '/projects/execute/landing.png',
@@ -201,10 +243,10 @@ export const currentBuild = {
   description:
     'Shipping work that improves reliability, developer experience, and system transparency across the current product set.',
   items: [
-    'Building repository import pipelines for CodeMap',
-    'Improving workflow orchestration reliability in Execute',
-    'Exploring retrieval systems for developer tooling',
-    'Experimenting with architecture visualization systems',
+    'Connecting real repository evidence to Atlas impact analysis',
+    'Hardening Execute agent proposals, approvals, and failure recovery',
+    'Evaluating cross-system retrieval for engineering intelligence',
+    'Improving architecture and dependency visualization workflows',
   ],
 };
 
@@ -220,31 +262,38 @@ export const leverageAreas = [
     title: 'Own a product slice end to end',
     description:
       'Turn a loosely defined problem into a usable interface, a clear data model, working backend flows, and a deployed release.',
-    evidence: 'Execute, Axiom',
+    evidence: 'Atlas, Execute, Axiom',
   },
   {
     title: 'Make complex systems understandable',
     description:
       'Design developer-facing workflows, architecture views, and feedback loops that expose what the system is doing.',
-    evidence: 'CodeMap, Execute',
+    evidence: 'Atlas, CodeMap, Execute',
   },
   {
     title: 'Build reliability into the workflow',
     description:
       'Use validation, queues, observable execution, and deliberate state transitions where product trust depends on correctness.',
-    evidence: 'Execute, CodeMap',
+    evidence: 'Execute, Atlas, CodeMap',
   },
 ];
 
 export const receipts = [
-  'Built monorepo architecture with isolated execution, validation, and LLM packages',
-  'Implemented async workflow orchestration using BullMQ and Redis',
-  'Added structured validation layer before workflow execution',
+  'Built an approval-gated agent with persisted, expiring, and idempotent action proposals',
+  'Enforced tenant isolation across agent tools, execution actions, integrations, and failure findings',
+  'Added usage accounting, atomic limits, provider controls, and prompt-injection defenses',
+  'Designed Atlas impact reports across code, architecture, history, and technical knowledge',
   'Built semantic repository indexing pipeline for CodeMap',
-  'Integrated GitHub repository imports and embedding-based retrieval',
 ];
 
 export const recentBuilds = [
+  {
+    period: 'July 2026',
+    items: [
+      'Built the Atlas engineering-intelligence product prototype and protected workspace',
+      'Added approval-gated agent actions, tenant-safe tools, usage controls, and failure monitoring to Execute',
+    ],
+  },
   {
     period: 'May 2026',
     items: [
@@ -332,24 +381,30 @@ export const buildLogs = [
   {
     id: 'build-01',
     label: '[BUILD 01]',
-    name: 'CodeMap',
-    detail: 'AI-powered codebase understanding tool with semantic search and architecture visualization.',
+    name: 'Atlas',
+    detail: 'Engineering intelligence for evidence-backed change impact, architecture exploration, and cross-system search.',
   },
   {
     id: 'build-02',
     label: '[BUILD 02]',
-    name: 'Execute',
-    detail: 'AI automation engine for turning natural language into deterministic workflows.',
+    name: 'CodeMap',
+    detail: 'Repository understanding tool with semantic retrieval and architecture visualization.',
   },
   {
     id: 'build-03',
     label: '[BUILD 03]',
-    name: 'Axiom',
-    detail: 'Freelancer platform covering proposals, projects, and invoicing in one system.',
+    name: 'Execute',
+    detail: 'Approval-gated agent for creating, inspecting, and operating deterministic workflows.',
   },
   {
     id: 'build-04',
     label: '[BUILD 04]',
+    name: 'Axiom',
+    detail: 'Freelancer platform covering proposals, projects, and invoicing in one system.',
+  },
+  {
+    id: 'build-05',
+    label: '[BUILD 05]',
     name: 'Cinematch',
     detail: 'Content discovery app built around saving, recommendations, and streaming flows.',
   },
@@ -475,9 +530,9 @@ export const timeline: TimelineEntry[] = [
   {
     id: 'milestone-execute',
     type: 'milestone',
-    title: 'Execute - AI Automation Engine',
+    title: 'Execute - Approval-Gated Workflow Agent',
     organization: 'Personal Project',
-    description: 'Building an execution engine that converts natural language into deterministic, runnable workflows with proper observability.',
+    description: 'Built a tenant-safe agent that turns natural-language operations into validated proposals and deterministic, approval-gated execution.',
     period: '2026',
     completed: true,
     icon: 'Rocket',
@@ -490,6 +545,16 @@ export const timeline: TimelineEntry[] = [
     description: 'Building an AI-powered developer tool that helps engineers understand and navigate complex codebases using semantic search and natural language.',
     period: '2026',
     completed: true,
+    icon: 'Rocket',
+  },
+  {
+    id: 'milestone-atlas',
+    type: 'milestone',
+    title: 'Atlas - Engineering Intelligence',
+    organization: 'Developer Tool',
+    description: 'Building an engineering-intelligence workspace for evidence-backed change impact, architecture exploration, and cross-system knowledge.',
+    period: '2026',
+    completed: false,
     icon: 'Rocket',
   },
 ];

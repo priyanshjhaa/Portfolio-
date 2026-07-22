@@ -159,7 +159,7 @@ export default function Projects({ active = false, onOpenProject }: ProjectsProp
 
         <div className="space-y-6">
           {featuredProject && <Reveal>{renderCard(featuredProject, true)}</Reveal>}
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2">
             {otherProjects.map((project, index) => (
               <Reveal key={project.id} delay={index * 90}>
                 {renderCard(project)}
