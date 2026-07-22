@@ -182,7 +182,7 @@ export default function Hero() {
       <div className="absolute inset-0 texture-circuit opacity-[0.13] [mask-image:linear-gradient(to_bottom,black,transparent_82%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[1120px]">
-        <PointerSurface className="hero-pointer-surface etched-surface technical-marker surface-polish rounded-[36px] border border-white/8 bg-[#171716]/88 p-8 backdrop-blur-xl md:p-12">
+        <PointerSurface className="hero-pointer-surface etched-surface technical-marker surface-polish rounded-[36px] border border-white/8 bg-[#171716]/94 p-8 md:p-12">
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)] xl:gap-12">
             <div className="max-w-4xl">
               <p className="font-display text-[11px] uppercase tracking-[0.28em] text-accent/80">

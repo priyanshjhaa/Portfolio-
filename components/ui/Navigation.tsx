@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Command, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -19,8 +19,8 @@ interface NavigationProps {
 
 export default function Navigation({ activeSection, onOpenExplorer }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const progressRef = useRef<HTMLDivElement>(null);
   const sectionLabel =
     activeSection === '#receipts'
       ? 'Engineering receipts'
@@ -35,17 +35,37 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
             : 'Full-stack product engineer';
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 12);
+    let frameId: number | null = null;
+    let previousIsScrolled = window.scrollY > 12;
+
+    const updateScrollState = () => {
+      const nextIsScrolled = window.scrollY > 12;
+      if (nextIsScrolled !== previousIsScrolled) {
+        previousIsScrolled = nextIsScrolled;
+        setIsScrolled(nextIsScrolled);
+      }
+
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0);
+      const progress = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
+      progressRef.current?.style.setProperty('--scroll-progress', String(progress));
+      frameId = null;
     };
 
-    handleScroll();
+    const handleScroll = () => {
+      if (frameId === null) {
+        frameId = window.requestAnimationFrame(updateScrollState);
+      }
+    };
+
+    setIsScrolled(previousIsScrolled);
+    updateScrollState();
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
     };
   }, []);
 
@@ -70,15 +90,15 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
           className={cn(
             'relative overflow-hidden rounded-2xl border transition-all duration-300',
             isScrolled
-              ? 'border-accent/20 bg-[#111110]/95 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.95)] backdrop-blur-2xl backdrop-saturate-50'
-              : 'border-white/5 bg-[#151514]/86 backdrop-blur-xl backdrop-saturate-75'
+              ? 'border-accent/20 bg-[#111110]/95 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.95)] backdrop-blur-md'
+              : 'border-white/5 bg-[#151514]/92 backdrop-blur-sm'
           )}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-accent/[0.07] via-transparent to-white/[0.02] pointer-events-none" />
           <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent pointer-events-none" />
           <div
+            ref={progressRef}
             className="nav-progress absolute inset-x-0 bottom-0 h-px transition-transform duration-150 ease-out"
-            style={{ transform: `scaleX(${scrollProgress})` }}
             aria-hidden="true"
           />
 

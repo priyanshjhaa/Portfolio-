@@ -27,6 +27,7 @@
 
   body {
     @apply bg-gta text-text-primary antialiased;
+    position: relative;
     min-height: 100dvh;
     background:
       radial-gradient(circle at 1px 1px, rgba(241, 239, 234, 0.028) 0.7px, transparent 0.9px),
@@ -37,17 +38,17 @@
       linear-gradient(160deg, #0E0E0E 0%, #151412 50%, #0A0A0A 100%);
     background-position: 0 0, 0 0, 0 0, center, center, center;
     background-size: 48px 48px, 180px 180px, 180px 180px, auto, auto, auto;
-    background-attachment: fixed;
+    background-attachment: scroll;
   }
 
   body::before {
     content: '';
-    position: fixed;
+    position: absolute;
     inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.055'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 9999;
-    mix-blend-mode: soft-light;
+    opacity: 0.28;
   }
 
   .global-gradient {
@@ -60,11 +61,12 @@
       radial-gradient(ellipse at 86% 26%, rgba(var(--signal-rgb), 0.085), transparent 24%),
       radial-gradient(ellipse at 52% 74%, rgba(var(--accent-rgb), 0.105), transparent 31%),
       conic-gradient(from 205deg at 50% 48%, transparent 0 34%, rgba(var(--accent-rgb), 0.035) 39%, transparent 44% 100%);
-    filter: blur(34px);
     opacity: 0.82;
     transform: translate3d(-4%, -2%, 0) scale(1.04);
     animation: global-gradient-drift 30s ease-in-out infinite alternate;
     will-change: transform;
+    contain: strict;
+    backface-visibility: hidden;
   }
 
   .global-texture {
@@ -81,6 +83,8 @@
     background-repeat: no-repeat;
     mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
     opacity: 0.92;
+    contain: strict;
+    backface-visibility: hidden;
   }
 
   .global-ornaments {
@@ -96,6 +100,8 @@
       repeating-linear-gradient(0deg, rgba(var(--accent-rgb), 0.055) 0 1px, transparent 1px 18px) 7% 62% / 5px 198px no-repeat;
     opacity: 0.78;
     mask-image: linear-gradient(to bottom, transparent 1%, black 10%, black 92%, transparent 100%);
+    contain: strict;
+    backface-visibility: hidden;
   }
 
   .global-ornaments::before,
@@ -142,7 +148,7 @@
       radial-gradient(170px circle at calc(var(--global-pointer-x) + 48px) calc(var(--global-pointer-y) + 36px), rgba(var(--signal-rgb), 0.045), transparent 68%);
     opacity: var(--global-pointer-active);
     transition: opacity 260ms ease;
-    will-change: background;
+    contain: strict;
   }
 
   .site-content {
@@ -510,6 +516,7 @@
 
   .nav-progress {
     transform-origin: left center;
+    transform: scaleX(var(--scroll-progress, 0));
     background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.35), rgba(var(--accent-bright-rgb), 0.9) 70%, rgba(var(--signal-rgb), 0.75));
     box-shadow: 0 0 16px rgba(var(--accent-rgb), 0.28);
   }
@@ -1253,6 +1260,22 @@
     box-shadow:
       0 0 0 1px rgba(167, 162, 154, 0.14),
       0 26px 64px -40px rgba(167, 162, 154, 0.22);
+  }
+}
+
+@media (max-width: 767px) {
+  .global-gradient {
+    inset: -12%;
+    animation: none;
+    transform: scale(1.04);
+  }
+
+  .global-texture {
+    opacity: 0.7;
+  }
+
+  .global-ornaments::after {
+    animation: none;
   }
 }
 
