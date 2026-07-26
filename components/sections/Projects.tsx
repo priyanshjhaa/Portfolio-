@@ -97,20 +97,30 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
           <button
             type="button"
             onClick={() => onOpenProject(active.id)}
-            className="group relative min-h-[360px] overflow-hidden border-t border-white/8 text-left lg:border-l lg:border-t-0"
+            className="group relative min-h-[360px] overflow-hidden border-t border-white/8 bg-[#090a09] text-left lg:border-l lg:border-t-0"
             aria-label={`Open ${active.name} system`}
           >
+            <Image
+              key={`${active.image}-ambient`}
+              src={active.image!}
+              alt=""
+              fill
+              unoptimized
+              aria-hidden="true"
+              className="scale-110 object-cover opacity-20 blur-2xl"
+              sizes="(max-width: 1024px) 100vw, 640px"
+            />
             <Image
               key={active.image}
               src={active.image!}
               alt={`${active.name} product interface`}
               fill
               unoptimized
-              className="object-cover object-top transition duration-700 group-hover:scale-[1.025]"
+              className="z-10 object-contain object-center transition duration-700 group-hover:scale-[1.01]"
               sizes="(max-width: 1024px) 100vw, 640px"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0e0d]/90 via-transparent to-black/10" />
-            <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0d0e0d]/75 via-transparent to-black/5" />
+            <div className="absolute bottom-5 left-5 right-5 z-20 flex items-end justify-between">
               <span className="rounded-full border border-white/15 bg-black/45 px-4 py-2 font-display text-[9px] uppercase tracking-[0.16em] text-white/80 backdrop-blur">
                 Product proof
               </span>
