@@ -124,13 +124,13 @@ function createItems(): ExplorerItem[] {
 
   const processItems: ExplorerItem[] = [
     {
-      id: 'process-leverage',
-      label: 'Where I Add Leverage',
-      description: leverageAreas.map((area) => area.title).join(' · '),
+      id: 'process-engineering-trace',
+      label: 'Engineering Trace',
+      description: 'Shipping log, receipts, principles, and product ownership',
       group: 'Process',
-      keywords: ['ownership', 'product engineering', 'scope', 'leverage', ...leverageAreas.map((area) => area.title)],
+      keywords: ['engineering trace', 'receipts', 'shipping', 'ownership', 'product engineering', ...leverageAreas.map((area) => area.title)],
       actionType: 'scroll',
-      sectionId: 'leverage',
+      sectionId: 'trace',
       icon: Layers3,
     },
     {
@@ -140,7 +140,7 @@ function createItems(): ExplorerItem[] {
       group: 'Process',
       keywords: ['process', 'architecture', 'reliability', 'shipping', ...howIBuild],
       actionType: 'scroll',
-      sectionId: 'process',
+      sectionId: 'trace',
       icon: Command,
     },
   ];

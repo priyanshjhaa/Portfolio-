@@ -31,14 +31,15 @@ const config: Config = {
         },
         // Text colors
         text: {
-          primary: '#F1EFEA',
-          secondary: '#C8C5BE',
-          muted: '#94918B',
+          primary: '#EEECE6',
+          secondary: '#B8B6AF',
+          muted: '#7F817D',
         },
       },
       fontFamily: {
-        sans: ['"Avenir Next"', '"Segoe UI"', 'system-ui', 'sans-serif'],
-        display: ['Rajdhani', '"Avenir Next Condensed"', '"Arial Narrow"', 'sans-serif'],
+        sans: ['"Avenir Next"', '"Helvetica Neue"', 'system-ui', 'sans-serif'],
+        display: ['"IBM Plex Mono"', '"SFMono-Regular"', 'Consolas', 'monospace'],
+        editorial: ['"Iowan Old Style"', '"Baskerville"', '"Times New Roman"', 'serif'],
       },
       animation: {
         'fade-up': 'fadeUp 0.25s ease-out',

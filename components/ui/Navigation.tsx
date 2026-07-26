@@ -1,14 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Command, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
   { name: 'Work', href: '#projects' },
-  { name: 'Leverage', href: '#leverage' },
-  { name: 'Receipts', href: '#receipts' },
-  { name: 'Process', href: '#process' },
+  { name: 'Trace', href: '#trace' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -19,198 +17,108 @@ interface NavigationProps {
 
 export default function Navigation({ activeSection, onOpenExplorer }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const sectionLabel =
-    activeSection === '#receipts'
-      ? 'Engineering receipts'
-      : activeSection === '#projects'
-        ? 'Selected work'
-        : activeSection === '#leverage'
-          ? 'Where I add leverage'
-        : activeSection === '#process'
-          ? 'How I build'
-          : activeSection === '#contact'
-            ? 'Contact'
-            : 'Full-stack product engineer';
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    let frameId: number | null = null;
-    let previousIsScrolled = window.scrollY > 12;
-
-    const updateScrollState = () => {
-      const nextIsScrolled = window.scrollY > 12;
-      if (nextIsScrolled !== previousIsScrolled) {
-        previousIsScrolled = nextIsScrolled;
-        setIsScrolled(nextIsScrolled);
-      }
-
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
-      progressRef.current?.style.setProperty('--scroll-progress', String(progress));
-      frameId = null;
-    };
-
-    const handleScroll = () => {
-      if (frameId === null) {
-        frameId = window.requestAnimationFrame(updateScrollState);
-      }
-    };
-
-    setIsScrolled(previousIsScrolled);
-    updateScrollState();
+    const handleScroll = () => setIsScrolled(window.scrollY > 36);
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (frameId !== null) {
-        window.cancelAnimationFrame(frameId);
-      }
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const scrollTo = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault();
+    setIsOpen(false);
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <nav
-      className={cn(
-        'sticky top-0 z-50 transition-all duration-300',
-        isScrolled ? 'py-2.5' : 'py-3.5'
-      )}
-    >
-      <div className="mx-auto max-w-[1140px] px-4">
-        <div
-          className={cn(
-            'relative overflow-hidden rounded-2xl border transition-all duration-300',
-            isScrolled
-              ? 'border-accent/20 bg-[#111110]/95 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.95)] backdrop-blur-md'
-              : 'border-white/5 bg-[#151514]/92 backdrop-blur-sm'
-          )}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-accent/[0.07] via-transparent to-white/[0.02] pointer-events-none" />
-          <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent pointer-events-none" />
-          <div
-            ref={progressRef}
-            className="nav-progress absolute inset-x-0 bottom-0 h-px transition-transform duration-150 ease-out"
-            aria-hidden="true"
-          />
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8">
+      <nav
+        className={cn(
+          'pointer-events-auto mx-auto flex max-w-[1240px] items-center justify-between transition-all duration-500',
+          isScrolled
+            ? 'rounded-full border border-white/10 bg-[#111210]/86 px-4 py-2.5 shadow-[0_18px_60px_-35px_rgba(0,0,0,0.9)] backdrop-blur-xl md:px-5'
+            : 'border-b border-white/8 px-1 pb-4 pt-1'
+        )}
+      >
+        <a href="#hero" onClick={(event) => scrollTo(event, '#hero')} className="group flex items-center gap-3">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] font-editorial text-lg text-text-primary transition-colors group-hover:border-[#b7c6aa]/45">
+            P
+          </span>
+          <span className="hidden sm:block">
+            <span className="block text-sm font-medium text-text-primary">Priyansh Jha</span>
+            <span className="block font-display text-[9px] uppercase tracking-[0.18em] text-text-muted">
+              Product engineer
+            </span>
+          </span>
+        </a>
 
-          <div className="relative flex items-center justify-between px-4 md:px-5">
+        <div className="hidden items-center gap-1 md:flex">
+          {navLinks.map((link) => (
             <a
-              href="#hero"
-              onClick={(e) => scrollToSection(e, '#hero')}
-              className="group flex items-center gap-3 py-4"
+              key={link.href}
+              href={link.href}
+              onClick={(event) => scrollTo(event, link.href)}
+              className={cn(
+                'rounded-full px-4 py-2 text-sm transition-colors',
+                activeSection === link.href ? 'bg-white/[0.07] text-text-primary' : 'text-text-muted hover:text-text-primary'
+              )}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-accent/20 bg-accent/10 font-display text-lg font-semibold tracking-[0.16em] text-text-primary transition-colors group-hover:border-accent/40 group-hover:text-accent">
-                PJ
-              </div>
-              <div className="hidden sm:block">
-                <p className="font-display text-sm uppercase tracking-[0.28em] text-text-muted">
-                  Priyansh Jha
-                </p>
-                <p className="text-sm text-text-secondary">{sectionLabel}</p>
-              </div>
+              {link.name}
             </a>
-
-            <div className="hidden lg:flex items-center gap-2">
-              <button
-                type="button"
-                onClick={onOpenExplorer}
-                className="inline-flex items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.02] px-4 py-2.5 font-display text-xs uppercase tracking-[0.2em] text-text-secondary transition-all duration-200 hover:border-accent/20 hover:bg-accent/10 hover:text-text-primary"
-              >
-                Explore
-                <span className="inline-flex items-center gap-1 rounded-lg border border-white/6 bg-black/20 px-2 py-1 text-[10px] tracking-[0.16em] text-text-muted">
-                  <Command className="h-3 w-3" />
-                  K
-                </span>
-              </button>
-
-              <div className="flex items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.02] p-1.5">
-                {navLinks.map((link) => {
-                  const isActive = activeSection === link.href;
-
-                  return (
-                    <a
-                      key={link.name}
-                      href={link.href}
-                      onClick={(e) => scrollToSection(e, link.href)}
-                      data-active={isActive}
-                      className={cn(
-                        'nav-pill rounded-xl px-4 py-2.5 font-display text-xs uppercase tracking-[0.22em] transition-all duration-200',
-                        isActive
-                          ? 'text-accent'
-                          : 'text-text-secondary hover:bg-white/[0.03] hover:text-text-primary'
-                      )}
-                    >
-                      {link.name}
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center justify-center rounded-xl border border-white/5 bg-white/[0.02] p-2.5 text-text-secondary transition-all duration-200 hover:border-accent/20 hover:bg-accent/10 hover:text-accent lg:hidden"
-              aria-expanded={isMobileMenuOpen}
-              aria-label="Toggle navigation menu"
-            >
-              {isMobileMenuOpen ? <X className="block h-5 w-5" /> : <Menu className="block h-5 w-5" />}
-            </button>
-          </div>
-
-          <div
-            className={cn(
-              'overflow-hidden transition-all duration-300 lg:hidden',
-              isMobileMenuOpen ? 'max-h-96 border-t border-white/5' : 'max-h-0'
-            )}
+          ))}
+          <button
+            type="button"
+            onClick={onOpenExplorer}
+            className="ml-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-text-secondary transition-colors hover:border-[#b7c6aa]/35 hover:text-text-primary"
           >
-            <div className="space-y-1 px-4 pb-4 pt-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  onOpenExplorer();
-                }}
-                className="mb-2 flex w-full items-center justify-between rounded-xl border border-white/6 bg-white/[0.03] px-4 py-3.5 font-display text-sm uppercase tracking-[0.2em] text-text-secondary transition-all duration-200 hover:border-accent/20 hover:text-text-primary"
-              >
-                <span>Explore</span>
-                <span className="inline-flex items-center gap-1 rounded-lg border border-white/6 bg-black/20 px-2 py-1 text-[10px] tracking-[0.16em] text-text-muted">
-                  <Command className="h-3 w-3" />
-                  K
-                </span>
-              </button>
+            Explore
+            <span className="inline-flex items-center gap-1 font-display text-[9px] text-text-muted">
+              <Command className="h-3 w-3" /> K
+            </span>
+          </button>
+        </div>
 
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.href;
+        <button
+          type="button"
+          onClick={() => setIsOpen((current) => !current)}
+          className="rounded-full border border-white/10 p-2.5 text-text-secondary md:hidden"
+          aria-label="Toggle navigation"
+        >
+          {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+        </button>
+      </nav>
 
-                return (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => scrollToSection(e, link.href)}
-                    className={cn(
-                      'block rounded-xl border px-4 py-3.5 font-display text-sm uppercase tracking-[0.2em] transition-all duration-200',
-                      isActive
-                        ? 'border-accent/20 bg-accent/10 text-accent'
-                        : 'border-transparent bg-white/[0.02] text-text-secondary hover:border-accent/10 hover:text-text-primary'
-                    )}
-                  >
-                    {link.name}
-                  </a>
-                );
-              })}
-            </div>
-          </div>
+      <div
+        className={cn(
+          'pointer-events-auto mx-auto mt-2 max-w-[1240px] overflow-hidden rounded-3xl border border-white/10 bg-[#111210]/96 backdrop-blur-xl transition-all duration-300 md:hidden',
+          isOpen ? 'max-h-80 opacity-100' : 'max-h-0 border-transparent opacity-0'
+        )}
+      >
+        <div className="space-y-1 p-3">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={(event) => scrollTo(event, link.href)}
+              className="block rounded-2xl px-4 py-3 text-sm text-text-secondary hover:bg-white/[0.04] hover:text-text-primary"
+            >
+              {link.name}
+            </a>
+          ))}
+          <button
+            type="button"
+            onClick={() => {
+              setIsOpen(false);
+              onOpenExplorer();
+            }}
+            className="flex w-full items-center justify-between rounded-2xl px-4 py-3 text-sm text-text-secondary hover:bg-white/[0.04]"
+          >
+            Explore builds <Command className="h-4 w-4" />
+          </button>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }

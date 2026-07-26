@@ -25,9 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <div className="global-gradient" aria-hidden="true" />
-        <div className="global-texture" aria-hidden="true" />
-        <div className="global-ornaments" aria-hidden="true" />
+        <div className="field-atmosphere" aria-hidden="true" />
+        <div className="field-grid" aria-hidden="true" />
         <GlobalPointerGlow />
         <div className="site-content">{children}</div>
       </body>

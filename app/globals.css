@@ -1330,3 +1330,113 @@
     display: none;
   }
 }
+
+/* Editorial fieldbook rebuild */
+body {
+  background:
+    radial-gradient(circle at 72% 8%, rgba(183, 198, 170, 0.055), transparent 28%),
+    radial-gradient(circle at 12% 54%, rgba(255, 255, 255, 0.025), transparent 24%),
+    linear-gradient(145deg, #0c0d0c 0%, #111210 48%, #0b0c0b 100%);
+  color: #eeece6;
+}
+
+body::before {
+  position: fixed;
+  opacity: 0.18;
+}
+
+.field-atmosphere,
+.field-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.field-atmosphere {
+  background:
+    radial-gradient(ellipse at 70% 12%, rgba(183, 198, 170, 0.075), transparent 30%),
+    radial-gradient(ellipse at 15% 72%, rgba(204, 203, 194, 0.035), transparent 28%);
+}
+
+.field-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-position: center top;
+  background-size: 96px 96px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 82%);
+  opacity: 0.42;
+}
+
+.site-content {
+  isolation: isolate;
+}
+
+.site-content::before {
+  display: none;
+}
+
+.field-label {
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #7f817d;
+}
+
+.field-card {
+  isolation: isolate;
+}
+
+.field-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.035), transparent 28%),
+    repeating-linear-gradient(90deg, transparent 0 31px, rgba(255, 255, 255, 0.018) 32px);
+}
+
+.contact-marquee {
+  overflow: hidden;
+}
+
+.contact-marquee-track {
+  width: max-content;
+  animation: field-marquee 34s linear infinite;
+}
+
+@keyframes field-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .global-pointer-glow {
+    background:
+      radial-gradient(380px circle at var(--global-pointer-x) var(--global-pointer-y), rgba(183, 198, 170, 0.07), transparent 60%),
+      radial-gradient(160px circle at calc(var(--global-pointer-x) + 38px) calc(var(--global-pointer-y) + 28px), rgba(255, 255, 255, 0.025), transparent 70%);
+  }
+}
+
+@media (max-width: 767px) {
+  .field-grid {
+    background-size: 64px 64px;
+    opacity: 0.28;
+  }
+
+  .contact-marquee-track {
+    animation-duration: 26s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-marquee-track {
+    animation: none;
+  }
+}

@@ -1,268 +1,160 @@
 'use client';
 
-import { ArrowUpRight, Github } from 'lucide-react';
-import { contact, heroContent, projects } from '@/lib/data';
-import PointerSurface from '@/components/ui/PointerSurface';
+import Image from 'next/image';
+import { ArrowDownRight, ArrowUpRight, Github, MapPin } from 'lucide-react';
+import { contact, currentBuild, heroContent, projects } from '@/lib/data';
+import Reveal from '@/components/ui/Reveal';
 
-const systemNodes = [
-  { id: 'core', label: 'Execution Core', x: 210, y: 146, size: 22, delay: '0s', drift: 'node-drift-slow' },
-  { id: 'llm', label: 'LLM', x: 210, y: 54, size: 8, delay: '0.5s', drift: 'node-drift-mid' },
-  { id: 'api', label: 'API', x: 314, y: 98, size: 10, delay: '1.1s', drift: 'node-drift-slow' },
-  { id: 'worker', label: 'Worker', x: 326, y: 208, size: 9, delay: '1.5s', drift: 'node-drift-fast' },
-  { id: 'auth', label: 'Auth', x: 210, y: 256, size: 8, delay: '0.9s', drift: 'node-drift-mid' },
-  { id: 'queue', label: 'Queue', x: 94, y: 208, size: 10, delay: '1.8s', drift: 'node-drift-fast' },
-  { id: 'systems', label: 'Systems', x: 106, y: 98, size: 9, delay: '0.3s', drift: 'node-drift-slow' },
-];
+function WorkbenchTrace() {
+  const atlas = projects.find((project) => project.id === 'atlas')!;
 
-const systemLinks = [
-  { from: [210, 54], to: [210, 146], delay: '0.2s' },
-  { from: [314, 98], to: [210, 146], delay: '0.9s' },
-  { from: [326, 208], to: [210, 146], delay: '1.4s' },
-  { from: [210, 256], to: [210, 146], delay: '0.6s' },
-  { from: [94, 208], to: [210, 146], delay: '1.8s' },
-  { from: [106, 98], to: [210, 146], delay: '1.1s' },
-  { from: [106, 98], to: [210, 54], delay: '2.1s' },
-  { from: [314, 98], to: [326, 208], delay: '2.5s' },
-  { from: [94, 208], to: [210, 256], delay: '2.9s' },
-];
-
-function SystemVisual() {
   return (
-    <div className="system-visual surface-polish group relative h-[380px] rounded-[32px] border border-white/6 bg-black/25 xl:h-[410px]">
-      <div className="absolute inset-0 rounded-[30px] bg-gradient-to-br from-accent/[0.04] via-transparent to-white/[0.02]" />
-      <div className="absolute inset-[16%] rounded-full bg-[radial-gradient(circle,rgba(201, 135, 111,0.18),rgba(167, 162, 154,0.08)_42%,transparent_72%)] blur-2xl pointer-events-none" />
-      <div className="absolute inset-0 topographic-pattern opacity-10 pointer-events-none" />
-
-      <div className="absolute left-8 top-6">
-        <p className="font-display text-[10px] uppercase tracking-[0.24em] text-signal/85">
-          System Core • Running
-        </p>
-        <p className="mt-2 font-display text-lg font-semibold uppercase tracking-[0.1em] text-text-primary">
-          Live Execution Engine
-        </p>
-      </div>
-
-      <div className="absolute inset-x-8 bottom-7 grid grid-cols-3 gap-3 text-[9px]">
-        {['AI Systems', 'Backend Infra', 'Automation Pipelines'].map((label) => (
-          <div
-            key={label}
-            className="rounded-xl border border-white/6 bg-black/20 px-3 py-2.5 text-center font-display uppercase tracking-[0.18em] text-text-muted"
-          >
-            {label}
+    <div className="relative">
+      <div className="absolute -inset-12 bg-[radial-gradient(circle,rgba(183,198,170,0.13),transparent_64%)] blur-2xl" />
+      <div className="field-card relative overflow-hidden rounded-[30px] border border-white/10 bg-[#111311]/92 shadow-[0_35px_90px_-45px_rgba(0,0,0,0.95)]">
+        <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
+          <div>
+            <p className="font-display text-[9px] uppercase tracking-[0.2em] text-[#b7c6aa]">Live workbench</p>
+            <p className="mt-1 text-sm text-text-primary">Atlas / change intelligence</p>
           </div>
-        ))}
+          <div className="flex items-center gap-2 rounded-full border border-[#b7c6aa]/20 bg-[#b7c6aa]/[0.07] px-3 py-1.5 font-display text-[9px] uppercase tracking-[0.16em] text-[#b7c6aa]">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#b7c6aa]" />
+            Building
+          </div>
+        </div>
+
+        <div className="p-4">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] border border-white/10 bg-black">
+            <Image
+              src={atlas.image!}
+              alt="Atlas engineering intelligence product"
+              fill
+              priority
+              unoptimized
+              className="object-cover object-top opacity-90 transition duration-700 hover:scale-[1.02] hover:opacity-100"
+              sizes="(max-width: 1024px) 100vw, 520px"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d0f0d]/75 via-transparent to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
+              <p className="max-w-[250px] text-sm leading-relaxed text-white/85">
+                Evidence-backed impact reports before software changes reach production.
+              </p>
+              <span className="rounded-full border border-white/15 bg-black/55 p-2 text-white backdrop-blur">
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative border-t border-white/8 px-5 py-5">
+          <svg viewBox="0 0 620 104" className="h-auto w-full" aria-hidden="true">
+            <defs>
+              <linearGradient id="traceLine" x1="0" x2="1">
+                <stop offset="0" stopColor="#b7c6aa" stopOpacity=".18" />
+                <stop offset=".5" stopColor="#b7c6aa" stopOpacity=".65" />
+                <stop offset="1" stopColor="#b7c6aa" stopOpacity=".18" />
+              </linearGradient>
+            </defs>
+            <path d="M28 52H152L202 24H326L380 76H498L592 36" fill="none" stroke="url(#traceLine)" strokeWidth="1.3" />
+            {[28, 152, 202, 326, 380, 498, 592].map((x, index) => (
+              <g key={x}>
+                <circle cx={x} cy={[52, 52, 24, 24, 76, 76, 36][index]} r={index === 3 ? 7 : 4} fill="#101210" stroke="#b7c6aa" strokeWidth="1.5" />
+                {index === 3 && <circle cx={x} cy="24" r="14" fill="none" stroke="#b7c6aa" strokeOpacity=".14" />}
+              </g>
+            ))}
+          </svg>
+          <div className="mt-2 grid grid-cols-3 gap-3 font-display text-[8px] uppercase tracking-[0.16em] text-text-muted">
+            <span>Change intent</span>
+            <span className="text-center">Evidence graph</span>
+            <span className="text-right">Impact report</span>
+          </div>
+        </div>
       </div>
 
-      <svg
-        viewBox="0 0 420 320"
-        className="absolute inset-x-6 bottom-20 top-16 h-auto w-[calc(100%-3rem)]"
-        aria-hidden="true"
-      >
-        <defs>
-          <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(222, 217, 209,0.94)" />
-            <stop offset="35%" stopColor="rgba(201, 135, 111,0.42)" />
-            <stop offset="100%" stopColor="rgba(201, 135, 111,0)" />
-          </radialGradient>
-          <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="8" />
-          </filter>
-        </defs>
-
-        <g className="system-visual-rotate origin-center opacity-70">
-          {systemLinks.map((link, index) => (
-            <g key={`${link.from.join('-')}-${link.to.join('-')}`}>
-              <line
-                x1={link.from[0]}
-                y1={link.from[1]}
-                x2={link.to[0]}
-                y2={link.to[1]}
-                stroke="rgba(167, 162, 154,0.14)"
-                strokeWidth="1.2"
-                className="system-link-base"
-              />
-              <line
-                x1={link.from[0]}
-                y1={link.from[1]}
-                x2={link.to[0]}
-                y2={link.to[1]}
-                stroke="rgba(222, 217, 209,0.4)"
-                strokeWidth="1"
-                strokeDasharray="10 180"
-                strokeLinecap="round"
-                className="line-signal"
-                style={{ animationDelay: `${index * 0.25}s, ${link.delay}` }}
-              />
-            </g>
-          ))}
-        </g>
-
-        <g className="system-visual-rotate origin-center">
-          <circle cx="210" cy="146" r="62" fill="url(#coreGlow)" filter="url(#softGlow)" className="core-halo" />
-
-          {systemNodes.map((node) => (
-            <g
-              key={node.id}
-              className={`network-node ${node.drift}`}
-              style={{ animationDelay: node.delay }}
-            >
-              {node.id === 'core' && (
-                <>
-                  <circle cx={node.x} cy={node.y} r={32} fill="rgba(201, 135, 111,0.14)" className="core-ring" />
-                  <circle cx={node.x} cy={node.y} r={24} fill="rgba(201, 135, 111,0.22)" className="core-ring-inner" />
-                </>
-              )}
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r={node.size}
-                fill={node.id === 'core' ? 'rgba(14,14,14,0.96)' : 'rgba(23,23,22,0.96)'}
-                stroke={node.id === 'core' ? 'rgba(239, 203, 188,0.92)' : 'rgba(167, 162, 154,0.56)'}
-                strokeWidth={node.id === 'core' ? '1.9' : '1.2'}
-              />
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r={Math.max(2.2, node.size * 0.24)}
-                fill={node.id === 'core' ? 'rgba(241,239,234,0.95)' : 'rgba(222,217,209,0.82)'}
-              />
-
-              {node.id !== 'core' && (
-                <g className="node-label">
-                  <rect
-                    x={node.x - 24}
-                    y={node.y - 32}
-                    rx="8"
-                    width="48"
-                    height="18"
-                    fill="rgba(14,14,14,0.94)"
-                    stroke="rgba(167, 162, 154,0.2)"
-                  />
-                  <text
-                    x={node.x}
-                    y={node.y - 19}
-                    textAnchor="middle"
-                    className="fill-text-primary text-[8px] font-display uppercase tracking-[0.18em]"
-                  >
-                    {node.label}
-                  </text>
-                </g>
-              )}
-            </g>
-          ))}
-        </g>
-
-        <text
-          x="210"
-          y="150"
-          textAnchor="middle"
-          className="fill-text-primary text-[9px] font-display uppercase tracking-[0.24em]"
-        >
-          EXECUTION CORE
-        </text>
-      </svg>
+      <div className="absolute -bottom-7 -left-7 hidden w-56 rounded-2xl border border-white/10 bg-[#171816]/94 p-4 shadow-2xl backdrop-blur md:block">
+        <p className="font-display text-[8px] uppercase tracking-[0.2em] text-text-muted">Now shipping</p>
+        <p className="mt-2 text-sm leading-snug text-text-primary">{currentBuild.items[0]}</p>
+      </div>
     </div>
   );
 }
 
 export default function Hero() {
-  const liveProjects = projects.filter((project) => project.liveUrl).length;
-
-  const scrollToProjects = () => {
-    const element = document.querySelector('#projects');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const scrollToProjects = () => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <section className="section-shell relative overflow-hidden px-4 pb-16 pt-24 md:pb-24 md:pt-28">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(167, 162, 154,0.14),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(201, 135, 111,0.09),transparent_24%)] pointer-events-none" />
-      <div className="absolute inset-0 grid-pattern opacity-[0.08]" />
-      <div className="absolute inset-0 texture-circuit opacity-[0.13] [mask-image:linear-gradient(to_bottom,black,transparent_82%)] pointer-events-none" />
-
-      <div className="relative z-10 mx-auto max-w-[1120px]">
-        <PointerSurface className="hero-pointer-surface etched-surface technical-marker surface-polish rounded-[36px] border border-white/8 bg-[#171716]/94 p-8 md:p-12">
-          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)] xl:gap-12">
-            <div className="max-w-4xl">
-              <p className="font-display text-[11px] uppercase tracking-[0.28em] text-accent/80">
-                {heroContent.eyebrow}
-              </p>
-
-              <h1 className="headline-sheen mt-5 max-w-5xl font-display text-5xl font-semibold leading-[0.95] tracking-[0.03em] md:text-6xl xl:text-7xl">
-                {heroContent.title}
-              </h1>
-
-              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-text-secondary">
-                {heroContent.description}
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-2.5">
-                {heroContent.hiringValues.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-full border border-white/8 bg-white/[0.03] px-3 py-2 font-display text-[10px] uppercase tracking-[0.18em] text-text-secondary"
-                  >
-                    {item}
-                  </div>
-                ))}
+    <section className="relative min-h-screen overflow-hidden px-4 pb-24 pt-28 md:px-8 md:pt-36">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[72vh] bg-[radial-gradient(circle_at_72%_22%,rgba(183,198,170,0.08),transparent_38%)]" />
+      <div className="relative mx-auto max-w-[1240px]">
+        <div className="grid min-h-[calc(100vh-9rem)] items-center gap-16 lg:grid-cols-[1.08fr_0.92fr]">
+          <Reveal>
+            <div className="flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.035] font-editorial text-2xl text-text-primary">
+                PJ
               </div>
-
-              <p className="mt-5 max-w-3xl text-sm leading-relaxed text-signal/90 md:text-base">
-                {heroContent.hiringNote}
-              </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <button
-                  onClick={scrollToProjects}
-                  className="primary-action action-lift inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl bg-signal px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] transition-all duration-300 hover:scale-[1.02] hover:bg-signal-hover"
-                >
-                  {heroContent.cta}
-                  <ArrowUpRight className="h-4 w-4" />
-                </button>
-
-                <a
-                  href={contact.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-text-primary transition-all duration-300 hover:scale-[1.02] hover:border-accent/20 hover:text-accent"
-                >
-                  {heroContent.secondaryCta}
-                  <Github className="h-4 w-4" />
-                </a>
-
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-2xl border border-signal/22 bg-signal/[0.08] px-6 py-3 font-display text-sm font-semibold uppercase tracking-[0.18em] text-signal transition-all duration-300 hover:scale-[1.02] hover:border-signal/35 hover:bg-signal/[0.13]"
-                >
-                  Let&apos;s Work Together
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-              </div>
-
-              <div className="mt-9 grid gap-3 border-t border-white/8 pt-6 sm:grid-cols-3">
-                {[
-                  { value: String(projects.length), label: 'Products built' },
-                  { value: String(liveProjects), label: 'Live releases' },
-                  { value: 'End to end', label: 'Product ownership' },
-                ].map((item) => (
-                  <div key={item.label}>
-                    <p className="font-display text-lg font-semibold tracking-[0.05em] text-text-primary">
-                      {item.value}
-                    </p>
-                    <p className="mt-1 text-sm text-text-muted">{item.label}</p>
-                  </div>
-                ))}
+              <div>
+                <p className="text-sm font-medium text-text-primary">Priyansh Jha</p>
+                <p className="mt-1 flex items-center gap-1.5 font-display text-[9px] uppercase tracking-[0.16em] text-text-muted">
+                  <MapPin className="h-3 w-3" /> India / remote worldwide
+                </p>
               </div>
             </div>
 
-            <div className="relative hidden lg:block">
-              <SystemVisual />
+            <p className="mt-10 font-display text-[10px] uppercase tracking-[0.24em] text-[#b7c6aa]">
+              {heroContent.eyebrow}
+            </p>
+            <h1 className="mt-5 max-w-[760px] font-editorial text-[clamp(3.6rem,7.5vw,7.2rem)] leading-[0.88] tracking-[-0.055em] text-text-primary">
+              Products with <span className="italic text-[#b7c6aa]">clarity.</span>
+              <br />
+              Systems with spine.
+            </h1>
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-text-secondary md:text-xl">
+              I turn ambiguous product ideas into reliable developer tools, workflow systems, and SaaS products built to survive real use.
+            </p>
 
-              <div className="ambient-orb -right-10 bottom-4 h-48 w-48 opacity-50" />
+            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 border-y border-white/8 py-4">
+              {heroContent.hiringValues.map((item) => (
+                <span key={item} className="text-sm text-text-secondary">
+                  {item}
+                </span>
+              ))}
             </div>
-          </div>
-        </PointerSurface>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
+                onClick={scrollToProjects}
+                className="group inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full bg-[#e7e5df] px-6 text-sm font-medium text-[#101110] transition hover:bg-white"
+              >
+                Explore work
+                <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+              </button>
+              <a
+                href={contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full border border-white/12 bg-white/[0.03] px-6 text-sm text-text-primary transition hover:border-[#b7c6aa]/40 hover:bg-[#b7c6aa]/[0.06]"
+              >
+                GitHub <Github className="h-4 w-4" />
+              </a>
+              <a
+                href={`mailto:${contact.email}`}
+                className="inline-flex min-h-[52px] items-center justify-center gap-3 px-3 text-sm text-text-secondary transition hover:text-text-primary"
+              >
+                Start a conversation <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+
+            <div className="mt-9 flex items-center gap-3 text-sm text-text-muted">
+              <span className="h-2 w-2 rounded-full bg-[#b7c6aa] shadow-[0_0_16px_rgba(183,198,170,0.45)]" />
+              {contact.availability}
+            </div>
+          </Reveal>
+
+          <Reveal delay={120} className="lg:pl-4">
+            <WorkbenchTrace />
+          </Reveal>
+        </div>
       </div>
     </section>
   );
