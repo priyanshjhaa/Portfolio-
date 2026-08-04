@@ -42,7 +42,7 @@ export const projects: Project[] = [
     stack: ['Next.js', 'Cloudflare', 'Drizzle', 'Better Auth', 'React Flow'],
     status: 'active',
     githubUrl: 'https://github.com/priyanshjhaa/Atlas',
-    image: '/projects/atlas/landing.png',
+    image: '/projects/atlas/landing.jpg',
     featured: true,
   },
   {
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     status: 'active',
     githubUrl: 'https://github.com/priyanshjhaa/CodeMap',
     liveUrl: 'https://code-map-web-sigma.vercel.app',
-    image: '/projects/codemap/landing.png',
+    image: '/projects/codemap/landing.jpg',
   },
   {
     id: 'execute',
@@ -129,7 +129,7 @@ export const projects: Project[] = [
     status: 'active',
     githubUrl: 'https://github.com/priyanshjhaa/Execute',
     liveUrl: 'https://execute-web-i7u4.vercel.app',
-    image: '/projects/execute/landing.png',
+    image: '/projects/execute/landing.jpg',
   },
   {
     id: 'axiom',
@@ -172,7 +172,7 @@ export const projects: Project[] = [
     status: 'maintenance',
     githubUrl: 'https://github.com/priyanshjhaa/Axiom',
     liveUrl: 'https://axiom-nu-six.vercel.app',
-    image: '/projects/axiom/landing.png',
+    image: '/projects/axiom/landing.jpg',
   },
   {
     id: 'cinematch',
@@ -215,7 +215,7 @@ export const projects: Project[] = [
     status: 'archived',
     githubUrl: 'https://github.com/priyanshjhaa/Cinematch25',
     liveUrl: 'https://cinematch25.vercel.app',
-    image: '/projects/cinematch/landing.png',
+    image: '/projects/cinematch/landing.jpg',
   },
 ];
 

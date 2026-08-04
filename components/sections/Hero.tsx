@@ -30,7 +30,7 @@ function WorkbenchTrace() {
               alt="Atlas engineering intelligence product"
               fill
               priority
-              unoptimized
+              quality={82}
               className="object-cover object-top opacity-90 transition duration-700 hover:scale-[1.02] hover:opacity-100"
               sizes="(max-width: 1024px) 100vw, 520px"
             />

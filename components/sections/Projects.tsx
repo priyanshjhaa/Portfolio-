@@ -105,7 +105,7 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
               src={active.image!}
               alt=""
               fill
-              unoptimized
+              quality={35}
               aria-hidden="true"
               className="scale-110 object-cover opacity-20 blur-2xl"
               sizes="(max-width: 1024px) 100vw, 640px"
@@ -115,7 +115,7 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
               src={active.image!}
               alt={`${active.name} product interface`}
               fill
-              unoptimized
+              quality={80}
               className="z-10 object-contain object-center transition duration-700 group-hover:scale-[1.01]"
               sizes="(max-width: 1024px) 100vw, 640px"
             />
@@ -163,7 +163,7 @@ function ProjectChapter({
                 src={project.image!}
                 alt={`${project.name} product preview`}
                 fill
-                unoptimized
+                quality={82}
                 className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
                 sizes="(max-width: 1024px) 100vw, 760px"
               />

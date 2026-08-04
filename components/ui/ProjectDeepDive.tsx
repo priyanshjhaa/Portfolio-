@@ -102,7 +102,7 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
                   src={project.image}
                   alt={`${project.name} landing page preview`}
                   fill
-                  unoptimized
+                  quality={84}
                   priority
                   className="object-cover object-top"
                   sizes="(max-width: 1320px) 100vw, 1320px"
