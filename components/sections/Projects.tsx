@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { ArrowUpRight, Github, MoveUpRight } from 'lucide-react';
+import { ArrowUpRight, Github, LayoutList, MoveUpRight, PanelsTopLeft } from 'lucide-react';
 import { projects } from '@/lib/data';
 import { Project } from '@/types/project';
 import { cn } from '@/lib/utils';
@@ -233,14 +233,88 @@ function ProjectChapter({
   );
 }
 
+function QuickScanBoard({
+  projects: selectedProjects,
+  onOpenProject,
+}: {
+  projects: Project[];
+  onOpenProject: (id: string) => void;
+}) {
+  return (
+    <Reveal>
+      <div className="overflow-hidden rounded-[30px] border border-white/10 bg-[#10110f]/72">
+        <div className="grid border-b border-white/8 px-5 py-4 font-display text-[8px] uppercase tracking-[0.16em] text-text-muted md:grid-cols-[70px_0.72fr_1.4fr_auto] md:px-7">
+          <span>Index</span>
+          <span className="hidden md:block">System</span>
+          <span className="hidden md:block">Evaluator signal</span>
+          <span className="hidden md:block">Access</span>
+        </div>
+
+        <div className="divide-y divide-white/8">
+          {selectedProjects.map((project, index) => (
+            <article
+              key={project.id}
+              className="group grid gap-6 px-5 py-7 transition-colors hover:bg-white/[0.022] md:grid-cols-[70px_0.72fr_1.4fr_auto] md:px-7 md:py-8"
+            >
+              <span className="font-display text-[9px] tracking-[0.16em] text-[#b7c6aa]">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+
+              <div>
+                <h3 className="font-editorial text-4xl tracking-[-0.04em] text-text-primary">{project.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-text-muted">{project.summary}</p>
+              </div>
+
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <p className="field-label">Ownership</p>
+                  <p className="mt-3 text-sm leading-relaxed text-text-secondary">
+                    {(project.ownership ?? []).slice(0, 2).join(' / ')}
+                  </p>
+                </div>
+                <div>
+                  <p className="field-label">Engineering decision</p>
+                  <p className="mt-3 text-sm leading-relaxed text-text-secondary">{project.keyDecision}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 md:justify-end">
+                <button
+                  type="button"
+                  onClick={() => onOpenProject(project.id)}
+                  className="inline-flex items-center gap-2 whitespace-nowrap text-sm text-text-primary transition hover:text-[#b7c6aa]"
+                >
+                  Case study <ArrowUpRight className="h-4 w-4" />
+                </button>
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${project.name} GitHub repository`}
+                    className="text-text-muted transition hover:text-text-primary"
+                  >
+                    <Github className="h-4 w-4" />
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
 export default function Projects({ onOpenProject }: { onOpenProject: (projectId: string) => void }) {
   const flagship = flagshipIds.map((id) => projects.find((project) => project.id === id)!).filter(Boolean);
   const archive = projects.filter((project) => !flagshipIds.includes(project.id));
+  const [viewMode, setViewMode] = useState<'deep' | 'quick'>('deep');
 
   return (
     <section className="relative px-4 py-24 md:px-8 md:py-32">
       <div className="mx-auto max-w-[1240px]">
-        <Reveal className="mb-20 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+        <Reveal className="mb-14 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <div>
             <p className="field-label">Selected work</p>
             <h2 className="mt-4 font-editorial text-[clamp(3.5rem,7vw,6.8rem)] leading-[0.9] tracking-[-0.055em] text-text-primary">
@@ -249,18 +323,53 @@ export default function Projects({ onOpenProject }: { onOpenProject: (projectId:
               <span className="italic text-[#b7c6aa]">used.</span>
             </h2>
           </div>
-          <p className="max-w-xl text-lg leading-relaxed text-text-secondary lg:justify-self-end">
-            Three products that show how I connect interface decisions, system architecture, and reliable execution.
-          </p>
+          <div className="lg:justify-self-end">
+            <p className="max-w-xl text-lg leading-relaxed text-text-secondary">
+              Three products that show how I connect interface decisions, system architecture, and reliable execution.
+            </p>
+            <div className="mt-7 inline-flex rounded-full border border-white/10 bg-[#10110f]/75 p-1" aria-label="Project viewing mode">
+              <button
+                type="button"
+                onClick={() => setViewMode('deep')}
+                aria-pressed={viewMode === 'deep'}
+                className={cn(
+                  'inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-sm transition',
+                  viewMode === 'deep' ? 'bg-white/[0.09] text-text-primary' : 'text-text-muted hover:text-text-secondary'
+                )}
+              >
+                <PanelsTopLeft className="h-4 w-4" />
+                Deep dive
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('quick')}
+                aria-pressed={viewMode === 'quick'}
+                className={cn(
+                  'inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-sm transition',
+                  viewMode === 'quick' ? 'bg-white/[0.09] text-text-primary' : 'text-text-muted hover:text-text-secondary'
+                )}
+              >
+                <LayoutList className="h-4 w-4" />
+                Quick scan
+              </button>
+            </div>
+          </div>
         </Reveal>
 
-        <SystemTrace onOpenProject={onOpenProject} />
-
-        <div>
-          {flagship.map((project, index) => (
-            <ProjectChapter key={project.id} project={project} index={index} onOpenProject={onOpenProject} />
-          ))}
-        </div>
+        {viewMode === 'deep' ? (
+          <>
+            <SystemTrace onOpenProject={onOpenProject} />
+            <div>
+              {flagship.map((project, index) => (
+                <ProjectChapter key={project.id} project={project} index={index} onOpenProject={onOpenProject} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="pb-20 pt-6">
+            <QuickScanBoard projects={flagship} onOpenProject={onOpenProject} />
+          </div>
+        )}
 
         <Reveal className="border-t border-white/8 py-20">
           <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]">
