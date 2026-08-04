@@ -27,11 +27,20 @@ function WorkbenchTrace() {
           <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] border border-white/10 bg-black">
             <Image
               src={atlas.image!}
+              alt=""
+              fill
+              quality={35}
+              aria-hidden="true"
+              className="scale-110 object-cover opacity-25 blur-2xl"
+              sizes="(max-width: 1024px) 100vw, 520px"
+            />
+            <Image
+              src={atlas.image!}
               alt="Atlas engineering intelligence product"
               fill
               priority
               quality={82}
-              className="object-cover object-top opacity-90 transition duration-700 hover:scale-[1.02] hover:opacity-100"
+              className="object-contain object-center p-2 opacity-90 transition duration-700 hover:scale-[1.01] hover:opacity-100 sm:p-3"
               sizes="(max-width: 1024px) 100vw, 520px"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d0f0d]/75 via-transparent to-transparent" />

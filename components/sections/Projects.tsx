@@ -158,7 +158,7 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
               alt={`${active.name} product interface`}
               fill
               quality={80}
-              className="z-10 object-cover object-center transition duration-700 group-hover:scale-[1.025]"
+              className="z-10 object-contain object-center p-2 transition duration-700 group-hover:scale-[1.015] sm:p-3"
               sizes="(max-width: 1024px) 100vw, 640px"
             />
             <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0d0e0d]/75 via-transparent to-black/5" />
@@ -203,10 +203,19 @@ function ProjectChapter({
             <div className="relative aspect-[16/10]">
               <Image
                 src={project.image!}
+                alt=""
+                fill
+                quality={35}
+                aria-hidden="true"
+                className="scale-110 object-cover opacity-25 blur-2xl"
+                sizes="(max-width: 1024px) 100vw, 760px"
+              />
+              <Image
+                src={project.image!}
                 alt={`${project.name} product preview`}
                 fill
                 quality={82}
-                className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                className="object-contain object-center p-2 transition-transform duration-700 ease-out group-hover:scale-[1.015] sm:p-3"
                 sizes="(max-width: 1024px) 100vw, 760px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent opacity-70" />

@@ -101,11 +101,20 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
               <div className="relative aspect-[16/9]">
                 <Image
                   src={project.image}
+                  alt=""
+                  fill
+                  quality={35}
+                  aria-hidden="true"
+                  className="scale-110 object-cover opacity-25 blur-2xl"
+                  sizes="(max-width: 1320px) 100vw, 1320px"
+                />
+                <Image
+                  src={project.image}
                   alt={`${project.name} landing page preview`}
                   fill
                   quality={84}
                   priority
-                  className="object-cover object-top"
+                  className="object-contain object-center p-2 sm:p-3"
                   sizes="(max-width: 1320px) 100vw, 1320px"
                 />
               </div>
