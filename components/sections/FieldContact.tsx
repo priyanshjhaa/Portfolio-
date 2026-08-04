@@ -30,16 +30,35 @@ export default function FieldContact({ active = false }: { active?: boolean }) {
               product problem?
             </h2>
             <p className="mt-7 max-w-2xl text-lg leading-relaxed text-text-secondary">{contact.focus}</p>
+            <blockquote className="mt-9 max-w-2xl border-l border-[#b7c6aa]/35 pl-5 font-editorial text-2xl italic leading-relaxed text-text-primary md:text-3xl">
+              {contact.operatingStatement}
+            </blockquote>
           </div>
 
-          <div className="lg:justify-self-end">
+          <div className="w-full lg:max-w-md lg:justify-self-end">
             <a
               href={`mailto:${contact.email}`}
-              className="group inline-flex min-h-[64px] items-center gap-5 rounded-full bg-[#e7e5df] px-8 text-base font-medium text-[#101110] transition hover:bg-white"
+              className="group inline-flex min-h-[64px] w-full items-center justify-between gap-5 rounded-full bg-[#e7e5df] px-8 text-base font-medium text-[#101110] transition hover:bg-white"
             >
               Let&apos;s build something useful
               <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
+
+            <div className="mt-5 divide-y divide-white/8 rounded-[24px] border border-white/10 bg-[#10110f]/68 px-5">
+              <div className="grid grid-cols-[105px_1fr] gap-4 py-4">
+                <p className="field-label">Base</p>
+                <p className="text-sm text-text-secondary">{contact.location}</p>
+              </div>
+              <div className="grid grid-cols-[105px_1fr] gap-4 py-4">
+                <p className="field-label">Working mode</p>
+                <p className="text-sm text-text-secondary">{contact.collaboration}</p>
+              </div>
+              <div className="grid grid-cols-[105px_1fr] gap-4 py-4">
+                <p className="field-label">Best channel</p>
+                <p className="text-sm text-text-secondary">{contact.response}</p>
+              </div>
+            </div>
+
             <div className="mt-7 flex flex-wrap gap-5">
               <a href={contact.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-text-primary">
                 <Github className="h-4 w-4" /> GitHub

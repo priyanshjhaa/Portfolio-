@@ -537,6 +537,11 @@ export const contact = {
   email: 'Priyanshjhaa17@gmail.com',
   availability: 'Open to remote startup roles',
   focus: 'I am most useful on product engineering, developer tools, workflow systems, and full-stack work that needs clear ownership.',
+  operatingStatement:
+    'I work best with small teams building technically ambitious products where ownership matters more than job boundaries.',
+  location: 'India / IST (UTC+5:30)',
+  collaboration: 'Remote-first / async-friendly',
+  response: 'Email is the fastest way to reach me',
 };
 
 export const skillGroups: SkillGroup[] = [
