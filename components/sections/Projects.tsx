@@ -158,7 +158,7 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
               alt={`${active.name} product interface`}
               fill
               quality={80}
-              className="z-10 object-contain object-center transition duration-700 group-hover:scale-[1.01]"
+              className="z-10 object-cover object-center transition duration-700 group-hover:scale-[1.025]"
               sizes="(max-width: 1024px) 100vw, 640px"
             />
             <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0d0e0d]/75 via-transparent to-black/5" />
