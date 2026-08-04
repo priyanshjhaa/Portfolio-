@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, GitBranch, Github, ShieldCheck, X } from 'lucide-react';
 import { Project } from '@/types/project';
+import { getProjectImageAspectRatio } from '@/lib/project-images';
 import ArchitecturePlayback from '@/components/ui/ArchitecturePlayback';
 
 interface ProjectDeepDiveProps {
@@ -98,7 +99,10 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
                 <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
                 <span className="ml-auto font-display text-[8px] uppercase tracking-[0.16em] text-text-muted">{project.name} / production frame</span>
               </div>
-              <div className="relative aspect-[16/9]">
+              <div
+                className="relative"
+                style={{ aspectRatio: getProjectImageAspectRatio(project.id) }}
+              >
                 <Image
                   src={project.image}
                   alt=""
@@ -114,7 +118,7 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
                   fill
                   quality={84}
                   priority
-                  className="object-contain object-center p-2 sm:p-3"
+                  className="object-contain object-center"
                   sizes="(max-width: 1320px) 100vw, 1320px"
                 />
               </div>

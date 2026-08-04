@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { ArrowDownRight, ArrowUpRight, Github, MapPin } from 'lucide-react';
 import { contact, currentBuild, heroContent, projects } from '@/lib/data';
+import { getProjectImageAspectRatio } from '@/lib/project-images';
 import Reveal from '@/components/ui/Reveal';
 
 function WorkbenchTrace() {
@@ -24,7 +25,10 @@ function WorkbenchTrace() {
         </div>
 
         <div className="p-4">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] border border-white/10 bg-black">
+          <div
+            className="relative overflow-hidden rounded-[20px] border border-white/10 bg-black"
+            style={{ aspectRatio: getProjectImageAspectRatio(atlas.id) }}
+          >
             <Image
               src={atlas.image!}
               alt=""
@@ -40,7 +44,7 @@ function WorkbenchTrace() {
               fill
               priority
               quality={82}
-              className="object-contain object-center p-2 opacity-90 transition duration-700 hover:scale-[1.01] hover:opacity-100 sm:p-3"
+              className="object-contain object-center opacity-90 transition duration-700 hover:scale-[1.005] hover:opacity-100"
               sizes="(max-width: 1024px) 100vw, 520px"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d0f0d]/75 via-transparent to-transparent" />

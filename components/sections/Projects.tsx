@@ -6,6 +6,7 @@ import { ArrowUpRight, GitBranch, Github, LayoutList, MoveUpRight, PanelsTopLeft
 import { projects } from '@/lib/data';
 import { Project } from '@/types/project';
 import { cn } from '@/lib/utils';
+import { getProjectImageAspectRatio } from '@/lib/project-images';
 import Reveal from '@/components/ui/Reveal';
 
 const flagshipIds = ['atlas', 'execute', 'codemap'];
@@ -139,7 +140,8 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
           <button
             type="button"
             onClick={() => onOpenProject(active.id)}
-            className="group relative min-h-[360px] overflow-hidden border-t border-white/8 bg-[#090a09] text-left lg:border-l lg:border-t-0"
+            className="group relative w-full self-center overflow-hidden border-t border-white/8 bg-[#090a09] text-left lg:border-l lg:border-t-0"
+            style={{ aspectRatio: getProjectImageAspectRatio(active.id) }}
             aria-label={`Open ${active.name} system`}
           >
             <Image
@@ -158,7 +160,7 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
               alt={`${active.name} product interface`}
               fill
               quality={80}
-              className="z-10 object-contain object-center p-2 transition duration-700 group-hover:scale-[1.015] sm:p-3"
+              className="z-10 object-contain object-center transition duration-700 group-hover:scale-[1.01]"
               sizes="(max-width: 1024px) 100vw, 640px"
             />
             <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0d0e0d]/75 via-transparent to-black/5" />
@@ -200,7 +202,10 @@ function ProjectChapter({
               reverse && 'lg:order-2'
             )}
           >
-            <div className="relative aspect-[16/10]">
+            <div
+              className="relative"
+              style={{ aspectRatio: getProjectImageAspectRatio(project.id) }}
+            >
               <Image
                 src={project.image!}
                 alt=""
@@ -215,7 +220,7 @@ function ProjectChapter({
                 alt={`${project.name} product preview`}
                 fill
                 quality={82}
-                className="object-contain object-center p-2 transition-transform duration-700 ease-out group-hover:scale-[1.015] sm:p-3"
+                className="object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.01]"
                 sizes="(max-width: 1024px) 100vw, 760px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent opacity-70" />
