@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { ArrowUpRight, GitBranch, Github, LayoutList, MoveUpRight, PanelsTopLeft } from 'lucide-react';
+import { ArrowUpRight, GitBranch, Github, LayoutList, MoveUpRight, PanelsTopLeft, ShieldCheck } from 'lucide-react';
 import { projects } from '@/lib/data';
 import { Project } from '@/types/project';
 import { cn } from '@/lib/utils';
@@ -31,6 +31,28 @@ function DecisionRecord({ project }: { project: Project }) {
           <p className="field-label text-[#b7c6aa]">Key engineering decision</p>
           <p className="mt-3 text-sm leading-relaxed text-text-secondary">{project.keyDecision}</p>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function SystemSignals({ project }: { project: Project }) {
+  const signals = (project.productionSignals ?? []).slice(0, 3);
+  if (!signals.length) return null;
+
+  return (
+    <div className="mt-5 rounded-[20px] border border-white/8 bg-black/15 px-4 py-4">
+      <div className="mb-3 flex items-center gap-2">
+        <ShieldCheck className="h-3.5 w-3.5 text-[#b7c6aa]" />
+        <p className="field-label">Implementation signals</p>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-3">
+        {signals.map((signal) => (
+          <div key={signal} className="flex items-start gap-2">
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b7c6aa] shadow-[0_0_10px_rgba(183,198,170,.35)]" />
+            <span className="text-xs leading-relaxed text-text-muted">{signal}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -219,6 +241,7 @@ function ProjectChapter({
               </div>
             </dl>
             <DecisionRecord project={project} />
+            <SystemSignals project={project} />
 
             <div className="mt-6 flex flex-wrap gap-2">
               {project.stack.map((tech) => (

@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, GitBranch, Github, X } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, GitBranch, Github, ShieldCheck, X } from 'lucide-react';
 import { Project } from '@/types/project';
 import ArchitecturePlayback from '@/components/ui/ArchitecturePlayback';
 
@@ -195,10 +195,16 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
             </div>
           </div>
           <div>
-            <SectionLabel>Production signals</SectionLabel>
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-3.5 w-3.5 text-[#b7c6aa]" />
+              <SectionLabel>Production signals</SectionLabel>
+            </div>
             <div className="mt-6 divide-y divide-white/8 border-y border-white/8">
               {(project.productionSignals ?? []).map((signal) => (
-                <p key={signal} className="py-4 text-sm leading-relaxed text-text-secondary">{signal}</p>
+                <div key={signal} className="flex items-start gap-3 py-4">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b7c6aa] shadow-[0_0_10px_rgba(183,198,170,.35)]" />
+                  <p className="text-sm leading-relaxed text-text-secondary">{signal}</p>
+                </div>
               ))}
             </div>
           </div>
