@@ -32,6 +32,33 @@ export const projects: Project[] = [
     ],
     highlightMetrics: ['Active prototype', '9 product routes', 'Impact + graph + search'],
     flowSteps: ['Change Input', 'Evidence Retrieval', 'Impact Graph', 'Risk Report', 'Review Plan'],
+    architectureStages: [
+      {
+        label: 'Change Input',
+        description: 'A planned change or pull request establishes the exact scope the system needs to investigate.',
+        safeguard: 'Prevents broad, context-free analysis by anchoring every report to an explicit change.',
+      },
+      {
+        label: 'Evidence Retrieval',
+        description: 'Atlas gathers relevant code, architecture records, history, and engineering knowledge across connected systems.',
+        safeguard: 'Keeps conclusions tied to inspectable repository evidence instead of model assumptions.',
+      },
+      {
+        label: 'Impact Graph',
+        description: 'Retrieved evidence is mapped into affected components, dependencies, and cross-repository paths.',
+        safeguard: 'Makes indirect consequences visible before implementation begins.',
+      },
+      {
+        label: 'Risk Report',
+        description: 'The system produces an evidence-backed summary of impact, uncertainty, and areas requiring review.',
+        safeguard: 'Turns a complex graph into a reviewable engineering decision surface.',
+      },
+      {
+        label: 'Review Plan',
+        description: 'Engineers receive a concrete set of affected areas and checks to review before implementation.',
+        safeguard: 'Converts analysis into an actionable plan instead of another passive report.',
+      },
+    ],
     productionSignals: ['Cloudflare deployment setup', 'GitHub OAuth with Better Auth', 'Vitest and Playwright coverage'],
     proofFrame: {
       eyebrow: 'Product Frame',
@@ -75,6 +102,28 @@ export const projects: Project[] = [
     ],
     highlightMetrics: ['Featured build', 'Repo import pipeline', 'Context-aware retrieval'],
     flowSteps: ['Repo Import', 'Context Index', 'Architecture Graph', 'Code Query'],
+    architectureStages: [
+      {
+        label: 'Repo Import',
+        description: 'A repository is ingested with its source tree, metadata, and structural relationships intact.',
+        safeguard: 'Preserves repository boundaries before any semantic processing begins.',
+      },
+      {
+        label: 'Context Index',
+        description: 'Code and metadata are transformed into searchable context designed for grounded retrieval.',
+        safeguard: 'Reduces unsupported answers by retrieving from the indexed codebase.',
+      },
+      {
+        label: 'Architecture Graph',
+        description: 'Modules and dependencies are organized into a navigable representation of the system.',
+        safeguard: 'Exposes relationships that isolated code snippets would hide.',
+      },
+      {
+        label: 'Code Query',
+        description: 'Natural-language questions retrieve relevant code context and architecture evidence together.',
+        safeguard: 'Keeps responses connected to source evidence rather than generic explanations.',
+      },
+    ],
     productionSignals: ['Deployed on Vercel', 'PostgreSQL-backed indexing', 'Repository import pipeline'],
     proofFrame: {
       eyebrow: 'Product Frame',
@@ -118,6 +167,33 @@ export const projects: Project[] = [
     ],
     highlightMetrics: ['Approval-gated actions', 'Tenant-safe tools', 'Failure monitoring'],
     flowSteps: ['Request', 'Scoped Inspection', 'Validated Proposal', 'Approval', 'Execution'],
+    architectureStages: [
+      {
+        label: 'Request',
+        description: 'The user describes an operational intent through the agent interface.',
+        safeguard: 'Treats language as intent, not immediate authority to mutate workspace state.',
+      },
+      {
+        label: 'Scoped Inspection',
+        description: 'Tenant-safe tools inspect only the workflows, integrations, and execution state available to the active workspace.',
+        safeguard: 'Prevents cross-tenant access and limits the context exposed to the model.',
+      },
+      {
+        label: 'Validated Proposal',
+        description: 'The requested mutation becomes a persisted, expiring proposal with structured arguments and stale-state checks.',
+        safeguard: 'Separates model reasoning from deterministic mutation authority.',
+      },
+      {
+        label: 'Approval',
+        description: 'The user reviews the exact action and explicitly approves or rejects it.',
+        safeguard: 'Maintains a clear human decision boundary for every consequential write.',
+      },
+      {
+        label: 'Execution',
+        description: 'Deterministic application code performs the approved action and records its operational result.',
+        safeguard: 'Provides idempotency, observability, and recoverable failure handling.',
+      },
+    ],
     productionSignals: ['Internal-release feature controls', 'Per-call token and latency tracking', 'Atomic daily usage limits'],
     proofFrame: {
       eyebrow: 'Product Frame',
@@ -161,6 +237,28 @@ export const projects: Project[] = [
     ],
     highlightMetrics: ['SaaS workflow system', 'Structured operations', 'Iterating in production'],
     flowSteps: ['Lead', 'Proposal', 'Project', 'Invoice'],
+    architectureStages: [
+      {
+        label: 'Lead',
+        description: 'Client context begins as a structured opportunity rather than an isolated document.',
+        safeguard: 'Avoids duplicating client data across disconnected tools.',
+      },
+      {
+        label: 'Proposal',
+        description: 'Project scope and commercial terms are generated from the same operational record.',
+        safeguard: 'Keeps agreed scope connected to the work that follows.',
+      },
+      {
+        label: 'Project',
+        description: 'An accepted proposal transitions into an active delivery workspace with shared state.',
+        safeguard: 'Makes the handoff explicit and prevents drift between proposal and execution.',
+      },
+      {
+        label: 'Invoice',
+        description: 'Billing actions remain attached to the project and its delivery context.',
+        safeguard: 'Preserves traceability from initial scope through payment.',
+      },
+    ],
     productionSignals: ['Deployed on Vercel', 'Supabase PostgreSQL', 'Scalable API workflows'],
     proofFrame: {
       eyebrow: 'Product Frame',
@@ -204,6 +302,28 @@ export const projects: Project[] = [
     ],
     highlightMetrics: ['API-driven UX', 'Recommendation flow', 'Content discovery'],
     flowSteps: ['Search', 'Match', 'Save', 'Watch'],
+    architectureStages: [
+      {
+        label: 'Search',
+        description: 'The discovery surface translates a title, genre, or mood into a focused content request.',
+        safeguard: 'Keeps browsing anchored to user intent instead of an endless catalog.',
+      },
+      {
+        label: 'Match',
+        description: 'External content metadata is shaped into comparable recommendation results.',
+        safeguard: 'Normalizes third-party responses before they reach the interface.',
+      },
+      {
+        label: 'Save',
+        description: 'Authenticated users persist promising titles into their personal collection.',
+        safeguard: 'Maintains continuity between discovery sessions.',
+      },
+      {
+        label: 'Watch',
+        description: 'The selected title connects to trailers and available viewing context.',
+        safeguard: 'Completes the journey without losing the decision context that led there.',
+      },
+    ],
     productionSignals: ['TMDB API integration', 'Firebase-backed persistence', 'Deployed UI flows'],
     proofFrame: {
       eyebrow: 'Product Frame',

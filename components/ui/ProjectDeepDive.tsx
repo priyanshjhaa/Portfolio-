@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, Github, X } from 'lucide-react';
 import { Project } from '@/types/project';
+import ArchitecturePlayback from '@/components/ui/ArchitecturePlayback';
 
 interface ProjectDeepDiveProps {
   project: Project | null;
@@ -140,19 +141,11 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
                 From intent to outcome.
               </h2>
             </div>
-            <div className="relative">
-              <div className="absolute left-[5px] top-3 h-[calc(100%-1.5rem)] w-px bg-white/10 md:left-3 md:right-3 md:top-[5px] md:h-px md:w-auto" />
-              <div className="grid gap-7 md:grid-cols-5">
-                {(project.flowSteps ?? []).map((step, index) => (
-                  <div key={step} className="relative pl-8 md:pl-0 md:pt-8">
-                    <span className="absolute left-0 top-1 h-[11px] w-[11px] rounded-full border border-[#b7c6aa]/60 bg-[#0c0d0c] md:left-2 md:top-0" />
-                    <p className="font-display text-[8px] uppercase tracking-[0.16em] text-[#b7c6aa]">Step 0{index + 1}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-text-secondary">{step}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <p className="max-w-xl text-base leading-relaxed text-text-secondary lg:pt-2">
+              Follow the product path one boundary at a time. Each stage exposes the responsibility it owns and the failure it is designed to prevent.
+            </p>
           </div>
+          <ArchitecturePlayback project={project} />
         </section>
 
         <section className="grid border-b border-white/8 lg:grid-cols-[1.1fr_0.9fr]">

@@ -16,6 +16,7 @@ export interface Project {
   architectureNotes?: string[];
   highlightMetrics?: string[];
   flowSteps?: string[];
+  architectureStages?: ArchitectureStage[];
   productionSignals?: string[];
   proofFrame?: {
     title: string;
@@ -29,6 +30,12 @@ export interface Project {
   liveUrl?: string;
   image?: string;
   featured?: boolean;
+}
+
+export interface ArchitectureStage {
+  label: string;
+  description: string;
+  safeguard: string;
 }
 
 export type ProjectStatus = 'active' | 'maintenance' | 'archived';
