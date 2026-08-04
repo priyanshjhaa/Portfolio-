@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowUpRight, Github, X } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, GitBranch, Github, X } from 'lucide-react';
 import { Project } from '@/types/project';
 import ArchitecturePlayback from '@/components/ui/ArchitecturePlayback';
 
@@ -152,7 +152,18 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
           <div className="border-b border-white/8 py-16 lg:border-b-0 lg:border-r lg:pr-14">
             <SectionLabel>Engineering judgment</SectionLabel>
             <h2 className="mt-5 font-editorial text-4xl tracking-[-0.035em] text-text-primary md:text-5xl">The decision that shaped the system.</h2>
-            <p className="mt-7 text-xl leading-relaxed text-text-secondary">{project.keyDecision}</p>
+            <div className="relative mt-8 overflow-hidden rounded-[24px] border border-[#b7c6aa]/20 bg-[#b7c6aa]/[0.045] p-6">
+              <div className="pointer-events-none absolute -right-20 -top-24 h-48 w-48 rounded-full bg-[#b7c6aa]/10 blur-3xl" />
+              <div className="relative flex items-start gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#b7c6aa]/25 text-[#b7c6aa]">
+                  <GitBranch className="h-4 w-4" />
+                </span>
+                <div>
+                  <SectionLabel>Decision record / 01</SectionLabel>
+                  <p className="mt-4 text-xl leading-relaxed text-text-primary">{project.keyDecision}</p>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="space-y-8 py-16 lg:pl-14">
             <div>

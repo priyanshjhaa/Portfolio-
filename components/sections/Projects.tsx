@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { ArrowUpRight, Github, LayoutList, MoveUpRight, PanelsTopLeft } from 'lucide-react';
+import { ArrowUpRight, GitBranch, Github, LayoutList, MoveUpRight, PanelsTopLeft } from 'lucide-react';
 import { projects } from '@/lib/data';
 import { Project } from '@/types/project';
 import { cn } from '@/lib/utils';
@@ -15,6 +15,26 @@ const projectTone: Record<string, { glow: string; label: string }> = {
   execute: { glow: 'rgba(234,154,196,0.16)', label: 'Agent operations' },
   codemap: { glow: 'rgba(20,201,174,0.16)', label: 'Developer tooling' },
 };
+
+function DecisionRecord({ project }: { project: Project }) {
+  return (
+    <div className="relative mt-5 overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.025] p-5">
+      <div
+        className="pointer-events-none absolute -right-16 -top-20 h-44 w-44 rounded-full opacity-50 blur-3xl"
+        style={{ background: projectTone[project.id]?.glow ?? 'rgba(183,198,170,0.1)' }}
+      />
+      <div className="relative flex items-start gap-4">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#b7c6aa]/20 bg-[#b7c6aa]/[0.06] text-[#b7c6aa]">
+          <GitBranch className="h-4 w-4" />
+        </span>
+        <div>
+          <p className="field-label text-[#b7c6aa]">Key engineering decision</p>
+          <p className="mt-3 text-sm leading-relaxed text-text-secondary">{project.keyDecision}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void }) {
   const systems = flagshipIds.map((id) => projects.find((project) => project.id === id)!).filter(Boolean);
@@ -192,16 +212,13 @@ function ProjectChapter({
             <p className="mt-5 text-xl leading-relaxed text-text-primary">{project.summary}</p>
             <p className="mt-4 text-base leading-relaxed text-text-secondary">{project.details}</p>
 
-            <dl className="mt-8 space-y-5 border-y border-white/8 py-6">
+            <dl className="mt-8 border-y border-white/8 py-6">
               <div className="grid gap-2 sm:grid-cols-[110px_1fr]">
                 <dt className="field-label">Outcome</dt>
                 <dd className="text-sm leading-relaxed text-text-secondary">{project.impact}</dd>
               </div>
-              <div className="grid gap-2 sm:grid-cols-[110px_1fr]">
-                <dt className="field-label">Decision</dt>
-                <dd className="text-sm leading-relaxed text-text-secondary">{project.keyDecision}</dd>
-              </div>
             </dl>
+            <DecisionRecord project={project} />
 
             <div className="mt-6 flex flex-wrap gap-2">
               {project.stack.map((tech) => (
@@ -383,10 +400,14 @@ export default function Projects({ onOpenProject }: { onOpenProject: (projectId:
                   key={project.id}
                   type="button"
                   onClick={() => onOpenProject(project.id)}
-                  className="group grid w-full gap-3 py-6 text-left transition-colors hover:text-[#b7c6aa] sm:grid-cols-[1fr_1.5fr_auto] sm:items-center"
+                  className="group grid w-full gap-4 py-6 text-left transition-colors hover:text-[#b7c6aa] md:grid-cols-[0.75fr_1fr_1.35fr_auto] md:items-center"
                 >
                   <span className="font-editorial text-3xl text-text-primary transition-colors group-hover:text-[#b7c6aa]">{project.name}</span>
                   <span className="text-sm leading-relaxed text-text-muted">{project.summary}</span>
+                  <span className="text-sm leading-relaxed text-text-secondary">
+                    <span className="mr-2 font-display text-[8px] uppercase tracking-[0.14em] text-[#b7c6aa]">Decision</span>
+                    {project.keyDecision}
+                  </span>
                   <ArrowUpRight className="h-4 w-4 text-text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </button>
               ))}
