@@ -47,16 +47,19 @@ function WorkbenchTrace() {
               className="object-contain object-center opacity-90 transition duration-700 hover:scale-[1.005] hover:opacity-100"
               sizes="(max-width: 1024px) 100vw, 520px"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d0f0d]/75 via-transparent to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
-              <p className="max-w-[250px] text-sm leading-relaxed text-white/85">
-                Evidence-backed impact reports before software changes reach production.
-              </p>
-              <span className="rounded-full border border-white/15 bg-black/55 p-2 text-white backdrop-blur">
-                <ArrowUpRight className="h-4 w-4" />
-              </span>
-            </div>
           </div>
+        </div>
+
+        <div className="grid gap-4 border-t border-white/8 px-5 py-5 sm:grid-cols-[1fr_auto] sm:items-center">
+          <div>
+            <p className="font-display text-[8px] uppercase tracking-[0.2em] text-text-muted">Product outcome</p>
+            <p className="mt-2 max-w-sm text-sm leading-relaxed text-text-secondary">
+              Evidence-backed impact reports before software changes reach production.
+            </p>
+          </div>
+          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/[0.035] text-text-primary transition hover:border-[#b7c6aa]/35 hover:bg-[#b7c6aa]/[0.08] hover:text-[#b7c6aa]">
+            <ArrowUpRight className="h-4 w-4" />
+          </span>
         </div>
 
         <div className="relative border-t border-white/8 px-5 py-5">
@@ -82,11 +85,14 @@ function WorkbenchTrace() {
             <span className="text-right">Impact report</span>
           </div>
         </div>
-      </div>
 
-      <div className="absolute -bottom-7 -left-7 hidden w-56 rounded-2xl border border-white/10 bg-[#171816]/94 p-4 shadow-2xl backdrop-blur md:block">
-        <p className="font-display text-[8px] uppercase tracking-[0.2em] text-text-muted">Now shipping</p>
-        <p className="mt-2 text-sm leading-snug text-text-primary">{currentBuild.items[0]}</p>
+        <div className="flex flex-col gap-3 border-t border-white/8 bg-white/[0.018] px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3">
+            <span className="h-2 w-2 shrink-0 rounded-full bg-[#b7c6aa] shadow-[0_0_14px_rgba(183,198,170,.4)]" />
+            <p className="font-display text-[8px] uppercase tracking-[0.2em] text-text-muted">Now shipping</p>
+          </div>
+          <p className="max-w-xs text-sm leading-relaxed text-text-primary sm:text-right">{currentBuild.items[0]}</p>
+        </div>
       </div>
     </div>
   );
