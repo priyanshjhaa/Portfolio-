@@ -12,7 +12,7 @@ function WorkbenchTrace() {
   return (
     <div className="relative">
       <div className="absolute -inset-12 bg-[radial-gradient(circle,rgba(183,198,170,0.13),transparent_64%)] blur-2xl" />
-      <div className="field-card relative overflow-hidden rounded-[30px] border border-white/10 bg-[#111311]/92 shadow-[0_35px_90px_-45px_rgba(0,0,0,0.95)]">
+      <div className="field-card premium-surface premium-interactive relative overflow-hidden rounded-[30px] border border-white/10 bg-[#111311]/92 shadow-[0_35px_90px_-45px_rgba(0,0,0,0.95)]">
         <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
           <div>
             <p className="font-display text-[9px] uppercase tracking-[0.2em] text-[#b7c6aa]">Live workbench</p>
@@ -143,7 +143,7 @@ export default function Hero() {
               <button
                 type="button"
                 onClick={scrollToProjects}
-                className="group inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full bg-[#e7e5df] px-6 text-sm font-medium text-[#101110] transition hover:bg-white"
+                className="premium-action group inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full bg-[#e7e5df] px-6 text-sm font-medium text-[#101110] hover:bg-white"
               >
                 Explore work
                 <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -152,7 +152,7 @@ export default function Hero() {
                 href={contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full border border-white/12 bg-white/[0.03] px-6 text-sm text-text-primary transition hover:border-[#b7c6aa]/40 hover:bg-[#b7c6aa]/[0.06]"
+                className="premium-action inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full border border-white/12 bg-white/[0.03] px-6 text-sm text-text-primary hover:border-[#b7c6aa]/40 hover:bg-[#b7c6aa]/[0.06]"
               >
                 GitHub <Github className="h-4 w-4" />
               </a>

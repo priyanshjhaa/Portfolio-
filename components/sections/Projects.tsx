@@ -19,7 +19,7 @@ const projectTone: Record<string, { glow: string; label: string }> = {
 
 function DecisionRecord({ project }: { project: Project }) {
   return (
-    <div className="relative mt-5 overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.025] p-5">
+    <div className="premium-surface relative mt-5 overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.025] p-5">
       <div
         className="pointer-events-none absolute -right-16 -top-20 h-44 w-44 rounded-full opacity-50 blur-3xl"
         style={{ background: projectTone[project.id]?.glow ?? 'rgba(183,198,170,0.1)' }}
@@ -42,7 +42,7 @@ function SystemSignals({ project }: { project: Project }) {
   if (!signals.length) return null;
 
   return (
-    <div className="mt-5 rounded-[20px] border border-white/8 bg-black/15 px-4 py-4">
+    <div className="premium-surface mt-5 rounded-[20px] border border-white/8 bg-black/15 px-4 py-4">
       <div className="mb-3 flex items-center gap-2">
         <ShieldCheck className="h-3.5 w-3.5 text-[#b7c6aa]" />
         <p className="field-label">Implementation signals</p>
@@ -80,7 +80,7 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
       </div>
 
       <div
-        className="overflow-hidden rounded-[32px] border border-white/10 bg-[#111210]/84"
+        className="premium-surface overflow-hidden rounded-[32px] border border-white/10 bg-[#111210]/84"
         style={{ boxShadow: `0 42px 100px -70px ${tone.glow}` }}
       >
         <div className="flex overflow-x-auto border-b border-white/8 p-2">
@@ -90,7 +90,7 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
               type="button"
               onClick={() => setActiveId(project.id)}
               className={cn(
-                'min-w-fit flex-1 rounded-full px-5 py-3 text-sm transition-all duration-300',
+                'premium-action min-h-11 min-w-fit flex-1 rounded-full px-5 py-3 text-sm',
                 project.id === activeId ? 'bg-white/[0.08] text-text-primary' : 'text-text-muted hover:text-text-secondary'
               )}
             >
@@ -116,7 +116,7 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
                   {(active.flowSteps ?? []).slice(0, 4).map((step, index) => (
                     <div key={step} className="relative">
                       <span
-                        className="mb-4 block h-3 w-3 rounded-full border border-[#b7c6aa] bg-[#111210] transition-all duration-500"
+                        className="mb-4 block h-3 w-3 rounded-full border border-[#b7c6aa] bg-[#111210] transition-[transform,box-shadow] duration-500 ease-[var(--ease-premium)]"
                         style={{ boxShadow: index === 2 ? '0 0 24px rgba(183,198,170,.42)' : undefined }}
                       />
                       <p className="max-w-24 font-display text-[8px] uppercase leading-relaxed tracking-[0.14em] text-text-muted">
@@ -130,7 +130,7 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
               <button
                 type="button"
                 onClick={() => onOpenProject(active.id)}
-                className="mt-3 inline-flex items-center gap-2 text-sm text-text-primary transition hover:text-[#b7c6aa]"
+                className="premium-action mt-3 inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-text-primary hover:text-[#b7c6aa]"
               >
                 Open complete system <ArrowUpRight className="h-4 w-4" />
               </button>
@@ -140,7 +140,7 @@ function SystemTrace({ onOpenProject }: { onOpenProject: (id: string) => void })
           <button
             type="button"
             onClick={() => onOpenProject(active.id)}
-            className="group relative w-full self-center overflow-hidden border-t border-white/8 bg-[#090a09] text-left lg:border-l lg:border-t-0"
+            className="premium-interactive group relative w-full self-center overflow-hidden border-t border-white/8 bg-[#090a09] text-left lg:border-l lg:border-t-0"
             style={{ aspectRatio: getProjectImageAspectRatio(active.id) }}
             aria-label={`Open ${active.name} system`}
           >
@@ -198,7 +198,7 @@ function ProjectChapter({
             type="button"
             onClick={() => onOpenProject(project.id)}
             className={cn(
-              'group relative overflow-hidden rounded-[28px] border border-white/10 bg-black text-left shadow-[0_35px_100px_-60px_rgba(0,0,0,0.95)]',
+              'premium-interactive group relative overflow-hidden rounded-[28px] border border-white/10 bg-black text-left shadow-[0_35px_100px_-60px_rgba(0,0,0,0.95)]',
               reverse && 'lg:order-2'
             )}
           >
@@ -228,7 +228,7 @@ function ProjectChapter({
                 <span className="font-display text-[9px] uppercase tracking-[0.18em] text-white/70">
                   Inspect product system
                 </span>
-                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white backdrop-blur transition-all group-hover:scale-110 group-hover:bg-white group-hover:text-black">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white backdrop-blur transition-[transform,background-color,color] duration-300 ease-[var(--ease-premium)] group-hover:scale-105 group-hover:bg-white group-hover:text-black">
                   <MoveUpRight className="h-4 w-4" />
                 </span>
               </div>
@@ -266,16 +266,16 @@ function ProjectChapter({
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-5">
-              <button type="button" onClick={() => onOpenProject(project.id)} className="inline-flex items-center gap-2 text-sm font-medium text-text-primary hover:text-[#b7c6aa]">
+              <button type="button" onClick={() => onOpenProject(project.id)} className="premium-action inline-flex min-h-11 items-center gap-2 rounded-full text-sm font-medium text-text-primary hover:text-[#b7c6aa]">
                 View case study <ArrowUpRight className="h-4 w-4" />
               </button>
               {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-text-muted hover:text-text-primary">
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="premium-action inline-flex min-h-11 items-center rounded-full text-sm text-text-muted hover:text-text-primary">
                   Live product
                 </a>
               )}
               {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-text-primary">
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="premium-action inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-text-muted hover:text-text-primary">
                   GitHub <Github className="h-3.5 w-3.5" />
                 </a>
               )}
@@ -296,7 +296,7 @@ function QuickScanBoard({
 }) {
   return (
     <Reveal>
-      <div className="overflow-hidden rounded-[30px] border border-white/10 bg-[#10110f]/72">
+      <div className="premium-surface overflow-hidden rounded-[30px] border border-white/10 bg-[#10110f]/72">
         <div className="grid border-b border-white/8 px-5 py-4 font-display text-[8px] uppercase tracking-[0.16em] text-text-muted md:grid-cols-[70px_0.72fr_1.4fr_auto] md:px-7">
           <span>Index</span>
           <span className="hidden md:block">System</span>
@@ -336,7 +336,7 @@ function QuickScanBoard({
                 <button
                   type="button"
                   onClick={() => onOpenProject(project.id)}
-                  className="inline-flex items-center gap-2 whitespace-nowrap text-sm text-text-primary transition hover:text-[#b7c6aa]"
+                  className="premium-action inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-full text-sm text-text-primary hover:text-[#b7c6aa]"
                 >
                   Case study <ArrowUpRight className="h-4 w-4" />
                 </button>
@@ -346,7 +346,7 @@ function QuickScanBoard({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${project.name} GitHub repository`}
-                    className="text-text-muted transition hover:text-text-primary"
+                    className="tap-target premium-action inline-flex items-center justify-center rounded-full text-text-muted hover:text-text-primary"
                   >
                     <Github className="h-4 w-4" />
                   </a>
@@ -381,13 +381,13 @@ export default function Projects({ onOpenProject }: { onOpenProject: (projectId:
             <p className="max-w-xl text-lg leading-relaxed text-text-secondary">
               Three products that show how I connect interface decisions, system architecture, and reliable execution.
             </p>
-            <div className="mt-7 inline-flex rounded-full border border-white/10 bg-[#10110f]/75 p-1" aria-label="Project viewing mode">
+            <div className="premium-surface mt-7 inline-flex rounded-full border border-white/10 bg-[#10110f]/75 p-1" aria-label="Project viewing mode">
               <button
                 type="button"
                 onClick={() => setViewMode('deep')}
                 aria-pressed={viewMode === 'deep'}
                 className={cn(
-                  'inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-sm transition',
+                  'premium-action inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm',
                   viewMode === 'deep' ? 'bg-white/[0.09] text-text-primary' : 'text-text-muted hover:text-text-secondary'
                 )}
               >
@@ -399,7 +399,7 @@ export default function Projects({ onOpenProject }: { onOpenProject: (projectId:
                 onClick={() => setViewMode('quick')}
                 aria-pressed={viewMode === 'quick'}
                 className={cn(
-                  'inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-sm transition',
+                  'premium-action inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm',
                   viewMode === 'quick' ? 'bg-white/[0.09] text-text-primary' : 'text-text-muted hover:text-text-secondary'
                 )}
               >

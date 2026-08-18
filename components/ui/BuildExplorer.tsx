@@ -308,20 +308,26 @@ export default function BuildExplorer({ isOpen, onClose, onOpenProject }: BuildE
         onClick={onClose}
       />
 
-      <div className="relative z-10 w-full max-w-3xl overflow-hidden rounded-[32px] border border-white/8 bg-[#171716]/96 shadow-[0_32px_90px_-48px_rgba(0,0,0,0.95)]">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="build-explorer-title"
+        className="premium-surface relative z-10 w-full max-w-3xl overflow-hidden rounded-[32px] border border-white/8 bg-[#171716]/96 shadow-[0_32px_90px_-48px_rgba(0,0,0,0.95)]"
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.08] via-transparent to-white/[0.02] pointer-events-none" />
         <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent pointer-events-none" />
 
         <div className="relative flex items-center justify-between border-b border-white/6 px-5 py-4 md:px-6">
           <div>
-            <p className="font-display text-[10px] uppercase tracking-[0.24em] text-accent/80">Build Explorer</p>
+            <p id="build-explorer-title" className="font-display text-[10px] uppercase tracking-[0.24em] text-accent/80">Build Explorer</p>
             <p className="mt-1 text-sm text-text-secondary">Search projects, system layers, and contact actions</p>
           </div>
 
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/6 bg-white/[0.02] text-text-secondary transition-colors hover:border-accent/20 hover:text-accent"
+            aria-label="Close build explorer"
+            className="tap-target premium-action inline-flex items-center justify-center rounded-xl border border-white/6 bg-white/[0.02] text-text-secondary hover:border-accent/20 hover:text-accent"
           >
             <X className="h-4 w-4" />
           </button>
@@ -335,6 +341,9 @@ export default function BuildExplorer({ isOpen, onClose, onOpenProject }: BuildE
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               onKeyDown={onListKeyDown}
+              aria-label="Search portfolio"
+              aria-controls="build-explorer-results"
+              aria-activedescendant={filteredItems[activeIndex]?.id}
               placeholder="Search builds, architecture, stack, contact..."
               className="w-full bg-transparent text-sm text-text-primary outline-none placeholder:text-text-muted"
             />
@@ -345,7 +354,7 @@ export default function BuildExplorer({ isOpen, onClose, onOpenProject }: BuildE
           </div>
         </div>
 
-        <div className="relative max-h-[65vh] overflow-y-auto px-3 py-3 md:px-4">
+        <div id="build-explorer-results" className="relative max-h-[65vh] overflow-y-auto px-3 py-3 md:px-4">
           {groupedItems.length === 0 ? (
             <div className="rounded-2xl border border-white/6 bg-white/[0.02] px-4 py-6 text-center">
               <p className="font-display text-[11px] uppercase tracking-[0.22em] text-text-muted">No results</p>
@@ -369,11 +378,12 @@ export default function BuildExplorer({ isOpen, onClose, onOpenProject }: BuildE
                     return (
                       <button
                         key={item.id}
+                        id={item.id}
                         type="button"
                         onMouseEnter={() => setActiveIndex(runningIndex)}
                         onClick={() => executeItem(item)}
                         className={cn(
-                          'flex w-full items-start gap-4 rounded-2xl border px-4 py-4 text-left transition-all duration-200',
+                          'premium-action flex min-h-11 w-full items-start gap-4 rounded-2xl border px-4 py-4 text-left',
                           isActive
                             ? 'border-accent/20 bg-accent/[0.08]'
                             : 'border-white/6 bg-white/[0.02] hover:border-accent/12 hover:bg-white/[0.03]'

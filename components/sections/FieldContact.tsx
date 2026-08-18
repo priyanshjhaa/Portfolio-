@@ -38,13 +38,13 @@ export default function FieldContact({ active = false }: { active?: boolean }) {
           <div className="w-full lg:max-w-md lg:justify-self-end">
             <a
               href={`mailto:${contact.email}`}
-              className="group inline-flex min-h-[64px] w-full items-center justify-between gap-5 rounded-full bg-[#e7e5df] px-8 text-base font-medium text-[#101110] transition hover:bg-white"
+              className="premium-action group inline-flex min-h-[64px] w-full items-center justify-between gap-5 rounded-full bg-[#e7e5df] px-8 text-base font-medium text-[#101110] hover:bg-white"
             >
               Let&apos;s build something useful
               <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
 
-            <div className="mt-5 divide-y divide-white/8 rounded-[24px] border border-white/10 bg-[#10110f]/68 px-5">
+            <div className="premium-surface mt-5 divide-y divide-white/8 rounded-[24px] border border-white/10 bg-[#10110f]/68 px-5">
               <div className="grid grid-cols-[105px_1fr] gap-4 py-4">
                 <p className="field-label">Base</p>
                 <p className="text-sm text-text-secondary">{contact.location}</p>
@@ -60,16 +60,16 @@ export default function FieldContact({ active = false }: { active?: boolean }) {
             </div>
 
             <div className="mt-7 flex flex-wrap gap-5">
-              <a href={contact.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-text-primary">
+              <a href={contact.github} target="_blank" rel="noopener noreferrer" className="premium-action inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-text-muted hover:text-text-primary">
                 <Github className="h-4 w-4" /> GitHub
               </a>
-              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-text-primary">
+              <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" className="premium-action inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-text-muted hover:text-text-primary">
                 <Linkedin className="h-4 w-4" /> LinkedIn
               </a>
-              <a href={contact.x} target="_blank" rel="noopener noreferrer" className="text-sm text-text-muted hover:text-text-primary">
+              <a href={contact.x} target="_blank" rel="noopener noreferrer" className="premium-action inline-flex min-h-11 items-center rounded-full text-sm text-text-muted hover:text-text-primary">
                 X / Twitter
               </a>
-              <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-text-primary">
+              <a href={`mailto:${contact.email}`} className="premium-action inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-text-muted hover:text-text-primary">
                 <Mail className="h-4 w-4" /> Email
               </a>
             </div>

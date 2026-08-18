@@ -47,7 +47,7 @@ export default function ArchitecturePlayback({ project }: ArchitecturePlaybackPr
   const progress = stages.length === 1 ? 100 : (activeIndex / (stages.length - 1)) * 100;
 
   return (
-    <div className="mt-10 overflow-hidden rounded-[28px] border border-white/10 bg-[#10110f]/84">
+    <div className="premium-surface mt-10 overflow-hidden rounded-[28px] border border-white/10 bg-[#10110f]/84">
       <div className="flex flex-col gap-4 border-b border-white/8 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
           <span className="h-2 w-2 rounded-full bg-[#b7c6aa] shadow-[0_0_16px_rgba(183,198,170,.45)]" />
@@ -61,7 +61,7 @@ export default function ArchitecturePlayback({ project }: ArchitecturePlaybackPr
             if (activeIndex === stages.length - 1) setActiveIndex(0);
             setIsPlaying((current) => !current);
           }}
-          className="inline-flex min-h-9 items-center justify-center gap-2 self-start rounded-full border border-white/10 px-4 font-display text-[8px] uppercase tracking-[0.16em] text-text-secondary transition hover:border-[#b7c6aa]/35 hover:text-text-primary sm:self-auto"
+          className="premium-action inline-flex min-h-11 items-center justify-center gap-2 self-start rounded-full border border-white/10 px-4 font-display text-[8px] uppercase tracking-[0.16em] text-text-secondary hover:border-[#b7c6aa]/35 hover:text-text-primary sm:self-auto"
           aria-label={isPlaying ? 'Pause architecture playback' : 'Play architecture walkthrough'}
         >
           {isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
@@ -74,8 +74,8 @@ export default function ArchitecturePlayback({ project }: ArchitecturePlaybackPr
           <div className="relative">
             <div className="absolute left-4 top-4 h-[calc(100%-2rem)] w-px bg-white/10 md:left-4 md:right-4 md:top-4 md:h-px md:w-auto">
               <span
-                className="block h-[var(--trace-progress)] w-px bg-[#b7c6aa]/70 transition-[height] duration-500 md:h-px md:w-[var(--trace-progress)] md:transition-[width]"
-                style={{ '--trace-progress': `${progress}%` } as React.CSSProperties}
+                className="block h-full w-px origin-top scale-y-[var(--trace-scale)] bg-[#b7c6aa]/70 transition-transform duration-500 ease-[var(--ease-premium)] md:h-px md:w-full md:origin-left md:scale-x-[var(--trace-scale)] md:scale-y-100"
+                style={{ '--trace-scale': progress / 100 } as React.CSSProperties}
               />
             </div>
 
@@ -93,7 +93,7 @@ export default function ArchitecturePlayback({ project }: ArchitecturePlaybackPr
                       setActiveIndex(index);
                     }}
                     className={cn(
-                      'group grid min-h-16 grid-cols-[32px_1fr] items-center gap-3 rounded-2xl border px-3 py-2 text-left transition md:min-h-32 md:grid-cols-1 md:content-between md:gap-7',
+                      'premium-action group grid min-h-16 grid-cols-[32px_1fr] items-center gap-3 rounded-2xl border px-3 py-2 text-left md:min-h-32 md:grid-cols-1 md:content-between md:gap-7',
                       isActive
                         ? 'border-[#b7c6aa]/35 bg-[#b7c6aa]/[0.07]'
                         : 'border-transparent hover:border-white/10 hover:bg-white/[0.025]'

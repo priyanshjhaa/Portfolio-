@@ -48,7 +48,7 @@ export default function EngineeringTrace() {
             </div>
             <div className="mt-7 grid gap-px overflow-hidden rounded-[24px] border border-white/8 bg-white/8 sm:grid-cols-2">
               {receipts.map((receipt, index) => (
-                <div key={receipt} className="min-h-40 bg-[#111210] p-5 transition-colors hover:bg-[#151714]">
+                <div key={receipt} className="premium-interactive min-h-40 bg-[#111210] p-5 hover:bg-[#151714]">
                   <div className="flex items-center justify-between">
                     <span className="font-display text-[9px] text-[#b7c6aa]">0{index + 1}</span>
                     <Check className="h-3.5 w-3.5 text-text-muted" />
@@ -104,7 +104,7 @@ export default function EngineeringTrace() {
               <h3 className="mt-4 font-editorial text-4xl tracking-[-0.035em] text-text-primary">
                 Useful across the product boundary.
               </h3>
-              <a href="#contact" className="mt-6 inline-flex items-center gap-2 text-sm text-[#b7c6aa] hover:text-text-primary">
+              <a href="#contact" className="premium-action mt-6 inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-[#b7c6aa] hover:text-text-primary">
                 Start a conversation <ArrowUpRight className="h-4 w-4" />
               </a>
             </div>

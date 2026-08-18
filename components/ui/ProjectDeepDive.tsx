@@ -37,14 +37,14 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(183,198,170,0.06),transparent_30%)]" />
 
       <div className="relative mx-auto max-w-[1320px] px-4 pb-12 pt-4 md:px-8">
-        <header className="sticky top-4 z-30 flex items-center justify-between rounded-full border border-white/10 bg-[#111210]/88 px-4 py-3 shadow-[0_16px_60px_-40px_rgba(0,0,0,.95)] backdrop-blur-xl md:px-5">
+        <header className="premium-surface sticky top-4 z-30 flex items-center justify-between rounded-full border border-white/10 bg-[#111210]/88 px-4 py-3 md:px-5">
           {pageMode ? (
-            <Link href="/#projects" className="inline-flex items-center gap-2 text-sm text-text-secondary transition hover:text-text-primary">
+            <Link href="/#projects" className="premium-action inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-text-secondary hover:text-text-primary">
               <ArrowLeft className="h-4 w-4" />
               Selected work
             </Link>
           ) : (
-            <button type="button" onClick={onClose} className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-text-primary">
+            <button type="button" onClick={onClose} className="premium-action inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-text-secondary hover:text-text-primary">
               <X className="h-4 w-4" />
               Close
             </button>
@@ -73,12 +73,12 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
             <p className="mt-5 text-base leading-relaxed text-text-secondary">{project.details}</p>
             <div className="mt-8 flex flex-wrap gap-5">
               {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-text-primary hover:text-[#b7c6aa]">
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="premium-action inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-text-primary hover:text-[#b7c6aa]">
                   Live product <ArrowUpRight className="h-4 w-4" />
                 </a>
               )}
               {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-text-primary">
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="premium-action inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-text-secondary hover:text-text-primary">
                   GitHub <Github className="h-4 w-4" />
                 </a>
               )}
@@ -92,7 +92,7 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
               <SectionLabel>Product proof</SectionLabel>
               <span className="font-display text-[8px] uppercase tracking-[0.16em] text-text-muted">Real interface / landing surface</span>
             </div>
-            <div className="overflow-hidden rounded-[28px] border border-white/10 bg-black shadow-[0_42px_120px_-70px_rgba(0,0,0,.95)]">
+            <div className="premium-surface overflow-hidden rounded-[28px] border border-white/10 bg-black shadow-[0_42px_120px_-70px_rgba(0,0,0,.95)]">
               <div className="flex items-center gap-2 border-b border-white/8 px-5 py-4">
                 <span className="h-2.5 w-2.5 rounded-full bg-white/75" />
                 <span className="h-2.5 w-2.5 rounded-full bg-white/25" />
@@ -228,7 +228,7 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
             <SectionLabel>End of case study</SectionLabel>
             <h2 className="mt-4 font-editorial text-5xl tracking-[-0.045em] text-text-primary">Back to the work.</h2>
           </div>
-          <Link href="/#projects" className="inline-flex items-center gap-3 self-start rounded-full border border-white/12 px-6 py-3 text-sm text-text-primary transition hover:border-[#b7c6aa]/40 hover:bg-[#b7c6aa]/[0.05] sm:self-auto">
+          <Link href="/#projects" className="premium-action inline-flex min-h-11 items-center gap-3 self-start rounded-full border border-white/12 px-6 py-3 text-sm text-text-primary hover:border-[#b7c6aa]/40 hover:bg-[#b7c6aa]/[0.05] sm:self-auto">
             Selected work <ArrowUpRight className="h-4 w-4" />
           </Link>
         </section>
