@@ -141,7 +141,7 @@ export default function Hero() {
               <Terminal className="h-3 w-3" /> Active product lab
             </div>
             <h1 className="mt-6 max-w-[760px] font-editorial text-[clamp(3.7rem,7.4vw,7.3rem)] leading-[0.86] tracking-[-0.06em] text-text-primary">
-              I make complex systems feel <span className="italic text-[#f0a6ca]">clear.</span>
+              I make complex systems feel <span className="block pt-[0.1em] italic leading-[0.82] text-[#f0a6ca]">clear.</span>
             </h1>
             <p className="mt-7 text-lg text-text-secondary md:text-xl">
               Full-stack <KineticWords words={heroRoles} className="min-w-[13rem] font-editorial text-[1.12em] italic text-[#9fc8ff] md:min-w-[17rem]" />
