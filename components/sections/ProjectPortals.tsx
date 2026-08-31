@@ -147,8 +147,8 @@ export default function ProjectPortals() {
                     </div>
                     <span className="mt-5 inline-flex items-center gap-2 text-sm text-text-muted group-hover:text-text-primary">Inspect system <ArrowUpRight className="h-4 w-4" /></span>
                   </div>
-                  <div className="relative min-h-52 overflow-hidden border-t border-white/8 bg-black sm:border-l sm:border-t-0">
-                    <Image src={project.image!} alt={`${project.name} product preview`} fill quality={75} className="object-contain transition duration-700 group-hover:scale-[1.015]" sizes="(max-width: 768px) 100vw, 380px" />
+                  <div className="theme-inset-surface relative min-h-52 overflow-hidden border-t border-white/8 sm:border-l sm:border-t-0">
+                    <Image src={project.image!} alt={`${project.name} product preview`} fill quality={75} className="object-cover object-top transition duration-700 group-hover:scale-[1.015]" sizes="(max-width: 768px) 100vw, 380px" />
                   </div>
                 </Link>
               );
