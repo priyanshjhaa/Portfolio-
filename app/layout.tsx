@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import GlobalPointerGlow from '@/components/ui/GlobalPointerGlow';
+import SystemTelemetry from '@/components/ui/SystemTelemetry';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({
         <div className="runner-ambient" aria-hidden="true">
           <span /><span /><span /><span /><span /><span />
         </div>
+        <SystemTelemetry />
         <GlobalPointerGlow />
         <div className="site-content">{children}</div>
       </body>

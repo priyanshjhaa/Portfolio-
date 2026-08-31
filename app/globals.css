@@ -1819,6 +1819,125 @@ body::before {
   animation-delay: -14s;
 }
 
+.system-telemetry {
+  --telemetry-line: rgba(var(--line-rgb), 0.075);
+  --telemetry-signal: rgba(159, 200, 255, 0.42);
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.76;
+  contain: strict;
+}
+
+.system-telemetry-route {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+}
+
+.system-telemetry-route-ghost,
+.system-telemetry-route-live {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1;
+}
+
+.system-telemetry-route-ghost {
+  stroke: var(--telemetry-line);
+  stroke-dasharray: 2 14;
+}
+
+.system-telemetry-route-live {
+  stroke: var(--telemetry-signal);
+  stroke-linecap: square;
+  filter: drop-shadow(0 0 5px rgba(159, 200, 255, 0.16));
+}
+
+.system-telemetry-nodes circle {
+  fill: rgb(var(--page-rgb));
+  stroke: var(--telemetry-signal);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.system-telemetry-rail {
+  position: absolute;
+  top: 10vh;
+  bottom: 8vh;
+  width: 1px;
+  background: repeating-linear-gradient(to bottom, var(--telemetry-line) 0 4px, transparent 4px 14px);
+}
+
+.system-telemetry-rail::before,
+.system-telemetry-rail::after {
+  position: absolute;
+  left: -2px;
+  width: 5px;
+  height: 1px;
+  content: '';
+  background: rgba(var(--line-rgb), 0.2);
+}
+
+.system-telemetry-rail::before { top: 0; }
+.system-telemetry-rail::after { bottom: 0; }
+.system-telemetry-rail-left { left: clamp(12px, 2vw, 34px); }
+.system-telemetry-rail-right { right: clamp(12px, 2vw, 34px); }
+
+.system-telemetry-packet {
+  position: absolute;
+  left: -3px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--telemetry-signal);
+  background: rgb(var(--page-rgb));
+  box-shadow: 0 0 16px rgba(159, 200, 255, 0.18);
+  transform: translateY(-50%);
+}
+
+.system-telemetry-scan {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -16vw;
+  width: 16vw;
+  background: linear-gradient(90deg, transparent, rgba(159, 200, 255, 0.025), transparent);
+  transform: translate3d(0, 0, 0) skewX(-12deg);
+  animation: telemetry-scan 18s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
+.system-telemetry-coordinate {
+  position: absolute;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 7px;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  color: rgba(var(--text-muted-rgb), 0.58);
+}
+
+.system-telemetry-coordinate-top {
+  top: 12vh;
+  left: clamp(22px, 3vw, 52px);
+  writing-mode: vertical-rl;
+}
+
+.system-telemetry-coordinate-bottom {
+  right: clamp(22px, 3vw, 52px);
+  bottom: 10vh;
+  writing-mode: vertical-rl;
+}
+
+@keyframes telemetry-scan {
+  0%, 18% { transform: translate3d(0, 0, 0) skewX(-12deg); opacity: 0; }
+  28% { opacity: 1; }
+  70% { opacity: 0.72; }
+  82%, 100% { transform: translate3d(132vw, 0, 0) skewX(-12deg); opacity: 0; }
+}
+
 @keyframes system-signal-drift {
   0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
   40% { transform: translate3d(3px, -6px, 0); }
@@ -2030,6 +2149,12 @@ html[data-theme="light"] .runner-ambient {
   opacity: 0.34;
 }
 
+html[data-theme="light"] .system-telemetry {
+  --telemetry-line: rgba(var(--line-rgb), 0.09);
+  --telemetry-signal: rgba(66, 109, 145, 0.38);
+  opacity: 0.62;
+}
+
 .premium-interactive {
   transform: translateZ(0);
   transition:
@@ -2115,6 +2240,20 @@ html[data-theme="light"] .runner-ambient {
     display: none;
   }
 
+  .system-telemetry {
+    opacity: 0.46;
+  }
+
+  .system-telemetry-route {
+    width: 140%;
+    transform: translateX(-20%);
+  }
+
+  .system-telemetry-coordinate,
+  .system-telemetry-rail-right {
+    display: none;
+  }
+
   .hero-pixel-sky {
     height: 55%;
     opacity: 0.48;
@@ -2145,5 +2284,9 @@ html[data-theme="light"] .runner-ambient {
 
   .runner-ambient span {
     animation: none;
+  }
+
+  .system-telemetry-scan {
+    display: none;
   }
 }
