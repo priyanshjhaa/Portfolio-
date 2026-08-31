@@ -20,6 +20,10 @@
     --surface-glass: rgba(17, 18, 16, 0.9);
     --surface-soft: rgba(255, 255, 255, 0.035);
     --shadow-color: rgba(0, 0, 0, 0.65);
+    --runner-ink: #d9d8d1;
+    --runner-panel: #171916;
+    --runner-signal: #9fc8ff;
+    --runner-ground: rgba(217, 216, 209, 0.42);
     --global-pointer-x: 50vw;
     --global-pointer-y: 50vh;
     --global-pointer-active: 0;
@@ -245,6 +249,10 @@ html[data-theme="light"] {
   --accent-bright-rgb: 55, 78, 101;
   --signal-rgb: 153, 91, 98;
   --signal-bright-rgb: 123, 61, 70;
+  --runner-ink: #343832;
+  --runner-panel: #f4f2eb;
+  --runner-signal: #426d91;
+  --runner-ground: rgba(52, 56, 50, 0.42);
 }
 
 @layer components {
@@ -1357,6 +1365,203 @@ html[data-theme="light"] {
 
   .global-pointer-glow {
     display: none;
+  }
+}
+
+/* Original offline-runner visual system */
+.runner-world {
+  position: relative;
+  min-height: 210px;
+  overflow: hidden;
+  border: 1px solid rgba(var(--line-rgb), 0.12);
+  border-radius: 18px;
+  color: var(--runner-ink);
+  background:
+    linear-gradient(rgba(var(--line-rgb), 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--line-rgb), 0.025) 1px, transparent 1px),
+    rgba(var(--surface-rgb), 0.42);
+  background-size: 24px 24px;
+}
+
+.runner-world::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.06), transparent);
+  transform: translateX(-100%);
+  animation: runner-scan 8s linear infinite;
+}
+
+.runner-world-hud {
+  position: absolute;
+  inset: 16px 18px auto;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: rgb(var(--text-muted-rgb));
+}
+
+.runner-world-track {
+  position: absolute;
+  inset: auto 6% 34px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.runner-world-mascot {
+  width: clamp(74px, 12vw, 112px);
+  flex: none;
+  filter: drop-shadow(0 10px 16px var(--shadow-color));
+}
+
+.runner-world-obstacles {
+  display: flex;
+  min-width: 56%;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(24px, 7vw, 92px);
+}
+
+.runner-creature-ink {
+  fill: var(--runner-ink);
+}
+
+.runner-creature-panel {
+  fill: var(--runner-panel);
+}
+
+.runner-creature-signal {
+  fill: var(--runner-signal);
+}
+
+.runner-creature-detail {
+  fill: rgba(var(--accent-rgb), 0.62);
+}
+
+.runner-creature-cable,
+.runner-creature-antenna,
+.runner-creature-check {
+  fill: none;
+  stroke: var(--runner-ink);
+  stroke-width: 4;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.runner-creature-check {
+  stroke: rgb(125 170 88);
+}
+
+.runner-cloud {
+  position: absolute;
+  width: 46px;
+  height: 12px;
+  border-top: 2px solid rgba(var(--line-rgb), 0.18);
+}
+
+.runner-cloud::before,
+.runner-cloud::after,
+.runner-cloud span {
+  position: absolute;
+  bottom: 10px;
+  width: 14px;
+  height: 8px;
+  content: "";
+  border: 2px solid rgba(var(--line-rgb), 0.18);
+  border-bottom: 0;
+}
+
+.runner-cloud::before { left: 8px; }
+.runner-cloud::after { left: 20px; bottom: 10px; height: 14px; }
+.runner-cloud span { left: 32px; }
+
+.runner-obstacle {
+  position: relative;
+  display: flex;
+  width: 42px;
+  height: 54px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--runner-ink);
+  background: rgb(var(--surface-rgb));
+  box-shadow: 6px -6px 0 rgba(var(--accent-rgb), 0.16);
+}
+
+.runner-obstacle-api { height: 42px; }
+.runner-obstacle-queue { width: 52px; height: 38px; }
+.runner-obstacle-deploy { height: 66px; border-top-color: var(--runner-signal); }
+.runner-obstacle-tool { width: 48px; height: 48px; transform: rotate(4deg); }
+
+.runner-obstacle-glyph {
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--runner-signal);
+}
+
+.runner-obstacle-label {
+  position: absolute;
+  bottom: -19px;
+  left: 50%;
+  width: max-content;
+  max-width: 92px;
+  transform: translateX(-50%);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.42rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(var(--text-muted-rgb));
+}
+
+.runner-ground {
+  position: absolute;
+  right: 0;
+  bottom: 31px;
+  left: 0;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--runner-ground) 0 18px, transparent 18px 25px);
+}
+
+.runner-ground::after {
+  position: absolute;
+  top: 7px;
+  left: 9%;
+  width: 74%;
+  height: 1px;
+  content: "";
+  background: repeating-linear-gradient(90deg, rgba(var(--line-rgb), 0.16) 0 4px, transparent 4px 11px);
+}
+
+@keyframes runner-scan {
+  to { transform: translateX(100%); }
+}
+
+@media (max-width: 639px) {
+  .runner-world {
+    min-height: 176px;
+  }
+
+  .runner-world-obstacles {
+    min-width: 50%;
+  }
+
+  .runner-obstacle {
+    transform: scale(0.84);
+    transform-origin: bottom center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .runner-world::before {
+    animation: none;
+    transform: none;
   }
 }
 
