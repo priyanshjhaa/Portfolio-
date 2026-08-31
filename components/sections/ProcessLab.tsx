@@ -17,7 +17,7 @@ function StageVisual({ index }: { index: number }) {
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={stage.id}
-        className="relative min-h-[310px] overflow-hidden rounded-[26px] border border-white/10 bg-black/25 p-5 sm:p-7"
+        className="theme-control-surface relative min-h-[310px] overflow-hidden rounded-[26px] border border-white/10 p-5 sm:p-7"
         initial={reduceMotion ? false : { opacity: 0, scale: 0.975 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={reduceMotion ? undefined : { opacity: 0, scale: 1.015 }}
@@ -32,7 +32,7 @@ function StageVisual({ index }: { index: number }) {
         </div>
 
         <div className="relative mt-10 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-          <motion.div className="rounded-2xl border border-white/10 bg-[#111210] p-4" animate={reduceMotion ? undefined : { y: [0, -4, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
+          <motion.div className="theme-raised-surface rounded-2xl border border-white/10 p-4 shadow-[0_14px_32px_-28px_var(--shadow-color)]" animate={reduceMotion ? undefined : { y: [0, -4, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
             <span className="block h-2 w-16 rounded-full bg-white/10" />
             <span className="mt-3 block h-2 w-full rounded-full bg-white/6" />
             <span className="mt-2 block h-2 w-4/5 rounded-full bg-white/6" />
@@ -115,7 +115,7 @@ export default function ProcessLab() {
                   onClick={() => setActiveIndex(index)}
                   className={cn('premium-action flex min-h-[64px] items-center gap-3 rounded-[18px] border px-3 text-left', isActive ? 'border-white/14 bg-white/[0.06]' : 'border-transparent hover:border-white/8 hover:bg-white/[0.025]')}
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/25" style={{ color: isActive ? stage.accent : undefined }}>
+                  <span className="theme-inset-surface flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10" style={{ color: isActive ? stage.accent : undefined }}>
                     <Icon className="h-4 w-4" />
                   </span>
                   <span>

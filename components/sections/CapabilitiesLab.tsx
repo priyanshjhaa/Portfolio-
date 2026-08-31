@@ -52,7 +52,7 @@ export default function CapabilitiesLab() {
                     isActive ? 'border-white/14 bg-white/[0.06]' : 'border-transparent bg-white/[0.012] hover:border-white/8 hover:bg-white/[0.03]'
                   )}
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-black/25" style={{ color: capability.accent }}>
+                  <span className="theme-inset-surface flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10" style={{ color: capability.accent }}>
                     <Icon className="h-4 w-4" />
                   </span>
                   <span>
@@ -93,13 +93,13 @@ export default function CapabilitiesLab() {
             <div className="relative z-10 flex h-full min-h-[520px] flex-col justify-between">
               <div className="flex items-center justify-between">
                 <p className="field-label">Live capability graph</p>
-                <span className="rounded-full border border-white/10 bg-black/25 px-3 py-1.5 font-display text-[8px] uppercase tracking-[0.16em] text-text-muted">Focus to inspect</span>
+                <span className="theme-inset-surface rounded-full border border-white/10 px-3 py-1.5 font-display text-[8px] uppercase tracking-[0.16em] text-text-muted">Focus to inspect</span>
               </div>
 
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={active.id}
-                  className="mx-auto w-full max-w-xl rounded-[28px] border bg-[#0c0d0c]/92 p-6 text-center shadow-[0_30px_80px_-48px_rgba(0,0,0,.95)] md:p-8"
+                  className="theme-raised-surface mx-auto w-full max-w-xl rounded-[28px] border p-6 text-center shadow-[0_30px_80px_-48px_var(--shadow-color)] md:p-8"
                   style={{ borderColor: `${active.accent}35`, boxShadow: `0 30px 90px -58px ${active.accent}` }}
                   initial={reduceMotion ? false : { opacity: 0, scale: 0.96, y: 12 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}

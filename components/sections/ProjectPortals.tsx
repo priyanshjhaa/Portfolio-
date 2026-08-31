@@ -84,7 +84,7 @@ export default function ProjectPortals() {
                   <div className="relative grid grid-cols-4 gap-2">
                     {(active.flowSteps ?? []).slice(0, 4).map((step, index) => (
                       <div key={step}>
-                        <span className="mb-3 block h-3 w-3 rounded-full border bg-[#10110f]" style={{ borderColor: visual.accent, boxShadow: index === 2 ? `0 0 20px ${visual.accent}66` : undefined }} />
+                        <span className="theme-raised-surface mb-3 block h-3 w-3 rounded-full border" style={{ borderColor: visual.accent, boxShadow: index === 2 ? `0 0 20px ${visual.accent}66` : undefined }} />
                         <p className="max-w-24 font-display text-[8px] uppercase leading-relaxed tracking-[0.13em] text-text-muted">{step}</p>
                       </div>
                     ))}
@@ -101,7 +101,7 @@ export default function ProjectPortals() {
               </div>
             </div>
 
-            <div className="flex min-h-[600px] flex-col bg-black/20">
+            <div className="theme-inset-surface flex min-h-[600px] flex-col">
               <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
                 <p className="field-label">Production frame</p>
                 <p className="font-display text-[8px] uppercase tracking-[0.14em] text-text-muted">{visual.visualCue}</p>

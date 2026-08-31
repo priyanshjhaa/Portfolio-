@@ -36,13 +36,13 @@ export default function EvidenceLab() {
             <h3 className="mt-6 font-editorial text-4xl tracking-[-0.035em] text-text-primary">{currentBuild.title}</h3>
             <p className="mt-4 text-sm leading-relaxed text-text-secondary">{currentBuild.description}</p>
 
-            <div className="relative mt-8 overflow-hidden rounded-[26px] border border-white/9 bg-[#0e100e] p-5">
+            <div className="theme-raised-surface relative mt-8 overflow-hidden rounded-[26px] border border-white/9 p-5">
               <div className="absolute bottom-0 left-[29px] top-0 w-px bg-white/8" />
               <motion.div className="absolute left-[27px] top-0 h-20 w-[5px] rounded-full bg-[#b8e986] blur-[1px]" animate={reduceMotion ? undefined : { y: [0, 250, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }} />
               <div className="relative space-y-5">
                 {currentBuild.items.map((item, index) => (
                   <div key={item} className="grid grid-cols-[18px_1fr] gap-4">
-                    <span className="mt-1.5 h-3 w-3 rounded-full border border-[#b8e986]/55 bg-[#0e100e]" />
+                    <span className="theme-raised-surface mt-1.5 h-3 w-3 rounded-full border border-[#b8e986]/55" />
                     <div>
                       <p className="font-display text-[8px] uppercase tracking-[0.15em] text-text-muted">Workstream 0{index + 1}</p>
                       <p className="mt-2 text-sm leading-relaxed text-text-secondary">{item}</p>
@@ -60,7 +60,7 @@ export default function EvidenceLab() {
             </div>
             <div className="mt-7 grid gap-px overflow-hidden rounded-[26px] border border-white/8 bg-white/8 sm:grid-cols-2">
               {receipts.map((receipt, index) => (
-                <motion.div key={receipt} className="group min-h-44 bg-[#111210] p-5" whileHover={reduceMotion ? undefined : { backgroundColor: '#151814' }}>
+                <motion.div key={receipt} className="theme-raised-surface group min-h-44 p-5" whileHover={reduceMotion ? undefined : { y: -2 }}>
                   <div className="flex items-center justify-between">
                     <span className="font-display text-[9px] text-[#b8e986]">0{index + 1}</span>
                     <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-text-muted transition group-hover:border-[#b8e986]/30 group-hover:text-[#b8e986]"><Check className="h-3.5 w-3.5" /></span>
@@ -85,7 +85,7 @@ export default function EvidenceLab() {
               <div className="space-y-9">
                 {recentBuilds.map((entry, index) => (
                   <motion.div key={entry.period} className="relative grid gap-4 pl-8 sm:grid-cols-[110px_1fr]" initial={reduceMotion ? false : { opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-10%' }} transition={{ duration: 0.5, delay: index * 0.08 }}>
-                    <span className="absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full border border-[#b8e986]/70 bg-[#0d0e0d] shadow-[0_0_14px_rgba(184,233,134,.18)]" />
+                    <span className="theme-raised-surface absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full border border-[#b8e986]/70 shadow-[0_0_14px_rgba(184,233,134,.18)]" />
                     <p className="font-display text-[9px] uppercase tracking-[0.16em] text-[#b8e986]">{entry.period}</p>
                     <div className="space-y-2 rounded-[20px] border border-white/8 bg-white/[0.018] p-4">
                       {entry.items.map((item) => (

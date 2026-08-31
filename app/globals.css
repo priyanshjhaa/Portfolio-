@@ -19,6 +19,9 @@
     --page-background: #0c0d0c;
     --surface-glass: rgba(17, 18, 16, 0.9);
     --surface-soft: rgba(255, 255, 255, 0.035);
+    --control-surface: rgba(0, 0, 0, 0.24);
+    --control-surface-raised: #111210;
+    --control-surface-inset: rgba(0, 0, 0, 0.28);
     --shadow-color: rgba(0, 0, 0, 0.65);
     --runner-ink: #d9d8d1;
     --runner-panel: #171916;
@@ -244,6 +247,9 @@ html[data-theme="light"] {
   --page-background: #f4f2eb;
   --surface-glass: rgba(250, 248, 241, 0.9);
   --surface-soft: rgba(28, 30, 27, 0.045);
+  --control-surface: rgba(52, 56, 50, 0.045);
+  --control-surface-raised: #fbfaf6;
+  --control-surface-inset: rgba(52, 56, 50, 0.065);
   --shadow-color: rgba(49, 47, 40, 0.18);
   --accent-rgb: 83, 106, 129;
   --accent-bright-rgb: 55, 78, 101;
@@ -1860,6 +1866,18 @@ body::before {
 
 .field-card {
   isolation: isolate;
+}
+
+.theme-control-surface {
+  background-color: var(--control-surface);
+}
+
+.theme-raised-surface {
+  background-color: var(--control-surface-raised);
+}
+
+.theme-inset-surface {
+  background-color: var(--control-surface-inset);
 }
 
 :root {
