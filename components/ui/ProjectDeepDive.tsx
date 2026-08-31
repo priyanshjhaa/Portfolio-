@@ -39,7 +39,7 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
       <div className="relative mx-auto max-w-[1320px] px-4 pb-12 pt-4 md:px-8">
         <header className="premium-surface sticky top-4 z-30 flex items-center justify-between rounded-full border border-white/10 bg-[#111210]/88 px-4 py-3 md:px-5">
           {pageMode ? (
-            <Link href="/#projects" className="premium-action inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-text-secondary hover:text-text-primary">
+            <Link href="/#work" className="premium-action inline-flex min-h-11 items-center gap-2 rounded-full text-sm text-text-secondary hover:text-text-primary">
               <ArrowLeft className="h-4 w-4" />
               Selected work
             </Link>
@@ -228,7 +228,7 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
             <SectionLabel>End of case study</SectionLabel>
             <h2 className="mt-4 font-editorial text-5xl tracking-[-0.045em] text-text-primary">Back to the work.</h2>
           </div>
-          <Link href="/#projects" className="premium-action inline-flex min-h-11 items-center gap-3 self-start rounded-full border border-white/12 px-6 py-3 text-sm text-text-primary hover:border-[#b7c6aa]/40 hover:bg-[#b7c6aa]/[0.05] sm:self-auto">
+          <Link href="/#work" className="premium-action inline-flex min-h-11 items-center gap-3 self-start rounded-full border border-white/12 px-6 py-3 text-sm text-text-primary hover:border-[#b7c6aa]/40 hover:bg-[#b7c6aa]/[0.05] sm:self-auto">
             Selected work <ArrowUpRight className="h-4 w-4" />
           </Link>
         </section>

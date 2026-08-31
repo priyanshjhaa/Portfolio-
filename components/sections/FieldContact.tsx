@@ -1,9 +1,12 @@
 import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { contact } from '@/lib/data';
+import { Magnetic, MotionReveal } from '@/components/ui/LabMotion';
 
 export default function FieldContact({ active = false }: { active?: boolean }) {
   return (
     <footer id="contact" className="relative overflow-hidden px-4 pb-8 pt-20 md:px-8 md:pt-28">
+      <div className="pointer-events-none absolute bottom-[-18rem] left-[-12rem] h-[40rem] w-[40rem] rounded-full bg-[#f0a6ca]/[0.07] blur-[130px]" />
+      <div className="pointer-events-none absolute bottom-[-20rem] right-[-8rem] h-[38rem] w-[38rem] rounded-full bg-[#9fc8ff]/[0.06] blur-[130px]" />
       <div className="contact-marquee border-y border-white/8 py-4" aria-hidden="true">
         <div className="contact-marquee-track flex min-w-max gap-10 font-editorial text-2xl italic text-text-muted">
           {Array.from({ length: 6 }, (_, index) => (
@@ -18,7 +21,7 @@ export default function FieldContact({ active = false }: { active?: boolean }) {
       </div>
 
       <div className="mx-auto max-w-[1240px] py-20 md:py-28">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+        <MotionReveal className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div>
             <div className="flex items-center gap-3">
               <span className={`h-2 w-2 rounded-full ${active ? 'bg-[#b7c6aa] shadow-[0_0_18px_rgba(183,198,170,.55)]' : 'bg-text-muted'}`} />
@@ -36,13 +39,15 @@ export default function FieldContact({ active = false }: { active?: boolean }) {
           </div>
 
           <div className="w-full lg:max-w-md lg:justify-self-end">
-            <a
-              href={`mailto:${contact.email}`}
-              className="premium-action group inline-flex min-h-[64px] w-full items-center justify-between gap-5 rounded-full bg-[#e7e5df] px-8 text-base font-medium text-[#101110] hover:bg-white"
-            >
-              Let&apos;s build something useful
-              <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </a>
+            <Magnetic>
+              <a
+                href={`mailto:${contact.email}`}
+                className="premium-action group inline-flex min-h-[68px] w-full items-center justify-between gap-5 rounded-full bg-[#e7e5df] px-8 text-base font-medium text-[#101110] shadow-[0_20px_60px_-28px_rgba(240,166,202,.6)] hover:bg-white"
+              >
+                Let&apos;s build something useful
+                <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </a>
+            </Magnetic>
 
             <div className="premium-surface mt-5 divide-y divide-white/8 rounded-[24px] border border-white/10 bg-[#10110f]/68 px-5">
               <div className="grid grid-cols-[105px_1fr] gap-4 py-4">
@@ -74,7 +79,7 @@ export default function FieldContact({ active = false }: { active?: boolean }) {
               </a>
             </div>
           </div>
-        </div>
+        </MotionReveal>
       </div>
 
       <div className="mx-auto flex max-w-[1240px] flex-col gap-3 border-t border-white/8 py-6 text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between">

@@ -3,10 +3,15 @@
 import { useEffect, useState } from 'react';
 import { Command, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import ThemeToggle from '@/components/ui/ThemeToggle';
+import NavbarRunnerProgress from '@/components/ui/NavbarRunnerProgress';
+import { AnimatePresence } from '@/components/ui/LabMotion';
 
 const navLinks = [
-  { name: 'Work', href: '#projects' },
-  { name: 'Trace', href: '#trace' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Process', href: '#process' },
+  { name: 'Work', href: '#work' },
+  { name: 'Evidence', href: '#evidence' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -18,13 +23,18 @@ interface NavigationProps {
 export default function Navigation({ activeSection, onOpenExplorer }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [runnerDocked, setRunnerDocked] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 36);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 36);
+      const origin = document.querySelector('[data-runner-origin]');
+      setRunnerDocked(origin ? origin.getBoundingClientRect().bottom < 104 : activeSection !== '#intro');
+    };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [activeSection]);
 
   const scrollTo = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     event.preventDefault();
@@ -38,18 +48,18 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
         className={cn(
           'pointer-events-auto mx-auto flex max-w-[1240px] items-center justify-between transition-[background-color,border-color,box-shadow,padding] duration-500 ease-[var(--ease-premium)]',
           isScrolled
-            ? 'premium-surface rounded-full border border-white/10 bg-[#111210]/86 px-4 py-2.5 md:px-5'
+            ? 'premium-surface rounded-full border border-white/10 px-4 py-2.5 md:px-5'
             : 'border-b border-white/8 px-1 pb-4 pt-1'
         )}
       >
-        <a href="#hero" onClick={(event) => scrollTo(event, '#hero')} className="group flex items-center gap-3">
+        <a href="#intro" onClick={(event) => scrollTo(event, '#intro')} className="tap-target group flex items-center gap-3">
           <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] font-editorial text-lg text-text-primary transition-colors group-hover:border-[#b7c6aa]/45">
             P
           </span>
           <span className="hidden sm:block">
             <span className="block text-sm font-medium text-text-primary">Priyansh Jha</span>
             <span className="block font-display text-[9px] uppercase tracking-[0.18em] text-text-muted">
-              Product engineer
+              Product lab / online
             </span>
           </span>
         </a>
@@ -62,7 +72,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
               onClick={(event) => scrollTo(event, link.href)}
               aria-current={activeSection === link.href ? 'page' : undefined}
               className={cn(
-                'premium-action inline-flex min-h-11 items-center rounded-full px-4 py-2 text-sm',
+                'premium-action mx-0.5 inline-flex min-h-11 items-center rounded-full px-3 py-2 text-sm',
                 activeSection === link.href ? 'bg-white/[0.07] text-text-primary' : 'text-text-muted hover:text-text-primary'
               )}
             >
@@ -79,6 +89,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
               <Command className="h-3 w-3" /> K
             </span>
           </button>
+          <ThemeToggle className="ml-1" />
         </div>
 
         <button
@@ -93,10 +104,18 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
         </button>
       </nav>
 
+      <AnimatePresence>
+        {runnerDocked && (
+          <div className="pointer-events-none mx-auto max-w-[1240px] px-3 md:px-5">
+            <NavbarRunnerProgress activeSection={activeSection} />
+          </div>
+        )}
+      </AnimatePresence>
+
       <div
         id="mobile-navigation"
         className={cn(
-          'premium-surface pointer-events-auto mx-auto mt-2 max-w-[1240px] origin-top transform-gpu rounded-3xl border border-white/10 bg-[#111210]/96 transition-[opacity,transform,border-color] duration-300 ease-[var(--ease-premium)] md:hidden',
+          'premium-surface pointer-events-auto mx-auto mt-2 max-w-[1240px] origin-top transform-gpu rounded-3xl border border-white/10 transition-[opacity,transform,border-color] duration-300 ease-[var(--ease-premium)] md:hidden',
           isOpen ? 'translate-y-0 scale-100 opacity-100' : 'pointer-events-none -translate-y-2 scale-[0.98] border-transparent opacity-0'
         )}
         aria-hidden={!isOpen}
@@ -122,6 +141,10 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
           >
             Explore builds <Command className="h-4 w-4" />
           </button>
+          <div className="flex min-h-11 items-center justify-between rounded-2xl px-4 py-2 text-sm text-text-secondary">
+            <span>Appearance</span>
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>

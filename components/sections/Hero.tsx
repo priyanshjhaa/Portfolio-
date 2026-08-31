@@ -1,115 +1,133 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowDownRight, ArrowUpRight, Github, MapPin } from 'lucide-react';
-import { contact, currentBuild, heroContent, projects } from '@/lib/data';
-import { getProjectImageAspectRatio } from '@/lib/project-images';
-import Reveal from '@/components/ui/Reveal';
+import { ArrowDownRight, ArrowUpRight, Braces, Github, MapPin, Terminal } from 'lucide-react';
+import { contact, heroContent, heroRoles, runnerSceneById } from '@/lib/data';
+import { KineticWords, MotionReveal, PointerParallax, motion, useReducedMotion } from '@/components/ui/LabMotion';
+import RunnerChapterScene from '@/components/ui/RunnerChapterScene';
+import { TechCreature } from '@/components/ui/RunnerVisuals';
 
-function WorkbenchTrace() {
-  const atlas = projects.find((project) => project.id === 'atlas')!;
+function PortraitScene() {
+  const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative">
-      <div className="absolute -inset-12 bg-[radial-gradient(circle,rgba(183,198,170,0.13),transparent_64%)] blur-2xl" />
-      <div className="field-card premium-surface premium-interactive relative overflow-hidden rounded-[30px] border border-white/10 bg-[#111311]/92 shadow-[0_35px_90px_-45px_rgba(0,0,0,0.95)]">
-        <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
-          <div>
-            <p className="font-display text-[9px] uppercase tracking-[0.2em] text-[#b7c6aa]">Live workbench</p>
-            <p className="mt-1 text-sm text-text-primary">Atlas / change intelligence</p>
-          </div>
-          <div className="flex items-center gap-2 rounded-full border border-[#b7c6aa]/20 bg-[#b7c6aa]/[0.07] px-3 py-1.5 font-display text-[9px] uppercase tracking-[0.16em] text-[#b7c6aa]">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#b7c6aa]" />
-            Building
-          </div>
-        </div>
-
-        <div className="p-4">
-          <div
-            className="relative overflow-hidden rounded-[20px] border border-white/10 bg-black"
-            style={{ aspectRatio: getProjectImageAspectRatio(atlas.id) }}
-          >
-            <Image
-              src={atlas.image!}
-              alt=""
-              fill
-              quality={35}
-              aria-hidden="true"
-              className="scale-110 object-cover opacity-25 blur-2xl"
-              sizes="(max-width: 1024px) 100vw, 520px"
-            />
-            <Image
-              src={atlas.image!}
-              alt="Atlas engineering intelligence product"
-              fill
-              priority
-              quality={82}
-              className="object-contain object-center opacity-90 transition duration-700 hover:scale-[1.005] hover:opacity-100"
-              sizes="(max-width: 1024px) 100vw, 520px"
-            />
-          </div>
-        </div>
-
-        <div className="grid gap-4 border-t border-white/8 px-5 py-5 sm:grid-cols-[1fr_auto] sm:items-center">
-          <div>
-            <p className="font-display text-[8px] uppercase tracking-[0.2em] text-text-muted">Product outcome</p>
-            <p className="mt-2 max-w-sm text-sm leading-relaxed text-text-secondary">
-              Evidence-backed impact reports before software changes reach production.
-            </p>
-          </div>
-          <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/[0.035] text-text-primary transition hover:border-[#b7c6aa]/35 hover:bg-[#b7c6aa]/[0.08] hover:text-[#b7c6aa]">
-            <ArrowUpRight className="h-4 w-4" />
-          </span>
-        </div>
-
-        <div className="relative border-t border-white/8 px-5 py-5">
-          <svg viewBox="0 0 620 104" className="h-auto w-full" aria-hidden="true">
-            <defs>
-              <linearGradient id="traceLine" x1="0" x2="1">
-                <stop offset="0" stopColor="#b7c6aa" stopOpacity=".18" />
-                <stop offset=".5" stopColor="#b7c6aa" stopOpacity=".65" />
-                <stop offset="1" stopColor="#b7c6aa" stopOpacity=".18" />
-              </linearGradient>
-            </defs>
-            <path d="M28 52H152L202 24H326L380 76H498L592 36" fill="none" stroke="url(#traceLine)" strokeWidth="1.3" />
-            {[28, 152, 202, 326, 380, 498, 592].map((x, index) => (
-              <g key={x}>
-                <circle cx={x} cy={[52, 52, 24, 24, 76, 76, 36][index]} r={index === 3 ? 7 : 4} fill="#101210" stroke="#b7c6aa" strokeWidth="1.5" />
-                {index === 3 && <circle cx={x} cy="24" r="14" fill="none" stroke="#b7c6aa" strokeOpacity=".14" />}
-              </g>
-            ))}
-          </svg>
-          <div className="mt-2 grid grid-cols-3 gap-3 font-display text-[8px] uppercase tracking-[0.16em] text-text-muted">
-            <span>Change intent</span>
-            <span className="text-center">Evidence graph</span>
-            <span className="text-right">Impact report</span>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-3 border-t border-white/8 bg-white/[0.018] px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <span className="h-2 w-2 shrink-0 rounded-full bg-[#b7c6aa] shadow-[0_0_14px_rgba(183,198,170,.4)]" />
-            <p className="font-display text-[8px] uppercase tracking-[0.2em] text-text-muted">Now shipping</p>
-          </div>
-          <p className="max-w-xs text-sm leading-relaxed text-text-primary sm:text-right">{currentBuild.items[0]}</p>
-        </div>
+    <PointerParallax className="relative mx-auto h-[430px] w-full max-w-[560px] [transform-style:preserve-3d] sm:h-[610px]">
+      <div className="portrait-stage absolute inset-[4%] overflow-hidden rounded-[24px] border">
+        <div className="portrait-stage-grid absolute inset-0" />
+        <motion.div className="absolute inset-y-0 w-px bg-gradient-to-b from-transparent via-[#9fc8ff]/35 to-transparent" animate={reduceMotion ? undefined : { x: [20, 470, 20] }} transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }} />
+        <motion.div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#b8e986]/30 to-transparent" animate={reduceMotion ? undefined : { y: [40, 510, 40] }} transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut' }} />
       </div>
-    </div>
+
+      <div className="absolute left-[1%] top-[5%] h-14 w-14 border-l border-t border-[#9fc8ff]/30" />
+      <div className="absolute bottom-[5%] right-[1%] h-14 w-14 border-b border-r border-[#b8e986]/25" />
+      <div className="absolute right-[7%] top-[9%] font-display text-[8px] uppercase tracking-[0.18em] text-text-muted">x:72.40 / y:18.06</div>
+
+      <svg className="absolute inset-0 h-full w-full overflow-visible" viewBox="0 0 560 610" fill="none" aria-hidden="true">
+        <path d="M22 168H118L162 122H248L292 166H406L454 118H538" stroke="rgba(159,200,255,.18)" />
+        <path d="M18 452H102L150 500H248L296 450H396L446 492H542" stroke="rgba(184,233,134,.14)" />
+        {[22, 118, 162, 248, 292, 406, 454, 538].map((x, index) => <circle key={`top-${x}`} cx={x} cy={[168, 168, 122, 122, 166, 166, 118, 118][index]} r="3" fill="#0d0f0e" stroke="rgba(159,200,255,.5)" />)}
+        {[18, 102, 150, 248, 296, 396, 446, 542].map((x, index) => <rect key={`bottom-${x}`} x={x - 3} y={[449, 449, 497, 497, 447, 447, 489, 489][index]} width="6" height="6" fill="#0d0f0e" stroke="rgba(184,233,134,.4)" />)}
+        <motion.path d="M22 168H118L162 122H248L292 166H406L454 118H538" stroke="#9fc8ff" strokeWidth="2" strokeDasharray="12 190" animate={reduceMotion ? undefined : { strokeDashoffset: [0, -420] }} transition={{ duration: 7, repeat: Infinity, ease: 'linear' }} />
+        <motion.circle className="portrait-orbit" cx="280" cy="305" r="238" strokeDasharray="3 15" animate={reduceMotion ? undefined : { rotate: 360 }} transition={{ duration: 54, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '280px 305px' }} />
+      </svg>
+
+      <motion.div
+        className="absolute left-1/2 top-1/2 z-10 w-[64%] max-w-[370px] -translate-x-1/2 -translate-y-1/2 sm:w-[66%]"
+        initial={reduceMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="portrait-frame relative overflow-hidden rounded-[22px] border p-2">
+          <div className="relative aspect-[272/363] overflow-hidden rounded-[16px]">
+            <Image src="/profile/priyansh.webp" alt="Priyansh Jha" fill priority quality={75} className="object-cover object-center saturate-[0.92] contrast-[1.03]" sizes="(max-width: 640px) 64vw, 370px" />
+            <div className="portrait-image-wash absolute inset-0" />
+            <div className="portrait-caption absolute inset-x-4 bottom-4 rounded-[10px] border px-4 py-3 backdrop-blur-xl">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="portrait-caption-title text-sm font-medium">Priyansh Jha</p>
+                  <p className="portrait-caption-meta mt-1 font-display text-[8px] uppercase tracking-[0.17em]">Product engineer / builder</p>
+                </div>
+                <span className="h-2.5 w-2.5 rounded-full bg-[#b8e986] shadow-[0_0_16px_rgba(184,233,134,.6)]" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div className="portrait-chip portrait-chip-identity absolute left-0 top-[35%] z-20 flex items-center gap-3 rounded-[8px] border px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, 5, 0] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}>
+        <span className="h-1.5 w-1.5 bg-[#9fc8ff] shadow-[0_0_10px_rgba(159,200,255,.45)]" /> Identity node / Priyansh
+      </motion.div>
+      <motion.div className="portrait-chip portrait-chip-stack absolute bottom-[18%] right-0 z-20 flex items-center gap-2 rounded-[8px] border px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}>
+        <Braces className="h-3.5 w-3.5" /> Full-stack / end to end
+      </motion.div>
+      <motion.div className="portrait-chip portrait-chip-status absolute right-[2%] top-[24%] z-20 rounded-[6px] border px-3 py-2 font-display text-[8px] uppercase tracking-[0.17em] backdrop-blur-xl" animate={reduceMotion ? undefined : { y: [0, 5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}>
+        Status // available
+      </motion.div>
+      <div className="absolute bottom-[5%] left-[5%] z-20 flex items-end gap-2" aria-hidden="true">
+        <TechCreature state="running" className="w-[72px] drop-shadow-[0_12px_18px_rgba(0,0,0,.55)]" />
+        <span className="mb-2 font-display text-[7px] uppercase tracking-[0.14em] text-text-muted">run / identity</span>
+      </div>
+    </PointerParallax>
+  );
+}
+
+function HeroDetails({ onEnterWork }: { onEnterWork: () => void }) {
+  return (
+    <>
+      <p className="mt-5 max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg">
+        {heroContent.description} This page is the lab bench: follow the signals from capability to architecture to shipped proof.
+      </p>
+
+      <div className="mt-8 flex flex-wrap gap-2">
+        {heroContent.hiringValues.map((item, index) => (
+          <span key={item} className="rounded-full border border-white/9 bg-white/[0.025] px-3 py-2 text-xs text-text-secondary">
+            <span className="mr-2 font-display text-[8px] text-text-muted">0{index + 1}</span>{item}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+        <button type="button" onClick={onEnterWork} className="premium-action group inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full bg-[#eeeae2] px-6 text-sm font-medium text-[#101110] hover:bg-white">
+          Enter the work <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+        </button>
+        <a href={contact.github} target="_blank" rel="noopener noreferrer" className="premium-action inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full border border-white/12 bg-white/[0.03] px-6 text-sm text-text-primary hover:border-[#9fc8ff]/45 hover:bg-[#9fc8ff]/[0.06]">
+          GitHub <Github className="h-4 w-4" />
+        </a>
+        <a href={`mailto:${contact.email}`} className="inline-flex min-h-[52px] items-center justify-center gap-3 px-3 text-sm text-text-secondary transition hover:text-text-primary">
+          Start a conversation <ArrowUpRight className="h-4 w-4" />
+        </a>
+      </div>
+
+      <div className="mt-9 flex items-center gap-3 text-sm text-text-muted">
+        <span className="h-2 w-2 rounded-full bg-[#b8e986] shadow-[0_0_16px_rgba(184,233,134,.45)]" />
+        {contact.availability}
+      </div>
+    </>
   );
 }
 
 export default function Hero() {
-  const scrollToProjects = () => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+  const reduceMotion = useReducedMotion();
+  const scrollToWork = () => document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
     <section className="relative min-h-screen overflow-hidden px-4 pb-24 pt-28 md:px-8 md:pt-36">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[72vh] bg-[radial-gradient(circle_at_72%_22%,rgba(183,198,170,0.08),transparent_38%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-60 [background-image:linear-gradient(rgba(159,200,255,.025)_1px,transparent_1px),linear-gradient(90deg,rgba(159,200,255,.025)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" aria-hidden="true" />
+      <div className="pointer-events-none absolute left-[-18rem] top-[-14rem] h-[40rem] w-[40rem] rounded-full bg-[#9fc8ff]/[0.055] blur-[150px]" aria-hidden="true" />
+      <div className="pointer-events-none absolute right-[-20rem] top-[8rem] h-[42rem] w-[42rem] rounded-full bg-[#b8e986]/[0.035] blur-[170px]" aria-hidden="true" />
+      <div className="hero-pixel-sky" aria-hidden="true"><span /><span /><span /></div>
+      <div className="pointer-events-none absolute left-6 top-[44%] hidden items-center gap-3 font-display text-[8px] uppercase tracking-[0.18em] text-white/20 xl:flex" aria-hidden="true">
+        <span className="h-px w-10 bg-white/15" /> runner.kernel / ready
+      </div>
+      <div className="pointer-events-none absolute bottom-[10%] right-8 hidden font-display text-[8px] uppercase tracking-[0.18em] text-white/20 xl:block" aria-hidden="true">viewport / responsive</div>
+
       <div className="relative mx-auto max-w-[1240px]">
-        <div className="grid min-h-[calc(100vh-9rem)] items-center gap-16 lg:grid-cols-[1.08fr_0.92fr]">
-          <Reveal>
+        <div className="grid min-h-[calc(100vh-9rem)] gap-x-16 gap-y-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+          <MotionReveal className="lg:col-start-1 lg:row-start-1 lg:self-end">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.035] font-editorial text-2xl text-text-primary">
+              <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] font-editorial text-2xl text-text-primary">
                 PJ
+                <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-[#0d0e0d] bg-[#b8e986]" />
               </div>
               <div>
                 <p className="text-sm font-medium text-text-primary">Priyansh Jha</p>
@@ -119,61 +137,31 @@ export default function Hero() {
               </div>
             </div>
 
-            <p className="mt-10 font-display text-[10px] uppercase tracking-[0.24em] text-[#b7c6aa]">
-              {heroContent.eyebrow}
-            </p>
-            <h1 className="mt-5 max-w-[760px] font-editorial text-[clamp(3.6rem,7.5vw,7.2rem)] leading-[0.88] tracking-[-0.055em] text-text-primary">
-              Products with <span className="italic text-[#b7c6aa]">clarity.</span>
-              <br />
-              Systems with spine.
+            <div className="mt-10 inline-flex items-center gap-2 rounded-[6px] border border-[#9fc8ff]/20 bg-[#9fc8ff]/[0.04] px-3 py-1.5 font-display text-[9px] uppercase tracking-[0.2em] text-text-secondary">
+              <Terminal className="h-3 w-3" /> Active product lab
+            </div>
+            <h1 className="mt-6 max-w-[760px] font-editorial text-[clamp(3.7rem,7.4vw,7.3rem)] leading-[0.86] tracking-[-0.06em] text-text-primary">
+              I make complex systems feel <span className="block pt-[0.1em] italic leading-[0.82] text-[#f0a6ca]">clear.</span>
             </h1>
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-text-secondary md:text-xl">
-              I turn ambiguous product ideas into reliable developer tools, workflow systems, and SaaS products built to survive real use.
+            <p className="mt-7 text-lg text-text-secondary md:text-xl">
+              Full-stack <KineticWords words={heroRoles} className="min-w-[13rem] font-editorial text-[1.12em] italic text-[#9fc8ff] md:min-w-[17rem]" />
             </p>
+            <div className="hidden lg:block"><HeroDetails onEnterWork={scrollToWork} /></div>
+          </MotionReveal>
 
-            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 border-y border-white/8 py-4">
-              {heroContent.hiringValues.map((item) => (
-                <span key={item} className="text-sm text-text-secondary">
-                  {item}
-                </span>
-              ))}
-            </div>
+          <MotionReveal delay={0.12} className="lg:col-start-2 lg:row-start-1 lg:pl-2">
+            <PortraitScene />
+          </MotionReveal>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={scrollToProjects}
-                className="premium-action group inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full bg-[#e7e5df] px-6 text-sm font-medium text-[#101110] hover:bg-white"
-              >
-                Explore work
-                <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
-              </button>
-              <a
-                href={contact.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="premium-action inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full border border-white/12 bg-white/[0.03] px-6 text-sm text-text-primary hover:border-[#b7c6aa]/40 hover:bg-[#b7c6aa]/[0.06]"
-              >
-                GitHub <Github className="h-4 w-4" />
-              </a>
-              <a
-                href={`mailto:${contact.email}`}
-                className="inline-flex min-h-[52px] items-center justify-center gap-3 px-3 text-sm text-text-secondary transition hover:text-text-primary"
-              >
-                Start a conversation <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </div>
-
-            <div className="mt-9 flex items-center gap-3 text-sm text-text-muted">
-              <span className="h-2 w-2 rounded-full bg-[#b7c6aa] shadow-[0_0_16px_rgba(183,198,170,0.45)]" />
-              {contact.availability}
-            </div>
-          </Reveal>
-
-          <Reveal delay={120} className="lg:pl-4">
-            <WorkbenchTrace />
-          </Reveal>
+          <MotionReveal delay={0.08} className="-mt-2 lg:hidden">
+            <HeroDetails onEnterWork={scrollToWork} />
+          </MotionReveal>
         </div>
+        <MotionReveal delay={0.08} className="mt-10 md:mt-16">
+          <div data-runner-origin>
+            <RunnerChapterScene scene={runnerSceneById.intro} compact />
+          </div>
+        </MotionReveal>
       </div>
     </section>
   );
