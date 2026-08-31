@@ -115,7 +115,7 @@ export function RunnerWorld({
   obstaclesX?: MotionValue<string>;
 }) {
   return (
-    <div className={cn('runner-world', className)}>
+    <div className={cn('runner-world', className)} aria-hidden="true">
       <div className="runner-world-hud">
         <span>{eyebrow}</span>
         <span>CHK / {checkpoint}</span>

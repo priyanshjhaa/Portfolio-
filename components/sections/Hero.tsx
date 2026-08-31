@@ -5,6 +5,7 @@ import { ArrowDownRight, ArrowUpRight, Braces, Github, MapPin, Terminal } from '
 import { contact, heroContent, heroRoles, runnerSceneById } from '@/lib/data';
 import { KineticWords, MotionReveal, PointerParallax, motion, useReducedMotion } from '@/components/ui/LabMotion';
 import RunnerChapterScene from '@/components/ui/RunnerChapterScene';
+import { TechCreature } from '@/components/ui/RunnerVisuals';
 
 function PortraitScene() {
   const reduceMotion = useReducedMotion();
@@ -62,6 +63,10 @@ function PortraitScene() {
       <motion.div className="absolute right-[2%] top-[24%] z-20 rounded-[6px] border border-[#b8e986]/20 bg-[#0d110e]/90 px-3 py-2 font-display text-[8px] uppercase tracking-[0.17em] text-[#cdeab5] backdrop-blur-xl" animate={reduceMotion ? undefined : { y: [0, 5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}>
         Status // available
       </motion.div>
+      <div className="absolute bottom-[5%] left-[5%] z-20 flex items-end gap-2" aria-hidden="true">
+        <TechCreature state="running" className="w-[72px] drop-shadow-[0_12px_18px_rgba(0,0,0,.55)]" />
+        <span className="mb-2 font-display text-[7px] uppercase tracking-[0.14em] text-text-muted">run / identity</span>
+      </div>
     </PointerParallax>
   );
 }
@@ -110,18 +115,9 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 opacity-60 [background-image:linear-gradient(rgba(159,200,255,.025)_1px,transparent_1px),linear-gradient(90deg,rgba(159,200,255,.025)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" aria-hidden="true" />
       <div className="pointer-events-none absolute left-[-18rem] top-[-14rem] h-[40rem] w-[40rem] rounded-full bg-[#9fc8ff]/[0.055] blur-[150px]" aria-hidden="true" />
       <div className="pointer-events-none absolute right-[-20rem] top-[8rem] h-[42rem] w-[42rem] rounded-full bg-[#b8e986]/[0.035] blur-[170px]" aria-hidden="true" />
-      <svg className="pointer-events-none absolute inset-x-0 top-16 h-[76%] w-full opacity-55" viewBox="0 0 1440 760" fill="none" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 124H146L204 182H394L460 116H618" stroke="rgba(159,200,255,.12)" />
-        <path d="M824 68H1040L1116 144H1292L1360 212H1440" stroke="rgba(255,255,255,.08)" />
-        <path d="M0 606H202L268 540H488L556 608H704" stroke="rgba(184,233,134,.08)" />
-        <path d="M1018 760V654L1082 590V406L1150 338V248" stroke="rgba(159,200,255,.09)" />
-        <motion.path d="M0 124H146L204 182H394L460 116H618" stroke="#9fc8ff" strokeWidth="1.5" strokeDasharray="14 220" animate={reduceMotion ? undefined : { strokeDashoffset: [0, -470] }} transition={{ duration: 9, repeat: Infinity, ease: 'linear' }} />
-        <circle cx="204" cy="182" r="3" fill="#0d0e0d" stroke="rgba(159,200,255,.5)" />
-        <rect x="1078" y="586" width="8" height="8" fill="#0d0e0d" stroke="rgba(159,200,255,.35)" />
-        <circle cx="1360" cy="212" r="3" fill="#0d0e0d" stroke="rgba(255,255,255,.3)" />
-      </svg>
+      <div className="hero-pixel-sky" aria-hidden="true"><span /><span /><span /></div>
       <div className="pointer-events-none absolute left-6 top-[44%] hidden items-center gap-3 font-display text-[8px] uppercase tracking-[0.18em] text-white/20 xl:flex" aria-hidden="true">
-        <span className="h-px w-10 bg-white/15" /> sys.node.01
+        <span className="h-px w-10 bg-white/15" /> runner.kernel / ready
       </div>
       <div className="pointer-events-none absolute bottom-[10%] right-8 hidden font-display text-[8px] uppercase tracking-[0.18em] text-white/20 xl:block" aria-hidden="true">viewport / responsive</div>
 

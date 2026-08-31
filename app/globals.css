@@ -1506,6 +1506,10 @@ html[data-theme="light"] {
   box-shadow: 6px -6px 0 rgba(var(--accent-rgb), 0.16);
 }
 
+.runner-obstacle.hidden {
+  display: none;
+}
+
 .runner-obstacle-api { height: 42px; }
 .runner-obstacle-queue { width: 52px; height: 38px; }
 .runner-obstacle-deploy { height: 66px; border-top-color: var(--runner-signal); }
@@ -1561,7 +1565,11 @@ html[data-theme="light"] {
   }
 
   .runner-world-obstacles {
-    min-width: 50%;
+    min-width: 46%;
+  }
+
+  .runner-world-mascot {
+    width: 68px;
   }
 
   .runner-obstacle {
@@ -1615,7 +1623,7 @@ body::before {
   opacity: 0.42;
 }
 
-.system-guides {
+.runner-ambient {
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -1624,20 +1632,20 @@ body::before {
   opacity: 0.58;
 }
 
-.system-guides span {
+.runner-ambient span {
   position: absolute;
   display: block;
   animation: system-signal-drift 18s ease-in-out infinite;
   will-change: transform;
 }
 
-.system-guides span::before,
-.system-guides span::after {
+.runner-ambient span::before,
+.runner-ambient span::after {
   position: absolute;
   content: "";
 }
 
-.system-guides span:nth-child(1) {
+.runner-ambient span:nth-child(1) {
   left: 3vw;
   top: 22vh;
   width: 34px;
@@ -1646,7 +1654,7 @@ body::before {
   border-top: 1px solid rgba(159, 200, 255, 0.25);
 }
 
-.system-guides span:nth-child(1)::before {
+.runner-ambient span:nth-child(1)::before {
   left: 7px;
   top: 7px;
   width: 4px;
@@ -1654,7 +1662,7 @@ body::before {
   border: 1px solid rgba(159, 200, 255, 0.42);
 }
 
-.system-guides span:nth-child(2) {
+.runner-ambient span:nth-child(2) {
   right: 3vw;
   top: 42vh;
   width: 52px;
@@ -1663,7 +1671,7 @@ body::before {
   animation-delay: -4s;
 }
 
-.system-guides span:nth-child(2)::after {
+.runner-ambient span:nth-child(2)::after {
   right: 0;
   top: -3px;
   width: 7px;
@@ -1672,7 +1680,7 @@ body::before {
   background: #0d0e0d;
 }
 
-.system-guides span:nth-child(3) {
+.runner-ambient span:nth-child(3) {
   left: 4vw;
   top: 68vh;
   width: 44px;
@@ -1682,7 +1690,7 @@ body::before {
   animation-delay: -8s;
 }
 
-.system-guides span:nth-child(4) {
+.runner-ambient span:nth-child(4) {
   right: 4vw;
   top: 78vh;
   width: 8px;
@@ -1693,7 +1701,7 @@ body::before {
   animation-delay: -11s;
 }
 
-.system-guides span:nth-child(5) {
+.runner-ambient span:nth-child(5) {
   left: 2vw;
   top: 48vh;
   width: 62px;
@@ -1702,7 +1710,7 @@ body::before {
   animation-delay: -6s;
 }
 
-.system-guides span:nth-child(5)::before {
+.runner-ambient span:nth-child(5)::before {
   left: 18px;
   top: -3px;
   width: 1px;
@@ -1711,7 +1719,7 @@ body::before {
   box-shadow: 12px 0 rgba(255, 255, 255, 0.12), 24px 0 rgba(255, 255, 255, 0.12);
 }
 
-.system-guides span:nth-child(6) {
+.runner-ambient span:nth-child(6) {
   right: 2vw;
   top: 15vh;
   width: 1px;
@@ -1725,6 +1733,42 @@ body::before {
   40% { transform: translate3d(3px, -6px, 0); }
   72% { transform: translate3d(-2px, 4px, 0); }
 }
+
+.hero-pixel-sky {
+  position: absolute;
+  inset: 5rem 0 auto;
+  height: 72%;
+  pointer-events: none;
+  opacity: 0.7;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+.hero-pixel-sky::before {
+  position: absolute;
+  top: 39%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: repeating-linear-gradient(90deg, rgba(var(--line-rgb), 0.09) 0 24px, transparent 24px 34px);
+}
+
+.hero-pixel-sky span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(var(--line-rgb), 0.08);
+  box-shadow:
+    6px 0 rgba(var(--line-rgb), 0.08),
+    12px 0 rgba(var(--line-rgb), 0.08),
+    18px 0 rgba(var(--line-rgb), 0.08),
+    6px -6px rgba(var(--line-rgb), 0.08),
+    12px -6px rgba(var(--line-rgb), 0.08);
+}
+
+.hero-pixel-sky span:nth-child(1) { left: 12%; top: 16%; }
+.hero-pixel-sky span:nth-child(2) { right: 18%; top: 8%; transform: scale(0.72); }
+.hero-pixel-sky span:nth-child(3) { right: 8%; top: 58%; transform: scale(0.5); }
 
 .site-content {
   isolation: isolate;
@@ -1803,7 +1847,7 @@ html[data-theme="light"] .field-card {
   box-shadow: 0 32px 80px -60px var(--shadow-color);
 }
 
-html[data-theme="light"] .system-guides {
+html[data-theme="light"] .runner-ambient {
   opacity: 0.34;
 }
 
@@ -1888,8 +1932,13 @@ html[data-theme="light"] .system-guides {
     animation-duration: 26s;
   }
 
-  .system-guides span:nth-child(n+5) {
+  .runner-ambient span:nth-child(n+5) {
     display: none;
+  }
+
+  .hero-pixel-sky {
+    height: 55%;
+    opacity: 0.48;
   }
 }
 
@@ -1898,7 +1947,7 @@ html[data-theme="light"] .system-guides {
     animation: none;
   }
 
-  .system-guides span {
+  .runner-ambient span {
     animation: none;
   }
 }

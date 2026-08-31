@@ -34,7 +34,7 @@ export default function RootLayout({
       <body className="antialiased">
         <div className="field-atmosphere" aria-hidden="true" />
         <div className="field-grid" aria-hidden="true" />
-        <div className="system-guides" aria-hidden="true">
+        <div className="runner-ambient" aria-hidden="true">
           <span /><span /><span /><span /><span /><span />
         </div>
         <GlobalPointerGlow />
