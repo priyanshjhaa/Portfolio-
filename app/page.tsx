@@ -1,18 +1,32 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import Navigation from '@/components/ui/Navigation';
 import BuildExplorer from '@/components/ui/BuildExplorer';
 import Hero from '@/components/sections/Hero';
-import Projects from '@/components/sections/Projects';
-import EngineeringTrace from '@/components/sections/EngineeringTrace';
 import FieldContact from '@/components/sections/FieldContact';
 
-const sectionIds = ['hero', 'projects', 'trace', 'contact'] as const;
+function ChapterLoading() {
+  return (
+    <div className="mx-auto min-h-[70vh] max-w-[1240px] px-4 py-24 md:px-8" aria-hidden="true">
+      <div className="h-3 w-36 animate-pulse rounded-full bg-white/8" />
+      <div className="mt-7 h-16 max-w-2xl animate-pulse rounded-3xl bg-white/[0.045]" />
+      <div className="mt-12 h-80 animate-pulse rounded-[32px] border border-white/8 bg-white/[0.025]" />
+    </div>
+  );
+}
+
+const CapabilitiesLab = dynamic(() => import('@/components/sections/CapabilitiesLab'), { loading: ChapterLoading });
+const ProcessLab = dynamic(() => import('@/components/sections/ProcessLab'), { loading: ChapterLoading });
+const ProjectPortals = dynamic(() => import('@/components/sections/ProjectPortals'), { loading: ChapterLoading });
+const EvidenceLab = dynamic(() => import('@/components/sections/EvidenceLab'), { loading: ChapterLoading });
+
+const sectionIds = ['intro', 'skills', 'process', 'work', 'evidence', 'contact'] as const;
 
 export default function Home() {
   const [isExplorerOpen, setIsExplorerOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<(typeof sectionIds)[number]>('hero');
+  const [activeSection, setActiveSection] = useState<(typeof sectionIds)[number]>('intro');
 
   const openProject = (projectId: string) => {
     window.location.href = `/systems/${projectId}`;
@@ -72,16 +86,24 @@ export default function Home() {
         }}
       />
 
-      <section id="hero">
+      <section id="intro">
         <Hero />
       </section>
 
-      <section id="projects" className="scroll-mt-20">
-        <Projects onOpenProject={openProject} />
+      <section id="skills" className="scroll-mt-20">
+        <CapabilitiesLab />
       </section>
 
-      <section id="trace" className="scroll-mt-20">
-        <EngineeringTrace />
+      <section id="process" className="scroll-mt-20">
+        <ProcessLab />
+      </section>
+
+      <section id="work" className="scroll-mt-20">
+        <ProjectPortals />
+      </section>
+
+      <section id="evidence" className="scroll-mt-20">
+        <EvidenceLab />
       </section>
 
       <FieldContact active={activeSection === 'contact'} />

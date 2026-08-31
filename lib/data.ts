@@ -1,5 +1,6 @@
 import { Project } from '@/types/project';
 import { SkillGroup, TimelineEntry } from '@/types/skill';
+import type { BuildStage, Capability, ProjectVisual } from '@/types/experience';
 
 export const projects: Project[] = [
   {
@@ -355,6 +356,156 @@ export const heroContent = {
   hiringValues: ['Product engineering', 'Backend systems', 'Developer tools', '0→1 shipping'],
   hiringNote:
     'Currently open to remote product engineering roles.',
+};
+
+export const heroRoles = [
+  'product engineer',
+  'system designer',
+  'workflow architect',
+  '0→1 builder',
+];
+
+export const capabilities: Capability[] = [
+  {
+    id: 'product-ui',
+    label: 'Product UI',
+    shortLabel: 'Interface',
+    description: 'I turn complex system behavior into interfaces people can understand, trust, and operate.',
+    skills: ['React', 'Next.js', 'TypeScript', 'Interaction design'],
+    projectIds: ['atlas', 'execute', 'axiom'],
+    accent: '#f0a6ca',
+    coordinate: { x: 20, y: 24 },
+  },
+  {
+    id: 'backend-systems',
+    label: 'Backend Systems',
+    shortLabel: 'Execution',
+    description: 'I design APIs, state transitions, queues, and execution paths that stay observable under real use.',
+    skills: ['Node.js', 'API design', 'Queues', 'Deterministic workflows'],
+    projectIds: ['execute', 'atlas', 'codemap'],
+    accent: '#9fc8ff',
+    coordinate: { x: 78, y: 22 },
+  },
+  {
+    id: 'data-infra',
+    label: 'Data & Infrastructure',
+    shortLabel: 'Foundation',
+    description: 'I shape data models and deployment boundaries so products can grow without losing clarity.',
+    skills: ['PostgreSQL', 'Supabase', 'Redis', 'Vercel'],
+    projectIds: ['atlas', 'codemap', 'axiom'],
+    accent: '#ffd27d',
+    coordinate: { x: 88, y: 68 },
+  },
+  {
+    id: 'ai-workflows',
+    label: 'AI Workflows',
+    shortLabel: 'Intelligence',
+    description: 'I connect model reasoning to grounded context, explicit controls, and deterministic application code.',
+    skills: ['LLM APIs', 'Retrieval', 'Tool loops', 'Safety boundaries'],
+    projectIds: ['atlas', 'execute', 'codemap'],
+    accent: '#b8e986',
+    coordinate: { x: 48, y: 86 },
+  },
+  {
+    id: 'shipping',
+    label: 'Shipping & Reliability',
+    shortLabel: 'Delivery',
+    description: 'I own the final mile: validation, failure recovery, deployment, telemetry, and iteration.',
+    skills: ['GitHub', 'Validation', 'Observability', 'Release loops'],
+    projectIds: ['execute', 'atlas', 'codemap'],
+    accent: '#c9a7ff',
+    coordinate: { x: 10, y: 70 },
+  },
+];
+
+export const buildStages: BuildStage[] = [
+  {
+    id: 'understand',
+    verb: 'Understand',
+    title: 'Find the real problem.',
+    description: 'Start with the user, the constraint, and the outcome—before choosing a framework or drawing a screen.',
+    artifact: 'Problem brief',
+    evidence: 'User intent → constraints → success signal',
+    accent: '#f0a6ca',
+  },
+  {
+    id: 'model',
+    verb: 'Model',
+    title: 'Give the system a spine.',
+    description: 'Define the states, responsibilities, data boundaries, and failure paths that make the product understandable.',
+    artifact: 'System map',
+    evidence: 'Entities → boundaries → transitions',
+    accent: '#9fc8ff',
+  },
+  {
+    id: 'build',
+    verb: 'Build',
+    title: 'Make the path tangible.',
+    description: 'Connect the interface to working execution early so the riskiest assumptions meet reality fast.',
+    artifact: 'Vertical slice',
+    evidence: 'UI ↔ API ↔ persistence',
+    accent: '#ffd27d',
+  },
+  {
+    id: 'protect',
+    verb: 'Protect',
+    title: 'Design the trust boundary.',
+    description: 'Add validation, permissions, approval gates, idempotency, and recovery where mistakes become expensive.',
+    artifact: 'Safety layer',
+    evidence: 'Validate → authorize → execute',
+    accent: '#b8e986',
+  },
+  {
+    id: 'ship',
+    verb: 'Ship',
+    title: 'Close the last mile.',
+    description: 'Deploy the complete workflow with useful telemetry and a clear path for diagnosing what happens next.',
+    artifact: 'Production release',
+    evidence: 'Deploy → observe → recover',
+    accent: '#c9a7ff',
+  },
+  {
+    id: 'improve',
+    verb: 'Improve',
+    title: 'Feed reality back in.',
+    description: 'Use product signals and failure evidence to improve both the experience and the architecture with intent.',
+    artifact: 'Learning loop',
+    evidence: 'Evidence → decision → next release',
+    accent: '#ff9b73',
+  },
+];
+
+export const projectVisuals: Record<string, ProjectVisual> = {
+  atlas: {
+    accent: '#b8e986',
+    softAccent: 'rgba(184, 233, 134, 0.15)',
+    labLabel: 'Change intelligence',
+    visualCue: 'Evidence graph / impact path',
+  },
+  execute: {
+    accent: '#f0a6ca',
+    softAccent: 'rgba(240, 166, 202, 0.15)',
+    labLabel: 'Agent operations',
+    visualCue: 'Intent / approval / execution',
+  },
+  codemap: {
+    accent: '#65dbc7',
+    softAccent: 'rgba(101, 219, 199, 0.15)',
+    labLabel: 'Codebase understanding',
+    visualCue: 'Repository / context / query',
+  },
+  axiom: {
+    accent: '#ffd27d',
+    softAccent: 'rgba(255, 210, 125, 0.14)',
+    labLabel: 'Freelancer operations',
+    visualCue: 'Lead / delivery / billing',
+  },
+  cinematch: {
+    accent: '#9fc8ff',
+    softAccent: 'rgba(159, 200, 255, 0.14)',
+    labLabel: 'Content discovery',
+    visualCue: 'Search / match / save',
+  },
 };
 
 export const currentBuild = {

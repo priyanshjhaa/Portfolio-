@@ -5,8 +5,10 @@ import { Command, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { name: 'Work', href: '#projects' },
-  { name: 'Trace', href: '#trace' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Process', href: '#process' },
+  { name: 'Work', href: '#work' },
+  { name: 'Evidence', href: '#evidence' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -42,14 +44,14 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
             : 'border-b border-white/8 px-1 pb-4 pt-1'
         )}
       >
-        <a href="#hero" onClick={(event) => scrollTo(event, '#hero')} className="group flex items-center gap-3">
+        <a href="#intro" onClick={(event) => scrollTo(event, '#intro')} className="group flex items-center gap-3">
           <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] font-editorial text-lg text-text-primary transition-colors group-hover:border-[#b7c6aa]/45">
             P
           </span>
           <span className="hidden sm:block">
             <span className="block text-sm font-medium text-text-primary">Priyansh Jha</span>
             <span className="block font-display text-[9px] uppercase tracking-[0.18em] text-text-muted">
-              Product engineer
+              Product lab / online
             </span>
           </span>
         </a>
@@ -62,7 +64,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
               onClick={(event) => scrollTo(event, link.href)}
               aria-current={activeSection === link.href ? 'page' : undefined}
               className={cn(
-                'premium-action inline-flex min-h-11 items-center rounded-full px-4 py-2 text-sm',
+                'premium-action mx-0.5 inline-flex min-h-11 items-center rounded-full px-3 py-2 text-sm',
                 activeSection === link.href ? 'bg-white/[0.07] text-text-primary' : 'text-text-muted hover:text-text-primary'
               )}
             >

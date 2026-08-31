@@ -4,25 +4,29 @@ A single-page portfolio for a full-stack product engineer building developer too
 
 ## Live Experience
 
-- **Homepage:** startup-focused positioning, selected work, engineering receipts, working principles, and contact paths.
+- **Interactive arrival:** kinetic product-engineering roles and a layered portal into the flagship systems.
+- **Capability playground:** skills are connected to product responsibility and the projects where they were used instead of shown as percentage bars.
+- **Build choreography:** a scroll-led and manually controllable path from understanding the problem through shipping and iteration.
+- **Project portals:** Atlas, Execute, and CodeMap share an interactive product stage; Axiom and Cinematch remain available in a compact scan.
+- **Shipping evidence:** active work, implementation receipts, and recent releases form a visible engineering trail.
 - **Project deep dives:** dedicated system pages for Atlas, CodeMap, Execute, Axiom, and Cinematch with product proof, architecture flows, ownership, production signals, and links.
 - **Build explorer:** a keyboard-first command palette for searching projects, skills, and contact actions with `Cmd/Ctrl + K`.
-- **Visual proof:** real project landing-page screenshots are framed directly inside the selected-work cards and system pages.
 
 ## Design System
 
 The interface is intentionally distinct without being visually noisy:
 
 - **Graphite canvas:** warm dark surfaces with bone-white typography for sustained readability.
-- **Stone and clay accents:** muted stone for system states and restrained clay for primary actions, featured work, and live signals.
+- **Creative-lab accents:** pink, blue, gold, green, and violet identify homepage chapters while the graphite/editorial identity stays intact.
 - **Continuous background:** subtle grid, dot, contour, and guide-line textures span the whole page without section dividers.
-- **Ambient interaction:** a slow global gradient drift and desktop-only cursor aura create depth behind the content.
-- **Reduced motion:** decorative motion and cursor effects disable cleanly when `prefers-reduced-motion` is enabled.
+- **Purposeful motion:** kinetic text, project crossfades, tracing paths, parallax frames, and magnetic actions communicate state or hierarchy.
+- **Reduced motion:** all choreography resolves to readable final states when `prefers-reduced-motion` is enabled.
 
 ## Stack
 
 - [Next.js](https://nextjs.org/) 16 with the App Router
 - React 19 and TypeScript
+- Motion for React
 - Tailwind CSS
 - Lucide icons
 - Local portfolio data and static project screenshots
@@ -36,9 +40,10 @@ app/
   layout.tsx               # Global texture, gradient, and cursor layers
   globals.css              # Visual system, motion, textures, and accessibility rules
 components/
-  sections/                # Hero, projects, leverage, receipts, process
-  ui/                      # Navigation, explorer, pointer effects, project deep dive
-lib/data.ts                # Portfolio copy, projects, proof, and project metadata
+  sections/                # Arrival, capability lab, process lab, project portals, evidence, contact
+  ui/                      # Motion primitives, navigation, explorer, pointer effects, project deep dive
+lib/data.ts                # Portfolio copy, projects, capabilities, build stages, and visual metadata
+types/experience.ts        # Homepage capability, process, and project-visual interfaces
 public/projects/           # Project landing-page screenshots
 ```
 
