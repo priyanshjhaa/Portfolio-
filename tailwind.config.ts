@@ -11,9 +11,9 @@ const config: Config = {
       colors: {
         // Quiet graphite surfaces
         gta: {
-          DEFAULT: '#0E0E0E',
-          top: '#111110',
-          bottom: '#201F1D',
+          DEFAULT: 'rgb(var(--page-rgb) / <alpha-value>)',
+          top: 'rgb(var(--surface-rgb) / <alpha-value>)',
+          bottom: 'rgb(var(--surface-strong-rgb) / <alpha-value>)',
         },
         // Soft stone system accent
         accent: {
@@ -31,9 +31,9 @@ const config: Config = {
         },
         // Text colors
         text: {
-          primary: '#EEECE6',
-          secondary: '#B8B6AF',
-          muted: '#7F817D',
+          primary: 'rgb(var(--text-primary-rgb) / <alpha-value>)',
+          secondary: 'rgb(var(--text-secondary-rgb) / <alpha-value>)',
+          muted: 'rgb(var(--text-muted-rgb) / <alpha-value>)',
         },
       },
       fontFamily: {

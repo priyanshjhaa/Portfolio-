@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Command, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const navLinks = [
   { name: 'Skills', href: '#skills' },
@@ -40,7 +41,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
         className={cn(
           'pointer-events-auto mx-auto flex max-w-[1240px] items-center justify-between transition-[background-color,border-color,box-shadow,padding] duration-500 ease-[var(--ease-premium)]',
           isScrolled
-            ? 'premium-surface rounded-full border border-white/10 bg-[#111210]/86 px-4 py-2.5 md:px-5'
+            ? 'premium-surface rounded-full border border-white/10 px-4 py-2.5 md:px-5'
             : 'border-b border-white/8 px-1 pb-4 pt-1'
         )}
       >
@@ -81,6 +82,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
               <Command className="h-3 w-3" /> K
             </span>
           </button>
+          <ThemeToggle className="ml-1" />
         </div>
 
         <button
@@ -98,7 +100,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
       <div
         id="mobile-navigation"
         className={cn(
-          'premium-surface pointer-events-auto mx-auto mt-2 max-w-[1240px] origin-top transform-gpu rounded-3xl border border-white/10 bg-[#111210]/96 transition-[opacity,transform,border-color] duration-300 ease-[var(--ease-premium)] md:hidden',
+          'premium-surface pointer-events-auto mx-auto mt-2 max-w-[1240px] origin-top transform-gpu rounded-3xl border border-white/10 transition-[opacity,transform,border-color] duration-300 ease-[var(--ease-premium)] md:hidden',
           isOpen ? 'translate-y-0 scale-100 opacity-100' : 'pointer-events-none -translate-y-2 scale-[0.98] border-transparent opacity-0'
         )}
         aria-hidden={!isOpen}
@@ -124,6 +126,10 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
           >
             Explore builds <Command className="h-4 w-4" />
           </button>
+          <div className="flex min-h-11 items-center justify-between rounded-2xl px-4 py-2 text-sm text-text-secondary">
+            <span>Appearance</span>
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>

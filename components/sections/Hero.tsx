@@ -52,10 +52,10 @@ function PortraitScene() {
         </div>
       </motion.div>
 
-      <motion.div className="absolute left-0 top-[35%] z-20 flex items-center gap-3 rounded-[8px] border border-white/12 bg-[#0c0e0d]/90 px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] text-text-secondary backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, 5, 0] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}>
+      <motion.div className="absolute left-0 top-[35%] z-20 flex items-center gap-3 rounded-[8px] border border-white/12 bg-[#0c0e0d]/90 px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] text-white/70 backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, 5, 0] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}>
         <span className="h-1.5 w-1.5 bg-[#9fc8ff] shadow-[0_0_10px_rgba(159,200,255,.45)]" /> Identity node / Priyansh
       </motion.div>
-      <motion.div className="absolute bottom-[18%] right-0 z-20 flex items-center gap-2 rounded-[8px] border border-[#9fc8ff]/20 bg-[#0c0f12]/90 px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] text-[#bcd9ff] backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}>
+      <motion.div className="absolute bottom-[18%] right-0 z-20 flex items-center gap-2 rounded-[8px] border border-[#9fc8ff]/20 bg-[#0c0f12]/90 px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] text-white/70 backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}>
         <Braces className="h-3.5 w-3.5" /> Full-stack / end to end
       </motion.div>
       <motion.div className="absolute right-[2%] top-[24%] z-20 rounded-[6px] border border-[#b8e986]/20 bg-[#0d110e]/90 px-3 py-2 font-display text-[8px] uppercase tracking-[0.17em] text-[#cdeab5] backdrop-blur-xl" animate={reduceMotion ? undefined : { y: [0, 5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}>
@@ -140,7 +140,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="mt-10 inline-flex items-center gap-2 rounded-[6px] border border-[#9fc8ff]/20 bg-[#9fc8ff]/[0.04] px-3 py-1.5 font-display text-[9px] uppercase tracking-[0.2em] text-[#bcd9ff]">
+            <div className="mt-10 inline-flex items-center gap-2 rounded-[6px] border border-[#9fc8ff]/20 bg-[#9fc8ff]/[0.04] px-3 py-1.5 font-display text-[9px] uppercase tracking-[0.2em] text-text-secondary">
               <Terminal className="h-3 w-3" /> Active product lab
             </div>
             <h1 className="mt-6 max-w-[760px] font-editorial text-[clamp(3.7rem,7.4vw,7.3rem)] leading-[0.86] tracking-[-0.06em] text-text-primary">
