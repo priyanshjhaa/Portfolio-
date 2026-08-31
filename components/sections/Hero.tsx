@@ -12,8 +12,8 @@ function PortraitScene() {
 
   return (
     <PointerParallax className="relative mx-auto h-[430px] w-full max-w-[560px] [transform-style:preserve-3d] sm:h-[610px]">
-      <div className="absolute inset-[4%] overflow-hidden rounded-[24px] border border-white/[0.07] bg-[#0d0f0e]/35">
-        <div className="absolute inset-0 opacity-50 [background-image:linear-gradient(rgba(159,200,255,.055)_1px,transparent_1px),linear-gradient(90deg,rgba(159,200,255,.055)_1px,transparent_1px)] [background-size:34px_34px]" />
+      <div className="portrait-stage absolute inset-[4%] overflow-hidden rounded-[24px] border">
+        <div className="portrait-stage-grid absolute inset-0" />
         <motion.div className="absolute inset-y-0 w-px bg-gradient-to-b from-transparent via-[#9fc8ff]/35 to-transparent" animate={reduceMotion ? undefined : { x: [20, 470, 20] }} transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }} />
         <motion.div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#b8e986]/30 to-transparent" animate={reduceMotion ? undefined : { y: [40, 510, 40] }} transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut' }} />
       </div>
@@ -28,7 +28,7 @@ function PortraitScene() {
         {[22, 118, 162, 248, 292, 406, 454, 538].map((x, index) => <circle key={`top-${x}`} cx={x} cy={[168, 168, 122, 122, 166, 166, 118, 118][index]} r="3" fill="#0d0f0e" stroke="rgba(159,200,255,.5)" />)}
         {[18, 102, 150, 248, 296, 396, 446, 542].map((x, index) => <rect key={`bottom-${x}`} x={x - 3} y={[449, 449, 497, 497, 447, 447, 489, 489][index]} width="6" height="6" fill="#0d0f0e" stroke="rgba(184,233,134,.4)" />)}
         <motion.path d="M22 168H118L162 122H248L292 166H406L454 118H538" stroke="#9fc8ff" strokeWidth="2" strokeDasharray="12 190" animate={reduceMotion ? undefined : { strokeDashoffset: [0, -420] }} transition={{ duration: 7, repeat: Infinity, ease: 'linear' }} />
-        <motion.circle cx="280" cy="305" r="238" stroke="rgba(255,255,255,.09)" strokeDasharray="3 15" animate={reduceMotion ? undefined : { rotate: 360 }} transition={{ duration: 54, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '280px 305px' }} />
+        <motion.circle className="portrait-orbit" cx="280" cy="305" r="238" strokeDasharray="3 15" animate={reduceMotion ? undefined : { rotate: 360 }} transition={{ duration: 54, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '280px 305px' }} />
       </svg>
 
       <motion.div
@@ -37,15 +37,15 @@ function PortraitScene() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="relative overflow-hidden rounded-[22px] border border-white/15 bg-[#0b0c0b] p-2 shadow-[0_45px_110px_-48px_rgba(0,0,0,.98)]">
+        <div className="portrait-frame relative overflow-hidden rounded-[22px] border p-2">
           <div className="relative aspect-[272/363] overflow-hidden rounded-[16px]">
             <Image src="/profile/priyansh.webp" alt="Priyansh Jha" fill priority quality={75} className="object-cover object-center saturate-[0.92] contrast-[1.03]" sizes="(max-width: 640px) 64vw, 370px" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#090a09]/75 via-transparent to-[#9fc8ff]/[0.06]" />
-            <div className="absolute inset-x-4 bottom-4 rounded-[10px] border border-white/15 bg-black/55 px-4 py-3 backdrop-blur-xl">
+            <div className="portrait-image-wash absolute inset-0" />
+            <div className="portrait-caption absolute inset-x-4 bottom-4 rounded-[10px] border px-4 py-3 backdrop-blur-xl">
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-sm font-medium text-white">Priyansh Jha</p>
-                  <p className="mt-1 font-display text-[8px] uppercase tracking-[0.17em] text-white/55">Product engineer / builder</p>
+                  <p className="portrait-caption-title text-sm font-medium">Priyansh Jha</p>
+                  <p className="portrait-caption-meta mt-1 font-display text-[8px] uppercase tracking-[0.17em]">Product engineer / builder</p>
                 </div>
                 <span className="h-2.5 w-2.5 rounded-full bg-[#b8e986] shadow-[0_0_16px_rgba(184,233,134,.6)]" />
               </div>
@@ -54,13 +54,13 @@ function PortraitScene() {
         </div>
       </motion.div>
 
-      <motion.div className="absolute left-0 top-[35%] z-20 flex items-center gap-3 rounded-[8px] border border-white/12 bg-[#0c0e0d]/90 px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] text-white/70 backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, 5, 0] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}>
+      <motion.div className="portrait-chip portrait-chip-identity absolute left-0 top-[35%] z-20 flex items-center gap-3 rounded-[8px] border px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, 5, 0] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}>
         <span className="h-1.5 w-1.5 bg-[#9fc8ff] shadow-[0_0_10px_rgba(159,200,255,.45)]" /> Identity node / Priyansh
       </motion.div>
-      <motion.div className="absolute bottom-[18%] right-0 z-20 flex items-center gap-2 rounded-[8px] border border-[#9fc8ff]/20 bg-[#0c0f12]/90 px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] text-white/70 backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}>
+      <motion.div className="portrait-chip portrait-chip-stack absolute bottom-[18%] right-0 z-20 flex items-center gap-2 rounded-[8px] border px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}>
         <Braces className="h-3.5 w-3.5" /> Full-stack / end to end
       </motion.div>
-      <motion.div className="absolute right-[2%] top-[24%] z-20 rounded-[6px] border border-[#b8e986]/20 bg-[#0d110e]/90 px-3 py-2 font-display text-[8px] uppercase tracking-[0.17em] text-[#cdeab5] backdrop-blur-xl" animate={reduceMotion ? undefined : { y: [0, 5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}>
+      <motion.div className="portrait-chip portrait-chip-status absolute right-[2%] top-[24%] z-20 rounded-[6px] border px-3 py-2 font-display text-[8px] uppercase tracking-[0.17em] backdrop-blur-xl" animate={reduceMotion ? undefined : { y: [0, 5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}>
         Status // available
       </motion.div>
       <div className="absolute bottom-[5%] left-[5%] z-20 flex items-end gap-2" aria-hidden="true">

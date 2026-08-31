@@ -22,6 +22,13 @@
     --control-surface: rgba(0, 0, 0, 0.24);
     --control-surface-raised: #111210;
     --control-surface-inset: rgba(0, 0, 0, 0.28);
+    --portrait-stage: rgba(13, 15, 14, 0.35);
+    --portrait-frame: #0b0c0b;
+    --portrait-caption: rgba(0, 0, 0, 0.58);
+    --portrait-chip: rgba(12, 14, 13, 0.92);
+    --portrait-chip-text: rgba(255, 255, 255, 0.72);
+    --portrait-border: rgba(255, 255, 255, 0.13);
+    --portrait-grid: rgba(159, 200, 255, 0.055);
     --shadow-color: rgba(0, 0, 0, 0.65);
     --runner-ink: #d9d8d1;
     --runner-panel: #171916;
@@ -250,6 +257,13 @@ html[data-theme="light"] {
   --control-surface: rgba(52, 56, 50, 0.045);
   --control-surface-raised: #fbfaf6;
   --control-surface-inset: rgba(52, 56, 50, 0.065);
+  --portrait-stage: rgba(251, 250, 246, 0.82);
+  --portrait-frame: #f8f6ef;
+  --portrait-caption: rgba(250, 248, 241, 0.9);
+  --portrait-chip: rgba(250, 248, 241, 0.94);
+  --portrait-chip-text: rgba(28, 30, 27, 0.76);
+  --portrait-border: rgba(28, 30, 27, 0.14);
+  --portrait-grid: rgba(66, 109, 145, 0.075);
   --shadow-color: rgba(49, 47, 40, 0.18);
   --accent-rgb: 83, 106, 129;
   --accent-bright-rgb: 55, 78, 101;
@@ -1878,6 +1892,76 @@ body::before {
 
 .theme-inset-surface {
   background-color: var(--control-surface-inset);
+}
+
+.portrait-stage {
+  border-color: var(--portrait-border);
+  background: var(--portrait-stage);
+  box-shadow: 0 36px 90px -64px var(--shadow-color);
+  transition: background-color 300ms var(--ease-standard), border-color 300ms var(--ease-standard);
+}
+
+.portrait-stage-grid {
+  opacity: 0.58;
+  background-image:
+    linear-gradient(var(--portrait-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--portrait-grid) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.portrait-orbit {
+  fill: none;
+  stroke: rgba(var(--line-rgb), 0.1);
+}
+
+.portrait-frame {
+  border-color: var(--portrait-border);
+  background: var(--portrait-frame);
+  box-shadow: 0 45px 110px -48px var(--shadow-color);
+  transition: background-color 300ms var(--ease-standard), border-color 300ms var(--ease-standard);
+}
+
+.portrait-image-wash {
+  background: linear-gradient(to top, rgba(9, 10, 9, 0.74), transparent 48%, rgba(159, 200, 255, 0.055));
+}
+
+.portrait-caption {
+  border-color: var(--portrait-border);
+  background: var(--portrait-caption);
+  box-shadow: 0 18px 42px -32px var(--shadow-color);
+}
+
+.portrait-caption-title {
+  color: rgb(var(--text-primary-rgb));
+}
+
+.portrait-caption-meta {
+  color: rgb(var(--text-muted-rgb));
+}
+
+.portrait-chip {
+  border-color: var(--portrait-border);
+  background: var(--portrait-chip);
+  color: var(--portrait-chip-text);
+  box-shadow: 0 16px 38px -28px var(--shadow-color);
+}
+
+.portrait-chip-stack {
+  border-color: rgba(159, 200, 255, 0.3);
+}
+
+.portrait-chip-status {
+  border-color: rgba(125, 170, 88, 0.32);
+  color: rgb(125 170 88);
+}
+
+html[data-theme="light"] .portrait-image-wash {
+  background: linear-gradient(to top, rgba(250, 248, 241, 0.16), transparent 42%, rgba(159, 200, 255, 0.04));
+}
+
+html[data-theme="light"] .portrait-chip-status {
+  background: rgba(239, 245, 230, 0.96);
+  color: rgb(62 91 43);
 }
 
 :root {

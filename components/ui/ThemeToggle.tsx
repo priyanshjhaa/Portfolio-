@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 type Theme = 'light' | 'dark';
 
 const storageKey = 'portfolio-theme';
+const themeEvent = 'portfolio-theme-change';
 
 function getCurrentTheme(): Theme {
   return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
@@ -25,10 +26,17 @@ export default function ThemeToggle({ className }: { className?: string }) {
       document.documentElement.dataset.theme = nextTheme;
       document.documentElement.style.colorScheme = nextTheme;
       setTheme(nextTheme);
+      window.dispatchEvent(new CustomEvent<Theme>(themeEvent, { detail: nextTheme }));
     };
 
+    const syncThemeControls = (event: Event) => setTheme((event as CustomEvent<Theme>).detail);
+
     media.addEventListener('change', syncSystemTheme);
-    return () => media.removeEventListener('change', syncSystemTheme);
+    window.addEventListener(themeEvent, syncThemeControls);
+    return () => {
+      media.removeEventListener('change', syncSystemTheme);
+      window.removeEventListener(themeEvent, syncThemeControls);
+    };
   }, []);
 
   const toggleTheme = () => {
@@ -37,6 +45,7 @@ export default function ThemeToggle({ className }: { className?: string }) {
     document.documentElement.style.colorScheme = nextTheme;
     window.localStorage.setItem(storageKey, nextTheme);
     setTheme(nextTheme);
+    window.dispatchEvent(new CustomEvent<Theme>(themeEvent, { detail: nextTheme }));
   };
 
   const targetTheme = theme === 'dark' ? 'light' : 'dark';
