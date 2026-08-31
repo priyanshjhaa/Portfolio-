@@ -52,7 +52,7 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
             : 'border-b border-white/8 px-1 pb-4 pt-1'
         )}
       >
-        <a href="#intro" onClick={(event) => scrollTo(event, '#intro')} className="group flex items-center gap-3">
+        <a href="#intro" onClick={(event) => scrollTo(event, '#intro')} className="tap-target group flex items-center gap-3">
           <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] font-editorial text-lg text-text-primary transition-colors group-hover:border-[#b7c6aa]/45">
             P
           </span>
