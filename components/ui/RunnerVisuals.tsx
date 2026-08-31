@@ -1,10 +1,12 @@
 'use client';
 
 import { motion, useReducedMotion } from 'motion/react';
+import type { MotionValue } from 'motion/react';
 import { cn } from '@/lib/utils';
+import type { RunnerObstacleKind } from '@/types/experience';
 
 export type MascotState = 'idle' | 'running' | 'checkpoint';
-export type ObstacleKind = 'bug' | 'api' | 'queue' | 'deploy' | 'tool';
+export type ObstacleKind = RunnerObstacleKind;
 
 const obstacleGlyphs: Record<ObstacleKind, string> = {
   bug: '!',
@@ -101,12 +103,16 @@ export function RunnerWorld({
     { kind: 'deploy' as const, label: 'ship' },
   ],
   className,
+  mascotX,
+  obstaclesX,
 }: {
   eyebrow: string;
   checkpoint: string;
   state?: MascotState;
   obstacles?: Array<{ kind: ObstacleKind; label: string }>;
   className?: string;
+  mascotX?: MotionValue<string>;
+  obstaclesX?: MotionValue<string>;
 }) {
   return (
     <div className={cn('runner-world', className)}>
@@ -117,12 +123,14 @@ export function RunnerWorld({
       <PixelCloud className="left-[15%] top-[30%]" />
       <PixelCloud className="right-[12%] top-[18%] scale-75 opacity-50" />
       <div className="runner-world-track" aria-hidden="true">
-        <TechCreature state={state} className="runner-world-mascot" />
-        <div className="runner-world-obstacles">
+        <motion.div className="runner-world-mascot" style={{ x: mascotX }}>
+          <TechCreature state={state} className="h-auto w-full" />
+        </motion.div>
+        <motion.div className="runner-world-obstacles" style={{ x: obstaclesX }}>
           {obstacles.map((obstacle, index) => (
             <RunnerObstacle key={`${obstacle.kind}-${obstacle.label}`} {...obstacle} className={index === 1 ? 'hidden sm:flex' : undefined} />
           ))}
-        </div>
+        </motion.div>
       </div>
       <div className="runner-ground" aria-hidden="true" />
     </div>

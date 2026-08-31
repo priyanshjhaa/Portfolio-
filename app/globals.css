@@ -1383,6 +1383,18 @@ html[data-theme="light"] {
   background-size: 24px 24px;
 }
 
+.runner-chapter-scene {
+  position: relative;
+}
+
+.runner-chapter-scene-compact .runner-world {
+  min-height: 176px;
+}
+
+.runner-chapter-scene[data-complete="true"] .runner-world-mascot {
+  transform: translateX(220%);
+}
+
 .runner-world::before {
   position: absolute;
   inset: 0;

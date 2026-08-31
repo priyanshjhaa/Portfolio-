@@ -25,3 +25,18 @@ export interface ProjectVisual {
   labLabel: string;
   visualCue: string;
 }
+
+export type RunnerChapterId = 'intro' | 'skills' | 'process' | 'work' | 'evidence' | 'contact';
+export type RunnerObstacleKind = 'bug' | 'api' | 'queue' | 'deploy' | 'tool';
+
+export interface RunnerObstacleConfig {
+  kind: RunnerObstacleKind;
+  label: string;
+}
+
+export interface RunnerScene {
+  id: RunnerChapterId;
+  eyebrow: string;
+  checkpoint: string;
+  obstacles: RunnerObstacleConfig[];
+}

@@ -1,6 +1,6 @@
 import { Project } from '@/types/project';
 import { SkillGroup, TimelineEntry } from '@/types/skill';
-import type { BuildStage, Capability, ProjectVisual } from '@/types/experience';
+import type { BuildStage, Capability, ProjectVisual, RunnerScene } from '@/types/experience';
 
 export const projects: Project[] = [
   {
@@ -363,6 +363,68 @@ export const heroRoles = [
   'system designer',
   'workflow architect',
   '0→1 builder',
+];
+
+export const runnerScenes: RunnerScene[] = [
+  {
+    id: 'intro',
+    eyebrow: 'RUN / 00 — identity online',
+    checkpoint: 'hello-world',
+    obstacles: [
+      { kind: 'bug', label: 'ambiguity' },
+      { kind: 'api', label: 'systems' },
+      { kind: 'tool', label: 'craft' },
+    ],
+  },
+  {
+    id: 'skills',
+    eyebrow: 'RUN / 01 — toolchain',
+    checkpoint: 'capabilities',
+    obstacles: [
+      { kind: 'tool', label: 'interface' },
+      { kind: 'api', label: 'backend' },
+      { kind: 'queue', label: 'data + ai' },
+    ],
+  },
+  {
+    id: 'process',
+    eyebrow: 'RUN / 02 — build loop',
+    checkpoint: 'operation',
+    obstacles: [
+      { kind: 'bug', label: 'unknowns' },
+      { kind: 'queue', label: 'workflow' },
+      { kind: 'deploy', label: 'release' },
+    ],
+  },
+  {
+    id: 'work',
+    eyebrow: 'RUN / 03 — shipped systems',
+    checkpoint: 'production',
+    obstacles: [
+      { kind: 'api', label: 'atlas' },
+      { kind: 'tool', label: 'execute' },
+      { kind: 'queue', label: 'codemap' },
+    ],
+  },
+  {
+    id: 'evidence',
+    eyebrow: 'RUN / 04 — proof trail',
+    checkpoint: 'receipts',
+    obstacles: [
+      { kind: 'bug', label: 'failure' },
+      { kind: 'deploy', label: 'shipping' },
+      { kind: 'tool', label: 'iteration' },
+    ],
+  },
+  {
+    id: 'contact',
+    eyebrow: 'RUN / 05 — connection ready',
+    checkpoint: 'next-build',
+    obstacles: [
+      { kind: 'api', label: 'connect' },
+      { kind: 'deploy', label: 'start' },
+    ],
+  },
 ];
 
 export const capabilities: Capability[] = [
