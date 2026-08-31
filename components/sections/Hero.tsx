@@ -2,8 +2,9 @@
 
 import Image from 'next/image';
 import { ArrowDownRight, ArrowUpRight, Braces, Github, MapPin, Terminal } from 'lucide-react';
-import { contact, heroContent, heroRoles } from '@/lib/data';
+import { contact, heroContent, heroRoles, runnerSceneById } from '@/lib/data';
 import { KineticWords, MotionReveal, PointerParallax, motion, useReducedMotion } from '@/components/ui/LabMotion';
+import RunnerChapterScene from '@/components/ui/RunnerChapterScene';
 
 function PortraitScene() {
   const reduceMotion = useReducedMotion();
@@ -160,6 +161,9 @@ export default function Hero() {
             <HeroDetails onEnterWork={scrollToWork} />
           </MotionReveal>
         </div>
+        <MotionReveal delay={0.08} className="mt-10 md:mt-16">
+          <RunnerChapterScene scene={runnerSceneById.intro} compact />
+        </MotionReveal>
       </div>
     </section>
   );

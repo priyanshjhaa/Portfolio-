@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { ArrowUpRight, Braces, Database, Layers3, Orbit, Rocket } from 'lucide-react';
 import { useState } from 'react';
-import { capabilities, projects } from '@/lib/data';
+import { capabilities, projects, runnerSceneById } from '@/lib/data';
 import { AnimatePresence, MotionReveal, motion, useReducedMotion } from '@/components/ui/LabMotion';
+import RunnerChapterScene from '@/components/ui/RunnerChapterScene';
 import { cn } from '@/lib/utils';
 
 const icons = [Layers3, Braces, Database, Orbit, Rocket];
@@ -33,6 +34,10 @@ export default function CapabilitiesLab() {
           <p className="max-w-xl text-lg leading-relaxed text-text-secondary lg:justify-self-end">
             No percentage bars. Choose a capability to see the tools, product responsibility, and systems where it became real.
           </p>
+        </MotionReveal>
+
+        <MotionReveal delay={0.05} className="mt-12">
+          <RunnerChapterScene scene={runnerSceneById.skills} compact />
         </MotionReveal>
 
         <MotionReveal delay={0.08} className="mt-16 grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">

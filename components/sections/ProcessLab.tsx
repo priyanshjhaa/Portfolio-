@@ -3,8 +3,9 @@
 import { CheckCircle2, CircleDot, GitBranch, Radar, Rocket, ShieldCheck } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useMotionValueEvent, useScroll } from 'motion/react';
-import { buildStages } from '@/lib/data';
+import { buildStages, runnerSceneById } from '@/lib/data';
 import { AnimatePresence, MotionReveal, motion, useReducedMotion } from '@/components/ui/LabMotion';
+import RunnerChapterScene from '@/components/ui/RunnerChapterScene';
 import { cn } from '@/lib/utils';
 
 const icons = [Radar, GitBranch, CircleDot, ShieldCheck, Rocket, CheckCircle2];
@@ -85,6 +86,9 @@ export default function ProcessLab() {
   return (
     <section ref={sectionRef} className="relative px-4 py-24 md:px-8 md:py-32 lg:min-h-[180vh]">
       <div className="pointer-events-none absolute right-[-18rem] top-1/3 h-[36rem] w-[36rem] rounded-full bg-[#ffd27d]/[0.055] blur-[120px]" />
+      <div className="relative mx-auto mb-14 max-w-[1240px]">
+        <RunnerChapterScene scene={runnerSceneById.process} compact />
+      </div>
       <div className="relative mx-auto max-w-[1240px] lg:sticky lg:top-24">
         <MotionReveal className="grid gap-7 border-b border-white/8 pb-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>

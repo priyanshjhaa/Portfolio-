@@ -1,8 +1,9 @@
 'use client';
 
 import { Check, GitCommitHorizontal, Radio, Sparkles } from 'lucide-react';
-import { currentBuild, receipts, recentBuilds } from '@/lib/data';
+import { currentBuild, receipts, recentBuilds, runnerSceneById } from '@/lib/data';
 import { MotionReveal, motion, useReducedMotion } from '@/components/ui/LabMotion';
+import RunnerChapterScene from '@/components/ui/RunnerChapterScene';
 
 export default function EvidenceLab() {
   const reduceMotion = useReducedMotion();
@@ -25,7 +26,11 @@ export default function EvidenceLab() {
           </p>
         </MotionReveal>
 
-        <div className="grid border-b border-white/8 lg:grid-cols-[0.82fr_1.18fr]">
+        <MotionReveal delay={0.05} className="mt-12">
+          <RunnerChapterScene scene={runnerSceneById.evidence} compact />
+        </MotionReveal>
+
+        <div className="mt-14 grid border-b border-white/8 lg:grid-cols-[0.82fr_1.18fr]">
           <MotionReveal className="border-b border-white/8 py-14 lg:border-b-0 lg:border-r lg:pr-12">
             <div className="flex items-center justify-between gap-4">
               <p className="field-label">Live build feed</p>

@@ -4,10 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, Github, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
-import { projects, projectVisuals } from '@/lib/data';
+import { projects, projectVisuals, runnerSceneById } from '@/lib/data';
 import { getProjectImageAspectRatio } from '@/lib/project-images';
 import { AnimatePresence, MotionReveal, motion, useReducedMotion } from '@/components/ui/LabMotion';
 import { cn } from '@/lib/utils';
+import RunnerChapterScene from '@/components/ui/RunnerChapterScene';
 
 const flagshipIds = ['atlas', 'execute', 'codemap'];
 const flagshipProjects = flagshipIds.map((id) => projects.find((project) => project.id === id)!).filter(Boolean);
@@ -35,6 +36,10 @@ export default function ProjectPortals() {
           <p className="max-w-xl text-lg leading-relaxed text-text-secondary lg:justify-self-end">
             Every build keeps its short summary visible, then opens into the architecture, tradeoffs, and production evidence behind it.
           </p>
+        </MotionReveal>
+
+        <MotionReveal delay={0.05} className="mt-12">
+          <RunnerChapterScene scene={runnerSceneById.work} compact />
         </MotionReveal>
 
         <MotionReveal delay={0.08} className="mt-14 overflow-hidden rounded-[34px] border border-white/10 bg-[#0f100f]/88 shadow-[0_45px_120px_-72px_rgba(0,0,0,.98)]">

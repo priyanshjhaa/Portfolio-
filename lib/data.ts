@@ -1,6 +1,6 @@
 import { Project } from '@/types/project';
 import { SkillGroup, TimelineEntry } from '@/types/skill';
-import type { BuildStage, Capability, ProjectVisual, RunnerScene } from '@/types/experience';
+import type { BuildStage, Capability, ProjectVisual, RunnerChapterId, RunnerScene } from '@/types/experience';
 
 export const projects: Project[] = [
   {
@@ -426,6 +426,10 @@ export const runnerScenes: RunnerScene[] = [
     ],
   },
 ];
+
+export const runnerSceneById = Object.fromEntries(
+  runnerScenes.map((scene) => [scene.id, scene])
+) as Record<RunnerChapterId, RunnerScene>;
 
 export const capabilities: Capability[] = [
   {
