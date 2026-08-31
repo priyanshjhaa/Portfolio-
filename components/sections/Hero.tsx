@@ -158,7 +158,9 @@ export default function Hero() {
           </MotionReveal>
         </div>
         <MotionReveal delay={0.08} className="mt-10 md:mt-16">
-          <RunnerChapterScene scene={runnerSceneById.intro} compact />
+          <div data-runner-origin>
+            <RunnerChapterScene scene={runnerSceneById.intro} compact />
+          </div>
         </MotionReveal>
       </div>
     </section>

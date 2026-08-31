@@ -1395,6 +1395,77 @@ html[data-theme="light"] {
   transform: translateX(220%);
 }
 
+.navbar-runner {
+  position: relative;
+  height: 28px;
+  margin-top: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(var(--line-rgb), 0.1);
+  border-radius: 999px;
+  background: var(--surface-glass);
+  box-shadow: 0 14px 40px -26px var(--shadow-color);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  backdrop-filter: blur(18px) saturate(120%);
+}
+
+.navbar-runner-track {
+  position: absolute;
+  top: 50%;
+  right: 126px;
+  left: 14px;
+  height: 1px;
+  background: rgba(var(--line-rgb), 0.12);
+}
+
+.navbar-runner-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 100%;
+  background: linear-gradient(90deg, var(--runner-signal), rgba(125, 170, 88, 0.82));
+  transform-origin: left center;
+}
+
+.navbar-runner-checkpoint {
+  position: absolute;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border: 1px solid rgba(var(--line-rgb), 0.32);
+  background: rgb(var(--surface-rgb));
+  transform: translate(-50%, -50%);
+}
+
+.navbar-runner-checkpoint.is-reached {
+  border-color: var(--runner-signal);
+  background: var(--runner-signal);
+}
+
+.navbar-runner-checkpoint.is-active {
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12), 0 0 10px rgba(var(--accent-rgb), 0.24);
+}
+
+.navbar-runner-mascot {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: block;
+  width: 26px;
+  transform: translate(-50%, -62%);
+  filter: drop-shadow(0 3px 4px var(--shadow-color));
+}
+
+.navbar-runner-status {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.42rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgb(var(--text-muted-rgb));
+}
+
 .runner-world::before {
   position: absolute;
   inset: 0;
@@ -1847,6 +1918,12 @@ html[data-theme="light"] .field-card {
   box-shadow: 0 32px 80px -60px var(--shadow-color);
 }
 
+html[data-theme="light"] [class*="bg-[#0e100e]"],
+html[data-theme="light"] [class*="bg-[#0f100f]"],
+html[data-theme="light"] [class*="bg-[#111210]"] {
+  background-color: rgb(var(--surface-rgb)) !important;
+}
+
 html[data-theme="light"] .runner-ambient {
   opacity: 0.34;
 }
@@ -1939,6 +2016,23 @@ html[data-theme="light"] .runner-ambient {
   .hero-pixel-sky {
     height: 55%;
     opacity: 0.48;
+  }
+
+  .navbar-runner {
+    height: 24px;
+  }
+
+  .navbar-runner-track {
+    right: 13px;
+    left: 13px;
+  }
+
+  .navbar-runner-status {
+    display: none;
+  }
+
+  .navbar-runner-mascot {
+    width: 23px;
   }
 }
 

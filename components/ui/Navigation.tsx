@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { Command, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ThemeToggle from '@/components/ui/ThemeToggle';
+import NavbarRunnerProgress from '@/components/ui/NavbarRunnerProgress';
+import { AnimatePresence } from '@/components/ui/LabMotion';
 
 const navLinks = [
   { name: 'Skills', href: '#skills' },
@@ -21,13 +23,18 @@ interface NavigationProps {
 export default function Navigation({ activeSection, onOpenExplorer }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [runnerDocked, setRunnerDocked] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 36);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 36);
+      const origin = document.querySelector('[data-runner-origin]');
+      setRunnerDocked(origin ? origin.getBoundingClientRect().bottom < 104 : activeSection !== '#intro');
+    };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [activeSection]);
 
   const scrollTo = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     event.preventDefault();
@@ -96,6 +103,14 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
           {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
       </nav>
+
+      <AnimatePresence>
+        {runnerDocked && (
+          <div className="pointer-events-none mx-auto max-w-[1240px] px-3 md:px-5">
+            <NavbarRunnerProgress activeSection={activeSection} />
+          </div>
+        )}
+      </AnimatePresence>
 
       <div
         id="mobile-navigation"

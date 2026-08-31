@@ -53,25 +53,27 @@ export default function Home() {
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    let frame = 0;
+    const updateActiveSection = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const marker = window.scrollY + window.innerHeight * 0.38;
+        let current: (typeof sectionIds)[number] = 'intro';
+        sections.forEach((section) => {
+          if (section.offsetTop <= marker) current = section.id as (typeof sectionIds)[number];
+        });
+        setActiveSection(current);
+      });
+    };
 
-        if (visible?.target?.id) {
-          setActiveSection(visible.target.id as (typeof sectionIds)[number]);
-        }
-      },
-      {
-        rootMargin: '-30% 0px -45% 0px',
-        threshold: [0.18, 0.35, 0.6],
-      }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
+    updateActiveSection();
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('resize', updateActiveSection);
+    };
   }, []);
 
   return (

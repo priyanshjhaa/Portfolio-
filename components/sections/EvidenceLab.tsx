@@ -1,9 +1,8 @@
 'use client';
 
 import { Check, GitCommitHorizontal, Radio, Sparkles } from 'lucide-react';
-import { currentBuild, receipts, recentBuilds, runnerSceneById } from '@/lib/data';
+import { currentBuild, receipts, recentBuilds } from '@/lib/data';
 import { MotionReveal, motion, useReducedMotion } from '@/components/ui/LabMotion';
-import RunnerChapterScene from '@/components/ui/RunnerChapterScene';
 
 export default function EvidenceLab() {
   const reduceMotion = useReducedMotion();
@@ -24,10 +23,6 @@ export default function EvidenceLab() {
           <p className="max-w-xl text-lg leading-relaxed text-text-secondary lg:justify-self-end">
             Claims fade quickly. Current work, implementation receipts, and a visible shipping trail make the engineering legible.
           </p>
-        </MotionReveal>
-
-        <MotionReveal delay={0.05} className="mt-12">
-          <RunnerChapterScene scene={runnerSceneById.evidence} compact />
         </MotionReveal>
 
         <div className="mt-14 grid border-b border-white/8 lg:grid-cols-[0.82fr_1.18fr]">

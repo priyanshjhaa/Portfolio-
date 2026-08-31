@@ -1,7 +1,6 @@
 import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
-import { contact, runnerSceneById } from '@/lib/data';
+import { contact } from '@/lib/data';
 import { Magnetic, MotionReveal } from '@/components/ui/LabMotion';
-import RunnerChapterScene from '@/components/ui/RunnerChapterScene';
 
 export default function FieldContact({ active = false }: { active?: boolean }) {
   return (
@@ -19,10 +18,6 @@ export default function FieldContact({ active = false }: { active?: boolean }) {
             </span>
           ))}
         </div>
-      </div>
-
-      <div className="mx-auto max-w-[1240px]">
-        <RunnerChapterScene scene={runnerSceneById.contact} compact />
       </div>
 
       <div className="mx-auto max-w-[1240px] py-20 md:py-28">
