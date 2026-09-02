@@ -92,16 +92,19 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
           <ThemeToggle className="ml-1" />
         </div>
 
-        <button
-          type="button"
-          onClick={() => setIsOpen((current) => !current)}
-          className="tap-target premium-action inline-flex items-center justify-center rounded-full border border-white/10 text-text-secondary md:hidden"
-          aria-label="Toggle navigation"
-          aria-expanded={isOpen}
-          aria-controls="mobile-navigation"
-        >
-          {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setIsOpen((current) => !current)}
+            className="tap-target premium-action inline-flex items-center justify-center rounded-full border border-white/10 text-text-secondary"
+            aria-label="Toggle navigation"
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
+          >
+            {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -141,10 +144,6 @@ export default function Navigation({ activeSection, onOpenExplorer }: Navigation
           >
             Explore builds <Command className="h-4 w-4" />
           </button>
-          <div className="flex min-h-11 items-center justify-between rounded-2xl px-4 py-2 text-sm text-text-secondary">
-            <span>Appearance</span>
-            <ThemeToggle />
-          </div>
         </div>
       </div>
     </header>
