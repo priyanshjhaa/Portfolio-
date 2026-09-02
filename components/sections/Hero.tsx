@@ -39,7 +39,7 @@ function PortraitScene() {
       >
         <div className="portrait-frame relative overflow-hidden rounded-[22px] border p-2">
           <div className="relative aspect-[272/363] overflow-hidden rounded-[16px]">
-            <Image src="/profile/priyansh.webp" alt="Priyansh Jha" fill priority quality={75} className="object-cover object-center saturate-[0.92] contrast-[1.03]" sizes="(max-width: 640px) 64vw, 370px" />
+            <Image src="/profile/priyansh.webp" alt="Priyansh Jha" fill priority quality={75} className="scale-[0.9] rounded-[16px] object-cover object-center saturate-[0.92] contrast-[1.03] sm:scale-100" sizes="(max-width: 640px) 64vw, 370px" />
             <div className="portrait-image-wash absolute inset-0" />
             <div className="portrait-caption absolute inset-x-4 bottom-4 rounded-[10px] border px-4 py-3 backdrop-blur-xl">
               <div className="flex items-center justify-between gap-4">
