@@ -9,7 +9,7 @@ import { getProjectImageAspectRatio } from '@/lib/project-images';
 import { AnimatePresence, MotionReveal, motion, useReducedMotion } from '@/components/ui/LabMotion';
 import { cn } from '@/lib/utils';
 
-const flagshipIds = ['atlas', 'execute', 'codemap'];
+const flagshipIds = ['sprout', 'atlas', 'execute', 'codemap'];
 const flagshipProjects = flagshipIds.map((id) => projects.find((project) => project.id === id)!).filter(Boolean);
 const quickProjects = projects.filter((project) => !flagshipIds.includes(project.id));
 
@@ -25,7 +25,7 @@ export default function ProjectPortals() {
       <div className="relative mx-auto max-w-[1240px]">
         <MotionReveal className="grid gap-7 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
           <div>
-            <p className="field-label" style={{ color: visual.accent }}>Project portals / 03</p>
+            <p className="field-label" style={{ color: visual.accent }}>Project portals / 04</p>
             <h2 className="mt-5 font-editorial text-[clamp(3.5rem,7vw,6.8rem)] leading-[0.88] tracking-[-0.055em] text-text-primary">
               Enter a system.
               <br />

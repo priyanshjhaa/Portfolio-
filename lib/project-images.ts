@@ -1,4 +1,5 @@
 const projectImageDimensions: Record<string, { width: number; height: number }> = {
+  sprout: { width: 1909, height: 991 },
   atlas: { width: 1899, height: 993 },
   execute: { width: 2924, height: 1610 },
   codemap: { width: 1907, height: 956 },

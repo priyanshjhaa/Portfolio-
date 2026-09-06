@@ -4,6 +4,76 @@ import type { BuildStage, Capability, ProjectVisual, RunnerChapterId, RunnerScen
 
 export const projects: Project[] = [
   {
+    id: 'sprout',
+    name: 'Sprout',
+    summary: 'An agent-native cloud for deploying and sharing small, purpose-built applications.',
+    details: 'Starts where code generation ends: a calm control plane for turning application code into an isolated, observable, shareable workspace without exposing traditional cloud complexity.',
+    impact: 'Explores how tiny internal tools can move from an idea to a healthy team URL through one understandable product workflow.',
+    whyBuiltThis:
+      'Coding agents can create a useful application quickly, but making that software safe to run and simple to share still demands deployment infrastructure, identity, configuration, logs, permissions, and operational knowledge.',
+    proofTitle: 'Current implementation proof',
+    proofPoints: [
+      'Responsive Next.js control-plane prototype spanning apps, deployments, logs, environment, access, workspace activity, and agent journeys',
+      'Twelve-table PostgreSQL model for workspaces, applications, deployments, resources, access grants, and agent run history',
+      'Tested Go 1.27 backend executable that establishes the service boundary for the future deployment and agent API',
+    ],
+    ownership: ['Product direction and lifecycle design', 'Frontend control plane and typed API boundary', 'PostgreSQL domain model and Go backend foundation'],
+    keyDecision:
+      'Validate the complete product workflow through a typed control-plane prototype, then replace its mock adapter incrementally with one modular Go API while keeping Drizzle as the single schema and migration owner.',
+    tradeoff:
+      'Modeling infrastructure states before the runtime exists makes the product testable early, but every simulated capability must stay clearly labeled until the real build, isolation, DNS, and log pipeline replaces it.',
+    nextStep:
+      'Build the first versioned Go HTTP slice for health, workspace authorization, and application reads before moving into the smallest real repository-to-container deployment loop.',
+    problem: 'Small internal applications are increasingly easy to generate but still disproportionately difficult to deploy, operate, secure, and share with a handful of coworkers.',
+    approach: 'Designed one progressive product path from application intent to workspace operations, backed it with an explicit frontend API boundary and PostgreSQL domain model, and began a deliberately small Go control service for infrastructure-facing work.',
+    architectureNotes: [
+      'The Next.js product surface uses TanStack Query and typed domain hooks so the current mock adapter can be replaced without coupling UI components to fixtures.',
+      'PostgreSQL models tenants, applications, deployments, stage events, resources, access grants, environment metadata, and agent runs; Drizzle remains the only migration owner.',
+      'The Go backend is being introduced as a modular monolith so deployment coordination can gain explicit cancellation, capacity, failure, and shutdown behavior without premature microservices.',
+    ],
+    highlightMetrics: ['Complete product prototype', '12-table PostgreSQL model', 'Go service foundation'],
+    flowSteps: ['App Intent', 'Workspace', 'Control API', 'Build & Isolate', 'Share & Operate'],
+    architectureStages: [
+      {
+        label: 'App Intent',
+        description: 'A developer or coding agent brings a small purpose-built application that needs a safe place to run.',
+        safeguard: 'Keeps Sprout focused on deployment and operation rather than becoming another general-purpose code generator.',
+      },
+      {
+        label: 'Workspace',
+        description: 'The control plane organizes applications, deployments, configuration, resources, logs, members, and access around one tenant.',
+        safeguard: 'Makes workspace ownership and application-level permissions visible before infrastructure actions are introduced.',
+      },
+      {
+        label: 'Control API',
+        description: 'Typed frontend hooks are designed to transition from the current mock adapter to a versioned Go HTTP API.',
+        safeguard: 'Preserves one contract for the dashboard, future CLI, coding agents, and MCP without hiding core behavior in UI-only actions.',
+      },
+      {
+        label: 'Build & Isolate',
+        description: 'The planned runtime will build source, start a constrained container, run health checks, and attach the application URL.',
+        safeguard: 'Treats generated code as untrusted and makes isolation, limits, logs, and failure recovery part of the deployment contract.',
+      },
+      {
+        label: 'Share & Operate',
+        description: 'A healthy application inherits workspace identity and can be operated or shared without each tool rebuilding authentication and permissions.',
+        safeguard: 'Centralizes access, environment metadata, deployment history, and operational evidence around the application lifecycle.',
+      },
+    ],
+    productionSignals: ['Responsive control-plane prototype with typed server-state boundaries', 'Local PostgreSQL 16 setup with one verified migration and twelve application tables', 'Go service foundation verified with tests, vet, and native build'],
+    proofFrame: {
+      eyebrow: 'Infrastructure Product',
+      title: 'A calm home for small, agent-built software',
+      rails: ['Bring the Code', 'Build & Isolate', 'Share the App'],
+      callout: 'Designed to make the path from generated code to a trusted team tool feel as straightforward as sharing a document.',
+    },
+    stack: ['Next.js', 'React', 'TypeScript', 'TanStack Query', 'Go', 'PostgreSQL', 'Drizzle', 'Docker'],
+    status: 'active',
+    githubUrl: 'https://github.com/priyanshjhaa/Sprout',
+    image: '/projects/sprout/landing.jpg',
+    featured: true,
+  },
+  {
     id: 'atlas',
     name: 'Atlas',
     summary: 'Source-backed engineering intelligence for understanding every software change before it ships.',
@@ -438,7 +508,7 @@ export const capabilities: Capability[] = [
     shortLabel: 'Interface',
     description: 'I turn complex system behavior into interfaces people can understand, trust, and operate.',
     skills: ['React', 'Next.js', 'TypeScript', 'Interaction design'],
-    projectIds: ['atlas', 'execute', 'axiom'],
+    projectIds: ['sprout', 'atlas', 'execute', 'axiom'],
     accent: '#f0a6ca',
     coordinate: { x: 20, y: 24 },
   },
@@ -447,8 +517,8 @@ export const capabilities: Capability[] = [
     label: 'Backend Systems',
     shortLabel: 'Execution',
     description: 'I design APIs, state transitions, queues, and execution paths that stay observable under real use.',
-    skills: ['Node.js', 'API design', 'Queues', 'Deterministic workflows'],
-    projectIds: ['execute', 'atlas', 'codemap'],
+    skills: ['Go', 'Node.js', 'API design', 'Deterministic workflows'],
+    projectIds: ['sprout', 'execute', 'atlas', 'codemap'],
     accent: '#9fc8ff',
     coordinate: { x: 78, y: 22 },
   },
@@ -457,8 +527,8 @@ export const capabilities: Capability[] = [
     label: 'Data & Infrastructure',
     shortLabel: 'Foundation',
     description: 'I shape data models and deployment boundaries so products can grow without losing clarity.',
-    skills: ['PostgreSQL', 'Supabase', 'Redis', 'Vercel'],
-    projectIds: ['atlas', 'codemap', 'axiom'],
+    skills: ['PostgreSQL', 'Docker', 'Redis', 'Vercel'],
+    projectIds: ['sprout', 'atlas', 'codemap', 'axiom'],
     accent: '#ffd27d',
     coordinate: { x: 88, y: 68 },
   },
@@ -468,7 +538,7 @@ export const capabilities: Capability[] = [
     shortLabel: 'Intelligence',
     description: 'I connect model reasoning to grounded context, explicit controls, and deterministic application code.',
     skills: ['LLM APIs', 'Retrieval', 'Tool loops', 'Safety boundaries'],
-    projectIds: ['atlas', 'execute', 'codemap'],
+    projectIds: ['sprout', 'atlas', 'execute', 'codemap'],
     accent: '#b8e986',
     coordinate: { x: 48, y: 86 },
   },
@@ -478,7 +548,7 @@ export const capabilities: Capability[] = [
     shortLabel: 'Delivery',
     description: 'I own the final mile: validation, failure recovery, deployment, telemetry, and iteration.',
     skills: ['GitHub', 'Validation', 'Observability', 'Release loops'],
-    projectIds: ['execute', 'atlas', 'codemap'],
+    projectIds: ['sprout', 'execute', 'atlas', 'codemap'],
     accent: '#c9a7ff',
     coordinate: { x: 10, y: 70 },
   },
@@ -542,6 +612,12 @@ export const buildStages: BuildStage[] = [
 ];
 
 export const projectVisuals: Record<string, ProjectVisual> = {
+  sprout: {
+    accent: '#a8c66c',
+    softAccent: 'rgba(168, 198, 108, 0.15)',
+    labLabel: 'Small software cloud',
+    visualCue: 'Intent / runtime / sharing',
+  },
   atlas: {
     accent: '#b8e986',
     softAccent: 'rgba(184, 233, 134, 0.15)',
@@ -580,9 +656,9 @@ export const currentBuild = {
   description:
     'Shipping work that improves reliability, developer experience, and system transparency across the current product set.',
   items: [
+    'Building Sprout’s Go control API for small, agent-built applications',
     'Hardening Atlas source provenance across GitHub reviews and Notion revisions',
     'Hardening Execute agent proposals, approvals, and failure recovery',
-    'Evaluating cross-system retrieval for engineering intelligence',
     'Improving architecture and dependency visualization workflows',
   ],
 };
@@ -599,7 +675,7 @@ export const leverageAreas = [
     title: 'Own a product slice end to end',
     description:
       'Turn a loosely defined problem into a usable interface, a clear data model, working backend flows, and a deployed release.',
-    evidence: 'Atlas, Execute, Axiom',
+    evidence: 'Sprout, Atlas, Execute, Axiom',
   },
   {
     title: 'Make complex systems understandable',
@@ -611,11 +687,12 @@ export const leverageAreas = [
     title: 'Build reliability into the workflow',
     description:
       'Use validation, queues, observable execution, and deliberate state transitions where product trust depends on correctness.',
-    evidence: 'Execute, Atlas, CodeMap',
+    evidence: 'Sprout, Execute, Atlas, CodeMap',
   },
 ];
 
 export const receipts = [
+  'Designed Sprout’s typed control plane, twelve-table PostgreSQL model, and initial Go backend executable',
   'Built an approval-gated agent with persisted, expiring, and idempotent action proposals',
   'Enforced tenant isolation across agent tools, execution actions, integrations, and failure findings',
   'Added usage accounting, atomic limits, provider controls, and prompt-injection defenses',
@@ -624,6 +701,13 @@ export const receipts = [
 ];
 
 export const recentBuilds = [
+  {
+    period: 'September 2026',
+    items: [
+      'Built Sprout’s responsive product prototype, PostgreSQL foundation, and first compiled Go backend command',
+      'Defined the incremental path from typed mock workflows to a versioned control API and isolated deployment runtime',
+    ],
+  },
   {
     period: 'August 2026',
     items: [
@@ -718,30 +802,36 @@ export const buildLogs = [
   {
     id: 'build-01',
     label: '[BUILD 01]',
-    name: 'Atlas',
-    detail: 'Source-backed engineering intelligence connecting GitHub, Notion, cross-repository graphs, and cited change-impact reports.',
+    name: 'Sprout',
+    detail: 'Agent-native small-software cloud with a typed control plane, PostgreSQL domain model, and Go backend foundation.',
   },
   {
     id: 'build-02',
     label: '[BUILD 02]',
-    name: 'CodeMap',
-    detail: 'Repository understanding tool with semantic retrieval and architecture visualization.',
+    name: 'Atlas',
+    detail: 'Source-backed engineering intelligence connecting GitHub, Notion, cross-repository graphs, and cited change-impact reports.',
   },
   {
     id: 'build-03',
     label: '[BUILD 03]',
-    name: 'Execute',
-    detail: 'Approval-gated agent for creating, inspecting, and operating deterministic workflows.',
+    name: 'CodeMap',
+    detail: 'Repository understanding tool with semantic retrieval and architecture visualization.',
   },
   {
     id: 'build-04',
     label: '[BUILD 04]',
-    name: 'Axiom',
-    detail: 'Freelancer platform covering proposals, projects, and invoicing in one system.',
+    name: 'Execute',
+    detail: 'Approval-gated agent for creating, inspecting, and operating deterministic workflows.',
   },
   {
     id: 'build-05',
     label: '[BUILD 05]',
+    name: 'Axiom',
+    detail: 'Freelancer platform covering proposals, projects, and invoicing in one system.',
+  },
+  {
+    id: 'build-06',
+    label: '[BUILD 06]',
     name: 'Cinematch',
     detail: 'Content discovery app built around saving, recommendations, and streaming flows.',
   },
@@ -895,6 +985,16 @@ export const timeline: TimelineEntry[] = [
     title: 'Atlas - Engineering Intelligence',
     organization: 'Developer Tool',
     description: 'Built an engineering-intelligence system that synchronizes GitHub and Notion into a living graph for cited change-impact analysis.',
+    period: '2026',
+    completed: false,
+    icon: 'Rocket',
+  },
+  {
+    id: 'milestone-sprout',
+    type: 'milestone',
+    title: 'Sprout - Small Software Cloud',
+    organization: 'Infrastructure Product',
+    description: 'Building an agent-native platform that makes small applications easier to deploy, operate, and securely share with a team.',
     period: '2026',
     completed: false,
     icon: 'Rocket',
