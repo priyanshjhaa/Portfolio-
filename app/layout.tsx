@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
-import './book.css';
+import GlobalPointerGlow from '@/components/ui/GlobalPointerGlow';
+import SystemTelemetry from '@/components/ui/SystemTelemetry';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Priyansh Jha | Full-Stack Product Engineer',
@@ -31,7 +33,14 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        {children}
+        <div className="field-atmosphere" aria-hidden="true" />
+        <div className="field-grid" aria-hidden="true" />
+        <div className="runner-ambient" aria-hidden="true">
+          <span /><span /><span /><span /><span /><span />
+        </div>
+        <SystemTelemetry />
+        <GlobalPointerGlow />
+        <div className="site-content">{children}</div>
       </body>
     </html>
   );
