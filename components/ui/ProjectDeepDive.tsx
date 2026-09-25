@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, GitBranch, Github, ShieldCheck, X } from 'lucide-react';
 import { Project } from '@/types/project';
+import ProjectArtwork from '@/components/ui/ProjectArtwork';
 import ProductFrame from '@/components/ui/ProductFrame';
 import SectionAtmosphere from '@/components/ui/SectionAtmosphere';
 import { projectVisuals } from '@/lib/data';
@@ -64,6 +65,7 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
 
         <section className="grid min-h-[72vh] items-end gap-12 border-b border-white/8 pb-16 pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:pb-20 lg:pt-32">
           <div>
+            <ProjectArtwork projectId={project.id} />
             <SectionLabel>Build deep dive / {project.proofFrame?.eyebrow ?? 'Product system'}</SectionLabel>
             <h1 className="mt-6 font-editorial text-[clamp(5rem,12vw,11rem)] leading-[0.78] tracking-[-0.07em] text-text-primary">
               {project.name}

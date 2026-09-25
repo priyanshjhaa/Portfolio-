@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowUpRight, Github, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
 import { projects, projectVisuals } from '@/lib/data';
+import ProjectArtwork from '@/components/ui/ProjectArtwork';
 import ProductFrame from '@/components/ui/ProductFrame';
 import SectionAtmosphere from '@/components/ui/SectionAtmosphere';
 import ArchitecturePlayback from '@/components/ui/ArchitecturePlayback';
@@ -70,6 +71,7 @@ export default function ProjectPortals() {
                     <span className="rounded-full border px-3 py-1.5 font-display text-[8px] uppercase tracking-[0.16em]" style={{ borderColor: `${visual.accent}35`, color: visual.accent, background: visual.softAccent }}>{visual.labLabel}</span>
                     <span className="font-display text-[8px] uppercase tracking-[0.16em] text-text-muted">{active.status} system</span>
                   </div>
+                  <ProjectArtwork projectId={active.id} compact />
                   <h3 className="mt-7 font-editorial text-[clamp(3.5rem,5vw,6rem)] leading-[0.82] tracking-[-0.065em] text-text-primary">{active.name}</h3>
                   <p className="mt-7 text-xl leading-relaxed text-text-primary">{active.summary}</p>
                   <p className="mt-4 text-sm leading-relaxed text-text-secondary">{active.details}</p>

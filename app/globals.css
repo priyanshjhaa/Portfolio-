@@ -2397,3 +2397,13 @@ html[data-theme="light"] .hero-halo { opacity: .65; }
   .process-illustration svg text { display: none; }
   .process-mobile-labels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin-top: -18px; margin-bottom: 24px; padding-inline: 4px; text-align: center; font: 9px monospace; letter-spacing: .04em; }
 }
+
+/* Small editorial artwork gives every project its own visual identity. */
+.project-artwork { width: min(100%, 360px); margin-bottom: 28px; pointer-events: none; }
+.project-artwork svg { display: block; width: 100%; height: auto; }
+.project-artwork--compact { width: min(100%, 240px); margin-top: 24px; margin-bottom: -8px; }
+html[data-theme="light"] .project-artwork svg { filter: brightness(.68) saturate(1.2); }
+@media (max-width: 640px) {
+  .project-artwork { width: 260px; max-width: 100%; margin-bottom: 22px; }
+  .project-artwork--compact { width: 200px; margin-bottom: -8px; }
+}
