@@ -1,10 +1,17 @@
+'use client';
+
 import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { contact } from '@/lib/data';
-import { Magnetic, MotionReveal } from '@/components/ui/LabMotion';
+import { Magnetic, MotionReveal, motion, useReducedMotion } from '@/components/ui/LabMotion';
+
+import { TechCreature } from '@/components/ui/RunnerVisuals';
+import SectionAtmosphere from '@/components/ui/SectionAtmosphere';
 
 export default function FieldContact({ active = false }: { active?: boolean }) {
+  const reduced = useReducedMotion();
   return (
     <footer id="contact" className="relative overflow-hidden px-4 pb-8 pt-20 md:px-8 md:pt-28">
+      <SectionAtmosphere tone="#f0a6ca" pattern="nodes" />
       <div className="pointer-events-none absolute bottom-[-18rem] left-[-12rem] h-[40rem] w-[40rem] rounded-full bg-[#f0a6ca]/[0.07] blur-[130px]" />
       <div className="pointer-events-none absolute bottom-[-20rem] right-[-8rem] h-[38rem] w-[38rem] rounded-full bg-[#9fc8ff]/[0.06] blur-[130px]" />
       <div className="contact-marquee border-y border-white/8 py-4" aria-hidden="true">
@@ -20,7 +27,11 @@ export default function FieldContact({ active = false }: { active?: boolean }) {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1240px] py-20 md:py-28">
+      <div className="relative mx-auto max-w-[1240px] py-20 md:py-28">
+        <div className="contact-arrival mb-12 flex items-end gap-5 border-b border-white/10 pb-4">
+          <motion.div initial={reduced ? false : { x: -70, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}><TechCreature state={active ? 'checkpoint' : 'idle'} className="w-20" /></motion.div>
+          <div className="pb-2"><p className="field-label">Final checkpoint</p><p className="mt-2 text-sm text-text-secondary">The next system starts with a conversation.</p></div>
+        </div>
         <MotionReveal className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div>
             <div className="flex items-center gap-3">

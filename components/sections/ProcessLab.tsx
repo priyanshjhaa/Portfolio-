@@ -7,6 +7,9 @@ import { buildStages } from '@/lib/data';
 import { AnimatePresence, MotionReveal, motion, useReducedMotion } from '@/components/ui/LabMotion';
 import { cn } from '@/lib/utils';
 
+import ProcessIllustration from '@/components/ui/ProcessIllustration';
+import SectionAtmosphere from '@/components/ui/SectionAtmosphere';
+
 const icons = [Radar, GitBranch, CircleDot, ShieldCheck, Rocket, CheckCircle2];
 
 function StageVisual({ index }: { index: number }) {
@@ -21,7 +24,7 @@ function StageVisual({ index }: { index: number }) {
         initial={reduceMotion ? false : { opacity: 0, scale: 0.975 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={reduceMotion ? undefined : { opacity: 0, scale: 1.015 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: reduceMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.045)_1px,transparent_1px)] [background-size:32px_32px]" />
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[70px]" style={{ background: `${stage.accent}18` }} />
@@ -31,28 +34,7 @@ function StageVisual({ index }: { index: number }) {
           <span className="rounded-full border border-white/10 px-3 py-1.5 font-display text-[8px] uppercase tracking-[0.16em]" style={{ color: stage.accent }}>Stage {String(index + 1).padStart(2, '0')}</span>
         </div>
 
-        <div className="relative mt-10 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-          <motion.div className="theme-raised-surface rounded-2xl border border-white/10 p-4 shadow-[0_14px_32px_-28px_var(--shadow-color)]" animate={reduceMotion ? undefined : { y: [0, -4, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
-            <span className="block h-2 w-16 rounded-full bg-white/10" />
-            <span className="mt-3 block h-2 w-full rounded-full bg-white/6" />
-            <span className="mt-2 block h-2 w-4/5 rounded-full bg-white/6" />
-            <p className="mt-5 font-display text-[8px] uppercase tracking-[0.14em] text-text-muted">Input / intent</p>
-          </motion.div>
-
-          <div className="relative h-px w-12 bg-white/10 sm:w-20">
-            <motion.span className="absolute left-0 top-[-1px] h-[3px] w-6 rounded-full" style={{ background: stage.accent }} animate={reduceMotion ? undefined : { x: [0, 56, 0] }} transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }} />
-          </div>
-
-          <motion.div className="rounded-2xl border p-4" style={{ borderColor: `${stage.accent}35`, background: `${stage.accent}0c` }} animate={reduceMotion ? undefined : { y: [0, 4, 0] }} transition={{ duration: 4.6, repeat: Infinity, ease: 'easeInOut' }}>
-            <div className="flex gap-2">
-              {[0, 1, 2].map((dot) => <span key={dot} className="h-2 w-2 rounded-full" style={{ background: dot === index % 3 ? stage.accent : 'rgba(255,255,255,.12)' }} />)}
-            </div>
-            <div className="mt-5 flex items-end gap-2">
-              {[36, 62, 46, 78].map((height, bar) => <span key={bar} className="w-1/4 rounded-t-sm" style={{ height, background: bar === index % 4 ? stage.accent : 'rgba(255,255,255,.07)' }} />)}
-            </div>
-            <p className="mt-4 font-display text-[8px] uppercase tracking-[0.14em] text-text-muted">Output / evidence</p>
-          </motion.div>
-        </div>
+        <ProcessIllustration index={index} accent={stage.accent} />
 
         <div className="relative mt-8 flex items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.025] px-4 py-3">
           <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: stage.accent, boxShadow: `0 0 14px ${stage.accent}` }} />
@@ -70,7 +52,7 @@ export default function ProcessLab() {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start center', 'end center'] });
 
   useMotionValueEvent(scrollYProgress, 'change', (progress) => {
-    if (reduceMotion) return;
+    if (reduceMotion || !window.matchMedia('(min-width: 1024px)').matches) return;
     const next = Math.min(buildStages.length - 1, Math.max(0, Math.floor(progress * buildStages.length)));
     setActiveIndex(next);
   });
@@ -84,7 +66,7 @@ export default function ProcessLab() {
 
   return (
     <section ref={sectionRef} className="relative px-4 py-24 md:px-8 md:py-32 lg:min-h-[180vh]">
-      <div className="pointer-events-none absolute right-[-18rem] top-1/3 h-[36rem] w-[36rem] rounded-full bg-[#ffd27d]/[0.055] blur-[120px]" />
+      <SectionAtmosphere tone="#ffd27d" pattern="grid" />
       <div className="relative mx-auto max-w-[1240px] lg:sticky lg:top-24">
         <MotionReveal className="grid gap-7 border-b border-white/8 pb-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
