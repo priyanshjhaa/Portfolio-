@@ -112,7 +112,7 @@ export default function ProjectPortals() {
               <div className="project-stage relative flex flex-1 items-center p-4 md:p-7">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div key={active.id} className="w-full" initial={reduceMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: reduceMotion ? 0 : 0.35 }}>
-                    <ProductFrame project={active} detail />
+                    <ProductFrame project={active} />
                   </motion.div>
                 </AnimatePresence>
               </div>
