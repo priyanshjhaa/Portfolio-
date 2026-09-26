@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, GitBranch, Github, ShieldCheck, X } from 'lucide-react';
 import { Project } from '@/types/project';
-import { getProjectImageAspectRatio } from '@/lib/project-images';
+import ProjectArtwork from '@/components/ui/ProjectArtwork';
+import ProductFrame from '@/components/ui/ProductFrame';
+import SectionAtmosphere from '@/components/ui/SectionAtmosphere';
+import { projectVisuals } from '@/lib/data';
 import ArchitecturePlayback from '@/components/ui/ArchitecturePlayback';
 
 interface ProjectDeepDiveProps {
@@ -33,8 +35,8 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
   const Wrapper = pageMode ? 'main' : 'div';
 
   return (
-    <Wrapper className={pageMode ? 'min-h-screen' : 'fixed inset-0 z-[90] overflow-y-auto bg-[#0c0d0c]'}>
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_72%_8%,rgba(183,198,170,0.06),transparent_30%)]" />
+    <Wrapper className={pageMode ? 'relative min-h-screen' : 'fixed inset-0 z-[90] overflow-y-auto bg-[#0c0d0c]'}>
+      <SectionAtmosphere tone={projectVisuals[project.id]?.accent ?? "#b7c6aa"} pattern="dots" />
 
       <div className="relative mx-auto max-w-[1320px] px-4 pb-12 pt-4 md:px-8">
         <header className="premium-surface sticky top-4 z-30 flex items-center justify-between rounded-full border border-white/10 bg-[#111210]/88 px-4 py-3 md:px-5">
@@ -63,6 +65,7 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
 
         <section className="grid min-h-[72vh] items-end gap-12 border-b border-white/8 pb-16 pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:pb-20 lg:pt-32">
           <div>
+            <ProjectArtwork projectId={project.id} />
             <SectionLabel>Build deep dive / {project.proofFrame?.eyebrow ?? 'Product system'}</SectionLabel>
             <h1 className="mt-6 font-editorial text-[clamp(5rem,12vw,11rem)] leading-[0.78] tracking-[-0.07em] text-text-primary">
               {project.name}
@@ -92,37 +95,7 @@ export default function ProjectDeepDive({ project, onClose, pageMode = false }: 
               <SectionLabel>Product proof</SectionLabel>
               <span className="font-display text-[8px] uppercase tracking-[0.16em] text-text-muted">Real interface / landing surface</span>
             </div>
-            <div className="premium-surface overflow-hidden rounded-[28px] border border-white/10 bg-black shadow-[0_42px_120px_-70px_rgba(0,0,0,.95)]">
-              <div className="flex items-center gap-2 border-b border-white/8 px-5 py-4">
-                <span className="h-2.5 w-2.5 rounded-full bg-white/75" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/25" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                <span className="ml-auto font-display text-[8px] uppercase tracking-[0.16em] text-text-muted">{project.name} / production frame</span>
-              </div>
-              <div
-                className="relative"
-                style={{ aspectRatio: getProjectImageAspectRatio(project.id) }}
-              >
-                <Image
-                  src={project.image}
-                  alt=""
-                  fill
-                  quality={35}
-                  aria-hidden="true"
-                  className="scale-110 object-cover opacity-25 blur-2xl"
-                  sizes="(max-width: 1320px) 100vw, 1320px"
-                />
-                <Image
-                  src={project.image}
-                  alt={`${project.name} landing page preview`}
-                  fill
-                  quality={84}
-                  priority
-                  className="object-contain object-center"
-                  sizes="(max-width: 1320px) 100vw, 1320px"
-                />
-              </div>
-            </div>
+            <ProductFrame project={project} />
           </section>
         )}
 

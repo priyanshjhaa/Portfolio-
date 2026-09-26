@@ -14,8 +14,8 @@ function PortraitScene() {
     <PointerParallax className="relative mx-auto h-[430px] w-full max-w-[560px] [transform-style:preserve-3d] sm:h-[610px]">
       <div className="portrait-stage absolute inset-[4%] overflow-hidden rounded-[24px] border">
         <div className="portrait-stage-grid absolute inset-0" />
-        <motion.div className="absolute inset-y-0 w-px bg-gradient-to-b from-transparent via-[#9fc8ff]/35 to-transparent" animate={reduceMotion ? undefined : { x: [20, 470, 20] }} transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }} />
-        <motion.div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#b8e986]/30 to-transparent" animate={reduceMotion ? undefined : { y: [40, 510, 40] }} transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut' }} />
+        <motion.div className="absolute inset-y-0 w-px bg-gradient-to-b from-transparent via-[#9fc8ff]/35 to-transparent" animate={reduceMotion ? undefined : { x: [20, 470, 20] }} transition={{ duration: 2.4, repeat: 0, ease: 'easeInOut' }} />
+        <motion.div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-[#b8e986]/30 to-transparent" animate={reduceMotion ? undefined : { y: [40, 510, 40] }} transition={{ duration: 2.8, repeat: 0, ease: 'easeInOut' }} />
       </div>
 
       <div className="absolute left-[1%] top-[5%] h-14 w-14 border-l border-t border-[#9fc8ff]/30" />
@@ -27,8 +27,8 @@ function PortraitScene() {
         <path d="M18 452H102L150 500H248L296 450H396L446 492H542" stroke="rgba(184,233,134,.14)" />
         {[22, 118, 162, 248, 292, 406, 454, 538].map((x, index) => <circle key={`top-${x}`} cx={x} cy={[168, 168, 122, 122, 166, 166, 118, 118][index]} r="3" fill="#0d0f0e" stroke="rgba(159,200,255,.5)" />)}
         {[18, 102, 150, 248, 296, 396, 446, 542].map((x, index) => <rect key={`bottom-${x}`} x={x - 3} y={[449, 449, 497, 497, 447, 447, 489, 489][index]} width="6" height="6" fill="#0d0f0e" stroke="rgba(184,233,134,.4)" />)}
-        <motion.path d="M22 168H118L162 122H248L292 166H406L454 118H538" stroke="#9fc8ff" strokeWidth="2" strokeDasharray="12 190" animate={reduceMotion ? undefined : { strokeDashoffset: [0, -420] }} transition={{ duration: 7, repeat: Infinity, ease: 'linear' }} />
-        <motion.circle className="portrait-orbit" cx="280" cy="305" r="238" strokeDasharray="3 15" animate={reduceMotion ? undefined : { rotate: 360 }} transition={{ duration: 54, repeat: Infinity, ease: 'linear' }} style={{ transformOrigin: '280px 305px' }} />
+        <motion.path d="M22 168H118L162 122H248L292 166H406L454 118H538" stroke="#9fc8ff" strokeWidth="2" strokeDasharray="12 190" animate={reduceMotion ? undefined : { strokeDashoffset: [0, -420] }} transition={{ duration: 2.2, repeat: 0, ease: 'linear' }} />
+        <motion.circle className="portrait-orbit" cx="280" cy="305" r="238" strokeDasharray="3 15" animate={reduceMotion ? undefined : { rotate: 360 }} transition={{ duration: 3, repeat: 0, ease: 'linear' }} style={{ transformOrigin: '280px 305px' }} />
       </svg>
 
       <motion.div
@@ -54,17 +54,17 @@ function PortraitScene() {
         </div>
       </motion.div>
 
-      <motion.div className="portrait-chip portrait-chip-identity absolute left-0 top-[35%] z-20 flex items-center gap-3 rounded-[8px] border px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, 5, 0] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}>
+      <motion.div className="portrait-chip portrait-chip-identity absolute left-0 top-[35%] z-20 flex items-center gap-3 rounded-[8px] border px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, 5, 0] }} transition={{ duration: 1.8, repeat: 0, ease: 'easeInOut' }}>
         <span className="h-1.5 w-1.5 bg-[#9fc8ff] shadow-[0_0_10px_rgba(159,200,255,.45)]" /> Identity node / Priyansh
       </motion.div>
-      <motion.div className="portrait-chip portrait-chip-stack absolute bottom-[18%] right-0 z-20 flex items-center gap-2 rounded-[8px] border px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}>
+      <motion.div className="portrait-chip portrait-chip-stack absolute bottom-[18%] right-0 z-20 flex items-center gap-2 rounded-[8px] border px-4 py-2.5 font-display text-[8px] uppercase tracking-[0.16em] backdrop-blur-xl" animate={reduceMotion ? undefined : { x: [0, -5, 0] }} transition={{ duration: 2.2, repeat: 0, ease: 'easeInOut' }}>
         <Braces className="h-3.5 w-3.5" /> Full-stack / end to end
       </motion.div>
-      <motion.div className="portrait-chip portrait-chip-status absolute right-[2%] top-[24%] z-20 rounded-[6px] border px-3 py-2 font-display text-[8px] uppercase tracking-[0.17em] backdrop-blur-xl" animate={reduceMotion ? undefined : { y: [0, 5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}>
+      <motion.div className="portrait-chip portrait-chip-status absolute right-[2%] top-[24%] z-20 rounded-[6px] border px-3 py-2 font-display text-[8px] uppercase tracking-[0.17em] backdrop-blur-xl" animate={reduceMotion ? undefined : { y: [0, 5, 0] }} transition={{ duration: 2, repeat: 0, ease: 'easeInOut' }}>
         Status // available
       </motion.div>
       <div className="absolute bottom-[5%] left-[5%] z-20 flex items-end gap-2" aria-hidden="true">
-        <TechCreature state="running" className="w-[72px] drop-shadow-[0_12px_18px_rgba(0,0,0,.55)]" />
+        <TechCreature state="idle" className="w-[72px] drop-shadow-[0_12px_18px_rgba(0,0,0,.55)]" />
         <span className="mb-2 font-display text-[7px] uppercase tracking-[0.14em] text-text-muted">run / identity</span>
       </div>
     </PointerParallax>
@@ -115,6 +115,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 opacity-60 [background-image:linear-gradient(rgba(159,200,255,.025)_1px,transparent_1px),linear-gradient(90deg,rgba(159,200,255,.025)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" aria-hidden="true" />
       <div className="pointer-events-none absolute left-[-18rem] top-[-14rem] h-[40rem] w-[40rem] rounded-full bg-[#9fc8ff]/[0.055] blur-[150px]" aria-hidden="true" />
       <div className="pointer-events-none absolute right-[-20rem] top-[8rem] h-[42rem] w-[42rem] rounded-full bg-[#b8e986]/[0.035] blur-[170px]" aria-hidden="true" />
+      <div className="hero-halo" aria-hidden="true" />
       <div className="hero-pixel-sky" aria-hidden="true"><span /><span /><span /></div>
       <div className="pointer-events-none absolute left-6 top-[44%] hidden items-center gap-3 font-display text-[8px] uppercase tracking-[0.18em] text-white/20 xl:flex" aria-hidden="true">
         <span className="h-px w-10 bg-white/15" /> runner.kernel / ready

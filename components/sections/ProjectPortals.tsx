@@ -5,7 +5,10 @@ import Link from 'next/link';
 import { ArrowUpRight, Github, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
 import { projects, projectVisuals } from '@/lib/data';
-import { getProjectImageAspectRatio } from '@/lib/project-images';
+import ProjectArtwork from '@/components/ui/ProjectArtwork';
+import ProductFrame from '@/components/ui/ProductFrame';
+import SectionAtmosphere from '@/components/ui/SectionAtmosphere';
+import ArchitecturePlayback from '@/components/ui/ArchitecturePlayback';
 import { AnimatePresence, MotionReveal, motion, useReducedMotion } from '@/components/ui/LabMotion';
 import { cn } from '@/lib/utils';
 
@@ -21,7 +24,7 @@ export default function ProjectPortals() {
 
   return (
     <section className="relative overflow-hidden px-4 py-24 md:px-8 md:py-32">
-      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[44rem] w-[44rem] -translate-x-1/2 rounded-full blur-[150px]" style={{ background: visual.softAccent }} />
+      <SectionAtmosphere tone={visual.accent} pattern="dots" />
       <div className="relative mx-auto max-w-[1240px]">
         <MotionReveal className="grid gap-7 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
           <div>
@@ -49,8 +52,9 @@ export default function ProjectPortals() {
                   aria-selected={project.id === active.id}
                   aria-controls="project-portal-panel"
                   onClick={() => setActiveId(project.id)}
-                  className={cn('premium-action flex min-h-12 min-w-[150px] flex-1 items-center justify-center gap-3 rounded-full px-5 text-sm', project.id === active.id ? 'bg-white/[0.07] text-text-primary' : 'text-text-muted hover:text-text-primary')}
+                  className={cn('premium-action relative isolate flex min-h-12 min-w-[150px] flex-1 items-center justify-center gap-3 rounded-full px-5 text-sm', project.id === active.id ? 'bg-white/[0.07] text-text-primary' : 'text-text-muted hover:text-text-primary')}
                 >
+                  {project.id === active.id && <motion.span layoutId="project-tab-highlight" className="absolute inset-0 -z-10 rounded-full border" style={{ borderColor: `${projectVisual.accent}50`, background: projectVisual.softAccent }} transition={{ duration: reduceMotion ? 0 : 0.35 }} />}
                   <span className="h-2 w-2 rounded-full" style={{ background: projectVisual.accent, boxShadow: project.id === active.id ? `0 0 14px ${projectVisual.accent}` : undefined }} />
                   <span className="font-display text-[9px] text-text-muted">0{index + 1}</span>
                   {project.name}
@@ -59,7 +63,7 @@ export default function ProjectPortals() {
             })}
           </div>
 
-          <div id="project-portal-panel" role="tabpanel" className="grid lg:grid-cols-[0.9fr_1.1fr]">
+          <div id="project-portal-panel" role="tabpanel" className="grid lg:grid-cols-[0.72fr_1.28fr]">
             <div className="flex min-h-[600px] flex-col justify-between border-b border-white/8 p-6 md:p-9 lg:border-b-0 lg:border-r">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div key={active.id} initial={reduceMotion ? false : { opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} exit={reduceMotion ? undefined : { opacity: 0, x: 14 }} transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}>
@@ -67,7 +71,8 @@ export default function ProjectPortals() {
                     <span className="rounded-full border px-3 py-1.5 font-display text-[8px] uppercase tracking-[0.16em]" style={{ borderColor: `${visual.accent}35`, color: visual.accent, background: visual.softAccent }}>{visual.labLabel}</span>
                     <span className="font-display text-[8px] uppercase tracking-[0.16em] text-text-muted">{active.status} system</span>
                   </div>
-                  <h3 className="mt-7 font-editorial text-[clamp(4.2rem,8vw,7.4rem)] leading-[0.82] tracking-[-0.065em] text-text-primary">{active.name}</h3>
+                  <ProjectArtwork projectId={active.id} compact />
+                  <h3 className="mt-7 font-editorial text-[clamp(3.5rem,5vw,6rem)] leading-[0.82] tracking-[-0.065em] text-text-primary">{active.name}</h3>
                   <p className="mt-7 text-xl leading-relaxed text-text-primary">{active.summary}</p>
                   <p className="mt-4 text-sm leading-relaxed text-text-secondary">{active.details}</p>
 
@@ -103,14 +108,13 @@ export default function ProjectPortals() {
 
             <div className="theme-inset-surface flex min-h-[600px] flex-col">
               <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
-                <p className="field-label">Production frame</p>
+                <p className="field-label">Product close-up</p>
                 <p className="font-display text-[8px] uppercase tracking-[0.14em] text-text-muted">{visual.visualCue}</p>
               </div>
-              <div className="relative flex flex-1 items-center overflow-hidden p-4 md:p-7">
+              <div className="project-stage relative flex flex-1 items-center p-4 md:p-7">
                 <AnimatePresence mode="wait" initial={false}>
-                  <motion.div key={active.id} className="relative w-full overflow-hidden rounded-[24px] border border-white/10 bg-black" style={{ aspectRatio: getProjectImageAspectRatio(active.id) }} initial={reduceMotion ? false : { opacity: 0, scale: 0.97, filter: 'blur(8px)' }} animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }} exit={reduceMotion ? undefined : { opacity: 0, scale: 1.02, filter: 'blur(8px)' }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
-                    <Image src={active.image!} alt="" fill quality={75} aria-hidden="true" className="scale-110 object-cover opacity-25 blur-2xl" sizes="(max-width: 1024px) 100vw, 690px" />
-                    <Image src={active.image!} alt={`${active.name} product interface`} fill quality={75} className="z-10 object-contain" sizes="(max-width: 1024px) 100vw, 690px" />
+                  <motion.div key={active.id} className="w-full" initial={reduceMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: reduceMotion ? 0 : 0.35 }}>
+                    <ProductFrame project={active} />
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -124,6 +128,14 @@ export default function ProjectPortals() {
               </div>
             </div>
           </div>
+        </MotionReveal>
+
+        <MotionReveal className="mt-7">
+          <details key={active.id} className="workflow-disclosure rounded-[24px] border border-white/10 p-5 md:p-7">
+            <summary className="cursor-pointer text-sm text-text-primary">Explore {active.name}’s architecture <span className="ml-2 text-xs text-text-muted">Step through the system →</span></summary>
+            <p className="mt-5 text-sm text-text-secondary">An illustrated architecture walkthrough. Each stage explains the system boundary, including planned capabilities where noted.</p>
+            <ArchitecturePlayback project={active} />
+          </details>
         </MotionReveal>
 
         <MotionReveal className="mt-16">

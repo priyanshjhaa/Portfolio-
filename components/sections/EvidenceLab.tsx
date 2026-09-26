@@ -1,15 +1,19 @@
 'use client';
 
 import { Check, GitCommitHorizontal, Radio, Sparkles } from 'lucide-react';
-import { currentBuild, receipts, recentBuilds } from '@/lib/data';
+import { currentBuild, receipts, recentBuilds, projects } from '@/lib/data';
 import { MotionReveal, motion, useReducedMotion } from '@/components/ui/LabMotion';
+
+import ProductFrame from '@/components/ui/ProductFrame';
+import SectionAtmosphere from '@/components/ui/SectionAtmosphere';
+import Link from 'next/link';
 
 export default function EvidenceLab() {
   const reduceMotion = useReducedMotion();
 
   return (
     <section className="relative overflow-hidden px-4 py-24 md:px-8 md:py-32">
-      <div className="pointer-events-none absolute left-[-12rem] top-1/4 h-[34rem] w-[34rem] rounded-full bg-[#b8e986]/[0.055] blur-[120px]" />
+      <SectionAtmosphere tone="#b8e986" pattern="dots" />
       <div className="relative mx-auto max-w-[1240px]">
         <MotionReveal className="grid gap-7 border-b border-white/8 pb-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
@@ -23,6 +27,19 @@ export default function EvidenceLab() {
           <p className="max-w-xl text-lg leading-relaxed text-text-secondary lg:justify-self-end">
             Claims fade quickly. Current work, implementation receipts, and a visible shipping trail make the engineering legible.
           </p>
+        </MotionReveal>
+
+        <MotionReveal className="mt-12">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3"><p className="field-label">From the product archive</p><p className="text-xs text-text-muted">Real interface captures · select to inspect</p></div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {projects.filter((project) => ['sprout', 'atlas', 'execute'].includes(project.id)).map((project) => (
+              <article key={project.id} className="min-w-0">
+                <ProductFrame project={project} />
+                <Link href={`/systems/${project.id}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm text-text-primary">{project.name} / Read the evidence <span aria-hidden="true">↗</span></Link>
+                <p className="mt-1 text-xs leading-relaxed text-text-secondary">{project.proofPoints?.[0]}</p>
+              </article>
+            ))}
+          </div>
         </MotionReveal>
 
         <div className="mt-14 grid border-b border-white/8 lg:grid-cols-[0.82fr_1.18fr]">

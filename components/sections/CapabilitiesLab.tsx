@@ -7,6 +7,8 @@ import { capabilities, projects } from '@/lib/data';
 import { AnimatePresence, MotionReveal, motion, useReducedMotion } from '@/components/ui/LabMotion';
 import { cn } from '@/lib/utils';
 
+import SectionAtmosphere from '@/components/ui/SectionAtmosphere';
+
 const icons = [Layers3, Braces, Database, Orbit, Rocket];
 
 export default function CapabilitiesLab() {
@@ -19,7 +21,7 @@ export default function CapabilitiesLab() {
 
   return (
     <section className="relative overflow-hidden px-4 py-24 md:px-8 md:py-32">
-      <div className="pointer-events-none absolute left-[-16rem] top-1/3 h-[34rem] w-[34rem] rounded-full bg-[#9fc8ff]/[0.06] blur-[120px]" />
+      <SectionAtmosphere tone="#9fc8ff" pattern="nodes" />
       <div className="relative mx-auto max-w-[1240px]">
         <MotionReveal className="grid gap-7 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
