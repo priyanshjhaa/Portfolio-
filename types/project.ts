@@ -30,6 +30,17 @@ export interface Project {
   liveUrl?: string;
   image?: string;
   featured?: boolean;
+  /**
+   * Honest availability for projects without a public deployment.
+   * Shown instead of a missing live link.
+   */
+  availability?: ProjectAvailability;
+}
+
+export interface ProjectAvailability {
+  kind: 'in-build' | 'deployment-pending';
+  label: string;
+  note: string;
 }
 
 export interface ArchitectureStage {

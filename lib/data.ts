@@ -72,6 +72,11 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/priyanshjhaa/Sprout',
     image: '/projects/sprout/landing.jpg',
     featured: true,
+    availability: {
+      kind: 'in-build',
+      label: 'In active build',
+      note: 'The control plane and data model are built; the Go API and real deployment runtime are in progress. Walkthroughs of the prototype are available on request.',
+    },
   },
   {
     id: 'atlas',
@@ -142,6 +147,11 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/priyanshjhaa/Atlas',
     image: '/projects/atlas/landing.jpg',
     featured: true,
+    availability: {
+      kind: 'deployment-pending',
+      label: 'Deployment pending',
+      note: 'Synchronization, the evidence graph, and impact reports run end to end locally; production infrastructure and staging acceptance come next. A live walkthrough is available on request.',
+    },
   },
   {
     id: 'codemap',
@@ -841,7 +851,7 @@ export const contact = {
   github: 'https://github.com/priyanshjhaa',
   linkedin: 'https://www.linkedin.com/in/priyansh-jha-489966284',
   x: 'https://x.com/PriyaanshhJhaa',
-  email: 'Priyanshjhaa17@gmail.com',
+  email: 'priyanshjhaa17@gmail.com',
   availability: 'Open to remote startup roles',
   focus: 'I am most useful on product engineering, developer tools, workflow systems, and full-stack work that needs clear ownership.',
   operatingStatement:
@@ -1000,3 +1010,31 @@ export const timeline: TimelineEntry[] = [
     icon: 'Rocket',
   },
 ];
+
+/**
+ * Lines for Mini Priyansh, the pixel companion that walks along the bottom
+ * of the page. Write these in your own voice — they are the personality.
+ */
+export const companion = {
+  hello: 'Hey, I’m mini Priyansh. Scroll and I’ll walk you through.',
+  sections: {
+    work: 'These are the systems I’m building. Sprout is my current obsession.',
+    approach: 'Confession: I sketch the data model before I touch the UI.',
+    log: 'Receipts! I’d rather show the work than talk about it.',
+    contact: 'Almost there. This is the part where we talk.',
+  },
+  end: 'You made it to the end. That’s a good sign. Say hi?',
+  sleep: 'zzz… scroll to wake me',
+  wake: 'I’m up! I’m up.',
+  back: 'Missed me? Back on the run.',
+  pokes: [
+    'Psst. Press ⌘K and type “ship it”.',
+    'Yes, the glasses are real.',
+    'Approval gates: because AI shouldn’t push to prod alone.',
+    'I draw boxes and arrows before I write code.',
+    'Currently teaching Sprout to deploy itself.',
+    'Every claim in Atlas needs a citation. Mine too.',
+    'Okay, okay. I’ll keep walking.',
+  ],
+};
+
