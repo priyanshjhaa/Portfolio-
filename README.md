@@ -2,31 +2,25 @@
 
 A single-page portfolio for a full-stack product engineer building developer tools, workflow systems, and reliable SaaS products. It is designed to help founders, hiring teams, and engineers quickly inspect shipped work, product judgment, and the system decisions behind each build.
 
-## Live Experience
+## Experience
 
-- **Interactive arrival:** kinetic product-engineering roles and a layered portal into the flagship systems.
-- **Capability playground:** skills are connected to product responsibility and the projects where they were used instead of shown as percentage bars.
-- **Build choreography:** a scroll-led and manually controllable path from understanding the problem through shipping and iteration.
-- **Project portals:** Atlas, Execute, and CodeMap share an interactive product stage; Axiom and Cinematch remain available in a compact scan.
-- **Shipping evidence:** active work, implementation receipts, and recent releases form a visible engineering trail.
-- **Project deep dives:** dedicated system pages for Atlas, CodeMap, Execute, Axiom, and Cinematch with product proof, architecture flows, ownership, production signals, and links.
-- **Build explorer:** a keyboard-first command palette for searching projects, skills, and contact actions with `Cmd/Ctrl + K`.
+- **Editorial homepage:** a calm hero with a "Now building" strip, selected work with the key decision behind each project, the build approach, a monthly build log, and contact.
+- **Honest project status:** projects without a public deployment show their real state ("In active build", "Deployment pending") and offer a prefilled "Request a walkthrough" email instead of a missing link.
+- **Case studies:** `/systems/<id>` pages cover the problem, approach, defining decision and tradeoff, a step-through architecture flow with the safeguard at each stage, what is built, and what is next.
+- **Search:** `Cmd/Ctrl + K` opens a keyboard-first palette for projects, sections, and contact links.
 
 ## Design System
 
-The interface is intentionally distinct without being visually noisy:
-
-- **Graphite canvas:** warm dark surfaces with bone-white typography for sustained readability.
-- **Creative-lab accents:** pink, blue, gold, green, and violet identify homepage chapters while the graphite/editorial identity stays intact.
-- **Continuous background:** subtle grid, dot, contour, and guide-line textures span the whole page without section dividers.
-- **Purposeful motion:** kinetic text, project crossfades, tracing paths, parallax frames, and magnetic actions communicate state or hierarchy.
-- **Reduced motion:** all choreography resolves to readable final states when `prefers-reduced-motion` is enabled.
+- **Surfaces:** warm paper (light) and ink (dark), switchable and following the system setting by default.
+- **One accent:** a clay red used sparingly for emphasis, active states, and status.
+- **Type:** Newsreader (serif display), Geist (body), and Geist Mono (labels), loaded with `next/font` so every platform renders the same typography.
+- **Motion:** a single, subtle fade-in on scroll. Content is fully visible without JavaScript and with reduced motion enabled.
+- **Tokens:** every color lives as a CSS variable in `app/globals.css`; components use plain, named classes from the same file.
 
 ## Stack
 
 - [Next.js](https://nextjs.org/) 16 with the App Router
 - React 19 and TypeScript
-- Motion for React
 - Tailwind CSS
 - Lucide icons
 - Local portfolio data and static project screenshots
@@ -35,16 +29,17 @@ The interface is intentionally distinct without being visually noisy:
 
 ```text
 app/
-  page.tsx                 # Single-page portfolio and section state
-  systems/[id]/page.tsx    # Dedicated project system pages
-  layout.tsx               # Global texture, gradient, and cursor layers
-  globals.css              # Visual system, motion, textures, and accessibility rules
+  page.tsx                 # Homepage composition
+  systems/[id]/page.tsx    # Case-study pages (statically generated)
+  layout.tsx               # Fonts, metadata, theme bootstrapping
+  globals.css              # Design tokens and component styles
 components/
-  sections/                # Arrival, capability lab, process lab, project portals, evidence, contact
-  ui/                      # Motion primitives, navigation, explorer, pointer effects, project deep dive
-lib/data.ts                # Portfolio copy, projects, capabilities, build stages, and visual metadata
-types/experience.ts        # Homepage capability, process, and project-visual interfaces
-public/projects/           # Project landing-page screenshots
+  site/                    # Navigation, command palette, theme switch, footer, reveal-on-scroll
+  home/                    # Hero, selected work, approach, build log, contact
+  project/                 # Case study and architecture flow
+lib/data.ts                # Portfolio content (single source of truth)
+lib/project-state.ts       # Honest status labels and walkthrough links
+public/projects/           # Project screenshots
 ```
 
 ## Run Locally
@@ -71,15 +66,15 @@ npm start
 - Add or update projects, stacks, GitHub/live links, and selected-work status in `projects`.
 - Maintain each project’s case-study content through its proof points, architecture notes, ownership, tradeoffs, and production signals.
 - Update hero positioning, current shipping notes, receipts, and operating principles in the same file.
-- Place product screenshots at `public/projects/<project-id>/landing.png` and reference them from the corresponding project entry.
+- Place product screenshots at `public/projects/<project-id>/landing.jpg` and reference them from the corresponding project entry.
+- For a project without a public deployment, set `availability` (`in-build` or `deployment-pending`) with a short note; remove it and add `liveUrl` once it ships.
 
 ## Accessibility and Responsive Behavior
 
-- Semantic headings, buttons, and links throughout.
-- Keyboard-accessible explorer with escape-to-close and focus-aware behavior.
-- Responsive selected-work cards and system pages for mobile through desktop.
-- Desktop-only cursor effects; touch layouts remain clean and interaction-safe.
-- Reduced-motion support for all ambient animation and reveal treatments.
+- Semantic landmarks, a skip link, and visible focus states throughout.
+- Command palette and architecture flow are fully keyboard operable (arrow keys, Enter, Escape).
+- Layouts are tested from 390px phones to wide desktops with no horizontal scrolling.
+- Reduced-motion support for every transition and reveal.
 
 ## License
 

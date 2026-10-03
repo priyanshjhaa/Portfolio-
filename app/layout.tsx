@@ -1,7 +1,26 @@
-import type { Metadata } from 'next';
-import GlobalPointerGlow from '@/components/ui/GlobalPointerGlow';
-import SystemTelemetry from '@/components/ui/SystemTelemetry';
+import type { Metadata, Viewport } from 'next';
+import { Geist, Geist_Mono, Newsreader } from 'next/font/google';
 import './globals.css';
+
+const serif = Newsreader({
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
+  variable: '--font-serif',
+  display: 'swap',
+});
+
+const sans = Geist({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const mono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Priyansh Jha | Full-Stack Product Engineer',
@@ -18,30 +37,27 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f4f1ea' },
+    { media: '(prefers-color-scheme: dark)', color: '#131210' },
+  ],
+};
+
+// Applies the saved or system theme before first paint to avoid a flash.
+const themeScript = `(function(){try{var s=localStorage.getItem('portfolio-theme');var t=s==='light'||s==='dark'?s:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var k='portfolio-theme';var s=localStorage.getItem(k);var t=s==='light'||s==='dark'?s:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}catch(e){document.documentElement.dataset.theme='dark';}})();`,
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="antialiased">
-        <div className="field-atmosphere" aria-hidden="true" />
-        <div className="field-grid" aria-hidden="true" />
-        <div className="runner-ambient" aria-hidden="true">
-          <span /><span /><span /><span /><span /><span />
-        </div>
-        <SystemTelemetry />
-        <GlobalPointerGlow />
-        <div className="site-content">{children}</div>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -37,9 +37,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['"Avenir Next"', '"Helvetica Neue"', 'system-ui', 'sans-serif'],
-        display: ['"IBM Plex Mono"', '"SFMono-Regular"', 'Consolas', 'monospace'],
-        editorial: ['"Iowan Old Style"', '"Baskerville"', '"Times New Roman"', 'serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        editorial: ['var(--font-serif)', 'Georgia', 'serif'],
       },
       animation: {
         'fade-up': 'fadeUp 0.25s ease-out',
