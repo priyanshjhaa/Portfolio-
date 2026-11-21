@@ -2863,11 +2863,6 @@ body::after {
 .readme {
   min-width: 0;
 }
-@media (max-width: 899px) {
-  .idcard {
-    max-width: 300px;
-  }
-}
 @media (min-width: 900px) {
   .about__grid {
     grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
@@ -3212,4 +3207,53 @@ body::after {
 }
 .contact__card > * {
   position: relative;
+}
+
+/* ==========================================================================
+   Mobile & tablet refinements
+   ========================================================================== */
+
+/* Touch: grow small links' hit areas to ~44px without moving their visuals. */
+@media (pointer: coarse) {
+  .text-link,
+  .cap__used a,
+  .readme__refs a {
+    position: relative;
+  }
+  .text-link::after,
+  .cap__used a::after,
+  .readme__refs a::after {
+    content: '';
+    position: absolute;
+    inset: -9px -4px;
+  }
+  .readme__refs,
+  .cap__used {
+    gap: 10px;
+  }
+}
+
+/* Tablet: ID card goes horizontal so the README isn't pushed a screen down. */
+@media (min-width: 600px) and (max-width: 899px) {
+  .idcard {
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(180px, 0.8fr) 1fr;
+    align-items: center;
+    gap: 20px;
+  }
+  .idcard figcaption {
+    padding: 0 8px 0 0;
+  }
+}
+
+/* Phones: a little more room for the contact copy. */
+@media (max-width: 599px) {
+  .contact__card {
+    padding: 26px 20px;
+    border-radius: 22px;
+  }
+  .idcard {
+    max-width: 320px;
+  }
 }
