@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { buildStages, capabilities, projects } from '@/lib/data';
 import { projectNumber } from '@/lib/project-state';
 import StepsProgress from '@/components/fun/StepsProgress';
+import Stagger from '@/components/motion/Stagger';
 
 const projectName = (id: string) => projects.find((project) => project.id === id)?.name ?? id;
 
@@ -46,7 +47,7 @@ export default function Approach() {
               Skills connected to <em>proof.</em>
             </h3>
           </div>
-          <ul className="caps__grid" data-reveal>
+          <Stagger as="ul" className="caps__grid" step={60}>
             {capabilities.map((capability) => (
               <li key={capability.id} className="cap">
                 <h3>{capability.label}</h3>
@@ -66,7 +67,7 @@ export default function Approach() {
               <p>Go service design for Sprout’s control API, and production operations for Atlas: deployment, backups, rollback, and release acceptance.</p>
               <p className="cap__skills">Go · Docker · PostgreSQL operations</p>
             </li>
-          </ul>
+          </Stagger>
         </div>
       </div>
     </section>

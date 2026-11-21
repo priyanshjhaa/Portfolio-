@@ -1,5 +1,6 @@
 import { recentBuilds } from '@/lib/data';
 import ArchiveGallery from '@/components/home/ArchiveGallery';
+import Stagger from '@/components/motion/Stagger';
 
 export default function BuildLog() {
   return (
@@ -24,9 +25,9 @@ export default function BuildLog() {
           <p className="archive__hint">A visible trail of iteration, month by month.</p>
         </div>
 
-        <ol className="log">
+        <Stagger as="ol" className="log" step={80}>
           {recentBuilds.map((entry) => (
-            <li key={entry.period} className="log__entry" data-reveal>
+            <li key={entry.period} className="log__entry">
               <h3 className="log__period">{entry.period}</h3>
               <ul className="log__items">
                 {entry.items.map((item) => (
@@ -35,7 +36,7 @@ export default function BuildLog() {
               </ul>
             </li>
           ))}
-        </ol>
+        </Stagger>
       </div>
     </section>
   );

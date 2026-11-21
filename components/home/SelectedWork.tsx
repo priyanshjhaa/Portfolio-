@@ -7,6 +7,9 @@ import { getProjectImageAspectRatio } from '@/lib/project-images';
 import { getProjectState, getWalkthroughHref, projectNumber } from '@/lib/project-state';
 import TiltCard from '@/components/fun/TiltCard';
 import Pipeline from '@/components/fun/Pipeline';
+import Parallax from '@/components/motion/Parallax';
+import Stagger from '@/components/motion/Stagger';
+import DrawLine from '@/components/motion/DrawLine';
 
 const featuredIds = ['sprout', 'atlas', 'execute', 'codemap'];
 
@@ -48,11 +51,11 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
         )}
 
         {project.proofPoints && (
-          <ul className="work__proof">
+          <Stagger as="ul" className="work__proof">
             {project.proofPoints.slice(0, 3).map((point) => (
               <li key={point}>{point}</li>
             ))}
-          </ul>
+          </Stagger>
         )}
 
         <p className="work__stack">{project.stack.join(' · ')}</p>
@@ -81,7 +84,8 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 
       {project.image && (
         <div className="work__media">
-          <TiltCard>
+          <Parallax distance={20}>
+          <TiltCard max={4}>
             <Link href={caseHref} className="shot" aria-label={`${project.name} case study`}>
               <div className="shot__bar" aria-hidden="true">
                 <i /> <i /> <i />
@@ -96,6 +100,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
               />
             </Link>
           </TiltCard>
+          </Parallax>
           {project.flowSteps && <Pipeline steps={project.flowSteps} duration={4 + project.flowSteps.length} />}
         </div>
       )}
@@ -121,11 +126,14 @@ export default function SelectedWork() {
           </p>
         </div>
 
-        <ol className="work-list">
-          {featured.map((project, index) => (
-            <ProjectRow key={project.id} project={project} index={index} />
-          ))}
-        </ol>
+        <div className="work-track">
+          <DrawLine className="work-track__line" />
+          <ol className="work-list">
+            {featured.map((project, index) => (
+              <ProjectRow key={project.id} project={project} index={index} />
+            ))}
+          </ol>
+        </div>
 
         {earlier.length > 0 && (
           <div className="earlier" data-reveal>

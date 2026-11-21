@@ -2158,10 +2158,12 @@ a.shot:hover {
    ========================================================================== */
 
 /* Atmosphere: textured dark field with soft green and clay glows, paper grain in light. */
+/* Painted on <html> so the fixed ambient layer (z-index -1) sits between
+   this atmosphere and the page content. */
 body {
-  background-color: var(--bg);
+  background: transparent;
 }
-:root[data-theme='dark'] body {
+:root[data-theme='dark'] {
   background-image:
     radial-gradient(ellipse 60% 45% at 8% 4%, rgba(143, 199, 156, 0.09), transparent 70%),
     radial-gradient(ellipse 50% 40% at 96% 38%, rgba(224, 132, 99, 0.08), transparent 70%),
@@ -2171,7 +2173,7 @@ body {
   background-size: 100% 100%, 100% 100%, 100% 100%, 72px 72px, 72px 72px;
   background-attachment: fixed;
 }
-:root[data-theme='light'] body {
+:root[data-theme='light'] {
   background-image:
     radial-gradient(ellipse 60% 45% at 8% 4%, rgba(59, 114, 72, 0.06), transparent 70%),
     radial-gradient(ellipse 50% 40% at 96% 38%, rgba(176, 67, 42, 0.05), transparent 70%);
@@ -2766,15 +2768,9 @@ body::after {
 .ambient {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
   overflow: hidden;
   pointer-events: none;
-}
-/* Positioned (z-index auto) and later in the DOM, so they paint above the
-   field without trapping overlays like the lightbox in a stacking context. */
-main,
-.footer {
-  position: relative;
 }
 .ambient__blob {
   position: absolute;
@@ -2830,7 +2826,13 @@ main,
 .stagger > * {
   transition:
     opacity 650ms var(--ease) calc(var(--i, 0) * var(--stagger-step, 70ms)),
-    transform 650ms var(--ease) calc(var(--i, 0) * var(--stagger-step, 70ms));
+    transform 650ms var(--ease) calc(var(--i, 0) * var(--stagger-step, 70ms)),
+    background-color 300ms var(--ease),
+    box-shadow 300ms var(--ease);
+}
+/* Once settled, hover lifts respond immediately instead of inheriting the delay. */
+.stagger.is-settled > * {
+  transition-delay: 0ms;
 }
 .js-reveal .stagger:not(.is-in) > * {
   opacity: 0;
@@ -3166,4 +3168,68 @@ main,
   .idcard__sweep {
     display: none;
   }
+}
+
+/* ==========================================================================
+   Depth applied to home sections
+   ========================================================================== */
+
+/* Hero: the dot field is its own back layer and fades as the page hands off. */
+.hero__field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero__graph-layer {
+  width: 100%;
+  display: grid;
+}
+
+/* Selected work: a trace runs down the gutter, lighting up as you read. */
+.work-track {
+  position: relative;
+}
+.work-track__line {
+  display: none;
+}
+@media (min-width: 1100px) {
+  .work-track__line {
+    display: block;
+    left: calc(var(--gutter) * -0.75);
+  }
+}
+.work__media .tilt {
+  border-radius: var(--radius);
+}
+
+/* Contact: a glass card floating over the ambient field. */
+.contact {
+  border-top-color: transparent;
+}
+.contact__card {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(28px, 6vw, 72px);
+  border-radius: clamp(20px, 3vw, 36px);
+  background: var(--bg-glass);
+  border: 1px solid var(--line);
+  box-shadow: var(--elev-3);
+  backdrop-filter: blur(20px) saturate(1.15);
+  -webkit-backdrop-filter: blur(20px) saturate(1.15);
+  overflow: hidden;
+}
+.contact__card::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-soft), transparent 65%);
+  pointer-events: none;
+  z-index: -1;
+}
+.contact__card > * {
+  position: relative;
 }

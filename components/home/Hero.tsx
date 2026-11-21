@@ -5,6 +5,7 @@ import Magnetic from '@/components/fun/Magnetic';
 import Marquee from '@/components/fun/Marquee';
 import ScrambleText from '@/components/fun/ScrambleText';
 import SystemGraph from '@/components/fun/SystemGraph';
+import Parallax from '@/components/motion/Parallax';
 
 const tickerItems = [
   'TypeScript',
@@ -26,7 +27,9 @@ const tickerItems = [
 export default function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <DotField />
+      <Parallax className="hero__field" distance={60} fadeTo={0}>
+        <DotField />
+      </Parallax>
       <div className="wrap hero__wrap">
         <div className="hero__grid">
           <div data-reveal>
@@ -75,9 +78,11 @@ export default function Hero() {
             </dl>
           </div>
 
-          <div className="hero__graph" data-reveal>
-            <SystemGraph />
-          </div>
+          <Parallax className="hero__graph-layer" distance={36}>
+            <div className="hero__graph" data-reveal>
+              <SystemGraph />
+            </div>
+          </Parallax>
         </div>
 
       </div>

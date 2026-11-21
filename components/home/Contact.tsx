@@ -5,7 +5,8 @@ import CopyEmail from '@/components/site/CopyEmail';
 export default function Contact() {
   return (
     <section id="contact" className="contact" aria-labelledby="contact-title">
-      <div className="wrap" data-reveal>
+      <div className="wrap">
+        <div className="contact__card" data-reveal>
         <p className="eyebrow"><span className="eyebrow__index">05</span> Final checkpoint · The next system starts with a conversation</p>
         <h2 id="contact-title" className="display contact__title">
           Have a difficult <em>product problem?</em>
@@ -49,6 +50,7 @@ export default function Contact() {
             </dd>
           </div>
         </dl>
+        </div>
       </div>
     </section>
   );
