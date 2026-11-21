@@ -7,11 +7,11 @@ const projectName = (id: string) => projects.find((project) => project.id === id
 
 export default function Approach() {
   return (
-    <section id="approach" className="section" aria-labelledby="approach-title">
+    <section id="approach" className="section section--plate" aria-labelledby="approach-title">
       <div className="wrap">
         <div className="section__head" data-reveal>
           <div>
-            <p className="eyebrow">02 / Approach</p>
+            <p className="eyebrow"><span className="eyebrow__index">02</span> Approach</p>
             <h2 id="approach-title" className="h-section">
               From ambiguity
               <br />

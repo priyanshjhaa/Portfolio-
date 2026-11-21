@@ -6,7 +6,7 @@ export default function Contact() {
   return (
     <section id="contact" className="contact" aria-labelledby="contact-title">
       <div className="wrap" data-reveal>
-        <p className="eyebrow">04 / Final checkpoint · The next system starts with a conversation</p>
+        <p className="eyebrow"><span className="eyebrow__index">04</span> Final checkpoint · The next system starts with a conversation</p>
         <h2 id="contact-title" className="display contact__title">
           Have a difficult <em>product problem?</em>
         </h2>

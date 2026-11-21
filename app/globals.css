@@ -2629,3 +2629,131 @@ body::after {
     opacity: 1;
   }
 }
+
+/* ==========================================================================
+   Depth system — elevation, surfaces and section plates
+   Layers, back to front: ambient field → page → plates → cards → floating.
+   ========================================================================== */
+
+:root {
+  --elev-1: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 1px 2px rgba(27, 26, 23, 0.05), 0 8px 20px -14px rgba(27, 26, 23, 0.22);
+  --elev-2: 0 1px 2px rgba(27, 26, 23, 0.05), 0 4px 10px -4px rgba(27, 26, 23, 0.08), 0 28px 56px -28px rgba(27, 26, 23, 0.32);
+  --elev-3: 0 2px 6px rgba(27, 26, 23, 0.06), 0 40px 90px -36px rgba(27, 26, 23, 0.4);
+  --bg-glass: rgba(251, 249, 244, 0.72);
+  --plate: rgba(235, 230, 219, 0.62);
+  --plate-line: rgba(27, 26, 23, 0.07);
+  --plate-highlight: rgba(255, 255, 255, 0.65);
+  --ambient-a: rgba(176, 67, 42, 0.11);
+  --ambient-b: rgba(59, 114, 72, 0.09);
+  --ambient-c: rgba(120, 104, 180, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --elev-1: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 24px -14px rgba(0, 0, 0, 0.6);
+    --elev-2: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 4px 12px -4px rgba(0, 0, 0, 0.4), 0 30px 60px -28px rgba(0, 0, 0, 0.75);
+    --elev-3: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 44px 100px -36px rgba(0, 0, 0, 0.85);
+    --bg-glass: rgba(27, 26, 23, 0.66);
+    --plate: rgba(14, 13, 12, 0.55);
+    --plate-line: rgba(236, 232, 223, 0.07);
+    --plate-highlight: rgba(236, 232, 223, 0.04);
+    --ambient-a: rgba(224, 132, 99, 0.1);
+    --ambient-b: rgba(143, 199, 156, 0.07);
+    --ambient-c: rgba(201, 167, 255, 0.06);
+  }
+}
+
+:root[data-theme='dark'] {
+  --elev-1: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 24px -14px rgba(0, 0, 0, 0.6);
+  --elev-2: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 4px 12px -4px rgba(0, 0, 0, 0.4), 0 30px 60px -28px rgba(0, 0, 0, 0.75);
+  --elev-3: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 44px 100px -36px rgba(0, 0, 0, 0.85);
+  --bg-glass: rgba(27, 26, 23, 0.66);
+  --plate: rgba(14, 13, 12, 0.55);
+  --plate-line: rgba(236, 232, 223, 0.07);
+  --plate-highlight: rgba(236, 232, 223, 0.04);
+  --ambient-a: rgba(224, 132, 99, 0.1);
+  --ambient-b: rgba(143, 199, 156, 0.07);
+  --ambient-c: rgba(201, 167, 255, 0.06);
+}
+
+/* Surfaces */
+.elev-1 { box-shadow: var(--elev-1); }
+.elev-2 { box-shadow: var(--elev-2); }
+.elev-3 { box-shadow: var(--elev-3); }
+
+.glass {
+  background: var(--bg-glass);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+}
+
+/* Plates: a recessed, rounded sheet behind a section — marks a new chapter. */
+.section--plate {
+  position: relative;
+  isolation: isolate;
+  border-top-color: transparent;
+}
+.section--plate::before {
+  content: '';
+  position: absolute;
+  inset: clamp(8px, 1.4vw, 18px) clamp(6px, 1.6vw, 22px);
+  z-index: -1;
+  border-radius: clamp(20px, 3vw, 36px);
+  background: var(--plate);
+  border: 1px solid var(--plate-line);
+  box-shadow: 0 1px 0 var(--plate-highlight) inset, 0 -1px 0 var(--plate-line) inset;
+  pointer-events: none;
+}
+.section--plate + .section {
+  border-top-color: transparent;
+}
+
+/* Section head hierarchy: index chip + a rule that draws in on reveal. */
+.eyebrow__index {
+  display: inline-grid;
+  place-items: center;
+  min-width: 30px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-raised);
+  box-shadow: var(--elev-1);
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+.section__head .eyebrow::after {
+  content: '';
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  transform-origin: left;
+  transition: transform 1100ms var(--ease) 200ms;
+}
+.js-reveal .section__head[data-reveal]:not(.is-visible) .eyebrow::after {
+  transform: scaleX(0);
+}
+.section__head .lede {
+  max-width: 46ch;
+}
+
+/* Cards pick up the elevation scale. */
+.shot {
+  box-shadow: var(--elev-2);
+}
+.cap {
+  transition: background 300ms var(--ease), box-shadow 300ms var(--ease), transform 300ms var(--ease);
+}
+.cap:hover {
+  box-shadow: var(--elev-2);
+  transform: translateY(-2px);
+  z-index: 1;
+}
+.work__decision {
+  padding: 16px 18px 16px 20px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--bg-raised);
+  box-shadow: var(--elev-1);
+}
