@@ -2067,41 +2067,11 @@ a.shot:hover {
   transform: scaleX(1);
 }
 
-/* ---------- Magnetic, cursor, burst ------------------------------------ */
+/* ---------- Magnetic, burst --------------------------------------------- */
 
 .magnetic {
   display: inline-flex;
   transition: transform 350ms var(--ease);
-}
-
-.cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 80;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 200ms var(--ease);
-}
-.cursor[data-visible='true'] {
-  opacity: 1;
-}
-.cursor span {
-  display: block;
-  width: 22px;
-  height: 22px;
-  margin: -11px 0 0 -11px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
-  transition: transform 250ms var(--ease), background 250ms var(--ease), border-color 250ms var(--ease);
-}
-.cursor[data-hover='true'] span {
-  transform: scale(1.6);
-  background: var(--accent-soft);
-  border-color: transparent;
-}
-.cursor[data-down='true'] span {
-  transform: scale(0.7);
 }
 
 .burst-canvas {
