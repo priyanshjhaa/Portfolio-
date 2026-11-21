@@ -1,5 +1,5 @@
 import { ArrowDownRight, Github } from 'lucide-react';
-import { contact, currentBuild, heroContent } from '@/lib/data';
+import { contact, heroContent } from '@/lib/data';
 import DotField from '@/components/fun/DotField';
 import Magnetic from '@/components/fun/Magnetic';
 import Marquee from '@/components/fun/Marquee';
@@ -80,16 +80,6 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="now" data-reveal>
-          <p className="eyebrow now__label">
-            <span className="now__pulse" aria-hidden="true" /> Now building
-          </p>
-          <ul className="now__list">
-            {currentBuild.items.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
       </div>
 
       <Marquee items={tickerItems} label="Tools and practices I work with" />

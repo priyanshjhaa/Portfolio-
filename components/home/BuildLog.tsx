@@ -7,7 +7,7 @@ export default function BuildLog() {
       <div className="wrap">
         <div className="section__head" data-reveal>
           <div>
-            <p className="eyebrow"><span className="eyebrow__index">03</span> Evidence</p>
+            <p className="eyebrow"><span className="eyebrow__index">04</span> Evidence</p>
             <h2 id="log-title" className="h-section">
               The work leaves
               <br />

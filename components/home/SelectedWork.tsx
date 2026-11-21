@@ -109,7 +109,7 @@ export default function SelectedWork() {
       <div className="wrap">
         <div className="section__head" data-reveal>
           <div>
-            <p className="eyebrow"><span className="eyebrow__index">01</span> Selected work</p>
+            <p className="eyebrow"><span className="eyebrow__index">02</span> Selected work</p>
             <h2 id="work-title" className="h-section">
               Enter a system.
               <br />

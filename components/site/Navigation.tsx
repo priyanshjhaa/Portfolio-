@@ -8,6 +8,7 @@ import CommandPalette from '@/components/site/CommandPalette';
 import ThemeSwitch from '@/components/site/ThemeSwitch';
 
 const links = [
+  { id: 'about', label: 'About' },
   { id: 'work', label: 'Work' },
   { id: 'approach', label: 'Approach' },
   { id: 'log', label: 'Evidence' },

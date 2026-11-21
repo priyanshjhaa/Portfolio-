@@ -78,6 +78,7 @@ function buildItems(): PaletteItem[] {
   });
 
   const sectionItems: PaletteItem[] = [
+    { id: 's-about', label: 'About', hint: 'whoami — how I work and what I believe', group: 'Sections', href: '/#about', keywords: 'about whoami readme principles bio who', icon: Hash },
     { id: 's-work', label: 'Selected work', hint: 'Projects and case studies', group: 'Sections', href: '/#work', keywords: 'work projects', icon: Hash },
     { id: 's-approach', label: 'Approach', hint: 'How I build and what I can own', group: 'Sections', href: '/#approach', keywords: 'process skills capabilities how i build', icon: Hash },
     { id: 's-log', label: 'Evidence', hint: 'Product archive and shipping trail', group: 'Sections', href: '/#log', keywords: 'log shipping recent changelog', icon: Hash },

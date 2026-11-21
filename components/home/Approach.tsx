@@ -11,7 +11,7 @@ export default function Approach() {
       <div className="wrap">
         <div className="section__head" data-reveal>
           <div>
-            <p className="eyebrow"><span className="eyebrow__index">02</span> Approach</p>
+            <p className="eyebrow"><span className="eyebrow__index">03</span> Approach</p>
             <h2 id="approach-title" className="h-section">
               From ambiguity
               <br />

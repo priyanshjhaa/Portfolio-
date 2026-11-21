@@ -6,6 +6,7 @@ import PacketBurst from '@/components/fun/PacketBurst';
 import Companion from '@/components/fun/Companion';
 import AmbientField from '@/components/motion/AmbientField';
 import Hero from '@/components/home/Hero';
+import About from '@/components/home/About';
 import SelectedWork from '@/components/home/SelectedWork';
 import Approach from '@/components/home/Approach';
 import BuildLog from '@/components/home/BuildLog';
@@ -18,6 +19,7 @@ export default function Home() {
       <Navigation home />
       <main id="main">
         <Hero />
+        <About />
         <SelectedWork />
         <Approach />
         <BuildLog />
