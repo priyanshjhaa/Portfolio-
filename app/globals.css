@@ -2067,41 +2067,11 @@ a.shot:hover {
   transform: scaleX(1);
 }
 
-/* ---------- Magnetic, cursor, burst ------------------------------------ */
+/* ---------- Magnetic, burst --------------------------------------------- */
 
 .magnetic {
   display: inline-flex;
   transition: transform 350ms var(--ease);
-}
-
-.cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 80;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 200ms var(--ease);
-}
-.cursor[data-visible='true'] {
-  opacity: 1;
-}
-.cursor span {
-  display: block;
-  width: 22px;
-  height: 22px;
-  margin: -11px 0 0 -11px;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent);
-  transition: transform 250ms var(--ease), background 250ms var(--ease), border-color 250ms var(--ease);
-}
-.cursor[data-hover='true'] span {
-  transform: scale(1.6);
-  background: var(--accent-soft);
-  border-color: transparent;
-}
-.cursor[data-down='true'] span {
-  transform: scale(0.7);
 }
 
 .burst-canvas {
@@ -2158,10 +2128,12 @@ a.shot:hover {
    ========================================================================== */
 
 /* Atmosphere: textured dark field with soft green and clay glows, paper grain in light. */
+/* Painted on <html> so the fixed ambient layer (z-index -1) sits between
+   this atmosphere and the page content. */
 body {
-  background-color: var(--bg);
+  background: transparent;
 }
-:root[data-theme='dark'] body {
+:root[data-theme='dark'] {
   background-image:
     radial-gradient(ellipse 60% 45% at 8% 4%, rgba(143, 199, 156, 0.09), transparent 70%),
     radial-gradient(ellipse 50% 40% at 96% 38%, rgba(224, 132, 99, 0.08), transparent 70%),
@@ -2171,7 +2143,7 @@ body {
   background-size: 100% 100%, 100% 100%, 100% 100%, 72px 72px, 72px 72px;
   background-attachment: fixed;
 }
-:root[data-theme='light'] body {
+:root[data-theme='light'] {
   background-image:
     radial-gradient(ellipse 60% 45% at 8% 4%, rgba(59, 114, 72, 0.06), transparent 70%),
     radial-gradient(ellipse 50% 40% at 96% 38%, rgba(176, 67, 42, 0.05), transparent 70%);
@@ -2627,5 +2599,661 @@ body::after {
   }
   .companion__zzz i:nth-child(1) {
     opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Depth system — elevation, surfaces and section plates
+   Layers, back to front: ambient field → page → plates → cards → floating.
+   ========================================================================== */
+
+:root {
+  --elev-1: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 1px 2px rgba(27, 26, 23, 0.05), 0 8px 20px -14px rgba(27, 26, 23, 0.22);
+  --elev-2: 0 1px 2px rgba(27, 26, 23, 0.05), 0 4px 10px -4px rgba(27, 26, 23, 0.08), 0 28px 56px -28px rgba(27, 26, 23, 0.32);
+  --elev-3: 0 2px 6px rgba(27, 26, 23, 0.06), 0 40px 90px -36px rgba(27, 26, 23, 0.4);
+  --bg-glass: rgba(251, 249, 244, 0.72);
+  --plate: rgba(235, 230, 219, 0.62);
+  --plate-line: rgba(27, 26, 23, 0.07);
+  --plate-highlight: rgba(255, 255, 255, 0.65);
+  --ambient-a: rgba(176, 67, 42, 0.11);
+  --ambient-b: rgba(59, 114, 72, 0.09);
+  --ambient-c: rgba(120, 104, 180, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --elev-1: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 24px -14px rgba(0, 0, 0, 0.6);
+    --elev-2: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 4px 12px -4px rgba(0, 0, 0, 0.4), 0 30px 60px -28px rgba(0, 0, 0, 0.75);
+    --elev-3: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 44px 100px -36px rgba(0, 0, 0, 0.85);
+    --bg-glass: rgba(27, 26, 23, 0.66);
+    --plate: rgba(14, 13, 12, 0.55);
+    --plate-line: rgba(236, 232, 223, 0.07);
+    --plate-highlight: rgba(236, 232, 223, 0.04);
+    --ambient-a: rgba(224, 132, 99, 0.1);
+    --ambient-b: rgba(143, 199, 156, 0.07);
+    --ambient-c: rgba(201, 167, 255, 0.06);
+  }
+}
+
+:root[data-theme='dark'] {
+  --elev-1: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 24px -14px rgba(0, 0, 0, 0.6);
+  --elev-2: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 4px 12px -4px rgba(0, 0, 0, 0.4), 0 30px 60px -28px rgba(0, 0, 0, 0.75);
+  --elev-3: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 44px 100px -36px rgba(0, 0, 0, 0.85);
+  --bg-glass: rgba(27, 26, 23, 0.66);
+  --plate: rgba(14, 13, 12, 0.55);
+  --plate-line: rgba(236, 232, 223, 0.07);
+  --plate-highlight: rgba(236, 232, 223, 0.04);
+  --ambient-a: rgba(224, 132, 99, 0.1);
+  --ambient-b: rgba(143, 199, 156, 0.07);
+  --ambient-c: rgba(201, 167, 255, 0.06);
+}
+
+/* Surfaces */
+.elev-1 { box-shadow: var(--elev-1); }
+.elev-2 { box-shadow: var(--elev-2); }
+.elev-3 { box-shadow: var(--elev-3); }
+
+.glass {
+  background: var(--bg-glass);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+}
+
+/* Plates: a recessed, rounded sheet behind a section — marks a new chapter. */
+.section--plate {
+  position: relative;
+  isolation: isolate;
+  border-top-color: transparent;
+}
+.section--plate::before {
+  content: '';
+  position: absolute;
+  inset: clamp(8px, 1.4vw, 18px) clamp(6px, 1.6vw, 22px);
+  z-index: -1;
+  border-radius: clamp(20px, 3vw, 36px);
+  background: var(--plate);
+  border: 1px solid var(--plate-line);
+  box-shadow: 0 1px 0 var(--plate-highlight) inset, 0 -1px 0 var(--plate-line) inset;
+  pointer-events: none;
+}
+.section--plate + .section {
+  border-top-color: transparent;
+}
+
+/* Section head hierarchy: index chip + a rule that draws in on reveal. */
+.eyebrow__index {
+  display: inline-grid;
+  place-items: center;
+  min-width: 30px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-raised);
+  box-shadow: var(--elev-1);
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+.section__head .eyebrow::after {
+  content: '';
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  transform-origin: left;
+  transition: transform 1100ms var(--ease) 200ms;
+}
+.js-reveal .section__head[data-reveal]:not(.is-visible) .eyebrow::after {
+  transform: scaleX(0);
+}
+.section__head .lede {
+  max-width: 46ch;
+}
+
+/* Cards pick up the elevation scale. */
+.shot {
+  box-shadow: var(--elev-2);
+}
+.cap {
+  transition: background 300ms var(--ease), box-shadow 300ms var(--ease), transform 300ms var(--ease);
+}
+.cap:hover {
+  box-shadow: var(--elev-2);
+  transform: translateY(-2px);
+  z-index: 1;
+}
+.work__decision {
+  padding: 16px 18px 16px 20px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--bg-raised);
+  box-shadow: var(--elev-1);
+}
+
+/* ==========================================================================
+   Calm motion primitives
+   ========================================================================== */
+
+/* Ambient field: fixed back layer; page content sits above it. */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.ambient__blob {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  will-change: transform;
+}
+.ambient__blob::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: ambient-breathe 48s ease-in-out infinite alternate;
+}
+.ambient__blob--a {
+  width: 70vmax;
+  height: 70vmax;
+  top: -30vmax;
+  left: -22vmax;
+}
+.ambient__blob--a::before {
+  background: radial-gradient(circle, var(--ambient-a), transparent 62%);
+}
+.ambient__blob--b {
+  width: 60vmax;
+  height: 60vmax;
+  top: 30vh;
+  right: -26vmax;
+}
+.ambient__blob--b::before {
+  background: radial-gradient(circle, var(--ambient-b), transparent 62%);
+  animation-duration: 56s;
+  animation-delay: -18s;
+}
+.ambient__blob--c {
+  width: 54vmax;
+  height: 54vmax;
+  bottom: -28vmax;
+  left: 24vw;
+}
+.ambient__blob--c::before {
+  background: radial-gradient(circle, var(--ambient-c), transparent 62%);
+  animation-duration: 64s;
+  animation-delay: -32s;
+}
+@keyframes ambient-breathe {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(4vw, -3vh, 0) scale(1.08); }
+  100% { transform: translate3d(-3vw, 4vh, 0) scale(0.95); }
+}
+
+/* Stagger: children settle in one at a time. */
+.stagger > * {
+  transition:
+    opacity 650ms var(--ease) calc(var(--i, 0) * var(--stagger-step, 70ms)),
+    transform 650ms var(--ease) calc(var(--i, 0) * var(--stagger-step, 70ms)),
+    background-color 300ms var(--ease),
+    box-shadow 300ms var(--ease);
+}
+/* Once settled, hover lifts respond immediately instead of inheriting the delay. */
+.stagger.is-settled > * {
+  transition-delay: 0ms;
+}
+.js-reveal .stagger:not(.is-in) > * {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Draw line: scroll-drawn trace with a signal head. */
+.drawline {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  pointer-events: none;
+}
+.drawline__track,
+.drawline__fill {
+  position: absolute;
+  inset: 0;
+}
+.drawline__track {
+  background: linear-gradient(var(--line), var(--line) 85%, transparent);
+}
+.drawline__fill {
+  background: linear-gradient(var(--accent), color-mix(in srgb, var(--accent) 30%, transparent));
+  transform-origin: top;
+}
+.drawline__head {
+  position: absolute;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft), 0 0 18px 2px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient__blob::before {
+    animation: none;
+  }
+  .js-reveal .stagger:not(.is-in) > * {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   About — ID card + README
+   ========================================================================== */
+
+.about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 56px);
+  align-items: start;
+}
+.readme {
+  min-width: 0;
+}
+@media (min-width: 900px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+  }
+  .about__id {
+    position: sticky;
+    top: 112px;
+  }
+}
+
+.idcard {
+  margin: 0 auto;
+  max-width: 340px;
+  padding: 12px;
+  border-radius: calc(var(--radius) + 6px);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  box-shadow: var(--elev-3);
+}
+.idcard__photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 4 / 5;
+  background: var(--bg-sunken);
+}
+.idcard__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.88) contrast(1.02);
+}
+.idcard__sweep {
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.16) 50%, transparent 58%);
+  transform: translateX(-60%);
+  animation: id-sweep 9s var(--ease) infinite;
+  pointer-events: none;
+}
+@keyframes id-sweep {
+  0%, 70% { transform: translateX(-60%); }
+  100% { transform: translateX(60%); }
+}
+.idcard figcaption {
+  padding: 14px 6px 4px;
+}
+.idcard__status {
+  margin: 0 0 12px;
+}
+.idcard__rows {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.idcard__rows div {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 10px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+}
+.idcard__rows dt {
+  color: var(--ink-3);
+}
+.idcard__rows dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+.readme {
+  border-radius: calc(var(--radius) + 4px);
+  background: var(--bg-glass);
+  border: 1px solid var(--line);
+  box-shadow: var(--elev-2);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  overflow: hidden;
+}
+.readme__tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.readme__dots {
+  display: inline-flex;
+  gap: 6px;
+}
+.readme__dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+.readme__file {
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--bg-raised);
+  color: var(--ink);
+  box-shadow: var(--elev-1);
+}
+.readme__branch {
+  margin-left: auto;
+}
+.readme__branch::before {
+  content: '⎇ ';
+}
+.readme__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 30px;
+  padding: clamp(22px, 4vw, 40px);
+}
+.readme__block p {
+  margin: 0 0 12px;
+  max-width: 62ch;
+  color: var(--ink-2);
+}
+.readme__title {
+  margin: 0 0 14px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.readme__title span,
+.readme__h span {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.7em;
+  vertical-align: 0.1em;
+}
+.readme__h {
+  margin: 0 0 14px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.readme__do,
+.readme__list,
+.readme__now,
+.readme__beliefs {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.readme__do li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 16px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  box-shadow: var(--elev-1);
+}
+.readme__do strong {
+  font-weight: 500;
+}
+.readme__refs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.readme__refs a {
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-3);
+  transition: color 200ms var(--ease), border-color 200ms var(--ease);
+}
+.readme__refs a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.readme__code {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+.tok-key { color: var(--ink); }
+.tok-punct { color: var(--ink-3); }
+.tok-value { color: var(--accent); }
+.tok-comment { color: var(--ink-3); font-style: italic; }
+.readme__list li,
+.readme__now li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--ink-2);
+}
+.readme__list li::before {
+  content: '>';
+  position: absolute;
+  left: 2px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.readme__now li::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 20%, transparent);
+}
+.readme__beliefs {
+  counter-reset: belief;
+}
+.readme__beliefs li {
+  counter-increment: belief;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.4;
+  font-style: italic;
+}
+.readme__beliefs li::before {
+  content: counter(belief, decimal-leading-zero);
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 11px;
+  padding-top: 0.45em;
+  color: var(--accent);
+}
+.readme__prompt {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+.readme__prompt span {
+  color: var(--ok);
+}
+.readme__cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  margin-left: 4px;
+  vertical-align: -3px;
+  background: var(--accent);
+  animation: cursor-blink 1.1s steps(1) infinite;
+}
+@keyframes cursor-blink {
+  50% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .idcard__sweep,
+  .readme__cursor {
+    animation: none;
+  }
+  .idcard__sweep {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Depth applied to home sections
+   ========================================================================== */
+
+/* Hero: the dot field is its own back layer and fades as the page hands off. */
+.hero__field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero__graph-layer {
+  width: 100%;
+  display: grid;
+}
+
+/* Selected work: a trace runs down the gutter, lighting up as you read. */
+.work-track {
+  position: relative;
+}
+.work-track__line {
+  display: none;
+}
+@media (min-width: 1100px) {
+  .work-track__line {
+    display: block;
+    left: calc(var(--gutter) * -0.75);
+  }
+}
+.work__media .tilt {
+  border-radius: var(--radius);
+}
+
+/* Contact: a glass card floating over the ambient field. */
+.contact {
+  border-top-color: transparent;
+}
+.contact__card {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(28px, 6vw, 72px);
+  border-radius: clamp(20px, 3vw, 36px);
+  background: var(--bg-glass);
+  border: 1px solid var(--line);
+  box-shadow: var(--elev-3);
+  backdrop-filter: blur(20px) saturate(1.15);
+  -webkit-backdrop-filter: blur(20px) saturate(1.15);
+  overflow: hidden;
+}
+.contact__card::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-soft), transparent 65%);
+  pointer-events: none;
+  z-index: -1;
+}
+.contact__card > * {
+  position: relative;
+}
+
+/* ==========================================================================
+   Mobile & tablet refinements
+   ========================================================================== */
+
+/* Touch: grow small links' hit areas to ~44px without moving their visuals. */
+@media (pointer: coarse) {
+  .text-link,
+  .cap__used a,
+  .readme__refs a {
+    position: relative;
+  }
+  .text-link::after,
+  .cap__used a::after,
+  .readme__refs a::after {
+    content: '';
+    position: absolute;
+    inset: -9px -4px;
+  }
+  .readme__refs,
+  .cap__used {
+    gap: 10px;
+  }
+}
+
+/* Tablet: ID card goes horizontal so the README isn't pushed a screen down. */
+@media (min-width: 600px) and (max-width: 899px) {
+  .idcard {
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(180px, 0.8fr) 1fr;
+    align-items: center;
+    gap: 20px;
+  }
+  .idcard figcaption {
+    padding: 0 8px 0 0;
+  }
+}
+
+/* Phones: a little more room for the contact copy. */
+@media (max-width: 599px) {
+  .contact__card {
+    padding: 26px 20px;
+    border-radius: 22px;
+  }
+  .idcard {
+    max-width: 320px;
   }
 }

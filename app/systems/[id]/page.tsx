@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import Navigation from '@/components/site/Navigation';
 import Footer from '@/components/site/Footer';
 import RevealObserver from '@/components/site/RevealObserver';
-import CursorFollower from '@/components/fun/CursorFollower';
 import PacketBurst from '@/components/fun/PacketBurst';
 import Companion from '@/components/fun/Companion';
 import CaseStudy from '@/components/project/CaseStudy';
@@ -47,7 +46,6 @@ export default async function SystemPage({ params }: SystemPageProps) {
       </main>
       <Footer />
       <RevealObserver />
-      <CursorFollower />
       <PacketBurst />
       <Companion />
     </>

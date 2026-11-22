@@ -9,7 +9,7 @@ import { triggerBurst } from '@/components/fun/PacketBurst';
 
 export const companionEvent = 'portfolio:companion';
 const storageKey = 'mini-priyansh-hidden';
-const sectionIds = ['work', 'approach', 'log', 'contact'] as const;
+const sectionIds = ['about', 'work', 'approach', 'log', 'contact'] as const;
 
 /** Let other parts of the page (like the command palette) summon him back. */
 export function summonCompanion() {

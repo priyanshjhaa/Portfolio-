@@ -2,16 +2,17 @@ import Link from 'next/link';
 import { buildStages, capabilities, projects } from '@/lib/data';
 import { projectNumber } from '@/lib/project-state';
 import StepsProgress from '@/components/fun/StepsProgress';
+import Stagger from '@/components/motion/Stagger';
 
 const projectName = (id: string) => projects.find((project) => project.id === id)?.name ?? id;
 
 export default function Approach() {
   return (
-    <section id="approach" className="section" aria-labelledby="approach-title">
+    <section id="approach" className="section section--plate" aria-labelledby="approach-title">
       <div className="wrap">
         <div className="section__head" data-reveal>
           <div>
-            <p className="eyebrow">02 / Approach</p>
+            <p className="eyebrow"><span className="eyebrow__index">03</span> Approach</p>
             <h2 id="approach-title" className="h-section">
               From ambiguity
               <br />
@@ -46,7 +47,7 @@ export default function Approach() {
               Skills connected to <em>proof.</em>
             </h3>
           </div>
-          <ul className="caps__grid" data-reveal>
+          <Stagger as="ul" className="caps__grid" step={60}>
             {capabilities.map((capability) => (
               <li key={capability.id} className="cap">
                 <h3>{capability.label}</h3>
@@ -66,7 +67,7 @@ export default function Approach() {
               <p>Go service design for Sprout’s control API, and production operations for Atlas: deployment, backups, rollback, and release acceptance.</p>
               <p className="cap__skills">Go · Docker · PostgreSQL operations</p>
             </li>
-          </ul>
+          </Stagger>
         </div>
       </div>
     </section>

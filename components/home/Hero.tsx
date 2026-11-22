@@ -1,10 +1,11 @@
 import { ArrowDownRight, Github } from 'lucide-react';
-import { contact, currentBuild, heroContent } from '@/lib/data';
+import { contact, heroContent } from '@/lib/data';
 import DotField from '@/components/fun/DotField';
 import Magnetic from '@/components/fun/Magnetic';
 import Marquee from '@/components/fun/Marquee';
 import ScrambleText from '@/components/fun/ScrambleText';
 import SystemGraph from '@/components/fun/SystemGraph';
+import Parallax from '@/components/motion/Parallax';
 
 const tickerItems = [
   'TypeScript',
@@ -26,7 +27,9 @@ const tickerItems = [
 export default function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <DotField />
+      <Parallax className="hero__field" distance={60} fadeTo={0}>
+        <DotField />
+      </Parallax>
       <div className="wrap hero__wrap">
         <div className="hero__grid">
           <div data-reveal>
@@ -75,21 +78,13 @@ export default function Hero() {
             </dl>
           </div>
 
-          <div className="hero__graph" data-reveal>
-            <SystemGraph />
-          </div>
+          <Parallax className="hero__graph-layer" distance={36}>
+            <div className="hero__graph" data-reveal>
+              <SystemGraph />
+            </div>
+          </Parallax>
         </div>
 
-        <div className="now" data-reveal>
-          <p className="eyebrow now__label">
-            <span className="now__pulse" aria-hidden="true" /> Now building
-          </p>
-          <ul className="now__list">
-            {currentBuild.items.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
       </div>
 
       <Marquee items={tickerItems} label="Tools and practices I work with" />

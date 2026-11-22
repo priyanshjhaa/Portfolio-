@@ -426,6 +426,42 @@ export const about = {
   bio: 'I build execution-focused products, backend systems, and developer tooling designed for real-world use. The goal is simple: ship systems that solve meaningful problems and keep getting stronger over time.',
 };
 
+/**
+ * The README section on the homepage: who I am, how I work, what I believe.
+ * Write this in your own voice — it is the most personal part of the site.
+ */
+export const readme = {
+  prompt: 'priyansh@systems',
+  bio: [
+    'I’m Priyansh — a full-stack product engineer drawn to the unglamorous middle of software: the data model, the execution path, the part that still has to work after the demo.',
+    'I take loosely defined problems and give them a spine — a usable interface, explicit state, and safeguards wherever a mistake gets expensive.',
+  ],
+  idCard: [
+    { key: 'name', value: 'Priyansh Jha' },
+    { key: 'role', value: 'Full-stack product engineer' },
+    { key: 'focus', value: 'Dev tools · AI workflows · SaaS' },
+    { key: 'based', value: 'India · IST (UTC+5:30)' },
+  ],
+  principles: [
+    { key: 'model_first', value: 'true', note: 'boxes and arrows before UI' },
+    { key: 'critical_paths', value: 'deterministic', note: 'observable, boring on purpose' },
+    { key: 'ownership', value: 'interface → infra', note: 'one owner, end to end' },
+    { key: 'shipping', value: 'early, then harden', note: 'real usage beats guesses' },
+    { key: 'ai_actions', value: 'propose → approve', note: 'humans hold the button' },
+  ],
+  workingWithMe: [
+    'Async-first: decisions get written down, so they outlive the call.',
+    'I ask what breaks first, then what ships first.',
+    'Small, reviewable changes. Loud failures. Boring deploys.',
+  ],
+  beliefs: [
+    'AI should propose. Humans approve.',
+    'Every claim needs a citation — in products and in portfolios.',
+    'A system you can’t observe is a system you can’t trust.',
+    'Good architecture is the one the next engineer can explain.',
+  ],
+};
+
 export const heroContent = {
   eyebrow: 'Full-stack product engineer',
   title: 'I turn ambitious product ideas into reliable, usable software.',
@@ -1018,6 +1054,7 @@ export const timeline: TimelineEntry[] = [
 export const companion = {
   hello: 'Hey, I’m mini Priyansh. Scroll and I’ll walk you through.',
   sections: {
+    about: 'This is me, the README version. Short, honest, no buzzwords.',
     work: 'These are the systems I’m building. Sprout is my current obsession.',
     approach: 'Confession: I sketch the data model before I touch the UI.',
     log: 'Receipts! I’d rather show the work than talk about it.',
