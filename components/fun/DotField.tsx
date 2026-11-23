@@ -15,7 +15,9 @@ export default function DotField() {
     const ctx = canvas?.getContext('2d');
     if (!canvas || !ctx) return;
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Touch screens have no pointer to react to, so draw a still field there too.
+    const reduced =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.matchMedia('(hover: hover)').matches;
     const gap = 26;
     let width = 0;
     let height = 0;
@@ -82,6 +84,11 @@ export default function DotField() {
       pointer.ty = -9999;
     };
 
+    const onResize = () => {
+      resize();
+      if (reduced) draw(0);
+    };
+
     readColors();
     resize();
     const themeObserver = new MutationObserver(() => {
@@ -93,7 +100,7 @@ export default function DotField() {
       visible = entry.isIntersecting;
     });
     visibility.observe(canvas);
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', onResize);
 
     if (reduced) {
       draw(0);
@@ -107,7 +114,7 @@ export default function DotField() {
       cancelAnimationFrame(frame);
       themeObserver.disconnect();
       visibility.disconnect();
-      window.removeEventListener('resize', resize);
+      window.removeEventListener('resize', onResize);
       window.removeEventListener('pointermove', onMove);
       document.removeEventListener('pointerleave', onLeave);
     };

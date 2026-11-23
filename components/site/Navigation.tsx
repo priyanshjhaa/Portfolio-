@@ -82,7 +82,7 @@ export default function Navigation({ home = false }: { home?: boolean }) {
       <a className="skip-link" href="#main">Skip to content</a>
       <header className="nav" data-scrolled={scrolled || menuOpen} data-menu={menuOpen}>
         <div className="wrap nav__inner">
-          <Link href="/" className="nav__brand" aria-label="Priyansh Jha, home">
+          <Link href="/" className="nav__brand">
             Priyansh Jha <span>Product engineer</span>
           </Link>
 
@@ -99,8 +99,11 @@ export default function Navigation({ home = false }: { home?: boolean }) {
           </nav>
 
           <div className="nav__actions">
-            <button type="button" className="nav__search" onClick={() => setPaletteOpen(true)} aria-label="Search the portfolio">
-              <Search aria-hidden="true" /> Search <span className="kbd">{shortcut}</span>
+            <button type="button" className="nav__search" onClick={() => setPaletteOpen(true)}>
+              <Search aria-hidden="true" /> Search<span className="sr-only"> the portfolio</span>{' '}
+              <span className="kbd" aria-hidden="true">
+                {shortcut}
+              </span>
             </button>
             <button type="button" className="icon-btn nav__search-icon" onClick={() => setPaletteOpen(true)} aria-label="Search the portfolio">
               <Search aria-hidden="true" />

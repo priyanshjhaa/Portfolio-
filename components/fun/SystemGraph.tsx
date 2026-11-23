@@ -301,7 +301,7 @@ export default function SystemGraph() {
                 </>
               )}
               {node.kind === 'project' && (
-                <text className="graph__initial" dy="0.36em" textAnchor="middle">
+                <text className="graph__initial" dy="0.36em" textAnchor="middle" aria-hidden="true">
                   {node.label.slice(0, 1)}
                 </text>
               )}

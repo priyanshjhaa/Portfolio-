@@ -43,8 +43,12 @@ export default function ScrambleText({ text, className, delay = 300 }: { text: s
   }, [text]);
 
   return (
-    <span className={className} onPointerEnter={run} aria-label={text}>
-      <span aria-hidden="true">{output}</span>
+    <span className={`scramble${className ? ` ${className}` : ''}`} onPointerEnter={run}>
+      {/* The real text reserves the layout and is what assistive tech reads. */}
+      <span className="scramble__ghost">{text}</span>
+      <span className="scramble__live" aria-hidden="true">
+        {output}
+      </span>
     </span>
   );
 }

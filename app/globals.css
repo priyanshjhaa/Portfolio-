@@ -3257,3 +3257,25 @@ body::after {
     max-width: 320px;
   }
 }
+
+/* ==========================================================================
+   Stable scramble text + touch target fixes
+   ========================================================================== */
+.scramble {
+  position: relative;
+  display: inline-block;
+}
+.scramble__ghost {
+  color: transparent;
+}
+.scramble__live {
+  position: absolute;
+  inset: 0 auto auto 0;
+  white-space: nowrap;
+}
+.companion__close::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 999px;
+}
