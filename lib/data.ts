@@ -462,6 +462,27 @@ export const readme = {
   ],
 };
 
+/**
+ * Stack constellation in the About section. Tools are grouped into layers; which
+ * projects use each tool is derived from each project's `stack`, via `aliases`.
+ */
+export const stackLayers: { id: string; label: string; tools: { name: string; aliases?: string[] }[] }[] = [
+  { id: 'ui', label: 'interface', tools: [{ name: 'Next.js' }, { name: 'React' }, { name: 'TanStack Query' }] },
+  { id: 'lang', label: 'language', tools: [{ name: 'TypeScript' }, { name: 'Go' }, { name: 'Node.js', aliases: ['NestJS'] }] },
+  {
+    id: 'data',
+    label: 'data',
+    tools: [{ name: 'PostgreSQL', aliases: ['PostgreSQL + pgvector'] }, { name: 'Drizzle' }, { name: 'Prisma' }, { name: 'Supabase' }, { name: 'Firebase' }],
+  },
+  { id: 'infra', label: 'infra', tools: [{ name: 'Redis', aliases: ['Redis + BullMQ'] }, { name: 'Docker' }, { name: 'Better Auth' }] },
+  { id: 'ai', label: 'ai', tools: [{ name: 'LLMs', aliases: ['Groq'] }] },
+  {
+    id: 'apis',
+    label: 'integrations',
+    tools: [{ name: 'GitHub App' }, { name: 'Notion API' }, { name: 'Resend' }, { name: 'Media APIs', aliases: ['TMDB API', 'YouTube'] }],
+  },
+];
+
 export const heroContent = {
   eyebrow: 'Full-stack product engineer',
   title: 'I turn ambitious product ideas into reliable, usable software.',

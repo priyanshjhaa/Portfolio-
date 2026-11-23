@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { contact, currentBuild, leverageAreas, projects, readme } from '@/lib/data';
 import Parallax from '@/components/motion/Parallax';
 import Stagger from '@/components/motion/Stagger';
+import StackConstellation from '@/components/home/StackConstellation';
 
 const projectByName = (name: string) => projects.find((project) => project.name === name.trim());
 
@@ -158,6 +159,10 @@ export default function About() {
               </p>
             </Stagger>
           </article>
+        </div>
+
+        <div className="about__stack" data-reveal>
+          <StackConstellation />
         </div>
       </div>
     </section>
