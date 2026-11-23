@@ -6,6 +6,7 @@ import RevealObserver from '@/components/site/RevealObserver';
 import PacketBurst from '@/components/fun/PacketBurst';
 import Companion from '@/components/fun/Companion';
 import CaseStudy from '@/components/project/CaseStudy';
+import AmbientField from '@/components/motion/AmbientField';
 import { projects } from '@/lib/data';
 
 interface SystemPageProps {
@@ -45,6 +46,7 @@ export default async function SystemPage({ params }: SystemPageProps) {
 
   return (
     <>
+      <AmbientField />
       <Navigation />
       <main id="main">
         <CaseStudy project={project} />

@@ -6,11 +6,16 @@ import { projects } from '@/lib/data';
 import { getProjectImageAspectRatio } from '@/lib/project-images';
 import { getProjectState, getWalkthroughHref } from '@/lib/project-state';
 import ArchitectureFlow from '@/components/project/ArchitectureFlow';
+import DrawLine from '@/components/motion/DrawLine';
+import Parallax from '@/components/motion/Parallax';
+import Stagger from '@/components/motion/Stagger';
 
-function Block({ label, children }: { label: string; children: React.ReactNode }) {
+function Block({ label, index, children }: { label: string; index: number; children: React.ReactNode }) {
   return (
     <section className="cs-block" data-reveal>
-      <h2 className="cs-block__label">{label}</h2>
+      <h2 className="cs-block__label">
+        <span className="eyebrow__index">{String(index).padStart(2, '0')}</span> {label}
+      </h2>
       <div className="cs-block__content">{children}</div>
     </section>
   );
@@ -21,6 +26,17 @@ export default function CaseStudy({ project }: { project: Project }) {
   const position = projects.findIndex((entry) => entry.id === project.id);
   const next = projects[(position + 1) % projects.length];
   const [width, height] = getProjectImageAspectRatio(project.id).split(' / ').map(Number);
+  // Number only the blocks this project actually renders, in page order.
+  const blockOrder = [
+    'problem',
+    'approach',
+    project.keyDecision && 'decision',
+    project.architectureStages?.length && 'flow',
+    project.architectureNotes?.length && 'notes',
+    (project.proofPoints || project.productionSignals) && 'proof',
+    project.nextStep && 'next',
+  ].filter(Boolean);
+  const indexOf = (key: string) => blockOrder.indexOf(key) + 1;
 
   return (
     <article>
@@ -31,6 +47,12 @@ export default function CaseStudy({ project }: { project: Project }) {
           </Link>
 
           <div data-reveal>
+            <p className="eyebrow cs-hero__eyebrow">
+              <span className="eyebrow__index">
+                {String(position + 1).padStart(2, '0')}/{String(projects.length).padStart(2, '0')}
+              </span>{' '}
+              case study
+            </p>
             <h1 className="display cs-hero__title">{project.name}</h1>
             <p className="cs-hero__summary">{project.summary}</p>
           </div>
@@ -82,29 +104,32 @@ export default function CaseStudy({ project }: { project: Project }) {
 
       {project.image && (
         <div className="wrap cs-shot" data-reveal>
-          <figure className="shot" style={{ margin: 0 }}>
-            <div className="shot__bar" aria-hidden="true">
-              <i /> <i /> <i />
-              <span>{project.liveUrl ? project.liveUrl.replace(/^https?:\/\//, '') : `${project.name.toLowerCase()} — local build`}</span>
-            </div>
-            <Image src={project.image} alt={`${project.name} product landing page`} width={width || 1600} height={height || 900} priority sizes="(max-width: 1240px) 100vw, 1200px" />
-          </figure>
+          <Parallax distance={24}>
+            <figure className="shot" style={{ margin: 0 }}>
+              <div className="shot__bar" aria-hidden="true">
+                <i /> <i /> <i />
+                <span>{project.liveUrl ? project.liveUrl.replace(/^https?:\/\//, '') : `${project.name.toLowerCase()} — local build`}</span>
+              </div>
+              <Image src={project.image} alt={`${project.name} product landing page`} width={width || 1600} height={height || 900} priority sizes="(max-width: 1240px) 100vw, 1200px" />
+            </figure>
+          </Parallax>
         </div>
       )}
 
       <div className="wrap cs-body">
-        <Block label="The problem">
+        <DrawLine className="cs-body__line" />
+        <Block index={indexOf('problem')} label="The problem">
           <h2>{project.problem}</h2>
           {project.whyBuiltThis && <p>{project.whyBuiltThis}</p>}
         </Block>
 
-        <Block label="The approach">
+        <Block index={indexOf('approach')} label="The approach">
           <p>{project.approach}</p>
           {project.details && <p>{project.details}</p>}
         </Block>
 
         {project.keyDecision && (
-          <Block label="Defining decision">
+          <Block index={indexOf('decision')} label="Defining decision">
             <figure className="cs-quote">
               <blockquote>{project.keyDecision}</blockquote>
               {project.tradeoff && (
@@ -118,43 +143,43 @@ export default function CaseStudy({ project }: { project: Project }) {
         )}
 
         {project.architectureStages && project.architectureStages.length > 0 && (
-          <Block label="How it works">
+          <Block index={indexOf('flow')} label="How it works">
             <p>Step through the system. Each stage lists the safeguard that keeps it trustworthy.</p>
             <ArchitectureFlow stages={project.architectureStages} projectId={project.id} />
           </Block>
         )}
 
         {project.architectureNotes && project.architectureNotes.length > 0 && (
-          <Block label="Architecture notes">
-            <ul className="cs-list">
+          <Block index={indexOf('notes')} label="Architecture notes">
+            <Stagger as="ul" className="cs-list">
               {project.architectureNotes.map((note) => (
                 <li key={note}>{note}</li>
               ))}
-            </ul>
+            </Stagger>
           </Block>
         )}
 
         {(project.proofPoints || project.productionSignals) && (
-          <Block label={project.proofTitle ?? 'What is built'}>
+          <Block index={indexOf('proof')} label={project.proofTitle ?? 'What is built'}>
             <div className="cs-two">
               {project.proofPoints && (
                 <div>
                   <h3>Built and working</h3>
-                  <ul className="cs-list">
+                  <Stagger as="ul" className="cs-list">
                     {project.proofPoints.map((point) => (
                       <li key={point}>{point}</li>
                     ))}
-                  </ul>
+                  </Stagger>
                 </div>
               )}
               {project.productionSignals && (
                 <div>
                   <h3>Engineering signals</h3>
-                  <ul className="cs-list">
+                  <Stagger as="ul" className="cs-list">
                     {project.productionSignals.map((signal) => (
                       <li key={signal}>{signal}</li>
                     ))}
-                  </ul>
+                  </Stagger>
                 </div>
               )}
             </div>
@@ -162,7 +187,7 @@ export default function CaseStudy({ project }: { project: Project }) {
         )}
 
         {project.nextStep && (
-          <Block label="What’s next">
+          <Block index={indexOf('next')} label="What’s next">
             <p>{project.nextStep}</p>
           </Block>
         )}
@@ -170,11 +195,13 @@ export default function CaseStudy({ project }: { project: Project }) {
 
       {next && next.id !== project.id && (
         <nav className="wrap cs-next" aria-label="Next project">
-          <span className="eyebrow">Next project</span>
-          <Link href={`/systems/${next.id}/`}>
-            {next.name} <ArrowRight aria-hidden="true" />
-          </Link>
-          <p className="muted" style={{ margin: 0 }}>{next.summary}</p>
+          <div className="cs-next__card" data-reveal>
+            <span className="eyebrow">Next project</span>
+            <Link href={`/systems/${next.id}/`}>
+              {next.name} <ArrowRight aria-hidden="true" />
+            </Link>
+            <p className="muted" style={{ margin: 0 }}>{next.summary}</p>
+          </div>
         </nav>
       )}
     </article>

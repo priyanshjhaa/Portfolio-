@@ -3549,3 +3549,78 @@ body::after {
     inset: -4px -2px;
   }
 }
+
+/* ==========================================================================
+   Case study depth
+   ========================================================================== */
+.cs-hero__eyebrow {
+  margin: 28px 0 0;
+}
+.cs-hero__title {
+  margin-top: 14px;
+}
+.cs-meta {
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-glass);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--elev-1);
+}
+.cs-block__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cs-quote {
+  position: relative;
+  box-shadow: var(--elev-2);
+  overflow: hidden;
+  isolation: isolate;
+}
+.cs-quote::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(var(--accent), transparent);
+  opacity: 0.8;
+}
+.cs-body {
+  position: relative;
+}
+.cs-body__line {
+  display: none;
+}
+@media (min-width: 1100px) {
+  .cs-body__line {
+    display: block;
+    left: calc(var(--gutter) * -0.75);
+  }
+}
+.cs-next {
+  border-top-color: transparent;
+}
+.cs-next__card {
+  display: grid;
+  gap: 8px;
+  padding: clamp(28px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--bg-glass);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  backdrop-filter: blur(18px) saturate(1.15);
+  box-shadow: var(--elev-2);
+  transition: box-shadow 0.35s var(--ease), transform 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+.cs-next__card:hover,
+.cs-next__card:focus-within {
+  box-shadow: var(--elev-3);
+  border-color: var(--line-strong);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cs-next__card:hover {
+    transform: translateY(-2px);
+  }
+}
