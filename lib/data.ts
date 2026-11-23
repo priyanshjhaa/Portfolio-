@@ -888,6 +888,8 @@ export const contact = {
   linkedin: 'https://www.linkedin.com/in/priyansh-jha-489966284',
   x: 'https://x.com/PriyaanshhJhaa',
   email: 'priyanshjhaa17@gmail.com',
+  /** Drop the PDF at public/resume.pdf. */
+  resume: '/resume.pdf',
   availability: 'Open to remote startup roles',
   focus: 'I am most useful on product engineering, developer tools, workflow systems, and full-stack work that needs clear ownership.',
   operatingStatement:

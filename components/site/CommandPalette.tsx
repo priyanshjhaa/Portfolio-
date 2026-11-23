@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { KeyboardEvent as ReactKeyboardEvent } from 'react';
-import { ArrowUpRight, CornerDownLeft, Github, Hash, Layers3, Mail, Moon, Rocket, Search, Sparkles } from 'lucide-react';
+import { ArrowUpRight, CornerDownLeft, FileText, Github, Hash, Layers3, Mail, Moon, Rocket, Search, Sparkles } from 'lucide-react';
 import { contact, projects } from '@/lib/data';
 import { triggerBurst } from '@/components/fun/PacketBurst';
 import { summonCompanion } from '@/components/fun/Companion';
@@ -87,6 +87,7 @@ function buildItems(): PaletteItem[] {
 
   const contactItems: PaletteItem[] = [
     { id: 'c-email', label: 'Email Priyansh', hint: contact.email, group: 'Contact', href: `mailto:${contact.email}`, external: true, keywords: 'email mail hire contact', icon: Mail },
+    { id: 'c-cv', label: 'Download CV', hint: 'PDF résumé', group: 'Contact', href: contact.resume, external: true, keywords: 'cv resume résumé pdf download hire', icon: FileText },
     { id: 'c-github', label: 'GitHub', hint: 'github.com/priyanshjhaa', group: 'Contact', href: contact.github, external: true, keywords: 'github code profile', icon: Github },
     { id: 'c-linkedin', label: 'LinkedIn', hint: 'Professional profile', group: 'Contact', href: contact.linkedin, external: true, keywords: 'linkedin profile', icon: ArrowUpRight },
     { id: 'c-x', label: 'X', hint: '@PriyaanshhJhaa', group: 'Contact', href: contact.x, external: true, keywords: 'x twitter', icon: ArrowUpRight },

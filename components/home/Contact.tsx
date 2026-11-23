@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail } from 'lucide-react';
+import { ArrowUpRight, FileText, Mail } from 'lucide-react';
 import { contact } from '@/lib/data';
 import CopyEmail from '@/components/site/CopyEmail';
 
@@ -18,6 +18,9 @@ export default function Contact() {
         <div className="contact__actions">
           <a className="btn btn--primary" href={`mailto:${contact.email}`}>
             <Mail aria-hidden="true" /> {contact.email}
+          </a>
+          <a className="btn" href={contact.resume} target="_blank" rel="noopener noreferrer">
+            <FileText aria-hidden="true" /> Download CV
           </a>
           <CopyEmail />
         </div>

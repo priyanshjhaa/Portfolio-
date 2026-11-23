@@ -24,9 +24,14 @@ export async function generateMetadata({ params }: SystemPageProps): Promise<Met
   const { id } = await params;
   const project = projects.find((entry) => entry.id === id);
   if (!project) return {};
+  const title = `${project.name} — case study | Priyansh Jha`;
+  const image = { url: `/og/${project.id}.png`, width: 1200, height: 630, alt: `${project.name} case study by Priyansh Jha` };
   return {
-    title: `${project.name} — case study | Priyansh Jha`,
+    title,
     description: project.summary,
+    alternates: { canonical: `/systems/${project.id}/` },
+    openGraph: { title, description: project.summary, type: 'article', siteName: 'Priyansh Jha', images: [image] },
+    twitter: { card: 'summary_large_image', title, description: project.summary, creator: '@PriyaanshhJhaa', images: [image.url] },
   };
 }
 

@@ -11,3 +11,8 @@ export function getProjectImageAspectRatio(projectId: string) {
   const dimensions = projectImageDimensions[projectId];
   return dimensions ? `${dimensions.width} / ${dimensions.height}` : '16 / 9';
 }
+
+export function getProjectImageRatio(projectId: string) {
+  const dimensions = projectImageDimensions[projectId];
+  return dimensions ? dimensions.width / dimensions.height : 16 / 9;
+}
