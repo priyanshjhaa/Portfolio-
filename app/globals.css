@@ -1726,8 +1726,7 @@ a.shot:hover {
   fill: var(--ink);
   pointer-events: none;
 }
-.graph__node--project.is-hover .graph__initial,
-.graph__node--project:focus-visible .graph__initial {
+.graph__initial.is-lit {
   fill: var(--on-accent);
 }
 .graph__label {
@@ -3273,9 +3272,13 @@ body::after {
   inset: 0 auto auto 0;
   white-space: nowrap;
 }
-.companion__close::after {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border-radius: 999px;
+.graph__initial {
+  transition: opacity 0.3s var(--ease), fill 0.2s var(--ease);
+}
+.graph__initial.is-dim {
+  opacity: 0.3;
+}
+.companion__close {
+  width: 24px;
+  height: 24px;
 }

@@ -300,11 +300,6 @@ export default function SystemGraph() {
                   <circle r={r - 6} className="graph__portrait-ring" />
                 </>
               )}
-              {node.kind === 'project' && (
-                <text className="graph__initial" dy="0.36em" textAnchor="middle" aria-hidden="true">
-                  {node.label.slice(0, 1)}
-                </text>
-              )}
               {node.kind !== 'core' && (
                 <text className="graph__label" y={node.kind === 'project' ? r + 24 : -16} textAnchor="middle">
                   {node.label}
@@ -314,6 +309,28 @@ export default function SystemGraph() {
           );
         })}
 
+        {/* Initials sit in their own decorative layer so they don't leak into the links' accessible names. */}
+        <g aria-hidden="true" className="graph__initials">
+          {nodes
+            .filter((node) => node.kind === 'project')
+            .map((node) => {
+              const p = pos[node.id];
+              const dim = active && !active.has(node.id) && hovered !== node.id;
+              const lit = hovered === node.id;
+              return (
+                <text
+                  key={node.id}
+                  className={`graph__initial${dim ? ' is-dim' : ''}${lit ? ' is-lit' : ''}`}
+                  x={p.x}
+                  y={p.y}
+                  dy="0.36em"
+                  textAnchor="middle"
+                >
+                  {node.label.slice(0, 1)}
+                </text>
+              );
+            })}
+        </g>
       </svg>
 
       <div className={`graph__card${hoveredNode ? ' is-on' : ''}`} aria-live="polite">
