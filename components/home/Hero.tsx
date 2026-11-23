@@ -1,6 +1,7 @@
 import { ArrowDownRight, Github } from 'lucide-react';
 import { contact, heroContent } from '@/lib/data';
 import DotField from '@/components/fun/DotField';
+import HeroTerminal from '@/components/fun/HeroTerminal';
 import Magnetic from '@/components/fun/Magnetic';
 import Marquee from '@/components/fun/Marquee';
 import ScrambleText from '@/components/fun/ScrambleText';
@@ -41,6 +42,7 @@ export default function Hero() {
               </em>
             </h1>
             <p className="lede hero__intro">{heroContent.description}</p>
+            <HeroTerminal />
 
             <div className="hero__actions">
               <Magnetic>
