@@ -4,24 +4,26 @@ A single-page portfolio for a full-stack product engineer building developer too
 
 ## Experience
 
-- **Editorial homepage:** a calm hero with a "Now building" strip, selected work with the key decision behind each project, the build approach, a monthly build log, and contact.
+- **Editorial homepage:** a calm hero with a live terminal line, a README-style `whoami` section with a stack constellation, selected work with the key decision behind each project, the build approach, a build log, and contact.
 - **Honest project status:** projects without a public deployment show their real state ("In active build", "Deployment pending") and offer a prefilled "Request a walkthrough" email instead of a missing link.
 - **Case studies:** `/systems/<id>` pages cover the problem, approach, defining decision and tradeoff, a step-through architecture flow with the safeguard at each stage, what is built, and what is next.
-- **Search:** `Cmd/Ctrl + K` opens a keyboard-first palette for projects, sections, and contact links.
+- **Search:** `Cmd/Ctrl + K` opens a keyboard-first palette for projects, sections, contact links, and the CV.
+- **Share cards:** each page gets a branded 1200×630 preview image, rendered at build time to `/og/<page>.png`.
 
 ## Design System
 
 - **Surfaces:** warm paper (light) and ink (dark), switchable and following the system setting by default.
 - **One accent:** a clay red used sparingly for emphasis, active states, and status.
 - **Type:** Newsreader (serif display), Geist (body), and Geist Mono (labels), loaded with `next/font` so every platform renders the same typography.
-- **Motion:** a single, subtle fade-in on scroll. Content is fully visible without JavaScript and with reduced motion enabled.
+- **Depth:** a shared shadow scale, frosted glass surfaces, and recessed section plates.
+- **Motion:** slow and supportive: an ambient colour field, gentle parallax, staggered lists, and scroll-drawn lines (`components/motion/`). Everything is static with reduced motion, and parallax is off below 768px.
 - **Tokens:** every color lives as a CSS variable in `app/globals.css`; components use plain, named classes from the same file.
 
 ## Stack
 
 - [Next.js](https://nextjs.org/) 16 with the App Router
 - React 19 and TypeScript
-- Tailwind CSS
+- Tailwind CSS and Motion
 - Lucide icons
 - Local portfolio data and static project screenshots
 
@@ -32,14 +34,19 @@ app/
   page.tsx                 # Homepage composition
   systems/[id]/page.tsx    # Case-study pages (statically generated)
   layout.tsx               # Fonts, metadata, theme bootstrapping
+  og/[slug]/route.tsx      # Share card images, generated at build time
   globals.css              # Design tokens and component styles
 components/
   site/                    # Navigation, command palette, theme switch, footer, reveal-on-scroll
-  home/                    # Hero, selected work, approach, build log, contact
+  home/                    # Hero, about (README + stack map), selected work, approach, build log, contact
   project/                 # Case study and architecture flow
+  motion/                  # Ambient field, parallax, stagger, draw-line
+  fun/                     # Dot field, system graph, terminal line, mini Priyansh
 lib/data.ts                # Portfolio content (single source of truth)
 lib/project-state.ts       # Honest status labels and walkthrough links
+lib/og.tsx                 # Share card renderer
 public/projects/           # Project screenshots
+public/resume.pdf          # CV (linked from Contact and the palette)
 ```
 
 ## Run Locally
@@ -55,9 +62,11 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ```bash
 npx tsc --noEmit --incremental false
+npm run lint
 npm run build
-npm start
 ```
+
+Set `NEXT_PUBLIC_SITE_URL` to the live domain so share images get absolute URLs (Vercel builds fall back to their production URL).
 
 ## Updating Content
 
